@@ -51,4 +51,6 @@
         Các distro này nhắm vào người dùng mới sử dụng Linux.
         Thời gian phát hành ngắn vì thế mà liên tục có các phiên bản mới.
         Hỗ trợ nhiều GUI để cấu hình hệ thống nhằm mang đến cho người dùng dễ dàng trải nghiệm.
+        
+Tham khảo tại: [Thông tin công nghệ](https://www.thongtincongnghe.com/article/19157)
     

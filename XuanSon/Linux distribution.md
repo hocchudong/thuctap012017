@@ -12,6 +12,7 @@
     - [2.2.3.Hệ điều hành Centos](2.2.3)
 - [3.Summary Linux distribution](#3)
 - [THAM KHẢO](#thamkhao)
+
 <a name='1'></a>
 # 1.Khái niệm Linux distribution
 **Linux distribution** bao gồm linux kernel , GNU tool and libraries ,
@@ -80,9 +81,7 @@ hành Red Hat Exterprise .
 
 <a name='3'></a>
 # 3.Summary Linux distribution  
-<img src="http://photos1.blogger.com/
-blogger/3370/2500/1600/GNULinuxupdatedw4.0.jpg" >
-
+<img src="http://photos1.blogger.com/blogger/3370/2500/1600/GNULinuxupdatedw4.0.jpg" >
 
 
 <a name='thamkhao'></a>

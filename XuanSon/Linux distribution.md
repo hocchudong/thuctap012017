@@ -36,14 +36,14 @@ Hệ điều hành mà chúng tôi tạo ra được gọi là Debian.
 \- Có rất nhiều distribution dựa trên Debian như Ubuntu ,Astra-Linux ,Collax,
 Cumulus Linux ,Damn Small Linux ,Debian JP ,DoudouLinux .
 **Nhưng phổ biến nhất là Ubuntu .**  
-\- Hỗ trợ công cụ quản lý gói phần mềm apt và dpkg với file .deb .
+\- Hỗ trợ công cụ quản lý gói phần mềm apt và dpkg với file .deb .  
 \- Free cho người sử dụng .  
 
 <a name='2.1.2'></a>
 ### 2.1.2.Hệ điều hành Ubuntu
 
 \- **Ubuntu** là hệ điều hành dựa trên Debian GNU/Linux .
-Ubuntu được tài trợ bởi Canonical Ltd (chủ sở hữu là một người Nam Phi Mark Shuttleworth). 
+Ubuntu được tài trợ bởi Canonical Ltd (chủ sở hữu là một người Nam Phi Mark Shuttleworth).  
 \- Free cho người sử dụng .  
 \- Các bản phân phôi Ubuntu :  
 - Phiên bản thông thường   

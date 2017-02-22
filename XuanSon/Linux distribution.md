@@ -35,7 +35,7 @@ Hệ điều hành mà chúng tôi tạo ra được gọi là Debian.
 \- Hiện tại các hệ thống Debian sử dụng nhân Linux hoặc nhân FreeBSD.  
 \- Có rất nhiều distribution dựa trên Debian như Ubuntu ,Astra-Linux ,Collax,
 Cumulus Linux ,Damn Small Linux ,Debian JP ,DoudouLinux .
-**Nhưng phổ biến nhất là Ubuntu .**
+**Nhưng phổ biến nhất là Ubuntu .**  
 \- Hỗ trợ công cụ quản lý gói phần mềm apt và dpkg với file .deb .
 \- Free cho người sử dụng .  
 

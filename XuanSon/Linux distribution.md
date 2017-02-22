@@ -81,7 +81,7 @@ hành Red Hat Exterprise .
 
 <a name='3'></a>
 # 3.Summary Linux distribution  
-<img src="http://photos1.blogger.com/blogger/3370/2500/1600/GNULinuxupdatedw4.0.jpg" >
+<img src="https://github.com/doxuanson/thuctap012017/blob/master/XuanSon/Pictures/Linux%20distribution.jpg" >
 
 
 <a name='thamkhao'></a>

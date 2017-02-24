@@ -20,7 +20,6 @@
 ---
 
   <a name=#1></a>
-
   # 1. Giới thiệu hệ điều hành Ubuntu Server
 
    - ***Ubuntu*** là một hệ điều hành mã nguồn mở miễn phí được xây dựng dựa trên Debian GNU/Linux. Điều đó có nghĩa là mọi người đều được tự do sử dụng, thay đổi, cải tiến nó… Ubuntu được tài trợ bởi công ty Canonical Ltd (chủ sở hữu là một người Nam Phi Mark Shuttleworth).  Thay vì bán Ubuntu, Canonical tạo ra doanh thu bằng cách bán hỗ trợ kĩ thuật.
@@ -36,7 +35,7 @@
 
 <a name=##2.1></a>
 ## 2.1. Chuẩn bị
- - VMware Work Station 12. Có thể xem hướng dẫn sử dụng VMware cho những bạn chưa nắm vững [tại đây](https://github.com/hocchudong/vmware-workstation-network)
+ - VMware Work Station 12: Có thể xem hướng dẫn sử dụng VMware cho những bạn chưa nắm vững [tại đây](https://github.com/hocchudong/vmware-workstation-network)
  
  - Iso Ubuntu Server 14.04: Download tại http://releases.ubuntu.com/14.04/ 
 
@@ -73,13 +72,12 @@
 
    => Chọn `United States`
 
-   - Chọn layout keyboard:
+- Chọn layout keyboard:
 
   <img src="https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/CaiDatUbuntuServer14.04/Pictures/8.png">
 
   => Chọn `No`
-
-  - Chọn keyboard layout: 
+- Chọn keyboard layout: 
 
    <img src="https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/CaiDatUbuntuServer14.04/Pictures/9.png">
 
@@ -87,19 +85,19 @@
 
    => Chọn `English` cho quen sử dụng.
 
-   - Cấu hình Network:
+- Cấu hình Network:
 
    <img src="https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/CaiDatUbuntuServer14.04/Pictures/11.png">
 
    => Hệ thống chọn một interface để cài đặt. Chọn interface ra được ngoài mạng Internet. Như ở đây chọn `eth0`
 
-   - Cấu hình Hostname và superuser: 
+- Cấu hình Hostname và superuser: 
 
    <img src="https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/CaiDatUbuntuServer14.04/Pictures/12.png">
 
    => Gõ tên hostname mà bạn muốn. 
 
-   Tạo tài khoản Superuser và set password (được dùng mượn quyền root):
+- Tạo tài khoản Superuser và set password (được dùng mượn quyền root):
 
   <img src="https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/CaiDatUbuntuServer14.04/Pictures/13.png">
   
@@ -119,7 +117,7 @@
 
  => Đây là bước cấu hình mã hóa thư mục home của người dùng nêu máy tính của bạn có bị mất cắp. Bước này mình chưa sử dụng bao giờ nên chọn `No`
 
- - Cấu hình time zone cho hệ thống: 
+- Cấu hình time zone cho hệ thống: 
 
   <img src="https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/CaiDatUbuntuServer14.04/Pictures/19.png">
 
@@ -127,7 +125,7 @@
 
    => Chon `Ho Chi Minh`.
 
-   - Cấu hình phân vùng ổ cứng: 
+- Cấu hình phân vùng ổ cứng: 
 
   <img src="https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/CaiDatUbuntuServer14.04/Pictures/21.png">
 

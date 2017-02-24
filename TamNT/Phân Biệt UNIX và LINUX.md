@@ -28,7 +28,7 @@ giao tiếp và phần lập trình vỏ và ngôn ngữ lệnh kết hợp các
 
 - UNIX là một trong những hệ điều hành 64 bit đầu tiên. Hiện nay UNIX được sử dụng bởi nhiều công ty tập đoàn lớn trên thế giới vì mức độ bảo mật của nó tương đối cao.
 
--  Qua nhiều năm, nó đã được phát tiển thành nhiều phiên bản sử dụng trên nhiều mộ trường phần cứng khác nhau. Hầu hết các phiên bản UNIX hiện này đều là nững biến thể của UNIX gốc và được các nhà phát triển sửa đổi, viết lại hoặc thêm các tính năng, công nghệ riêng biệt. Các phiên bản UNIX hiện nay có thể kể đến: HP-UX (HP), AIX (IBM), Solaris (Sun/Oracle), Mac OS X (Apple).
+-  Qua nhiều năm, nó đã được phát triển thành nhiều phiên bản sử dụng trên nhiều môi trường phần cứng khác nhau. Hầu hết các phiên bản UNIX hiện này đều là những biến thể của UNIX gốc và được các nhà phát triển sửa đổi, viết lại hoặc thêm các tính năng, công nghệ riêng biệt. Các phiên bản UNIX hiện nay có thể kể đến: HP-UX (HP), AIX (IBM), Solaris (Sun/Oracle), Mac OS X (Apple).
 
 <a name="1.2"></a>
 ## 1.2. LINUX

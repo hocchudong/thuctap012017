@@ -42,7 +42,7 @@ giao tiếp và phần lập trình vỏ và ngôn ngữ lệnh kết hợp các
 - Thuật ngữ "Linux" được sử dụng để chỉ nhân Linux, nhưng tên này được sử dụng một cách rộng rãi để miêu tả tổng thể một hệ điều hành tương tự Unix (còn được biết đến dưới tên **GNU/Linux**) được tạo ra bởi việc ***"đóng gói"*** nhân Linux cùng với các thư viện và công cụ **GNU**, cũng như là các bản phân phối Linux. 
 
 <a name="2.2"></a>
-## 2.2. Phân biệt UNIX và LINUX
+## 2. Phân biệt UNIX và LINUX
 
 
 | Tiêu chí đánh giá | UNIX  | LINUX | 

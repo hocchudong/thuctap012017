@@ -71,9 +71,9 @@ tự do phổ biến nhất , ban đầu được thiết kê bới Richard Stal
 
 \- Giấy phép BSD (Berkeley Software Distribution License) là một giấy phép phần mềm tự do với các điều kiện rất đơn giản được sử dụng rộng rãi cho phần mềm máy tính. Ban đầu giấy phép BSD được thiết kế bởi Đại học California tại Berkeley năm 1980 cho dự án BSD (Berkeley Source Distribution).  
 \- Một số phần mềm sử dụng giấy phép BSD nổi bật :  
-– Hệ thống Window Xfree86: nền tảng của hầu hết các giao diện với 
+- Hệ thống Window Xfree86: nền tảng của hầu hết các giao diện với 
 người sử dụng trong các hệ thống phần mềm nguồn mở.
-– FreeBSD, NetBSD và OpenBSD: các biến thể của phiên bản Unix gốc 
+- FreeBSD, NetBSD và OpenBSD: các biến thể của phiên bản Unix gốc 
 được cấp giấy phép BSD, cả ba đều được sử dụng rộng rãi trên mạng Internet, đặc biệt là FreeBSD, chương trình điều hành Yahoo Mail và dịch vụ Hotmail.
 
 <a name='2.3.3'></a>  

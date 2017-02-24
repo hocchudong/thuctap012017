@@ -159,7 +159,7 @@
 
 - Cài đặt các gói phần mềm cần thiết: 
 
-   <img src="https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/CaiDatUbuntuServer14.04/Pictures/31.png">
+  <img src="https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/CaiDatUbuntuServer14.04/Pictures/31.jpg">
 
  => Ở đây chọn OpenSSH. Mình chọn gói phần mềm này vì để phục vụ quá trình sử dụng sau này. Nếu không chọn ở bước này, thì các phần mềm này đều có thể cài đặt manual sau khi sử dụng hệ thống. 
  

@@ -95,7 +95,7 @@ https://vi.wikipedia.org/wiki/Ph%E1%BA%A7n_m%E1%BB%81m_ngu%E1%BB%93n_m%E1%BB%9F
 https://en.wikipedia.org/wiki/Free_and_open-source_software  
 https://en.wikipedia.org/wiki/Open-source_license  
 https://thaiduynguyen.wordpress.com/2009/10/30/tim-hieu-ve-osl/  
-https://thaiduynguyen.wordpress.com/2009/10/30/tim-hieu-ve-osl/  
+ 
 
 
 

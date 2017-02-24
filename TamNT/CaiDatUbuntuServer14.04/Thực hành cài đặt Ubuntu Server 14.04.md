@@ -20,7 +20,7 @@
 ---
 
   <a name=1></a>
- # 1. Giới thiệu hệ điều hành Ubuntu Server
+  # 1. Giới thiệu hệ điều hành Ubuntu Server
 
    - ***Ubuntu*** là một hệ điều hành mã nguồn mở miễn phí được xây dựng dựa trên Debian GNU/Linux. Điều đó có nghĩa là mọi người đều được tự do sử dụng, thay đổi, cải tiến nó… Ubuntu được tài trợ bởi công ty Canonical Ltd (chủ sở hữu là một người Nam Phi Mark Shuttleworth).  Thay vì bán Ubuntu, Canonical tạo ra doanh thu bằng cách bán hỗ trợ kĩ thuật.
 

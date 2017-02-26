@@ -112,12 +112,12 @@
 ## 3. Kết thúc
 
 > Đêm đã khuya, mình xin gác phím, treo máy tại đây.
-	Trong Linux vẫn còn rất nhiều thư mục đang chờ bạn khám phá! Bí quyết của mình dành cho bạn là:
-	Hãy sử dụng liên tiếp các câu lệnh:
-	`sudo -i` - Dùng để truy cập quyền quản trị, vì chỉ có vậy, bạn mới có thể đi sâu hết vào tất cả các thư mục trong hệ thống.
-	`cd /` - Để đưa bạn tới thư mục `/` cho phép bạn khám phá từ cái tổng quan nhất.
-	`rm -rf *` - ` Liệt kê` tất cả các thông tin về các thư mục có trong `/`
+Trong Linux vẫn còn rất nhiều thư mục đang chờ bạn khám phá! Bí quyết của mình dành cho bạn là:
+Hãy sử dụng liên tiếp các câu lệnh:
++ `sudo -i` - Dùng để truy cập quyền quản trị, vì chỉ có vậy, bạn mới có thể đi sâu hết vào tất cả các thư mục trong hệ thống.
++ `cd /` - Để đưa bạn tới thư mục `/` cho phép bạn khám phá từ cái tổng quan nhất.
++ `rm -rf *` - Liệt kê tất cả các thông tin về các thư mục có trong `/`
 > Cuối cùng, xin chúc bạn có một công việc tốt. Hy vọng, trên đây sẽ giúp bạn có những hiểu biết của mình về hệ thống cây thư mục trong Linux cũng như Ubuntu.
 
 
-Tham khảo tại: [Nguồn tham khảo](https://quantrimang.com)
+Tham khảo tại: [Quản trị mạng](https://quantrimang.com)

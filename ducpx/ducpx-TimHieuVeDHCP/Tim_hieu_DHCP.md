@@ -52,7 +52,7 @@
 | Server host name | 64 | Khi server gửi các gói tin trả lời client thì sẽ đặt trường này, có thể là nicknam hoặc tên miềm dns |
 | Boot filename | 128 | Sử dụng bời client để yêu cầu loại tập tin khởi động cụ thể trong gói tin discover.Sử dụng bởi server để chỉ rõ toàn bộ đường dẫn, tên file của file khởi động trong gói tin offer |
 
-
+tham khảo ở link sau.
 http://www.tcpipguide.com/free/t_DHCPMessageFormat.htm
 
 ##4. Cách thức hoạt động

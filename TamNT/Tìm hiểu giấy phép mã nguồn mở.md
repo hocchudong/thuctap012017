@@ -2,15 +2,15 @@
 
 # <u>_Mục lục_</u>
 
->[1. Phần mềm mã nguồn mở](#1)
+[1. Phần mềm mã nguồn mở](#1)
 
->[2. Giấy phép mã nguồn mở là gì?](#2)
+[2. Giấy phép mã nguồn mở là gì?](#2)
 
   - [2.1. Khái niệm](#2.1)
 
   - [2.2. Phân loại](#2.2)
 
->[3. Một số giấy phép mã nguồn mở phổ biến](#3)
+[3. Một số giấy phép mã nguồn mở phổ biến](#3)
 
   - [3.1. Giấy phép công cộng GNU](#3.1)
 
@@ -20,7 +20,7 @@
 
   - [3.4. Giấy phép Apache](#3.4)
 
->[4. Tài liệu tham khảo](#4)
+[4. Tài liệu tham khảo](#4)
 
 ---
 
@@ -55,8 +55,8 @@ mềm được có các quyền vốn bị cấm bởi bản quyền: bao gồm 
 <a name="2"></a>
 # 2. Giấy phép mã nguồn mở là gì?
 
-  <a name = "2.1"></a>
-  ## 2.1 Khái niệm
+<a name = "2.1"></a>
+  ## 2.1. Khái niệm
 
   ***Giấy phép mã nguồn mở**: là các giấy phép bản quyền dành cho các phần mềm máy tính trong đó đặt ra các quy định buộc người sử dụng phần mềm đó phải tuân theo. Giấy phép mã nguồn mở được sử dụng cho các phần mềm nguồn mở.*
 

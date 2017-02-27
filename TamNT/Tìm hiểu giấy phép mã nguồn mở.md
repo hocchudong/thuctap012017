@@ -56,9 +56,9 @@ mềm được có các quyền vốn bị cấm bởi bản quyền: bao gồm 
 # 2. Giấy phép mã nguồn mở là gì?
 
 <a name = "2.1"></a>
-  ## 2.1. Khái niệm
+## 2.1. Khái niệm
 
-  ***Giấy phép mã nguồn mở**: là các giấy phép bản quyền dành cho các phần mềm máy tính trong đó đặt ra các quy định buộc người sử dụng phần mềm đó phải tuân theo. Giấy phép mã nguồn mở được sử dụng cho các phần mềm nguồn mở.*
+  ***Giấy phép mã nguồn mở***: *là các giấy phép bản quyền dành cho các phần mềm máy tính trong đó đặt ra các quy định buộc người sử dụng phần mềm đó phải tuân theo. Giấy phép mã nguồn mở được sử dụng cho các phần mềm nguồn mở.*
 
   - Giấy phép mã nguồn mở có giá trị về mặt pháp lý được quy định rõ ràng.
 
@@ -76,8 +76,8 @@ mềm được có các quyền vốn bị cấm bởi bản quyền: bao gồm 
 
   - *Phiên bản dẫn xuất*: cho phép các thay đổi và các phiên bản dẫn xuất, và phải cho phép rằng những phiên bản này được phân phối dưới cùng các điều khoản giấy phép.
 
-  <a name="2.2"></a>
-  ## 2.2. Phân loại 
+<a name="2.2"></a>
+## 2.2. Phân loại 
 
   Được chia thành 2 loại chính: 
 

@@ -91,17 +91,17 @@ Dưới đây là hình ảnh của các gói tin ARP mà mình sử dụng bắ
 	![Các gói tin broadcast](Pictures/ARP/arp_broadcast.png)
 
 > Gói tin ARP Request bắt được khi gửi request tới các địa chỉ không phải là địa chỉ đích sẽ không có thông tin địa chỉ MAC ở phần `Dst`:
-	![Các gói tin broadcast](Pictures/ARP/arp_broadcast(1).png)
+	![Các gói tin broadcast](Pictures/ARP/arp_broadcast1.png)
 
 Để ý vào gói tin thứ 377 (Đây chính là gói tin request khi gửi tới đúng địa chỉ với nội dung: "10.145.25.202 is at 00:0c:29:4c:66:58"). Phân tích gói tin này, ta thấy được nội dung của nó như sau:
 	![Hình ảnh gói tin request](Pictures/ARP/arp_request.png)
 
 Nhận thấy ở phần `Dst` đã chứa giá trị địa chỉ MAC của Server. Bao gồm IP nguồn và IP đích.
-	![Hình ảnh gói tin request](Pictures/ARP/arp_request(1).png)
+	![Hình ảnh gói tin request](Pictures/ARP/arp_request1.png)
 
 Tiếp theo, ta tiến hành phần tích gói tin reply từ server về host:
 	![Hình ảnh gói tin reply](Pictures/ARP/arp_reply.png)
 Vì đây là gói tin reply lên giá trị khung `Sender MAC Address` và `Target MAC Address` đã được đổi ngược lại với giá trị của gói tin request.
-	![Hình ảnh gói tin reply](Pictures/ARP/arp_reply(1).png)
+	![Hình ảnh gói tin reply](Pictures/ARP/arp_reply1.png)
 
 Giá trị phần Sender IP và Target IP cũng được chuyển đổi.

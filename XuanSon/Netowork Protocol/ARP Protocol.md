@@ -43,7 +43,7 @@ một packet “ARP request” ( trong đó có MAC address của mình ) .
 ## 3.1.Cấu trúc của ARP packet 
 
 <img src="https://github.com/doxuanson/thuctap012017/blob/master/XuanSon/Pictures/Netowork%20Protocol/ARP%20Protocol/2.jpg">  
-Ta nhìn thấy “ARP message” được encapsulated trong Ethernet header . 
+Ta nhìn thấy “ARP message” được bọc bởi Ethernet header . 
 
 <a name="3.2"></a>
 ## 3.2.Cấu trúc của ARP message
@@ -136,6 +136,8 @@ nhưng thực tế người ta thường dùng dynamic do tính tiện lợi mà
 \- Chúng ta có thể dùng câu lệnh : `arp -a` để show ra bảng ARP cache .  
 
 <img src="https://github.com/doxuanson/thuctap012017/blob/master/XuanSon/Pictures/Netowork%20Protocol/ARP%20Protocol/10.jpg">  
+
+\- **Note** : Khi truyền packet , PC sẽ kiểm tra bảng ARP cache trước , nếu không IP address cần tìm thì mới gửi “ARP request” .
 
 
 <a name="thamkhao"></a>

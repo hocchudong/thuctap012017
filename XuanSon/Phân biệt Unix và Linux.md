@@ -12,9 +12,10 @@
 <a name='1.1'></a>
 ## 1.1.Hệ điều hành Unix
 
-**Unix** là một hệ điều hành máy tính viết vào những năm 1960 và 1970 
+- **Unix** là một hệ điều hành máy tính viết vào những năm 1960 và 1970 
 do một số nhân viên của công ty AT&T Bell Labs bao gồm Ken Thompson, 
 Dennis Ritchie và Douglas McIlroy .
+- **Unix** là hệ điều hành đa nhiệm đa người sử dụng .  
 
 
 <a name='1.2'></a>
@@ -25,7 +26,8 @@ Linux .
 \- **Linux kernel** là nhân hệ điều hành Linxu do Linus Torvals viết vào 
 năm 1991 .  
 \- **Hệ điều hành Linux** (hay còn gọi là Linux distribution) là 
-chỉ sự đóng gói linux kernel cùng với các thư viện và công cụ **GNU** .   
+chỉ sự đóng gói linux kernel cùng với các thư viện và công cụ **GNU** .  
+**Linux** là hệ điều hành đa nhiệm đa người sử dụng .     
 
 <a name='2'></a>
 # 2.Sự khác nhau giữa Unix và Linux 

@@ -137,7 +137,7 @@ nhưng thực tế người ta thường dùng dynamic do tính tiện lợi mà
 
 <img src="https://github.com/doxuanson/thuctap012017/blob/master/XuanSon/Pictures/Netowork%20Protocol/ARP%20Protocol/10.jpg">  
 
-\- **Note** : Khi truyền packet , PC sẽ kiểm tra bảng ARP cache trước , nếu không IP address cần tìm thì mới gửi “ARP request” .
+\- **Note** : Khi truyền packet , PC sẽ kiểm tra bảng ARP cache trước , nếu không có IP address cần tìm thì mới gửi “ARP request” .
 
 
 <a name="thamkhao"></a>

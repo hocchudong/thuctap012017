@@ -173,7 +173,7 @@ Hoạt động của ARP trong một môi trường phức tạp hơn đó là h
 
   - Bản tin này có cấu trúc địa chi IP của máy gửi là 0.0.0.0 (thể hiện máy gửi bản tin này chưa xác định IP, đồng thời cũng là để các máy khác trong mạng không cập nhật MAC của máy vào ARP caching - vì nó chưa được gán IP cụ thể nào)
 
-  - Địa chỉ MAC đích là 00.00.00.00.00.00
+  - Địa chỉ MAC đích là 00:00:00:00:00:00
 
   - Địa chỉ IP đích là địa chỉ IP mà máy gửi được cấp phát.
 

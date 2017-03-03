@@ -2,15 +2,15 @@
 
 # <u>_Mục lục_</u>
 
->[1. Phần mềm mã nguồn mở](#1)
+[1. Phần mềm mã nguồn mở](#1)
 
->[2. Giấy phép mã nguồn mở là gì?](#2)
+[2. Giấy phép mã nguồn mở là gì?](#2)
 
   - [2.1. Khái niệm](#2.1)
 
   - [2.2. Phân loại](#2.2)
 
->[3. Một số giấy phép mã nguồn mở phổ biến](#3)
+[3. Một số giấy phép mã nguồn mở phổ biến](#3)
 
   - [3.1. Giấy phép công cộng GNU](#3.1)
 
@@ -20,7 +20,7 @@
 
   - [3.4. Giấy phép Apache](#3.4)
 
->[4. Tài liệu tham khảo](#4)
+[4. Tài liệu tham khảo](#4)
 
 ---
 
@@ -55,10 +55,17 @@ mềm được có các quyền vốn bị cấm bởi bản quyền: bao gồm 
 <a name="2"></a>
 # 2. Giấy phép mã nguồn mở là gì?
 
+<<<<<<< HEAD
   <a name = "2.1"></a>
   ## 2.1. Khái niệm
 
   ***Giấy phép mã nguồn mở***: là các giấy phép bản quyền dành cho các phần mềm máy tính trong đó đặt ra các quy định buộc người sử dụng phần mềm đó phải tuân theo. Giấy phép mã nguồn mở được sử dụng cho các phần mềm nguồn mở.*
+=======
+<a name = "2.1"></a>
+## 2.1. Khái niệm
+
+  ***Giấy phép mã nguồn mở***: *là các giấy phép bản quyền dành cho các phần mềm máy tính trong đó đặt ra các quy định buộc người sử dụng phần mềm đó phải tuân theo. Giấy phép mã nguồn mở được sử dụng cho các phần mềm nguồn mở.*
+>>>>>>> cc6ead4d973c71093a217ca5bc84f1f1c829ca67
 
   - Giấy phép mã nguồn mở có giá trị về mặt pháp lý được quy định rõ ràng.
 
@@ -76,8 +83,8 @@ mềm được có các quyền vốn bị cấm bởi bản quyền: bao gồm 
 
   - *Phiên bản dẫn xuất*: cho phép các thay đổi và các phiên bản dẫn xuất, và phải cho phép rằng những phiên bản này được phân phối dưới cùng các điều khoản giấy phép.
 
-  <a name="2.2"></a>
-  ## 2.2. Phân loại 
+<a name="2.2"></a>
+## 2.2. Phân loại 
 
   Được chia thành 2 loại chính: 
 

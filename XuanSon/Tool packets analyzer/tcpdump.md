@@ -2,7 +2,7 @@
 
 # MỤC LỤC
 - [1.Giới thiệu](#1)
-  - [1.1.PCAP](1,1)
+  - [1.1.libpcap](1,1)
   - [1.2.tcpdump](#1.2)
 - [2.Install](#2)
 - [3.Một số lệnh cơ bản của tcpdump](#3)
@@ -15,8 +15,8 @@
 # 1.Giới thiệu
 
 <a name="1.1"></a>
-## 1.1.PCAP 
-\- PCAP hay libpcap ( Packet Capture libbrary ) provides level interface to packet captrure systems .  
+## 1.1.libpcap 
+\- libpcap ( Packet Capture libbrary ) provides level interface to packet captrure systems .   
 \- Tham khảo :  
 http://www.tcpdump.org/manpages/pcap.3pcap.html   
 http://eecs.wsu.edu/~sshaikot/docs/lbpcap/libpcap-tutorial.pdf  
@@ -45,7 +45,7 @@ sudo apt-get install tcpdump
 ## 3.1.Capture packets từ một ethernet interface sử dụng tcpdump -i
 \- Khi thực thi tcpdump command without any option , nó sẽ capture tất cả packets flowing through tất cả interface . -i option với tcpdump command , cho phép filter trên một ethernet interface .  
 \- Ví dụ : capture packet on the eth0  
-```sh
+```
 tcpdump –i eth0
 ```
 
@@ -53,7 +53,7 @@ tcpdump –i eth0
 
 ## 3.2.Capture only N number of packets using tcpdump –c
 \- Khi bản thực thi câu tcpdump command , nó sẽ capture packets cho đến khi bản hủy bỏ tcpdump coomand . Sử dụng -c option bạn có thể chỉ định number of packets để capture .  
-```sh
+```
 tcpdump –c 2 –i eth0
 ```
 
@@ -61,15 +61,15 @@ tcpdump –c 2 –i eth0
 
 ## 3.3.Display Captured Packets in ASCII using tcpdump –A
 \- Show ra packets được capture trong hệ ASCII .  
-```sh
+```
 tcpdump -A -c 2 -i eth0
 ```
 
 <img src="https://github.com/doxuanson/thuctap012017/blob/master/XuanSon/Pictures/Tool%20packet%20analyzer/tcpdump/3.jpg" >  
 
 ## 3.4.Display Captured Pakcets in HEX and ASCII using tcpdump -XX
-```sh
-tcpdump -XX -c3 -i eth0
+```
+tcpdump -XX -c 2 -i eth0
 ```
 
 <img src="https://github.com/doxuanson/thuctap012017/blob/master/XuanSon/Pictures/Tool%20packet%20analyzer/tcpdump/4.jpg" >
@@ -99,7 +99,7 @@ tcpdump –r test.pcap
 <img src="https://github.com/doxuanson/thuctap012017/blob/master/XuanSon/Pictures/Tool%20packet%20analyzer/tcpdump/7(1).jpg" >  
 
 Trong ví dụ trên , ta thấy in ra packets với địa chỉ DNS address , nhưng không in ra IP address . Để capture packets và display IP address , ta sử dụng `-n` option .  
-```sh
+```
 tcpdump –n –i eth0
 ```
 
@@ -107,7 +107,7 @@ tcpdump –n –i eth0
 
 ## 3.8. Capture packets with proper readable timestamp using tcpdump -tttt
 \- Show thêm thông tin về yyyy-mm-dd  
-```sh
+```
 tcpdump –n –tttt –i eth0
 ```
 
@@ -115,13 +115,13 @@ tcpdump –n –tttt –i eth0
 
 ## 3.9. Read packets longer than N bytes
 \- Chỉ receive các packets có độ dài lớn hơn N bytes sử dụng filter “greater” through tcpdump command .  
-```sh
+```
 tcpdump -w test.pcap greater 100
 ```
 
 ## 10.Receive only the packets of a specific protocol type 
 \- Bạn có thể receive packets based on the protocol type . Bạn có thể chỉ định protocols như `wlan` ,`ip`,`ip6`,`arp`,`rarp`,`decnet`,`tcp` và `udp`.  
-```sh
+```
 tcpdump –i eth0 arp
 ```
 
@@ -129,7 +129,7 @@ tcpdump –i eth0 arp
 
 ## 3.11. Read packets lesser than N bytes
 \- Chỉ nhận receive packets nhỏ hơn N bytes sử dụng fliter “less” trough tcpdump command  
-```sh
+```
 tcpdump –w test.pcap less 1024
 ```  
 
@@ -143,21 +143,21 @@ tcpdump –i eth0 port 22
 
 ## 3.13. Capture packets for particular destination IP and Port
 \- Packets sẽ có source và destination IP và port numbers .  
-```sh
+```
 tcpdump -i eth0 dst 172.16.69.176 and port 22
 ```  
 
 <img src="https://github.com/doxuanson/thuctap012017/blob/master/XuanSon/Pictures/Tool%20packet%20analyzer/tcpdump/13.jpg" >  
 
 ## 3.14.Capture packets for particular source IP
-```sh
+```
 tcpdump -i eth0 src 172.16.69.2
 ```  
 <img src="https://github.com/doxuanson/thuctap012017/blob/master/XuanSon/Pictures/Tool%20packet%20analyzer/tcpdump/14.jpg" >  
 
 ## 3.15. tcpdump Filter Packets – Capture all the packets other than arp and rarp
 \- Trong tcpdump command , bạn có thể sử dụng điều kiện “and” , “or” và “not” để fliter packets .  
-```sh
+```
 tcpdump -i eth0 not arp and not rarp
 ```  
 

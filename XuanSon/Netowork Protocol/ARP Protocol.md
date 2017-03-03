@@ -147,6 +147,7 @@ nhưng thực tế người ta thường dùng dynamic do tính tiện lợi mà
 - https://www.youtube.com/watch?v=ELdZr88eqRg&list=PLBOZzuSFDzSL_5CvfuNo7EhFQR1z6hhpo&index=49
 - https://quantrimang.com/arp-va-nguyen-tac-lam-viec-trong-mang-lan-17302  
 - http://www.tcpipguide.com/free/t_ARPCaching.htm  
+- https://viblo.asia/pham.tri.thai/posts/mPjxMeZKG4YL  
 
 
 

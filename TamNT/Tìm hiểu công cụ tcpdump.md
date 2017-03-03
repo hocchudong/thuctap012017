@@ -12,6 +12,8 @@
 
 [3. Một số ví dụ](#3)
 
+[4. Tài liệu tham khảo](#4)
+
 ---
 
 <a name="1"></a>
@@ -96,7 +98,7 @@ Trong đó, một số tùy chọn thông dụng như sau:
 
 - **-ttt**: In thêm khoảng thời gian bắt gói tin hiện tại và thời gian bắt gói tin trước đó tại mỗi đầu dòng.
 
-- ***-tttt**: Hiển thị thông tin chi tiết về thời gian yyyy/mm/dd hh:mm:ss bắt gói tin tại mỗi đầu dòng.
+- **-tttt**: Hiển thị thông tin chi tiết về thời gian yyyy/mm/dd hh:mm:ss bắt gói tin tại mỗi đầu dòng.
 
 *Tham khảo thêm các tùy chọn khác [tcpdump-manpage](http://www.tcpdump.org/tcpdump_man.html).*
 

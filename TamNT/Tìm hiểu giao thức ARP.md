@@ -273,12 +273,12 @@ Sau đây là một số bản tin ARP bắt được từ Wireshark. (trước 
 
     <img src="http://imgur.com/cnxe7TI.jpg">
 
-<a name="5.2"></a>
+<a name="5.3"></a>
   - Các gói tin 23, 79 và 159 là các gói tin ARP probe.
 
   <img src="http://imgur.com/CTT3CdK.jpg">
 
-<a name="5.2"></a>
+<a name="5.4"></a>
   - Gói tin 185 chính là gói tin ARP announcements.
 
   <img src="http://imgur.com/4sDsa8v.jpg">

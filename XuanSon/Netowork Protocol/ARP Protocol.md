@@ -67,21 +67,24 @@ Example : IPv4 là “0x0800”
 # 4.Example
 <a name="4.1"></a>
 ## 4.1.Truyền tin giữa các PC trong cùng mạng LAN
-\- **Mô hình** : PC A và PC B ở trong cùng một mạng LAN có địa chỉ network 
-192.168.1.0/24 . IP address và MAC address của PC A và PC B 
-như hình bên dưới .  
+\- Mô hình :  
+- PC A và PC B ở trong cùng một mạng LAN có địa chỉ network `192.168.1.0/24` . 
+IP address và MAC address của PC A và PC B như hình bên dưới .
+- PC A muốn gửi packet cho PC B .  
+ 
 <img src="https://github.com/doxuanson/thuctap012017/blob/master/XuanSon/Pictures/Netowork%20Protocol/ARP%20Protocol/4.jpg">  
 
 \- **Nguyên tắc hoạt động**  
-- Giả sử PC A muốn gửi packet đến PC B và nó biết IP address của PC B 
-là 192.168.1.20 . Khi đó PC A sẽ gửi “ARP request” với destination MAC 
-là broadcast (ff:ff:ff:ff:ff:ff) cho toàn mạng để hỏi xem “ MAC address 
-của PC nào có IP address là 192.168.1.20 . 
-- Khi đó PC B nhận được broadcast này , nó sẽ so sánh IP address trong 
-packet với IP address của nó . Nhận thấy address đó là address của mình , 
-PC sẽ gửi một packet “ARP reply” cho PC A trong đó chứa MAC address 
-của PC B . 
-- Sau đó PC A mới bắt đầu truyền packet cho PC B .  
+- **Bước 1**: PC A sẽ kiểm tra cache của mình . Nếu đã có MAC address của IP 192.168.1.10 thì PC A sẽ gửi packet cho PC B.
+- **Bước 2**: Bắt đầu khởi tạo gói tin ARP Request. Nó sẽ gửi một gói tin broadcast đến toàn bộ các máy khác trong mạng với MAC address và IP máy gửi là địa chỉ của chính nó, địa chỉ IP máy nhận là 192.168.1.20, và MAC address máy nhận là ff:ff:ff:ff:ff:ff.
+- **Bước 3**: PC A phân phát gói tin ARP Request trên toàn mạng. Khi switch nhận được gói tin broadcast nó sẽ chuyển gói tin này tới tất cả các máy trong mạng LAN đó.
+- **Bước 4**: Các PC trong mạng đều nhận được gói tin ARP Request. PC kiểm tra trường địa chỉ Target Protocol Address. Nếu trùng với địa chỉ của mình thì tiếp tục xử lý, nếu không thì hủy gói tin.
+- **Bước 5**: PC B có IP trùng với IP trong trường Target Protocol Address sẽ bắt đầu quá trình khởi tạo gói tin ARP Reply bằng cách:
+  - lấy các trường Sender Hardware Address và Sender Protocol Address trong gói tin ARP nhận được đưa vào làm Target trong gói tin gửi đi.
+  - Đồng thời thiết bị sẽ lấy địa chỉ MAC của mình để đưa vào trường Sender Hardware Address
+- **Bước 6**: PC B đồng thời cập nhật bảng ánh xạ IP address và MAC address của thiết bị nguồn vào bảng ARP cache của mình để giảm bớt thời gian xử lý cho các lần sau .
+- **Bước 7**: PC B bắt đầu gửi gói tin Reply đã được khởi tạo đến PC A.
+- **Bước 8**: PC A nhận được gói tin reply và xử lý bằng cách lưu trường Sender Hardware Address trong gói reply vào bảng ARP cache làm MAC address tương ứng với IP address của PC B. Lần sau sẽ không còn cần tới request.
 
 \- **Bắt packet với Wireshark**
 - 2 packet “ARP request” và “ARP reply” .

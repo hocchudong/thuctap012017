@@ -102,7 +102,7 @@ IP address và MAC address của PC A và PC B như hình bên dưới .
 \- **Mô hình** :  
 <img src="https://github.com/doxuanson/thuctap012017/blob/master/XuanSon/Pictures/Netowork%20Protocol/ARP%20Protocol/8.jpg">  
 
-\- - Giả sử PC A muốn gửi packet ra ngoài Internet . Do broadcast không thể truyền qua Router C nên PC A sẽ xem Router C 
+\- Giả sử PC A muốn gửi packet ra ngoài Internet . Do broadcast không thể truyền qua Router C nên PC A sẽ xem Router C 
 như một cầu nối trung gian để truyền dữ liệu . Trước đó PC A sẽ biết IP address của Router C ( địa chỉ gateway ) và biết được rằng để truyền packet 
 ra ngoài Internet thì phải đi qua Router C.  
 \- Quá trình truyền packet theo từng bước sau :  

@@ -6,7 +6,7 @@
 
 
 ## 1. Mở đầu
-        Các thiết bị máy tính ngày nay có 2 loại địa chỉ đó là:
+    Các thiết bị máy tính ngày nay có 2 loại địa chỉ đó là:
 - Địa chỉ vật lý (MAC - Media Address Control):
     > Là địa chỉ được gắn liền với máy từ khi xuất xưởng.
     > Thực tế, các NIC (Network Interface Card) chỉ có thế liên lạc với nhau bằng địa chỉ này.
@@ -34,7 +34,7 @@
     - Protocol Type
     	+ Chiếm 16 bit của gói tin.
         + Xác định kiểu giao thức máy gửi cung cấp.
-        + Có giá trị là 080016 cho giao thức IP
+        + Có giá trị là 0x0800 cho giao thức IP
     - HLEN (`Hardware Address Length`)
     	+ Độ dài địa chỉ vật lý tính theo bit.
     - PLEN (`Protocol Address Length`)
@@ -77,5 +77,31 @@
 
 	8. Router (Host) bắt đầu thực hiện quá trình gửi các gói tin đến thẳng đích và không cần gửi các gói tin request.
 
-- ### 3. Mở rộng
-	Ngoài ARP ta còn có giao thức RARP
+- ### 2.3 Phân tích gói tin ARP
+
+Dưới đây là hình ảnh của các gói tin ARP mà mình sử dụng bắt được trên interface ens33 của Ubuntu Server.
+
+> Thông tin cơ bản:
+    - IP máy host: 10.145.25.198
+	- MAC máy host: 74:d0:2b:60:91:56
+	- IP Server: 10.145.25.202
+	- MAC Server: 00:0c:29:4c:66:58
+
+> Đây là hình ảnh của các gói tin broadcast được gửi từ một máy host lên server trong quá trình thực hiện lệnh ping từ host tới Server.
+	![Các gói tin broadcast](Pictures/ARP/arp_broadcast.png)
+
+> Gói tin ARP Request bắt được khi gửi request tới các địa chỉ không phải là địa chỉ đích sẽ không có thông tin địa chỉ MAC ở phần `Dst`:
+	![Các gói tin broadcast](Pictures/ARP/arp_broadcast1.png)
+
+Để ý vào gói tin thứ 377 (Đây chính là gói tin request khi gửi tới đúng địa chỉ với nội dung: "10.145.25.202 is at 00:0c:29:4c:66:58"). Phân tích gói tin này, ta thấy được nội dung của nó như sau:
+	![Hình ảnh gói tin request](Pictures/ARP/arp_request.png)
+
+Nhận thấy ở phần `Dst` đã chứa giá trị địa chỉ MAC của Server. Bao gồm IP nguồn và IP đích.
+	![Hình ảnh gói tin request](Pictures/ARP/arp_request1.png)
+
+Tiếp theo, ta tiến hành phần tích gói tin reply từ server về host:
+	![Hình ảnh gói tin reply](Pictures/ARP/arp_reply.png)
+Vì đây là gói tin reply lên giá trị khung `Sender MAC Address` và `Target MAC Address` đã được đổi ngược lại với giá trị của gói tin request.
+	![Hình ảnh gói tin reply](Pictures/ARP/arp_reply1.png)
+
+Giá trị phần Sender IP và Target IP cũng được chuyển đổi.

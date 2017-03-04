@@ -7,7 +7,8 @@
    * Có 3 nhóm distro phổ biến đó là: 
        + Debian
            - Debian
-           - Ubuntu            - Backtrack (Kali Linix)
+           - Ubuntu            
+           - Backtrack (Kali Linix)
        + RedHat Linix
            - Fedora
            - RedHat

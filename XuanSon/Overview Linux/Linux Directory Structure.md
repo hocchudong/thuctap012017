@@ -14,7 +14,7 @@
 # 1.So sánh cấu trúc thư mục trong Linux và Windows
 \- Linux phân chia thành các thư mục từ thư mục gốc (/) .  
 \- Windows phân chia thành các ổ đĩa logic như C: ,D: ,E: ,etc...  
-<img src="" >  
+<img src="https://github.com/doxuanson/thuctap012017/blob/master/XuanSon/Pictures/Overview%20Linux/Linux%20Directory%20Structure/1.jpg" >  
 
 <a name="2"></a>
 # 2.Cấu trúc thư mục Linux
@@ -29,7 +29,7 @@
 
 <a name="2.2"></a>
 ## 2.2.Các thư mục thông dụng trong Linux
-<img src="" >  
+<img src="https://github.com/doxuanson/thuctap012017/blob/master/XuanSon/Pictures/Overview%20Linux/Linux%20Directory%20Structure/2.png" >  
 
 \- `/` (Root directory) :  
 - tất cả mọi file và thư mục bắt đầu từ thư mục root .

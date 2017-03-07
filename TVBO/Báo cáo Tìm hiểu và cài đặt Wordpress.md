@@ -80,19 +80,19 @@ Sau đây sẽ là các bước để cài đặt `Wordpress` trên Ubuntu Serve
 
 - Bạn cần download mã nguồn mới nhất của `Wordpress` bằng câu lệnh:
 	> `wget http://wordpress.org/latest.tar.gz`
-	![Download WordPress](WordPress/downloadwp.png)
+	![Download WordPress](Pictures/WordPress/downloadwp.png)
 
 - Với câu lệnh trên, bạn sẽ tải về một file nén tại thư mục `Downloads`. Bạn cần phải giải nén file này ra bằng việc sử dụng câu lệnh:
 	> `cp latest.tar.gz /var/www/ && cd /var/www && tar -xvf latest.tar.gz`
-	![Unzip Wordpress](WordPress/unzip.png)
+	![Unzip Wordpress](Pictures/WordPress/unzipwp.png)
 
 - Bước 2, Tạo một database cho WordPress và User
 	Để làm điều này, bạn hãy mở terminal và gõ câu lệnh:
 	> `mysql -u root -p`
-	![Log MySQL](WordPress/logmysqlwp.png)
+	![Log MySQL](Pictures/WordPress/logmysqlwp.png)
 
 	Bạn hãy nhập mật khẩu ở phía trên, khi bạn cài đặt mysql để đăng nhập vào giao diện điều khiển.
-	![Log MySQL](WordPress/logscmysqlwp.png)
+	![Log MySQL](Pictures/WordPress/logscmysqlwp.png)
 
 	Đầu tiên, bạn hãy tạo một database có thể tên tùy ý. Ở đây, mình lấy tên là `wordpress`:
 	> `mysql> create database wordpress;`
@@ -112,7 +112,7 @@ Sau đây sẽ là các bước để cài đặt `Wordpress` trên Ubuntu Serve
 	> `mysql> flush privileges;`
 	Query OK, 0 rows affected (0.00 sec)
 	
-	![Log MySQL](WordPress/cmdmysqlwp.png)
+	![Log MySQL](Pictures/WordPress/cmdmysqlwp.png)
 
 	> `mysql> exit`
 
@@ -123,21 +123,21 @@ Sau đây sẽ là các bước để cài đặt `Wordpress` trên Ubuntu Serve
 	> `cp wp-config-sample.php wp-config.php && vi wp-config.php`
 
 	Bạn sẽ nhìn thấy được nội dung như sau:
-	![Config WP](WordPress/configwp.png)
+	![Config WP](Pictures/WordPress/configwp.png)
 
 	Hãy chỉnh sửa lại các giá trị tại:
 	- `database_name_here`
 	- `username_here`
 	- `password_here`
 	sao cho phù hợp với những gì đã tạo và lưu file đó lại.
-	![Config WP](WordPress/configedwp.png)
+	![Config WP](Pictures/WordPress/configedwp.png)
 
 - Bước 4: Copy các file từ thư mục vừa giải nén sang `/var/www/`
 	Để hoàn tất quá trình cài đặt, source code của wordpress cần phải được lưu lại /var/www/
 	Đầu tiên, bạn cần chỉnh lại file cấu hình apache thay /var/www/html:
 	> `vi /etc/apache2/sites-available/000-default.conf`
-	![Config WP](WordPress/editconfwp.png)
+	![Config WP](Pictures/WordPress/editconfwp.png)
 	>`service apache2 restart`
 
 - Vậy là bạn đã cài đặt thành công WordPress trên hệ thống. Để truy cập và sử dụng WordPress, bạn hãy truy cập vào địa chỉ là địa chỉ ip của VM. Ví dụ: 192.168.9.129
-![Success WP](WordPress/scwp.png)
+![Success WP](Pictures/WordPress/scwp.png)

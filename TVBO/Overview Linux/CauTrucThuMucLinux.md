@@ -122,4 +122,4 @@ Trong Linux vẫn còn rất nhiều thư mục đang chờ bạn khám phá! B�
 > Cuối cùng, xin chúc bạn có một công việc tốt. Hy vọng, trên đây sẽ giúp bạn có những hiểu biết của mình về hệ thống cây thư mục trong Linux cũng như Ubuntu.
 
 
-Tham khảo tại: [Quản trị mạng](https://quantrimang.com)
+Tham khảo tại: ![Hình ảnh các thư mục chính trong Ubuntu](../Pictures/TreeDirectory/filesystem-2.png)

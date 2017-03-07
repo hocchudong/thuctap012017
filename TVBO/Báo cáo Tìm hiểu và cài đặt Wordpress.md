@@ -84,12 +84,11 @@ Sau đây sẽ là các bước để cài đặt `Wordpress` trên Ubuntu Serve
 
 - Với câu lệnh trên, bạn sẽ tải về một file nén tại thư mục `Downloads`. Bạn cần phải giải nén file này ra bằng việc sử dụng câu lệnh:
 	> `cp latest.tar.gz /var/www/ && cd /var/www && tar -xvf latest.tar.gz`
-	![Unzip Wordpress](Pictures/WordPress/unzip.png)
+	![Unzip Wordpress](Pictures/WordPress/unzipwp.png)
 
 - Bước 2, Tạo một database cho WordPress và User
 	Để làm điều này, bạn hãy mở terminal và gõ câu lệnh:
 	> `mysql -u root -p`
-	
 	![Log MySQL](Pictures/WordPress/logmysqlwp.png)
 	
 	Bạn hãy nhập mật khẩu ở phía trên, khi bạn cài đặt mysql để đăng nhập vào giao diện điều khiển.

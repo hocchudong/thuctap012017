@@ -90,11 +90,7 @@ Sau đây sẽ là các bước để cài đặt `Wordpress` trên Ubuntu Serve
 	Để làm điều này, bạn hãy mở terminal và gõ câu lệnh:
 	> `mysql -u root -p`
 	![Log MySQL](Pictures/WordPress/logmysqlwp.png)
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> 1d2cc985c278997d4051051f98aeadbb43ddde5a
 	Bạn hãy nhập mật khẩu ở phía trên, khi bạn cài đặt mysql để đăng nhập vào giao diện điều khiển.
 	![Log MySQL](Pictures/WordPress/logscmysqlwp.png)
 

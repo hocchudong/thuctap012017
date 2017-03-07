@@ -90,27 +90,31 @@ Sau đây sẽ là các bước để cài đặt `Wordpress` trên Ubuntu Serve
 	Để làm điều này, bạn hãy mở terminal và gõ câu lệnh:
 	> `mysql -u root -p`
 	![Log MySQL](Pictures/WordPress/logmysqlwp.png)
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 1d2cc985c278997d4051051f98aeadbb43ddde5a
 	Bạn hãy nhập mật khẩu ở phía trên, khi bạn cài đặt mysql để đăng nhập vào giao diện điều khiển.
 	![Log MySQL](Pictures/WordPress/logscmysqlwp.png)
 
 	Đầu tiên, bạn hãy tạo một database có thể tên tùy ý. Ở đây, mình lấy tên là `wordpress`:
 	> `mysql> create database wordpress;`
-	Query OK, 1 row affected (0.00 sec)
+		Query OK, 1 row affected (0.00 sec)
 	
 	Tiếp theo, bạn cần tạo một user cho phép quản lý database trên. Ở đây mình lấy tên user là `reministry`:
 	> `mysql> create user reministry@localhost;`
-	Query OK, 0 rows affected (0.00 sec)
+		Query OK, 0 rows affected (0.00 sec)
 
 	Và, thiết lập password cho người dùng vừa rồi:
 	> `mysql> set password for reministry@localhost= password('password');`
-	Query OK, 0 rows affected (0.00 sec)
+		Query OK, 0 rows affected (0.00 sec)
 
 	Cuối cùng là cấp quyền cho user vừa rồi
 	> `mysql> grant all privileges on wordpress.* on reministry@localhost identified by 'password;`
-	Query OK, 0 rows affected (0.00 sec)
+		Query OK, 0 rows affected (0.00 sec)
 	> `mysql> flush privileges;`
-	Query OK, 0 rows affected (0.00 sec)
+		Query OK, 0 rows affected (0.00 sec)
 	
 	![Log MySQL](Pictures/WordPress/cmdmysqlwp.png)
 
@@ -129,6 +133,7 @@ Sau đây sẽ là các bước để cài đặt `Wordpress` trên Ubuntu Serve
 	- `database_name_here`
 	- `username_here`
 	- `password_here`
+	
 	sao cho phù hợp với những gì đã tạo và lưu file đó lại.
 	![Config WP](Pictures/WordPress/configedwp.png)
 

@@ -1,4 +1,4 @@
-# Báo cáo: TÌm hiểu và cài đặt Wordpress trên Ubuntu Server
+# Báo cáo: Tìm hiểu và cài đặt Wordpress trên Ubuntu Server
 
 ## 1. Các nội dung chính
 
@@ -58,9 +58,10 @@ Sau đây sẽ là các bước để cài đặt `Wordpress` trên Ubuntu Serve
 - Bước 1: Cài đặt `Apache`
 	`Apache` là một mã nguồn mở miễn phí được sử dụng hơn 50% trong tổng số các web server trên thế giới
 	Để cài đặt apache, bạn hãy mở terminal và gõ câu lệnh:
-		
+	
     > `sudo apt-get update`
-    `sudo apt-get install apache2`
+    
+    > `sudo apt-get install apache2`
 - Bước 2: Cài đặt `MySQL`
 	`MySQL` là một hệ quản trị cơ sở dữ liệu mạnh mẽ được nhiều người sử dụng
 	Để cài đặt mysql, bạn hãy mở terminal và gõ câu lệnh:
@@ -96,22 +97,27 @@ Sau đây sẽ là các bước để cài đặt `Wordpress` trên Ubuntu Serve
 
 	Đầu tiên, bạn hãy tạo một database có thể tên tùy ý. Ở đây, mình lấy tên là `wordpress`:
 	> `mysql> create database wordpress;`
-	Query OK, 1 row affected (0.00 sec)
+	
+	> Query OK, 1 row affected (0.00 sec)
 	
 	Tiếp theo, bạn cần tạo một user cho phép quản lý database trên. Ở đây mình lấy tên user là `reministry`:
 	> `mysql> create user reministry@localhost;`
-	Query OK, 0 rows affected (0.00 sec)
+	
+	> Query OK, 0 rows affected (0.00 sec)
 
 	Và, thiết lập password cho người dùng vừa rồi:
 	> `mysql> set password for reministry@localhost= password('password');`
-	Query OK, 0 rows affected (0.00 sec)
+	
+	> Query OK, 0 rows affected (0.00 sec)
 
 	Cuối cùng là cấp quyền cho user vừa rồi
 	> `mysql> grant all privileges on wordpress.* on reministry@localhost identified by 'password;`
-	Query OK, 0 rows affected (0.00 sec)
+	
+	> Query OK, 0 rows affected (0.00 sec)
 		
 	> `mysql> flush privileges;`
-	Query OK, 0 rows affected (0.00 sec)
+	
+	> Query OK, 0 rows affected (0.00 sec)
 	
 	![Log MySQL](Pictures/WordPress/cmdmysqlwp.png)
 
@@ -121,6 +127,7 @@ Sau đây sẽ là các bước để cài đặt `Wordpress` trên Ubuntu Serve
 
 	Bước đầu tiên, bạn hãy tạo một file cấu hình cho wordpress bằng việc copy lại một file cấu hình mẫu sẵn có và sửa đổi nội dung của nó. Để làm điều này, bạn hãy mở terminal lên và gõ câu lệnh:
 	> `cd wordpress`
+	
 	> `cp wp-config-sample.php wp-config.php && vi wp-config.php`
 
 	Bạn sẽ nhìn thấy được nội dung như sau:

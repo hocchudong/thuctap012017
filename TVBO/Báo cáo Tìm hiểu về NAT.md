@@ -60,4 +60,16 @@ Ngoài ra, NAT cũng có thể coi là một Firewall cơ bản. Bởi NAT có c
 
 1. Các gói tin trong phần mạng `Inside Network` sẽ có `SA` là kiểu `Inside Local` và `DA` là kiểu `Outside Local`. Cũng gói tin đó khi đi qua kỹ thuật NAT, được NAT xử lý và gửi tới mạng phía ngoài `Outside Network` thì gói tin đã chứa `SA` thuộc kiểu `Inside Global` và `DA` thuộc kiểu `Outside Global`. Vì vậy, một địa chỉ được gọi là `Local` khi nó còn đang nằm trong vùng mạng `Inside Network`.
 
-2. Cũng gói tin đó phía bên mạng `Outside Network` được đóng tin gửi ngược trở lại với nội dung `DA` là kiểu `Inside Global` và `SA` là kiểu `Outside Global` bởi đây là một gói tin đáp trả lên có sự ngược nhau về vị trí giữa `DA` và `SA`. Gói tin này sau khi được gửi qua Router và xử lý bởi kỹ thuật NAT thì phía bên phần mạng `Inside Network` 
+2. Cũng gói tin đó phía trên bên mạng `Outside Network` được đóng tin gửi ngược trở lại với nội dung `DA` là kiểu `Inside Global` và `SA` là kiểu `Outside Global` bởi đây là một gói tin đáp trả lên có sự ngược nhau về vị trí giữa `DA` và `SA`. Gói tin này sau khi được gửi qua Router và xử lý bởi kỹ thuật NAT thì phía bên phần mạng `Inside Network` đã có thông tin của máy đích dạng `Inside Local`
+
+## 5. Các kỹ thuật NAT
+
+### 5.1 Kỹ thuật NAT tĩnh.
+
+> Trong kỹ thuật này, các IP cục bộ được ánh xạ tới IP khác theo các câu lệnh đã được cấu hình. Điều đó có nghĩa, sẽ có sự ánh xạ IP theo từng đôi một giữa `Inside Local` và `Inside Global`. Do đó, việc tiết kiệm địa chỉ IP là không khả thi.
+
+### 5.2 Kỹ thuật NAT động
+
+> Kỹ thuật này, trái ngược hoàn toàn với NAT tĩnh. Nó được sử dụng nhiều hơn so với NAT tĩnh ở tính linh hoạt của nó và có thể tiết kiệm được đáng kể các địa chỉ IP.
+NAT động sẽ phải lưu trữ lại thông tin kết nối internet, những người từ bên ngoài sẽ không thể tìm được IP nào kết nối với host chỉ định vì sau mỗi một lần kết nối internet host sẽ được cung cấp một IP hoàn toàn mới. Nhờ vào đặc điểm này, mà nó được sử dụng để tăng tính bảo mật.
+Bạn hãy hình dung nó giống như việc cấu hình DHCP cho địa chỉ IP vậy.

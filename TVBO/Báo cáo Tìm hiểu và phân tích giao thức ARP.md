@@ -87,6 +87,7 @@ Dưới đây là hình ảnh của các gói tin ARP mà mình sử dụng bắ
 	- IP Server: 10.145.25.202
 	- MAC Server: 00:0c:29:4c:66:58
 
+
 > Đây là hình ảnh của các gói tin broadcast được gửi từ một máy host lên server trong quá trình thực hiện lệnh ping từ host tới Server.
 	![Các gói tin broadcast](Pictures/ARP/arp_broadcast.png)
 

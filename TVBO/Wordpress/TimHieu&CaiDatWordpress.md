@@ -111,7 +111,7 @@ Sau đây sẽ là các bước để cài đặt `Wordpress` trên Ubuntu Serve
 	> Query OK, 0 rows affected (0.00 sec)
 
 	Cuối cùng là cấp quyền cho user vừa rồi
-	> `mysql> grant all privileges on wordpress.* on reministry@localhost identified by 'password;`
+	> `mysql> grant all privileges on wordpress.* to reministry@localhost;`
 	
 	> Query OK, 0 rows affected (0.00 sec)
 		

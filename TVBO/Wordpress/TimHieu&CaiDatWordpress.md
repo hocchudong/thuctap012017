@@ -122,6 +122,7 @@ Sau đây sẽ là các bước để cài đặt `Wordpress` trên Ubuntu Serve
 
 	Bước đầu tiên, bạn hãy tạo một file cấu hình cho wordpress bằng việc copy lại một file cấu hình mẫu sẵn có và sửa đổi nội dung của nó. Để làm điều này, bạn hãy mở terminal lên và gõ câu lệnh:
 	> `cd wordpress`
+	
 	> `cp wp-config-sample.php wp-config.php && vi wp-config.php`
 
 	Bạn sẽ nhìn thấy được nội dung như sau:

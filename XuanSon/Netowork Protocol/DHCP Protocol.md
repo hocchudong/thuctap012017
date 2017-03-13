@@ -10,7 +10,7 @@
   - [2.3. Các loại bản tin DHCP](#2.3)
   - [2.4.DHCP Header Structure](#2.4)
   - [2.5.Dùng Wireshark bắt DHCP message](#2.5)
-- [2.5.Dùng Wireshark bắt DHCP message](#3)
+- [# 3.Cài đặt DHCP Server on Ubuntu Server 14.04 và LAB](#3)
   - [3.1.isc-dhcp-server](#3.1)
   - [3.2.Install and Configuration](#3.2)
     - [3.2.1.Install](#3.2.1)
@@ -127,7 +127,7 @@ Một DHCP Client gửi một gói DHCP Release đến một server để giải
 <img src="http://i.imgur.com/zjuwCxm.png" >  
 
 <a name="3"></a>
-
+# 3.Cài đặt DHCP Server on Ubuntu Server 14.04 và LAB
 <a name="3.1"></a>
 ## 3.1.isc-dhcp-server
 \- `isc-dhcp-server` là phần mềm tạo cho host giả lập DHCP Server.  

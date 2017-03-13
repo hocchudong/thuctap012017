@@ -72,7 +72,7 @@ http://your_server_IP_address/info.php
 ```
 
 Nội dung hiện ra như sau :  
-<img src="http://imgur.com/ZkLuPRD.png" >  
+<img src="http://imgur.com/ZkLuPRD.png" align="middle" >  
 
 <a name="2.2"></a>
 ## 2.2.Install Wordpress
@@ -168,14 +168,14 @@ sudo chown -R :www-data /var/www/html/wp-content/uploads
 http://172.16.69.10
 ```
 
-<img src="http://imgur.com/LUuW0Sa.png" >  
+<img src="http://imgur.com/LUuW0Sa.png" align="middle" >  
 
 \- Ban sẽ thấy trang cấu hình WordPress , nơi mà bạn tạo administrator account :  
-<img src="http://imgur.com/W4FB3e7.png" >  
+<img src="http://imgur.com/W4FB3e7.png" align="middle" >  
 
 \- Điền information cho web và administrator account mà bạn muốn . Khi hoàn tất , nhấp install button ở phái dưới .  
 Bạn sẽ trông thấy Wordpress interface như sau :  
-<img src="http://imgur.com/WF1ydZ4.png" >  
+<img src="http://imgur.com/WF1ydZ4.png" align="middle" >  
 
 
 <a name="thamkhao"></a>

@@ -141,34 +141,131 @@ Một DHCP Client gửi một gói DHCP Release đến một server để giải
 
 <a name="3.2.2"></a>
 ### 3.2.2.Configuration
-\- **B1** : Sửa hoặc tạo ( nếu không có ) 1 file `/etc/default/isc-dhcp-server` với quyền `root` có nội dung như sau :  
+#### a.File /etc/default/isc-dhcp-server
+Sửa hoặc tạo ( nếu không có ) 1 file `/etc/default/isc-dhcp-server` với quyền root có nội dung như sau :  
 ```
-INTERFACES="eth0"
+INTERFACES="<ethx> <ethy>"
 ```
-với `eth0` là network card thuộc mạng LAN cần cài `dhcp server` .  
+với `ethx` , `ethy` là network card thuộc mạng LAN cần cài dhcp server .  
 
-\- **B2** : Edit file `/etc/dhcp/dhcpd.conf` :  
+#### b.File /etc/dhcp/dhcpd.conf
+\- Nội dung file `/etc/dhcp/dhcpd.conf` :  
 ```
-# Sample /etc/dhcpd.conf
-# (add your comments here) 
+# Sample configuration file for ISC dhcpd for Debian
+#
+# Attention: If /etc/ltsp/dhcpd.conf exists, that will be used as
+# configuration file instead of this file.
+#
+#
+
+# The ddns-updates-style parameter controls whether or not the server will
+# attempt to do a DNS update when a lease is confirmed. We default to the
+# behavior of the version 2 packages ('none', since DHCP v2 didn't
+# have support for DDNS.)
+ddns-update-style none;
+
+# option definitions common to all supported networks...
+option domain-name "example.org";
+option domain-name-servers ns1.example.org, ns2.example.org;
+
 default-lease-time 600;
 max-lease-time 7200;
-option subnet-mask 255.255.255.0;
-option broadcast-address 192.168.1.255;
-option routers 192.168.1.254;
-option domain-name-servers 192.168.1.1, 192.168.1.2;
-option domain-name "mydomain.example";
 
-subnet 192.168.1.0 netmask 255.255.255.0 {
-range 192.168.1.10 192.168.1.100;
-range 192.168.1.150 192.168.1.200;
-}
+# If this DHCP server is the official DHCP server for the local
+# network, the authoritative directive should be uncommented.
+#authoritative;
+
+# Use this to send dhcp log messages to a different log file (you also
+# have to hack syslog.conf to complete the redirection).
+log-facility local7;
+
+# No service will be given on this subnet, but declaring it helps the
+# DHCP server to understand the network topology.
+
+#subnet 10.152.187.0 netmask 255.255.255.0 {
+#}
+# This is a very basic subnet declaration.
+
+#subnet 10.254.239.0 netmask 255.255.255.224 {
+#  range 10.254.239.10 10.254.239.20;
+#  option routers rtr-239-0-1.example.org, rtr-239-0-2.example.org;
+#}
+
+# This declaration allows BOOTP clients to get dynamic addresses,
+# which we don't really recommend.
+
+#subnet 10.254.239.32 netmask 255.255.255.224 {
+#  range dynamic-bootp 10.254.239.40 10.254.239.60;
+#  option broadcast-address 10.254.239.31;
+#  option routers rtr-239-32-1.example.org;
+#}
+
+# A slightly different configuration for an internal subnet.
+#subnet 10.5.5.0 netmask 255.255.255.224 {
+#  range 10.5.5.26 10.5.5.30;
+#  option domain-name-servers ns1.internal.example.org;
+#  option domain-name "internal.example.org";
+#  option routers 10.5.5.1;
+#  option broadcast-address 10.5.5.31;
+#  default-lease-time 600;
+#  max-lease-time 7200;
+#}
+# Fixed IP addresses can also be specified for hosts.   These addresses
+# should not also be listed as being available for dynamic assignment.
+# Hosts for which fixed IP addresses have been specified can boot using
+# BOOTP or DHCP.   Hosts for which no fixed address is specified can only
+# be booted with DHCP, unless there is an address range on the subnet
+# to which a BOOTP client is connected which has the dynamic-bootp flag
+# set.
+#host fantasia {
+#  hardware ethernet 08:00:07:26:c0:a5;
+#  fixed-address fantasia.fugue.com;
+#}
 ```
 
-Điều này có nghĩa là DHCP server sẽ cấp địa chỉ IP cho client từ `192.168.1.10`-`192.168.1.100` or `192.168.1.150`-`192.168.1.200` .  
-Nó sẽ cho thuê trong khoảng 600 seconds nếu clinet không chỉ định .  
-Max cho thuê IP address là 7200s .  
-DHCP server tư vấn nên sử dụng subnet mask `255.255.255.0` và broadcast address `192.168.1.255` , router/gateway là `192.168.1.1` và DNS server `192.168.1.2`.  
+\- Giải thích file cấu hình : ( các từ trong dấu < > là các biến )  
+- `ddns-update-style <none>;`  : Không cho cập nhật DNS động
+- `option domain-name <"example.org">;`  : Tên domain của mạng
+- `option domain-name-servers <ns1.example.org> , <ns2.example.org>;`  : Máy chủ DNS , ns1.example.org và ns2.example.org có thể là IP address .
+- `default-lease-time <600>;` : Thời gian cấp mặc định là 600 giây
+- `max-lease-time <7200>;` : Thời gian tối đa cấp IP nếu sau thời gian này không phản hồi tín hiệu thì IP sẽ được cấp cho clients khác trong mạng
+- `authoritative;` : Nếu DHCP Server dùng cho mạng cục bộ thì ta nên kích hoạt tính năng authritative
+- `log-facility local7;` : file log.
+- `subnet <172.16.69.0> ;` : Địa chỉ mạng.
+- `netmask <255.255.255.0> ;` : Định nghĩa lớp mạng.
+- `option routers <172.16.69.1> ;` : Default getway cho mạng.
+- `range <172.16.69.50> <172.16.69.100> ;` : khoảng IP dùng để cấp cho các client trong mạng.
+- host <fantasia> {  
+hardware ethernet <08:00:07:26:c0:a5>;  
+fixed-address <fantasia.fugue.com> ;  
+	}  
+	: cái này để cấu hình IP address tĩnh cho từng dhcp client . Với `hardware ethernet` là MAC address , `fixed-address` là IP address của client đó .
+
+\- Ví dụ :  
+```
+ddns-update-style none;
+
+default-lease-time 600;
+max-lease-time 7200;
+
+authoritative;
+
+subnet 172.16.69.0 netmask 255.255.255.0 {
+range 172.16.69.50 172.16.69.100;
+range 172.16.69.150 172.16.69.200;
+option domain-name-servers 172.16.69.1;
+option domain-name "network_one";
+option routers 172.16.69.1;
+option broadcast-address 172.16.69.255;
+}
+
+host client2 {
+    hardware ethernet 00:0C:29:09:6F:7E;
+    fixed-address 172.16.69.25;
+}
+```
+ 
+\- Lưu ý :  
 If you need to specify a WINS server for your Windows clients, you will need to include the netbios-name-servers option, e.g.  
 ```
 vi /etc/dhcp/dhcpd.conf
@@ -176,7 +273,7 @@ vi /etc/dhcp/dhcpd.conf
 ```
 option netbios-name-servers 192.168.1.1; 
 ```
-Start and stop service :  
+\- Sau khi config file `/etc/dhcp/dhcpd.conf` . Start and stop service :  
 ```
 sudo service isc-dhcp-server restart
 sudo service isc-dhcp-server start
@@ -219,18 +316,20 @@ sudo vi /etc/dhcp/dhcpd.conf
 ```
 và ghi nội dung như sau :  
 ```
+ddns-update-style none;
+
 default-lease-time 600;
 max-lease-time 7200;
 
-option subnet-mask 255.255.255.0;
-option broadcast-address 172.16.69.255;
-option routers 172.16.69.1;
-option domain-name-servers 172.16.69.1;
-option domain-name "dnsserver";
+authoritative;
 
 subnet 172.16.69.0 netmask 255.255.255.0 {
 range 172.16.69.50 172.16.69.100;
 range 172.16.69.150 172.16.69.200;
+option domain-name-servers 172.16.69.1;
+option domain-name "network_one";
+option routers 172.16.69.1;
+option broadcast-address 172.16.69.255;
 }
 ```  
 
@@ -261,6 +360,12 @@ sudo service isc-dhcp-server restart
 
 \- Trên Client 2 :  
 <img src="http://i.imgur.com/wQ7HaKG.png" >  
+
+> Note : 
+>- Bạn hoàn toàn có thể cấu hình 1 DHCP server cho 2 network với điều kiện DHCP server có 2 network card nối đến 2 network đó .
+>- Bạn có thể phân tích packet của DHCP protocol với tcpdump bằng cách ghi vào file và đọc bằng Wireshark .
+
+
 
 <a name="thamkhao"></a>
 # THAM KHẢO

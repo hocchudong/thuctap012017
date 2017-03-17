@@ -53,7 +53,7 @@ tháng phát hành . Phiên bản Ubuntu mới nhất là 16.04 được phát h
 4 năm 2016 .  
 - Phiên bản hỗ trợ lâu dài  
 Ubuntu cũng có những phiên bản hỗ trợ dài hạn "Long Term Support", 
-hỗ trợ trong vòng 3 năm đối với máy tính để bàn và 5 năm đối với máy chủ.
+hỗ trợ trong vòng 5 năm đối với Ubuntu Desktop , Ubuntu Server và 3 năm trong một số phiên bản khác .
 
 <a name='2.2'></a>
 ## 2.2.Nhánh Fedora
@@ -89,7 +89,8 @@ hành Red Hat Exterprise .
 
 https://en.wikipedia.org/wiki/Linux_distribution  
 https://www.debian.org/intro/about  
-https://vi.wikipedia.org/wiki/Ubuntu  
+https://en.wikipedia.org/wiki/Ubuntu_(operating_system)
+https://wiki.ubuntu.com/TrustyTahr/ReleaseNotes
 https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux  
 https://en.wikipedia.org/wiki/CentOS   
 

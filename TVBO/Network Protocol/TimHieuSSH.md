@@ -3,13 +3,17 @@
 ### Mục lục
 
 1. Giới thiệu
-    1.1 [SSH là gì](#sshLaGi)
-    1.2 [SSH hoạt động như thế nào](#hoatdong)
-    1.3 [Chứng thực người dùng](#chungthuc)
-    1.4 [Tạo và sử dụng khóa cho chứng thực](#taokhoa)
+    - 1.1 [SSH là gì](#sshLaGi)
+    
+    - 1.2 [SSH hoạt động như thế nào](#hoatdong)
+    
+    - 1.3 [Chứng thực người dùng](#chungthuc)
+    
+    - 1.4 [Tạo và sử dụng khóa cho chứng thực](#taokhoa)
 2. Các cấu hình SSH và cách remote từ xa
-    2.1 [Hướng dẫn kết nối cơ bản](#ketnoi)
-    2.2 [Cấu hình SSH](#cauhinh)
+    - 2.1 [Hướng dẫn kết nối cơ bản](#ketnoi)
+    
+    - 2.2 [Cấu hình SSH](#cauhinh)
 
 
 ## 1. Giới thiệu
@@ -45,7 +49,7 @@
     > ![Hình ảnh authorized_keys](../Pictures/SSH/ssh-key-auth-flow.png)
 
 ### 1.4 Tạo và sử dụng khóa cho chứng thực
-<a name="chungthuc"></a>
+<a name="taokhoa"></a>
 #### 1.4.1 Tạo cặp khóa RSA
 - SSH hỡ trợ xác thực nhiều loại khóa nhứ rsa (mặc định), sha ...  cho quá trình xác thực. Để sinh ra một cặp khóa, bạn sử dụng câu lệnh:
     > `ssh-keygen -t type_key -b numbers_bits_key`
@@ -55,11 +59,13 @@
     Kết quả là:
 
     > `Generating public/private rsa key pair.`
+    
     > `Enter file in which to save the key (/home/demo/.ssh/id_rsa):`
     
     Cho phép bạn chọn vị trí lưu file RSA keys. Mặc định, chúng sẽ được lưu trữ trong thư mục ẩn `.ssh` của đường dẫn người dùng.
 
     > `Enter passphrase (empty for no passphrase):`
+    
     > `Enter same passphrase again:`
 
     Dấu nhắc tiếp theo cho phép bạn nhập cụm từ mật khẩu có độ dài tùy ý để bảo vệ khóa cá nhân của bạn. Có thể bỏ qua bằng việc nhấn `Enter` nhưng hãy lưu ý rằng điều này sẽ cho phép bất cứ ai kiểm soát được khoá cá nhân của bạn để đăng nhập vào server.
@@ -101,7 +107,7 @@
     Câu lệnh trên sẽ lấy thông tin từ máy local của bạn để làm thông tin chứng thực cho remote server mới.
 
 ### 2.2 Cấu hình cho SSH
-
+<a name="cauhinh"></a>
 Trong phần này, mình sẽ hướng dẫn cho bạn 4 công việc:
 - Đổi port 22 mặc định truy cập vào SSH server.
 - Bỏ quyền ssh với tài khoản root

@@ -100,7 +100,8 @@
 - Để bắt 100 gói tin http sử dụng tcpdump, ta thực hiện câu lệnh `tcpdump -i eth1 -w capture.pcap -t tcp port 80 -c 100
 `
 	> Bạn có thể download file mà mình đã bắt được [tại đây](../Files/capture.pcap)
-Giờ hãy cùng mình xem bên trong các gói tin http có những gì nhé!
+	
+	> Giờ hãy cùng mình xem bên trong các gói tin http có những gì nhé!
 
 - Trong gói tin trên có chứa 14 gói tin http:
 	> ![http](../Pictures/Apache&HTTP/capture.png)

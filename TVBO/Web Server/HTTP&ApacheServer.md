@@ -114,6 +114,7 @@ Giờ hãy cùng mình xem bên trong các gói tin http có những gì nhé!
 	+ Đây là trường chưa nội dung của toàn bộ trang web mà server gửi về cho trình duyệt xử lý và hiển thị nó.
 
 ### 2.4 Kiểm ta port HTTP bằng netstat
+<a name="test"></a>
 - Netstat là câu lệnh cho phép hiển thị các trạng thái mạng của các interface mạng hay các cổng đang giao tiếp mạng
 - HTTP thường được sử dụng cổng mặc định là 80. Vì vậy, ta sử dụng câu lệnh `netstat -ant | grep 80` để in ra trạng thái của http tại công 80
 - Kết quả của mình như sau:

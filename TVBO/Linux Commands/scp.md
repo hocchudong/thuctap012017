@@ -66,7 +66,7 @@
 	> `scp -P 89996 remini@192.168.10.128:f-transfer.txt .`
 
 	Kết quả:
-	> `f-transfer.txt                                                                                         100%   12     69.8KB/s   00:01`
+	> ` ```f-transfer.txt                                                                                         100%   12     69.8KB/s   00:01``` `
 
 ### 2.3 Mở rộng
 <a name="extend"></a>

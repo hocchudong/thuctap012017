@@ -1,10 +1,11 @@
 <h1>Lab SSH</h1>
 
 <h2>Lab 1:</h2> 
-- Đổi port 22 mặc định truy cập vào SSH Server.
-- Bỏ quyền ssh với tài khoản root.
-- Không cho ssh tới server bằng mật khẩu.
-
+<ul>
+	<li>Đổi port 22 mặc định truy cập vào SSH Server.</li>
+ 	<li>Bỏ quyền ssh với tài khoản root.</li>
+	<li>Không cho ssh tới server bằng mật khẩu.</li>
+<ul>
 <h3>Thực hành.</h3>
 
 `root@ubuntu:~# vi /etc/ssh/sshd_config`

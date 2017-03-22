@@ -152,3 +152,15 @@ Sau đây sẽ là các bước để cài đặt `Wordpress` trên Ubuntu Serve
 
 - Vậy là bạn đã cài đặt thành công WordPress trên hệ thống. Để truy cập và sử dụng WordPress, bạn hãy truy cập vào địa chỉ là địa chỉ ip của VM. Ví dụ: 192.168.9.129
 ![Success WP](../Pictures/WordPress/scwp.png)
+
+## 3. Cài theme cho Wordpress
+
+Để cài theme cần làm các bước sau:
+- Thêm define('FS_METHOD', 'direct'); vào file wp-config.php (tắt yêu cầu ftp)
+- Cấp quyền cho thư mực wp-content
+    - > `.../wp-content# chmod 775 *`
+
+    - > `.../wp-content# chown www-data:www-data *`
+    
+    - > `.../wordpress# chown www-data:www-data wp-content/`
+

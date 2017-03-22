@@ -199,7 +199,7 @@ Thực hiện lab trên các máy ảo VMware Work station 12, cấu hình 2 d�
 `sudo isc-dhcp-server restart`
 
 <a name="2.4"></a>
-#2.4. Cấu hình trên DHCP Relay Agent
+# 2.4. Cấu hình trên DHCP Relay Agent
 
 - **Bước 1**: Cấu hình địa chỉ tĩnh cho card eth1 và eth2 như mô hình lab. 
 

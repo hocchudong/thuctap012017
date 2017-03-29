@@ -125,25 +125,27 @@ Sau khi thiết lập các giá trị xong, khởi động lại dịch vụ ssh
 - Trên máy client chạy windows, sử dụng phần mềm puttygen để sinh ra cặp key.
 
 - Khởi động phần mềm lên ta thấy giao diện sau
-	![Imgur](http://i.imgur.com/eCaxiGD.png) 
+
+![Imgur](http://i.imgur.com/eCaxiGD.png) 
 
 - Chọn **RSA** và click vào `Generate` để sinh key, trong quá trình sinh key cần di chuyển chuột trong khoảng trống của phần mềm
 - Sau khi sinh cặp key xong, chúng ta có thể nhập `Key passphrase` hoặc để trống. Sau đó click `Save private key` để sau này khi đăng nhập dùng cho việc xác thực, `Save public key` để copy lên server (public key không cần lưu cũng được vì phần mềm có thể load lại khi có private key)
-	 ![Imgur](http://i.imgur.com/Hfu80yf.png)
+![Imgur](http://i.imgur.com/Hfu80yf.png)
 
 - Sử dụng phần mềm Moba đăng nhập vào server để copy public key lên (hoặc có thể sử dụng winscp để đẩy file chứa public key lên server).
 - Tạo file authorized_keys có nội dung là public key vừa tạo: `vi /home/pxduc/.ssh/authorized_keys`.
-- Trong file cấu hình ssh (file `/etc/ssh/sshd_config`), cấu chỉ rõ thư mục chứa public key của user. Tại dòng 33, chỉ cần bỏ dấu `#` ở đầu dòng là được.
+- Trong file cấu hình ssh (file `/etc/ssh/sshd_config`), chỉ rõ thư mục chứa public key của user. Tại dòng 33, chỉ cần bỏ dấu `#` ở đầu dòng là được.
 - Khởi động lại dịch vụ ssh.
 - Sử dụng phần mềm putty để đăng nhập vào server.
 - Cần chỉ rõ địa chỉ ip của server và port kết nối ssh. 
-	![Imgur](http://i.imgur.com/2tlLhEJ.png).
+
+![Imgur](http://i.imgur.com/2tlLhEJ.png).
 
 - Sau đó chỉ đường dẫn đến private key mà chúng ta đã lưu lúc trước 
-	![Imgur](http://i.imgur.com/gZh86ms.png)
+![Imgur](http://i.imgur.com/gZh86ms.png)
 
 - Click vào Open ta sẽ thây giao diện yêu cầu nhập username và Key passphrase 
-	![Imgur](http://i.imgur.com/JWpgaS1.png)
+![Imgur](http://i.imgur.com/JWpgaS1.png)
 
 - Như vậy đã cấu hình thành công cho phép user pxduc đăng nhập vào ssh bằng host key.
 
@@ -151,31 +153,35 @@ Sau khi thiết lập các giá trị xong, khởi động lại dịch vụ ssh
 - User1 cần phải tồn tại trên server trước.
 
 - Đăng nhập vào client để tạo key. Lệnh tạo key `ssh-keygen -t rsa`
-	![Imgur](http://i.imgur.com/7vql9te.png)
+![Imgur](http://i.imgur.com/7vql9te.png)
 	- chọn vị trí lưu key.
 	- vì ở trong thư mục này đã tồn tại một key trước rồi, hệ thống sẽ hỏi có muốn thay đổi key không? chọn y để thay đổi key mới.
 	- key public được lưu trong file `id_rsa.pub`
 	- key private lưu trong file `ip_rsa`
 
 - sử dụng lệnh `ssh-copy-id user1@172.16.69.137 -p 2048` để copy public key lên server cho user1 
-	![Imgur](http://i.imgur.com/y2zCfWY.png).
-	Vì port đã được đổi nên cần có tham số `-p 2048`. Sau đó nhập mật khẩu của user1 và ta thấy kết quả `Number of key(s) added: 1`
+![Imgur](http://i.imgur.com/y2zCfWY.png).
+	- Vì port đã được đổi nên cần có tham số `-p 2048`. Sau đó nhập mật khẩu của user1 và ta thấy kết quả `Number of key(s) added: 1`
 
-- Chúng ta thử đăng nhập vào user1 qua ssh (lúc này server vẫn đang cho phép đăng nhập bằng mật khẩu). Thông báo đã đănhg nhập thành công. 
-	![Imgur](http://i.imgur.com/QS5Lvke.png) 
+- Chúng ta thử đăng nhập vào user1 qua ssh (lúc này server vẫn đang cho phép đăng nhập bằng mật khẩu). Thông báo đã đănhg nhập thành công.
+ 
+![Imgur](http://i.imgur.com/QS5Lvke.png) 
 
 
 ### Cấu hình Trên Server không cho phép đăng nhập bằng mật khẩu
 - Tại dòng **52** trong file cấu hình ssh (`/ect/ssh/sshd_config`), ta cho giá trị là `no`: `PasswordAuthentication no`
 - restart lại ssh.
 - Chúng ta sẽ kiểm tra file log của ssh để xem các phiên truy cập vào server qua ssh. 
-	![Imgur](http://i.imgur.com/ua66WAA.png)
+
+![Imgur](http://i.imgur.com/ua66WAA.png)
 
 - Như vậy file log đã ghi lại thông tin truy cập từ client và đã được đồng ý truy cập bằng key.
 - Chúng ta có thể giới hạn những user được phép truy cập vào server qua ssh bằng cách thêm dòng  `AllowUsers pxduc` vào cuối file `/ect/ssh/sshd_config` (ở đây chỉ cho user pxduc đăng vào)
 - Chúng ta thử đăng nhập user1 qua ssh và xem file log ghi lại thông tin gì?
 - Client đã bị từ chối đăng nhập 
-	![Imgur](http://i.imgur.com/QyFzpF6.png)
+
+![Imgur](http://i.imgur.com/QyFzpF6.png)
 
 - Thông tin từ file log của server 
-	![Imgur](http://i.imgur.com/srP4LZz.png)
+
+![Imgur](http://i.imgur.com/srP4LZz.png)

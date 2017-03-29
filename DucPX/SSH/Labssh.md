@@ -130,6 +130,7 @@ Sau khi thiết lập các giá trị xong, khởi động lại dịch vụ ssh
 
 - Chọn **RSA** và click vào `Generate` để sinh key, trong quá trình sinh key cần di chuyển chuột trong khoảng trống của phần mềm
 - Sau khi sinh cặp key xong, chúng ta có thể nhập `Key passphrase` hoặc để trống. Sau đó click `Save private key` để sau này khi đăng nhập dùng cho việc xác thực, `Save public key` để copy lên server (public key không cần lưu cũng được vì phần mềm có thể load lại khi có private key)
+
 ![Imgur](http://i.imgur.com/Hfu80yf.png)
 
 - Sử dụng phần mềm Moba đăng nhập vào server để copy public key lên (hoặc có thể sử dụng winscp để đẩy file chứa public key lên server).

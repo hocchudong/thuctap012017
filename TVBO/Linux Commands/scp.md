@@ -1,13 +1,13 @@
 # Báo cáo tìm hiểu câu lệnh SCP trong Linux
 
 ## 1. Giới thiệu
-- 1.1 SCP command là gì? (#deter)
-- 1.2 Chức năng của scp? (#chucnang)
-- 1.3 Cách cài đặt (#caidat)
-## 2. Chi tiết về câu lệnh (#chitiet)
-- 2.1 Đưa file từ host tới remote server (#host-to-server)
-- 2.2 Lấy file từ host về server (#server-to-host)
-- 2.3 Mở rộng (#extend)
+- 1.1 [SCP command là gì?](#deter)
+- 1.2 [Chức năng của scp?](#chucnang)
+- 1.3 [Cách cài đặt](#caidat)
+## 2. [Chi tiết về câu lệnh](#chitiet)
+- 2.1 [Đưa file từ host tới remote server](#host-to-server)
+- 2.2 [Lấy file từ host về server](#server-to-host)
+- 2.3 [Mở rộng](#extend)
 
 
 ## 1. Giới thiệu

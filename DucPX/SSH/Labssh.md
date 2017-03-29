@@ -104,7 +104,7 @@ UsePAM yes
 
 ---
 
-- để đổi port mặc định 22 của ssh, tài dòng **5** thay bằng một port khác: `Port 2048`
+- để đổi port mặc định 22 của ssh, tại dòng **5** thay bằng một port khác: `Port 2048`
 - để bỏ quyền ssh với tài khoản root, tại dòng **28** cho giá trị yes bằng `without-password`: `PermitRootLogin without-password`
 - không cho ssh tới server bằng mật khẩu, tại dòng **52** cho giá trị `no`: `PasswordAuthentication no`
 
@@ -112,16 +112,18 @@ Sau khi thiết lập các giá trị xong, khởi động lại dịch vụ ssh
 
 ## Lab 2:
 #### Cấu hình cho hai user đăng nhập vào server bằng host key.
-####Mô hình bài LAB, với 2 user sử dụng hai nền tảng khác nhau: một user sử dụng linux và một sử dụng windows. User dùng win sẽ thông qua phần mềm Putty để đăng nhập, user dùng linux cần được cài đặt `Openssh-client`
+#### Mô hình bài LAB, với 2 user sử dụng hai nền tảng khác nhau: một user sử dụng linux và một sử dụng windows. User dùng win sẽ thông qua phần mềm Putty để đăng nhập, user dùng linux cần được cài đặt `Openssh-client`
 
 ![Imgur](http://i.imgur.com/n3eSwiv.png)
 
-
 - Cấu hình cho phép các user đăng nhập vào server bằng ssh.
-	Ban đầu ssh phải cho phép đăng nhập bằng mật khẩu `PasswordAuthentication yes`
+	Ban đầu ssh phải cho phép user đăng nhập bằng mật khẩu:
+	- khai báo dòng này `PasswordAuthentication yes` trong file `/etc/ssh/sshd_config` tại dòng 52.
 
 <h5>Cấu hình cho User: pxduc</h5>
+
 - Trên máy client chạy windows, sử dụng phần mềm puttygen để sinh ra cặp key.
+
 - Khởi động phần mềm lên ta thấy giao diện sau
 	![Imgur](http://i.imgur.com/eCaxiGD.png) 
 
@@ -129,9 +131,9 @@ Sau khi thiết lập các giá trị xong, khởi động lại dịch vụ ssh
 - Sau khi sinh cặp key xong, chúng ta có thể nhập `Key passphrase` hoặc để trống. Sau đó click `Save private key` để sau này khi đăng nhập dùng cho việc xác thực, `Save public key` để copy lên server (public key không cần lưu cũng được vì phần mềm có thể load lại khi có private key)
 	 ![Imgur](http://i.imgur.com/Hfu80yf.png)
 
-- Sử dụng phần mềm Moba đăng nhập vào server để copy public key lên (sử dụng Moba để copy cho tiện :D)
-- Tạo file với đường dẫn thư mục như sau: `vi /home/pxduc/.ssh/authorized_keys` và paste public key vừa tạo vào file này
-- Trong file cấu hình ssh (file `/etc/ssh/sshd_config`, cấu chỉ rõ thư mục chứa public key của user. Tại dòng 33, chỉ cần bỏ dấu `#` ở đầu dòng là được.
+- Sử dụng phần mềm Moba đăng nhập vào server để copy public key lên (hoặc có thể sử dụng winscp để đẩy file chứa public key lên server).
+- Tạo file authorized_keys có nội dung là public key vừa tạo: `vi /home/pxduc/.ssh/authorized_keys`.
+- Trong file cấu hình ssh (file `/etc/ssh/sshd_config`), cấu chỉ rõ thư mục chứa public key của user. Tại dòng 33, chỉ cần bỏ dấu `#` ở đầu dòng là được.
 - Khởi động lại dịch vụ ssh.
 - Sử dụng phần mềm putty để đăng nhập vào server.
 - Cần chỉ rõ địa chỉ ip của server và port kết nối ssh. 
@@ -161,6 +163,7 @@ Sau khi thiết lập các giá trị xong, khởi động lại dịch vụ ssh
 
 - Chúng ta thử đăng nhập vào user1 qua ssh (lúc này server vẫn đang cho phép đăng nhập bằng mật khẩu). Thông báo đã đănhg nhập thành công. 
 	![Imgur](http://i.imgur.com/QS5Lvke.png) 
+
 
 ### Cấu hình Trên Server không cho phép đăng nhập bằng mật khẩu
 - Tại dòng **52** trong file cấu hình ssh (`/ect/ssh/sshd_config`), ta cho giá trị là `no`: `PasswordAuthentication no`

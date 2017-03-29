@@ -321,6 +321,6 @@ sudo chown -R www-data:www-data *
 
 [2] http://inet.edu.vn/tin-tuc/194/gioi-thieu-ve-wordpress.html
 
-[3] Dựng Wordpress trên 1 node: https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-ubuntu-14-04#step-one-—-create-a-mysql-database-and-user-for-wordpress
+[3] Dựng Wordpress trên 1 node: https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-ubuntu-14-04
 
 [4] Dựng Wordpress trên 2 node: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-remote-database-to-optimize-site-performance-with-mysql

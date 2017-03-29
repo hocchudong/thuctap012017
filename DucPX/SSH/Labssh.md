@@ -133,9 +133,13 @@ Sau khi thiết lập các giá trị xong, khởi động lại dịch vụ ssh
 
 ![Imgur](http://i.imgur.com/Hfu80yf.png)
 
-- Sử dụng phần mềm Moba đăng nhập vào server để copy public key lên (hoặc có thể sử dụng winscp để đẩy file chứa public key lên server).
+- Sử dụng phần mềm Moba đăng nhập vào server để copy public key lên (hoặc có thể sử dụng winscp để đẩy file chứa public key lên server). Public key nằm trong ô màu đỏ
+
+![Imgur](http://i.imgur.com/JWR9Bt4.png)
+
 - Tạo file authorized_keys có nội dung là public key vừa tạo: `vi /home/pxduc/.ssh/authorized_keys`.
 - Trong file cấu hình ssh (file `/etc/ssh/sshd_config`), chỉ rõ thư mục chứa public key của user. Tại dòng 33, chỉ cần bỏ dấu `#` ở đầu dòng là được.
+- ![Imgur](http://i.imgur.com/lUQA5rw.png)
 - Khởi động lại dịch vụ ssh.
 - Sử dụng phần mềm putty để đăng nhập vào server.
 - Cần chỉ rõ địa chỉ ip của server và port kết nối ssh. 
@@ -164,13 +168,14 @@ Sau khi thiết lập các giá trị xong, khởi động lại dịch vụ ssh
 ![Imgur](http://i.imgur.com/y2zCfWY.png).
 	- Vì port đã được đổi nên cần có tham số `-p 2048`. Sau đó nhập mật khẩu của user1 và ta thấy kết quả `Number of key(s) added: 1`
 
-- Chúng ta thử đăng nhập vào user1 qua ssh (lúc này server vẫn đang cho phép đăng nhập bằng mật khẩu). Thông báo đã đănhg nhập thành công.
+- Chúng ta thử đăng nhập vào user1 qua ssh (lúc này server vẫn đang cho phép đăng nhập bằng mật khẩu). Thông báo đã đăng nhập thành công.
  
 ![Imgur](http://i.imgur.com/QS5Lvke.png) 
 
 
 ### Cấu hình Trên Server không cho phép đăng nhập bằng mật khẩu
 - Tại dòng **52** trong file cấu hình ssh (`/ect/ssh/sshd_config`), ta cho giá trị là `no`: `PasswordAuthentication no`
+- ![Imgur](http://i.imgur.com/iysTryT.png)
 - restart lại ssh.
 - Chúng ta sẽ kiểm tra file log của ssh để xem các phiên truy cập vào server qua ssh. 
 

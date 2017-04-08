@@ -2,8 +2,23 @@
 
 
 
-
 # MỤC LỤC
+- [1.Introduction and Install libvirt toolkit](#1)
+	- [1.1.Introduction toolkit](#1.1)
+	- [1.2.Install on Ubuntu Server 16.04](#1.2)
+- [2.Virtual Netowrking trong libvirt](#2)
+- [3.Edit file XML for the VM](#3)
+	- [3.1. Config VM connected virtual network](#3.1)
+	- [3.2. Thêm Network Card cho VM](#3.2)
+	- [3.3. Config VM connected virtual switch](#3.3)
+- [4.Một số thông tin quan trọng](#4)
+	- [4.0.Tóm lại network](#4.0)
+	- [4.1.Libvirt directory on Ubuntu Server 16.04](#4.1)
+	- [4.2.Quyền cho phép sử dụng API – libvirt](#4.2)
+	- [4.3.Config libvirt daemon](#4.3)
+	- [4.4.Service libvirt](#4.4)
+- [THAM KHẢO](#thamkhao)
+
 
 
 

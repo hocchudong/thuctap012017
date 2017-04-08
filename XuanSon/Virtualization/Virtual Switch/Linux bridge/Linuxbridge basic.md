@@ -2,7 +2,30 @@
 
 
 # MỤC LỤC
-
+- [1.Khái niệm ](#1)
+- [2.Các thành phần](#2)
+- [3.Các tính năng](#3)
+- [4.Install tool quản lý linuxbridge on Ubuntu Server 16.04](#4)
+- [5.Linux bridge command ](#5)
+  - [5.1.Tổng quát](#5.1)
+  - [5.2.Một số command hay dùng](#5.2)
+    - [5.2.1.Bridge](#5.2.1)
+    - [5.2.2.Ports](#5.2.2)
+    - [5.2.3.AGEING](#5.2.3)
+    - [5.2.4.STP](#5.2.4)
+- [6.Note quan trọng với linux bridge technology](#6)
+  - [6.1.Create bridge](#6.1)
+  - [6.2.Port](#6.2)
+    - [6.2.1.Port](#6.2.1)
+    - [6.2.2.tap interface and uplink port](#6.2.2)
+  - [6.3.Bridge network với linux bridge](#6.3)
+- [7.Network mode](#7)
+  - [7.0.Introduction](#7.0)
+  - [7.1.Bridged Network](#7.1)
+    - [7.1.1.Giới thiệu](#7.1.1)
+    - [7.1.2.Hạn chế](#7.1.2)
+    - [7.1.3.Cấu hình bridged network on Ubuntu server 16.04](#7.1.3)
+  - [7.2.NAT,Routed,Isolated mode](#7.2)
 
 
 <a name="1"></a>

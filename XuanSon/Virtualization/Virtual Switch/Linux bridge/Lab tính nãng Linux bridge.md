@@ -1,13 +1,13 @@
-# Lab tính nãng Linux bridge
+# Lab tính năng Linux bridge
 
 
 
 
 # MỤC LỤC
-
-
-
-
+- [1.Topology](#1)
+- [2.Cài đặt và cấu hình](#2)
+	- [2.1.LAB 1](#2.1)
+	- [2.2.LAB 2](#2.3)
 
 
 

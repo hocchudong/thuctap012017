@@ -557,6 +557,7 @@ virt-install [OPTION]...
 Name of the new guest virtual machine instance. This must be unique amongst all guests known to the hypervisor on the connection, including those not currently active.  
 \- `-r` <number_MB> or `--ram` <number_MB>  
 Ram của VM tính bằng MB.  
+Bạn có thể dùng `--memory` option thay `-r` option.  
 \- `--vcpus` <vCPU_number>  
 Number of virtual cpus to configure for the guest.     
 \- `-l` <LOCATION> or `--location` <OPTIONS>  
@@ -626,9 +627,20 @@ virt-install \
               --graphics vnc,listen='0.0.0.0'      
 ```
 
-\- Create VM from .iso file on Internet :  
-Đây là bug của virt-install : https://bugs.launchpad.net/ubuntu/+source/virtinst/+bug/751979  
- 
+\- Create VM from on Internet use `netboot image`:  
+```
+virt-install \
+              --connect qemu:///system \
+              --name demo \
+              --ram 1024 \
+              --vcpus 1 \
+              --disk /var/lib/libvirt/images/test.img,size=10 \
+               --location http://vn.archive.ubuntu.com/ubuntu/dists/xenial/main/installer-i386/ \
+              --network network=default \
+              --graphics vnc,listen='0.0.0.0'      
+```
+
+
 
 
 

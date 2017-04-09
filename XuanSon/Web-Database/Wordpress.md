@@ -179,7 +179,7 @@ Bạn sẽ trông thấy Wordpress interface như sau :
 
 
 <a name="thamkhao"></a>
-#THAM KHẢO
+# THAM KHẢO
 - LAMP : https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu  
 - Wordpress : https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-on-ubuntu-14-04  
 

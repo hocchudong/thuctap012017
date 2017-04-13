@@ -161,7 +161,7 @@ Sau khi chạy xong lệnh sau, đăng xuất và đăng nhập lại, chạy l�
 
 [3] http://blogit.edu.vn/gioi-thieu-ao-hoa-va-ao-hoa-ma-nguon-kvm-hypervisor/
 
-[4] https//www.ibm.com/developerworks/library/l-using-kvm/
+[4] https://www.ibm.com/developerworks/library/l-using-kvm/
 
 [5] https://manthang.wordpress.com/2014/06/18/kvm-qemu-do-you-know-the-connection-between-them/
 

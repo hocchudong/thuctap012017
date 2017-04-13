@@ -19,21 +19,21 @@ ___
 		> `kvm-ok`
 
 	+ Nếu kết quả trả về tương tự như hình sau thì chứng nó CPU của bạn có hỗ trợ ảo hóa phần cứng
-		> ![kvm-ok](../../Pictures/QEMU-KVM/installtion/kvm-ok.png)
+		> ![kvm-ok](../../Pictures/QEMU-KVM/installation/kvm-ok.png)
 
 	+ Còn không, bạn hãy cài đặt một máy chủ Linux trên VMWare và kích hoạt chế độ ảo hóa cho phần cứng như sau:
 		+ Bước 1: Lựa chọn máy ảo mà bạn muốn kích hoạt ảo hóa để sử dụng tính năng KVM
-			> ![active-step-1](../../Pictures/QEMU-KVM/installtion/active-step-1.png)
+			> ![active-step-1](../../Pictures/QEMU-KVM/installation/active-step-1.png)
 
 		+ Bước 2: Chọn `Edit virtual machine settings`, ta được:
-			> ![active-step-2](../../Pictures/QEMU-KVM/installtion/active-step-2.png)
+			> ![active-step-2](../../Pictures/QEMU-KVM/installation/active-step-2.png)
 
 		+ Bước 3: Chọn mục `Processoors` và tích vào 2 mục:
 			* [X] Virtualize Intel VT-x/EPT or AMD-V/RVI
 			* [X] Virtualize CPU performance counters
-			> ![active-step-3](../../Pictures/QEMU-KVM/installtion/active-step-3.png)
+			> ![active-step-3](../../Pictures/QEMU-KVM/installation/active-step-3.png)
 		+ Bước 4: Lưu cài đặt lại và kiểm tra lại xem đã thành công hay chưa. Kết quả
-			> ![active-step-4](../../Pictures/QEMU-KVM/installtion/active-step-4.png)
+			> ![active-step-4](../../Pictures/QEMU-KVM/installation/active-step-4.png)
 
 ___
 

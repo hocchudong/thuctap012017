@@ -28,7 +28,7 @@ ___
 		+ Bước 2: Chọn `Edit virtual machine settings`, ta được:
 			> ![active-step-2](../../Pictures/QEMU-KVM/installation/active-step-2.png)
 
-		+ Bước 3: Chọn mục `Processoors` và tích vào 2 mục:
+		+ Bước 3: Chọn mục `Processors` và tích vào 2 mục:
 			* [X] Virtualize Intel VT-x/EPT or AMD-V/RVI
 			* [X] Virtualize CPU performance counters
 			> ![active-step-3](../../Pictures/QEMU-KVM/installation/active-step-3.png)
@@ -57,7 +57,7 @@ ___
 
 # Nội dung khác
 
-- [Cấu hình mạng briding](Networking.md)
+- [Cấu hình mạng bridging](Networking.md)
 - [Tạo một máy ảo kvm](Guest-creation.md)
 - [Quản lý các máy ảo kvm](Guest-management.md)
 - [Truy cập, sử dụng các máy ảo](Guest-console-access.md)

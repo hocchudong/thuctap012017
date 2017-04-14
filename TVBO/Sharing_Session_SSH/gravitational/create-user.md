@@ -33,12 +33,12 @@ Lưu ý:
 			> ![Result](../../Pictures/Teleport/Quickstart/result.png)
 
 		+ Bước 5: Truy cập trang [GAuth](https://gauth.apps.gbraad.nl/):
-			- Click vào biểu tượng: [pen](../../Pictures/Teleport/Quickstart/pen.png)
-			- Click vào biểu tượng: [add](../../Pictures/Teleport/Quickstart/add.png)
+			- Click vào biểu tượng: ![pen](../../Pictures/Teleport/Quickstart/pen.png)
+			- Click vào biểu tượng: ![add](../../Pictures/Teleport/Quickstart/add.png)
 			- Điền `Account name` là tên `user` mà ta đã tạo:
 			- Điền `Serect key` là giá trị `secret` mà ta vừa có được từ qr code:
 				> ![fill](../../Pictures/Teleport/Quickstart/fill.png)
-			- Click vào biểu tượng: [add](../../Pictures/Teleport/Quickstart/add.png) ta được tương tự như sau:
+			- Click vào biểu tượng: ![add](../../Pictures/Teleport/Quickstart/add.png) ta được tương tự như sau:
 				> ![Token](../../Pictures/Teleport/Quickstart/token.png)
 
 				> Ở đây `219770` chính là token sử dụng để đăng nhập vào hệ thống. Hãy nhập nó và mật khẩu tùy ý để hoàn tất thủ tục đăng nhập.

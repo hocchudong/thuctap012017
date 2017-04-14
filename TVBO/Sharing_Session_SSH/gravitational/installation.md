@@ -33,11 +33,11 @@ ___
 
 - [Giới thiệu về Teleport](#about)
 - Quickstart
-	- [Tạo người sử dụng](gravitational/create-user.md)
-	- [Thêm một Node mới vào Cluster](gravitational/add-nodes.md#add-nodes)
-	- [Tạo label cho Node](gravitational/add-nodes.md#add-label)
-	- [Chia sẻ phiên đăng nhập SSH](gravitational/sharing-ssh)
-	- [Teleconsole](gravitational/teleconsole.md)
+	- [Tạo người sử dụng](create-user.md)
+	- [Thêm một Node mới vào Cluster](add-nodes.md#add-nodes)
+	- [Tạo label cho Node](add-nodes.md#add-label)
+	- [Chia sẻ phiên đăng nhập SSH](sharing-ssh)
+	- [Teleconsole](teleconsole.md)
 - Kiến trúc của Teleport
 	> Sẽ cập nhật sau
 - Hướng dẫn dành cho user

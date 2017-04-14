@@ -42,7 +42,8 @@ Lưu ý:
 				> ![Token](../../Pictures/Teleport/Quickstart/token.png)
 
 				> Ở đây `219770` chính là token sử dụng để đăng nhập vào hệ thống. Hãy nhập nó và mật khẩu tùy ý để hoàn tất thủ tục đăng nhập.
-		Bước 6: Kiểm tra kết quả, kết quả đăng nhập thành công được hiển thị tương tự như sau:
+
+		+ Bước 6: Kiểm tra kết quả, kết quả đăng nhập thành công được hiển thị tương tự như sau:
 			> ![Endgame](../../Pictures/Teleport/Quickstart/end.png)
 
 - Vậy là chúng ta đã hoàn thành quá trình tạo người sử dụng và đăng nhập thành công trên web để quản lý các phiên đăng nhập.

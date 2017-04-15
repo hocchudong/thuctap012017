@@ -7,7 +7,7 @@
 - Không cho ssh tới server bằng mật khẩu.
 
 ## Thực hành.
-Thông tin cấu hình của ssh nằm ở trong file `/etc/ssh/sshd_config`. Chúng ta sẽ thay đổi cấu hình ssh trong file này để phù hợp với yêu cầu bài lab.
+Trên **Server**, thông tin cấu hình của ssh nằm ở trong file `/etc/ssh/sshd_config`. Chúng ta sẽ thay đổi cấu hình ssh trong file này để phù hợp với yêu cầu bài lab.
 
 `root@ubuntu:~# vi /etc/ssh/sshd_config`
 
@@ -118,7 +118,7 @@ Sau khi thiết lập các giá trị xong, khởi động lại dịch vụ ssh
 
 - Cấu hình cho phép các user đăng nhập vào server bằng ssh.
 	Ban đầu ssh phải cho phép user đăng nhập bằng mật khẩu:
-	- khai báo dòng này `PasswordAuthentication yes` trong file `/etc/ssh/sshd_config` tại dòng 52.
+	- Trên Server, khai báo dòng này `PasswordAuthentication yes` trong file `/etc/ssh/sshd_config` tại dòng 52.
 
 <h5>Cấu hình cho User: pxduc</h5>
 
@@ -137,11 +137,12 @@ Sau khi thiết lập các giá trị xong, khởi động lại dịch vụ ssh
 
 ![Imgur](http://i.imgur.com/JWR9Bt4.png)
 
-- Tạo file authorized_keys có nội dung là public key vừa tạo: `vi /home/pxduc/.ssh/authorized_keys`.
+- Quay lại phía Server, tạo file authorized_keys có nội dung là public key vừa tạo: `vi /home/pxduc/.ssh/authorized_keys`.
 - Trong file cấu hình ssh (file `/etc/ssh/sshd_config`), chỉ rõ thư mục chứa public key của user. Tại dòng 33, chỉ cần bỏ dấu `#` ở đầu dòng là được.
 - ![Imgur](http://i.imgur.com/lUQA5rw.png)
 - Khởi động lại dịch vụ ssh.
-- Sử dụng phần mềm putty để đăng nhập vào server.
+- Như vậy, Server đã được cấu hình xong cho phép user **pxduc** đăng nhập vào Server bằng host key.
+- Để kiểm tra cấu hình đã đúng hay chưa, trên client sử dụng phần mềm putty để đăng nhập vào server.
 - Cần chỉ rõ địa chỉ ip của server và port kết nối ssh. 
 
 ![Imgur](http://i.imgur.com/2tlLhEJ.png).

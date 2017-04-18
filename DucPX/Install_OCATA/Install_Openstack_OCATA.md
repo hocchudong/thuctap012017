@@ -29,6 +29,10 @@
 
 	![Imgur](http://i.imgur.com/Kc3ZEsR.png)
 
+	- VMnet1 (hostonly): có dải địa chỉ `10.10.10.0/24`
+	- VMnet8 (NAT): có dải địa chỉ `172.16.69.0/24`
+	- VMnet2 (hostonly): có dải địa chỉ `10.10.20.0/24`
+
 ### 2.1 Cài đặt phần chung
 
 === 

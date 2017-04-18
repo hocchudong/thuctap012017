@@ -95,6 +95,7 @@ Linux bridge được hỗ trợ từ version nhân kernel từ 2.4 trở lên. 
 ### BRIDGE MANAGEMENT
 
 |ACTION	|BRCTL	|BRIDGE|
+|-|-|-|
 |creating bridge|	`brctl addbr <bridge>`| |	
 |deleting bridge|	`brctl delbr <bridge>`| |
 |add interface (port) to bridge	| `brctl addif <bridge> <ifname>`	| |

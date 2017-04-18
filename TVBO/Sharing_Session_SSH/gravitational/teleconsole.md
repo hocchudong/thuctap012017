@@ -61,9 +61,9 @@
 
 # Các tính năng khác của Teleconsole
 
-- [Forwarding local TCP ports](../forwarding-local-tcp-ports.md) - how to let joining parties access TCP ports on your localhost.
-- [Using Secure Sessions](../teleconsole/using-secure-sessions) - how to invite specific people, like Github users or owners of a specific public SSH key.
-- [Private Proxies](../teleconsole/private-proxies.md) - how to set up your own proxy servers without having to rely on https://teleconsole.com.
+- [Forwarding local TCP ports](../forwarding-local-tcp-ports.md) - làm thế nào để cho việc truy cập vào cổng TCP trên localhost của bạn.
+- [Using Secure Sessions](../teleconsole/using-secure-sessions) - Làm thế nào để mời người khác, chẳng hạn: chủ sở hữu một public SSH key cụ thể
+- [Private Proxies](../teleconsole/private-proxies.md) - làm thế nào để thiết lập máy chủ proxy của riêng bạn mà không cần phải dựa vào https://teleconsole.com .
 
 # Nội dung liên quan
 

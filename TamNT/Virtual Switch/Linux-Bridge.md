@@ -49,7 +49,7 @@ Khái niệm về physical port và virtual port:
 
 \- ***Virtual Computing Device***: Thường được biết đến như là máy ảo VM chạy trong host server 
 
-\- ***Virtual NIC (vNIC)**: máy ảo VM có virtual network adapters(vNIC) mà đóng vai trò là NIC cho máy ảo.
+\- **Virtual NIC (vNIC)**: máy ảo VM có virtual network adapters(vNIC) mà đóng vai trò là NIC cho máy ảo.
 
 \- **Physical swtich port**: Là port sử dụng cho Ethernet switch, cổng vật lý xác định bởi các port RJ45. Một port RJ45 kết nối tới port trên NIC của máy host.
 
@@ -138,9 +138,11 @@ Linux bridge được hỗ trợ từ version nhân kernel từ 2.4 trở lên. 
 |List VLAN configuration|		|`bridge vlan show`|
 
 
-***Lưu ý*** : Các ảnh hưởng của câu lệnh chỉ làm tạm thời cho đến khi máy host khởi động lại, sau khi khởi động lại, toàn bộ thông tin sẽ bị mất. 
+***Lưu ý*** : Các ảnh hưởng của câu lệnh chỉ là tạm thời cho đến khi máy host khởi động lại, sau khi khởi động lại, toàn bộ thông tin sẽ bị mất. 
 
 ## 2.3. Cấu hình vĩnh viễn
+
+Khi cấu hình bằng câu lệnh `brctl`, các ảnh hưởng của nó sẽ biến mất sau khi khởi động lại hệ thống host server. Để lưu lại thông tin cấu hình trên bridge và khởi động lại cùng hệ thống thì nên lưu lại cấu hình vào file (Ghi vào file, khi boot lại hệ thống, thông tin trong file cũng được cấu hình lại. Những thông tin được lưu dưới dạng file, thì luôn khởi động cùng hệ thống - nên có thể coi là vĩnh viễn - trừ khi tự tay stop lại dịch vụ.)
 
 Cấu hình trong file /etc/network/interfaces
 
@@ -148,21 +150,22 @@ Cấu hình trong file /etc/network/interfaces
 # This file describes the network interfaces available on your system
  # and how to activate them. For more information, see interfaces(5).
  # The loopback network interface
- auto lo br0
+ auto lo 
  iface lo inet loopback
  # Set up interfaces manually, avoiding conflicts with, e.g., network manager
  iface eth0 inet manual
  iface eth1 inet manual
  # Bridge setup
+ auto br0
  iface br0 inet static
     bridge_ports eth0 eth1
-        address 192.168.1.2
-        broadcast 192.168.1.255
-        netmask 255.255.255.0
-        gateway 192.168.1.1
+    address 192.168.1.2         # Địa chỉ của br1 có thể là cùng dải địa chỉ của eth0 hoặc eth1 tùy ý. 
+    broadcast 192.168.1.255
+    netmask 255.255.255.0
+    gateway 192.168.1.1
 ```
 
-Tham khảo thêm cấu hình tại: http://manpages.ubuntu.com/manpages/xenial/man5/bridge-utils-interfaces.5.html
+Tham khảo thêm cấu hình các thông số khác cho linux bridge trong file `/etc/network/interfaces`  tại: http://manpages.ubuntu.com/manpages/xenial/man5/bridge-utils-interfaces.5.html
 
 <a name = "3"></a>
 # 3. LAB

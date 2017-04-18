@@ -189,13 +189,15 @@ Tham khảo thêm cấu hình tại: http://manpages.ubuntu.com/manpages/xenial/
 
 •	**Bước 1:** Tạo switch ảo br1. Nếu đã tồn tại có thể xóa switch này đi và tạo lại:
 
-#brctl delbr br1 # xóa đi nếu đã tồn tại
-#brctl addbr br1 # tạo mới
+`brctl delbr br1 # xóa đi nếu đã tồn tại`
+
+`brctl addbr br1 # tạo mới`
 
 •	**Bước 2:** Gán eth1 vào swicth br1
 
-#brctl addif br1 eth1
-#brctl stp br1 on # enable tính năng STP nếu cần
+`brctl addif br1 eth1`
+
+`brctl stp br1 on # enable tính năng STP nếu cần`
 
 •	**Bước 3:** Khi tạo một switch mới br1, trên máy host sẽ xuất hiện thêm 1 NIC ảo trùng tên switch đó (br1).
 
@@ -222,6 +224,7 @@ bridge_maxwait 0
 •	Bước 4: Khởi động lại các card mạng và kiểm tra lại cấu hình bridge:
 
 `ifdown -a && ifup -a # khởi động lại tất cả các NIC`
+
 `brctl show # kiểm tra cấu hình switch ảo`
 
 Kết quả kiểm tra cấu hình sẽ tương tự như sau:

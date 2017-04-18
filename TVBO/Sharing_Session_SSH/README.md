@@ -36,10 +36,11 @@ ___
 
 	+ Ngoài ra, teleport còn có nhiều chức năng khác mà sẽ được đề cập đến trong các nội dung sau. Phía dưới chính là một chức năng nhỏ của teleport mà bạn có thể dàng nhận ra khi mới đầu làm quen và sử dụng nó.
 		> [![Teleport Features](../Pictures/Teleport/Quickstart/ScreenShot.png)](https://www.youtube.com/watch?v=bprRpX-4R_0)
-
+	
+	+ Tóm lại, Teleport có chức năng tương tự như TeamView của Windows với Teleconsole
 ___
 
-# Nội dung khác
+# Nội dung liên quan
 
 - Quickstart
 	- [Cài đặt và sử dụng](gravitational/installation.md)

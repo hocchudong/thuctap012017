@@ -49,15 +49,15 @@ Lưu ý:
 - Vậy là chúng ta đã hoàn thành quá trình tạo người sử dụng và đăng nhập thành công trên web để quản lý các phiên đăng nhập.
 ___
 
-# Nội dung khác
+# Nội dung liên quan
 
-- [Giới thiệu về Teleport](#about)
+- [Giới thiệu về Teleport](../README.md#about)
 - Quickstart
-	- [Tạo người sử dụng](gravitational/create-user.md)
-	- [Thêm một Node mới vào Cluster](gravitational/add-nodes.md#add-nodes)
-	- [Tạo label cho Node](gravitational/add-nodes.md#add-label)
-	- [Chia sẻ phiên đăng nhập SSH](gravitational/sharing-ssh)
-	- [Teleconsole](gravitational/teleconsole.md)
+	- [Cài đặt và sử dụng](installation.md)
+	- [Thêm một Node mới vào Cluster](add-nodes.md#add-nodes)
+	- [Tạo label cho Node](add-nodes.md#add-label)
+	- [Chia sẻ phiên đăng nhập SSH](sharing-ssh)
+	- [Teleconsole](teleconsole.md)
 - Kiến trúc của Teleport
 	> Sẽ cập nhật sau
 - Hướng dẫn dành cho user

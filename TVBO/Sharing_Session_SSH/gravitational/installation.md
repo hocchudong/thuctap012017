@@ -29,11 +29,11 @@ Tiến hành cài đặt:
 
 ___
 
-# Nội dung khác
+# Nội dung liên quan
 
-- [Giới thiệu về Teleport](#about)
+- [Giới thiệu về Teleport](../README.md#about)
 - Quickstart
-	- [Tạo người sử dụng](create-user.md)
+	- [Cài đặt và sử dụng](installation.md)
 	- [Thêm một Node mới vào Cluster](add-nodes.md#add-nodes)
 	- [Tạo label cho Node](add-nodes.md#add-label)
 	- [Chia sẻ phiên đăng nhập SSH](sharing-ssh)

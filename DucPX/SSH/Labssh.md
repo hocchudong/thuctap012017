@@ -1,12 +1,13 @@
-<h1>Lab SSH</h1>
+# Lab SSH
 
-<h2>Lab 1:</h2> 
-<ul>
-	<li>Đổi port 22 mặc định truy cập vào SSH Server.</li>
- 	<li>Bỏ quyền ssh với tài khoản root.</li>
-	<li>Không cho ssh tới server bằng mật khẩu.</li>
-<ul>
-<h3>Thực hành.</h3>
+## Lab 1: 
+
+- Đổi port 22 mặc định truy cập vào SSH Server
+- Bỏ quyền ssh với tài khoản root.
+- Không cho ssh tới server bằng mật khẩu.
+
+## Thực hành.
+Trên **Server**, thông tin cấu hình của ssh nằm ở trong file `/etc/ssh/sshd_config`. Chúng ta sẽ thay đổi cấu hình ssh trong file này để phù hợp với yêu cầu bài lab.
 
 `root@ubuntu:~# vi /etc/ssh/sshd_config`
 
@@ -103,82 +104,86 @@ UsePAM yes
 
 ---
 
-- để đổi port mặc định 22 của ssh, tài dòng **5** thay bằng một port khác: `Port 2048`
+- để đổi port mặc định 22 của ssh, tại dòng **5** thay bằng một port khác: `Port 2048`
 - để bỏ quyền ssh với tài khoản root, tại dòng **28** cho giá trị yes bằng `without-password`: `PermitRootLogin without-password`
 - không cho ssh tới server bằng mật khẩu, tại dòng **52** cho giá trị `no`: `PasswordAuthentication no`
 
 Sau khi thiết lập các giá trị xong, khởi động lại dịch vụ ssh để cập nhật lại cấu hình mới `service ssh restart`
 
-<h2>Lab 2:</h2>
-<h3>Cấu hình cho hai user đăng nhập vào server bằng host key.</h3>
-<h3>Mô hình bài LAB, với 2 user sử dụng hai nền tảng khác nhau: một user sử dụng linux và một sử dụng windows. User dùng win sẽ thông qua phần mềm Putty để đăng nhập, user dùng linux cần được cài đặt `Openssh-client` </h3>
+## Lab 2:
+#### Cấu hình cho hai user đăng nhập vào server bằng host key.
+#### Mô hình bài LAB, với 2 user sử dụng hai nền tảng khác nhau: một user sử dụng linux và một sử dụng windows. User dùng win sẽ thông qua phần mềm Putty để đăng nhập, user dùng linux cần được cài đặt `Openssh-client`
 
 ![Imgur](http://i.imgur.com/n3eSwiv.png)
 
-
-<h4>Cấu hình cho phép các user đăng nhập vào server bằng ssh</h4>
-Ban đầu ssh phải cho phép đăng nhập bằng mật khẩu `PasswordAuthentication yes`
+- Cấu hình cho phép các user đăng nhập vào server bằng ssh.
+	Ban đầu ssh phải cho phép user đăng nhập bằng mật khẩu:
+	- Trên Server, khai báo dòng này `PasswordAuthentication yes` trong file `/etc/ssh/sshd_config` tại dòng 52.
 
 <h5>Cấu hình cho User: pxduc</h5>
 
 - Trên máy client chạy windows, sử dụng phần mềm puttygen để sinh ra cặp key.
 
-- Khởi động phần mềm lên ta thấy giao diện sau ![Imgur](http://i.imgur.com/eCaxiGD.png) 
+- Khởi động phần mềm lên ta thấy giao diện sau
+
+![Imgur](http://i.imgur.com/eCaxiGD.png) 
 
 - Chọn **RSA** và click vào `Generate` để sinh key, trong quá trình sinh key cần di chuyển chuột trong khoảng trống của phần mềm
-
-- Sau khi sinh cặp key xong, chúng ta có thể nhập `Key passphrase` hoặc để trống. Sau đó click `Save private key` để sau này khi đăng nhập dùng cho việc xác thực, `Save public key` để copy lên server (public không cần lưu cũng được vì phần mềm có thể load lại khi có private key) 
+- Sau khi sinh cặp key xong, chúng ta có thể nhập `Key passphrase` hoặc để trống. Sau đó click `Save private key` để sau này khi đăng nhập dùng cho việc xác thực, `Save public key` để copy lên server (public key không cần lưu cũng được vì phần mềm có thể load lại khi có private key)
 
 ![Imgur](http://i.imgur.com/Hfu80yf.png)
 
-- Sử dụng phần mềm Moba đăng nhập vào server để copy public key lên (sử dụng Moba để copy cho tiện :D)
+- Sử dụng phần mềm Moba đăng nhập vào server để copy public key lên (hoặc có thể sử dụng winscp để đẩy file chứa public key lên server). Public key nằm trong ô màu đỏ
 
-- Tạo file với đường dẫn thư mục như sau: `/home/pxduc/.ssh/authorized_keys` và paste public key vừa tạo vào file này
+![Imgur](http://i.imgur.com/JWR9Bt4.png)
 
-- Trong file cấu hình ssh, cấu chỉ rõ thư mục chứa public key của user. Tại dòng 33, chỉ cần bỏ dấu `#` ở đầu dòng là được.
-
+- Quay lại phía Server, tạo file authorized_keys có nội dung là public key vừa tạo: `vi /home/pxduc/.ssh/authorized_keys`.
+- Trong file cấu hình ssh (file `/etc/ssh/sshd_config`), chỉ rõ thư mục chứa public key của user. Tại dòng 33, chỉ cần bỏ dấu `#` ở đầu dòng là được.
+- ![Imgur](http://i.imgur.com/lUQA5rw.png)
 - Khởi động lại dịch vụ ssh.
+- Như vậy, Server đã được cấu hình xong cho phép user **pxduc** đăng nhập vào Server bằng host key.
+- Để kiểm tra cấu hình đã đúng hay chưa, trên client sử dụng phần mềm putty để đăng nhập vào server.
+- Cần chỉ rõ địa chỉ ip của server và port kết nối ssh. 
 
-- Sử dụng phần mềm putty để đăng nhập vào servr.
+![Imgur](http://i.imgur.com/2tlLhEJ.png).
 
-- Cần chỉ rõ địa chỉ ip của server và port kết nối ssh. ![Imgur](http://i.imgur.com/2tlLhEJ.png)
+- Sau đó chỉ đường dẫn đến private key mà chúng ta đã lưu lúc trước 
+![Imgur](http://i.imgur.com/gZh86ms.png)
 
-- Sau đó chỉ đường dẫn đến private key mà chúng ta đã lưu lúc trước ![Imgur](http://i.imgur.com/gZh86ms.png)
-
-- Click vào Open ta sẽ thây giao diện yêu cầu nhập username và Key passphrase ![Imgur](http://i.imgur.com/JWpgaS1.png)
+- Click vào Open ta sẽ thây giao diện yêu cầu nhập username và Key passphrase 
+![Imgur](http://i.imgur.com/JWpgaS1.png)
 
 - Như vậy đã cấu hình thành công cho phép user pxduc đăng nhập vào ssh bằng host key.
 
-<h5>Cấu hình cho User: user1</h5>
-User1 cần được tạo trên server trước rồi.
+#### Cấu hình cho User: user1
+- User1 cần phải tồn tại trên server trước.
 
-- Đăng nhập vào client để tạo key. Lệnh tạo key `ssh-keygen -t rsa` ![Imgur](http://i.imgur.com/7vql9te.png)
+- Đăng nhập vào client để tạo key. Lệnh tạo key `ssh-keygen -t rsa`
+![Imgur](http://i.imgur.com/7vql9te.png)
 	- chọn vị trí lưu key.
 	- vì ở trong thư mục này đã tồn tại một key trước rồi, hệ thống sẽ hỏi có muốn thay đổi key không? chọn y để thay đổi key mới.
 	- key public được lưu trong file `id_rsa.pub`
 	- key private lưu trong file `ip_rsa`
 
-- sử dụng lệnh `ssh-copy-id user1@172.16.69.137 -p 2048` để copy public key lên server cho user1
+- sử dụng lệnh `ssh-copy-id user1@172.16.69.137 -p 2048` để copy public key lên server cho user1 
+![Imgur](http://i.imgur.com/y2zCfWY.png).
+	- Vì port đã được đổi nên cần có tham số `-p 2048`. Sau đó nhập mật khẩu của user1 và ta thấy kết quả `Number of key(s) added: 1`
 
-![Imgur](http://i.imgur.com/y2zCfWY.png). 
-
-Vì port đã được đổi nên cần có tham số `-p 2048`. Sau đó nhập mật khẩu của user1 và ta thấy kết quả `Number of key(s) added: 1`
-
-- Chúng ta thử đăng nhập vào user1 qua ssh (lúc này server vẫn đang cho phép đăng nhập bằng mật khẩu). Thông báo đã đănhg nhập thành công. 
-
+- Chúng ta thử đăng nhập vào user1 qua ssh (lúc này server vẫn đang cho phép đăng nhập bằng mật khẩu). Thông báo đã đăng nhập thành công.
+ 
 ![Imgur](http://i.imgur.com/QS5Lvke.png) 
 
-<h4>Cấu hình Trên Server không cho phép đăng nhập bằng mật khẩu</h4>
-- Tại dòng **52** trong file cấu hình ssh, ta cho giá trị là `no`: `PasswordAuthentication no`
+
+### Cấu hình Trên Server không cho phép đăng nhập bằng mật khẩu
+- Tại dòng **52** trong file cấu hình ssh (`/ect/ssh/sshd_config`), ta cho giá trị là `no`: `PasswordAuthentication no`
+- ![Imgur](http://i.imgur.com/iysTryT.png)
 - restart lại ssh.
 - Chúng ta sẽ kiểm tra file log của ssh để xem các phiên truy cập vào server qua ssh. 
 
 ![Imgur](http://i.imgur.com/ua66WAA.png)
 
 - Như vậy file log đã ghi lại thông tin truy cập từ client và đã được đồng ý truy cập bằng key.
-
-- Chúng ta có thể giới hạn những user được phép truy cập vào server qua ssh bằng cách thêm `AllowUsers pxduc` (ở đây chỉ cho user pxduc đăng vào)
-
+- Chúng ta có thể giới hạn những user được phép truy cập vào server qua ssh bằng cách thêm dòng  `AllowUsers pxduc` vào cuối file `/ect/ssh/sshd_config` (ở đây chỉ cho user pxduc đăng vào)
 - Chúng ta thử đăng nhập user1 qua ssh và xem file log ghi lại thông tin gì?
 - Client đã bị từ chối đăng nhập 
 

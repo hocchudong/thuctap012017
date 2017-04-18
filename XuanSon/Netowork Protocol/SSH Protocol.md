@@ -511,7 +511,6 @@ ssh –i <file_private_key> <username>@<IP_host>
 ```
 
 >Note :
->- Trong OS Linux , để file private_key 600 .
 >- Key pair phải tương ứng với mỗi user ( ở server ) , có nghĩa là ta phải dùng private key tương ứng với public key trong file ~/.ssh/authorized_keys ( ở server ) của user ta muốn truy cập .
 >- private_key sử dụng cho client , public_key sử dụng cho server 
 

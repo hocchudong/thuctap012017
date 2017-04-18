@@ -54,4 +54,8 @@ sudo copy /etc/mysql/my.cnf /etc/mysql/my.cnf.original
 ![Imgur](http://i.imgur.com/RvNxj6k.png)
 
 ## 6. Restore database đã tạo (áp dụng với wordpress).
-`mysqldump -u root -p123456789 -h 10.10.10.2 wordpress < wordpress.sql`
+- Để restore database, cần thực hiện hai bước:
+	- create một database để restore. ví dụ `wordpress`
+	- dùng lệnh: `mysqldump -u root -p123456789 -h 10.10.10.2 wordpress < wordpress.sql`
+		- wordpress: là database để restore
+		- wordpress.sql: là file backup

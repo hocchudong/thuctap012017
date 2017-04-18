@@ -75,10 +75,12 @@
     Các khóa được tạo ra sẽ lưu trong `~/.ssh/` với:
     - `~/.ssh/id_rsa`: Đây là khóa bí mật! KHÔNG ĐƯỢC CHIA SẺ FILE NÀY!
     - `~/.ssh/id_rsa.pub`: Đây là khóa công khai. Có thể được chia sẻ tự do.
+- Các hoạt động trên được thực hiện phía client
+
 
 #### 1.4.2 Copy khóa public lên server.
 - Có nhiều cách để gửi khóa public lên server như sử dụng lệnh, các cách thủ công như copy ra thiết bị lưu trữ ... Trong SSH có hỗ trợ câu lệnh để copy khóa lên server như `ssh-copy-id` hay `scp`, ...
-- Việc copy khóa public lên server cho phép bạn chứng thực người dùng không cần mật khẩu
+- Việc copy khóa public lên server cho phép bạn chứng thực người dùng không cần mật khẩu, tại client bạn sử dụng lệnh sau:
     > `ssh-copy-id username@ip_remote_host -p port`
 
     > ![Hình ảnh ssh-copy-id](../Pictures/SSH/ssh-copy-id.png)
@@ -114,7 +116,7 @@ Trong phần này, mình sẽ hướng dẫn cho bạn 4 công việc:
 - Không cho ssh tới server dùng cách nhập mật khẩu.
 - Tìm file log ghi lại các phiên truy cập ssh server
 
-Các cấu hình về ssh đều được ghi lại trong file `/etc/ssh/sshd_config`:
+Các cấu hình về ssh đều được ghi lại trong file `/etc/ssh/sshd_config` và mọi hoạt động trong phần này được thực hiện trên server.
 
 1. Đổi port mặc định
     > `~# vi /etc/ssh/sshd_config`

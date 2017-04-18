@@ -54,7 +54,10 @@
 
 	+ Cả hai cách sử dụng trên sẽ cho phép bạn và họ có chung một phiên bản việc trên terminal. Điều này có thể nói dễ hiểu là họ làm gì trên terminal của bạn như nhập câu lệnh, kết quả trả về ra sao, bạn đều có thể nhìn thấy được ngay trên thiết bị của bạn và ngược lại.
 
+# Lưu ý:
 
+- Để kết thúc phiên và ngắt kết nối, chỉ cần thoát khỏi Teleconsole hoặc đóng cửa sổ terminal mà nó đang chạy.
+- Hãy hiểu cách vận hành của teleconsole. Khi bạn vận hành nó có nghĩa là bạn đang đưa ra bàn phím cho bất cứ ai biết URL của phiên hoạt động teleport. Teleconsole đã tạo ra ID session đủ để khó đoán nhưng bạn vẫn đang chạy một máy chủ SSH có thể truy cập qua Internet công cộng trong phiên Teleconsole.
 
 # Các tính năng khác của Teleconsole
 

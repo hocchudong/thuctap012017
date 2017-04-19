@@ -99,7 +99,7 @@
 
 #### 2.1.3 Cài đặt repos để cài OpenStack OCATA
 
-- Cài đặt gói để cài OpenStack Mitaka
+- Cài đặt gói để cài OpenStack OCATA
 	```sh
 	 apt-get install software-properties-common -y
 	 add-apt-repository cloud-archive:ocata -y
@@ -230,7 +230,7 @@
 - Dùng lệnh `vi` để mở và sửa file `/etc/keystone/keystone.conf`.
 	- Trong section `[database]` thêm dòng dưới
 		```sh
-		connection = mysql+pymysql://keystone:Welcome123@10.10.10.61/keystone
+		connection = mysql+pymysql://keystone:Welcome123@controller/keystone
 		```
 
 	- Trong section `[token]`, cấu hình Fernet token provider:
@@ -401,7 +401,7 @@
 #### 4.1.1 Tạo database cho `glance`
 - Đăng nhập vào mysql
 	```sh
-	mysql -uroot -pWelcome123
+	mysql -u root -pWelcome123
 	```
 
 - Tạo database và gán các quyền cho user `glance` trong database glance
@@ -578,7 +578,7 @@
 - Tạo database:
 	- Đăng nhập vào database với quyền `root`
 	```sh
-	mysql -uroot -pWelcome123
+	mysql -u root -pWelcome123
 	```
 
 	- Tạo database nova_api, nova, và nova_cell0:
@@ -721,7 +721,7 @@
 	```sh
 	[DEFAULT]
 	# ...
-	use_neutron = true
+	use_neutron = True
 	firewall_driver = nova.virt.firewall.NoopFirewallDriver
 	my_ip = 10.10.10.61
 	transport_url = rabbit://openstack:Welcome123@controller
@@ -785,7 +785,7 @@
 
 -  Tạo database cho `nova_api`
 	```sh
-	 su -s /bin/sh -c "nova-manage api_db sync" nova
+	su -s /bin/sh -c "nova-manage api_db sync" nova
 	```
 
 - Đăng ký cell0 database:
@@ -841,7 +841,7 @@
 - Tạo database cho neutron
  	- Đăng nhập vào `neutron`
 	 ```sh
-	 mysql -uroot -pWelcome123
+	 mysql -u root -pWelcome123
 	 ```
 
 	- Tạo database `neutron` và phân quyền:

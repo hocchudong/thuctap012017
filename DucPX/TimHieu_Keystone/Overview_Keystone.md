@@ -26,6 +26,7 @@
 		- [2.2 Authentication token](#authtoken)
 	- [3. Access management and authorization](#access)
 	- [4. Backends and Services](#backendservice)
+- [IV. Keystone Workflow.](#workflow)
 
 <a name=I></a>
 ## I. Tổng về về các chức năng Identity, Authentication and Access Management của keystone
@@ -216,3 +217,13 @@ Các môi trường Cloud với mô hình Infrastructure-as-a-Service cung cấp
 - Góc nhìn tổng quát về các thành phần trong keystone được quản lý và sử dụng các loại backend khác nhau.
 
 ![Imgur](http://i.imgur.com/YZDaevo.png)
+
+<a name=workflow></a>
+### IV. Keystone Workflow.
+- Lưu đồ về tổng quan về các bước mà người dùng tương tác với các service trong Openstack
+
+![Imgur](http://i.imgur.com/mDMBskO.png)
+
+- Keystone Workflow
+
+![Imgur](http://i.imgur.com/FOorZrU.png)

@@ -4,10 +4,10 @@
 
 - [X] [Giới thiệu về KVM](#about)
 - [X] [Cài đặt KVM](QEMU-KVM/Installation.md)
-- [] [Cấu hình mạng briding](QEMU-KVM/Networking.md)
+- [ ] [Cấu hình mạng briding](QEMU-KVM/Networking.md)
 - [X] [Tạo một máy ảo kvm](QEMU-KVM/Guest-creation.md)
-- [] [Quản lý các máy ảo kvm](QEMU-KVM/Guest-management.md)
-- [] [Truy cập, sử dụng các máy ảo](QEMU-KVM/Guest-console-access.md)
+- [ ] [Quản lý các máy ảo kvm](QEMU-KVM/Guest-management.md)
+- [ ] [Truy cập, sử dụng các máy ảo](QEMU-KVM/Guest-console-access.md)
 - [X] [Các trang website tham khảo](#website)
 
 

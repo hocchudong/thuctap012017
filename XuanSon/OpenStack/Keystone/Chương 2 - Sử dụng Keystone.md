@@ -1,9 +1,26 @@
-# Sử dụng Keystone
+# Chương 2 - Sử dụng Keystone
 
 
 
 # MỤC LỤC
-
+- [1.Install OpenStack](#1)
+- [2.Basic Keystone Operations Using OpenStackClient](#2)
+	- [2.1 Getting a Token](#2.1)
+	- [2.2.Listing Users](#2.2)
+	- [2.3.Listing Project](#2.3)
+	- [2.4.Listing Groups](#2.4)
+	- [2.5.Listing Roles](#2.5)
+	- [2.6.Listing Domains](#2.6)
+	- [2.7.Creating Another Domain](#2.7)
+	- [2.8.Create a Project within the Domain](#2.8)
+	- [2.9.Create a User within the Domain](#2.9)
+	- [2.10.Assigning a Role to a User for a Project](#2.10)
+	- [2.11.Authenticating as the New User](#2.11)
+- [3.Basic Keystone Operations Using Horizon](#3)
+	- [3.1.What Keystone Operations Are Available through Horizon?](#3.1)
+	- [3.2.Accessing the Identity Operations](#3.2)
+	- [3.3.List, Set, Delete, Create, and View a Project](#3.3)
+	- [3.4.List, Set, Delete, Create, and View a User](#3.4)
 
 
 

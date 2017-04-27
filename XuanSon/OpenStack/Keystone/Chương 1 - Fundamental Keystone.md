@@ -1,8 +1,31 @@
-# Fundamental Keystone
+# Chương 1 - Fundamental Keystone
 
 
 # MỤC LỤC
-
+- [1.Keystone Concepts](#)1
+	- [1.1.Projects](#1.1)
+	- [1.2.Domain](#1.2)
+	- [1.3.User và User Group(Actors)](#1.3)
+		- [1.3.1.Graphical representation](#1.3.1)
+	- [1.4.Roles](#1.4)
+	- [1.5.Assignment](#1.5)
+	- [1.6.Targets](#1.6)
+	- [1.7.Token](#1.7)
+	- [1.8.Catalog](#1.8)
+	- [1.9.Note](#1.9)
+- [2.Identity](#2)
+	- [2.1.SQL](#2.1)
+	- [2.2.LDAP](#2.2)
+	- [2.3.Multiple Backends](#2.3)
+	- [2.4.Identity Providers](#2.4)
+	- [2.5.Use Cases for Identity Backends](#2.5)
+	- [2.6.Các Token Backend khác](#2.6)
+- [3.Authentiaction](#3)
+	- [3.1.Password](#3.1)
+	- [3.2.Token](#3.2)
+- [4.Access Management and Authorization](#4)
+- [5.Backends and Services](#5)
+- [6.FAQs](#6)
 
 
 
@@ -183,7 +206,8 @@ Ngoài các Backend trên, còn các backend khác như KVS Backend, PAM Backend
 
 <img src="http://imgur.com/HekMABw.png" />  
 
-<img src="http://imgur.com/gd9lImm.png" />
+
+<img src="http://imgur.com/gd9lImm.png" />  
 
 <a name="4"></a>
 # 4.Access Management and Authorization

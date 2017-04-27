@@ -1,7 +1,12 @@
 # Introduction Keystone
 
 # MỤC LỤC
-
+- [Mở đầu](#modau)
+- [1.Identity, Authentication, and Access Management Capabilities of Keystone](#1)
+- [2.Identity](#2)
+- [3.Authentication](#3)
+- [4.Access Management (Authorization)](#4)
+- [5.Keystone’s Primary Benefits](#5)
 
 
 
@@ -26,10 +31,10 @@ Mặc dù user identity ban đầu được authenticated với password, nó l�
 
 <a name="4"></a>
 # 4.Access Management (Authorization)
-Khi user identity được authenticaed và token được tạo ra và allocated, mọi thứ bắt đầu thú vị.Điều này bởi vì chúng ta đã có đủ cơ sở để thực hiện Access Management.
-Accerss Management (Authorization) là quá trình determining resource user được quyền access. Cloud environment như OpenStack provide user với acceses đến large resource.
-Ví dụ: Cần phải có một cơ chế để determining users allowed create new instance của virtual machine, cụ thể, user allowed attach hoặc delete volume của block storage mà user allowed để create virtual networks, etc. Trong OpenStack, Keysonte maps Users đến Project hoặc Domains bởi associating a Role cho for the Project or Domain. 
-Một số OpenStack subprojects như Nova, Cinder, và Neutron xem xét User’s Project và Role associations và đánh giá information sử dụng policy engine. The policy engine kiểm tra information (đặc biệt là Role vaule) và determination về actione user allowed thi hành.
+Khi user identity được authenticaed và token được tạo ra và allocated, mọi thứ bắt đầu thú vị.Điều này bởi vì chúng ta đã có đủ cơ sở để thực hiện Access Management.  
+Accerss Management (Authorization) là quá trình determining resource user được quyền access. Cloud environment như OpenStack provide user với acceses đến large resource.  
+Ví dụ: Cần phải có một cơ chế để determining users allowed create new instance của virtual machine, cụ thể, user allowed attach hoặc delete volume của block storage mà user allowed để create virtual networks, etc. Trong OpenStack, Keysonte maps Users đến Project hoặc Domains bởi associating a Role cho for the Project or Domain.  
+Một số OpenStack subprojects như Nova, Cinder, và Neutron xem xét User’s Project và Role associations và đánh giá information sử dụng policy engine. The policy engine kiểm tra information (đặc biệt là Role vaule) và determination về actione user allowed thi hành.  
 
 <a name="4"></a>
 # 5.Keystone’s Primary Benefits

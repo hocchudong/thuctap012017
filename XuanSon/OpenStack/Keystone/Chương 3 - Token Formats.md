@@ -1,9 +1,39 @@
-# Token Formats
+# Chương 3 - Token Formats
 
 
 
 
 # MỤC LỤC
+- [1.History of Keystone Token Formats](#1)
+- [2.UUID Tokens](#2)
+	- [2.1.Thông tin cơ bản](#2.1)
+	- [2.2.Token Generation Workflow](#2.2)
+	- [2.3.Token Validation Workflow](#2.3)
+	- [2.4.Token Revocation Workflow](#2.4)
+	- [2.5.UUID – Multiple Data Centers](#2.5)
+	- [2.6.Pros and Cons](#2.6)
+- [3.PKI/PKIZ Tokens](#3)
+	- [3.1.Thông tin cơ bản](#3.1)
+	- [3.2.PKI/PKIZ Configuration – Certificates](#3.2)
+	- [3.3.Token Generation Workflow](#3.3)
+	- [3.4.Token Validation Workflow](#3.4)
+	- [3.5.Token Revocation Workflow](#3.5)
+	- [3.6.PKI/PKIZ – Multiple Data Centers](#3.6)
+	- [3.7.Pros and Cons](#3.7)
+- [4.Fernet](#4)
+	- [4.1.Thông tin cơ bản](#4.1)
+	- [4.2.Fernet Configuration](#4.2)
+	- [4.3.Fernet Keys](#4.3)
+	- [4.4.Fernet Key Rotation](#4.4)
+	- [4.5. Kế hoạch cho vấn đề rotated keys](#4.5)
+	- [4.6.Token Generation Workflow](#4.6)
+	- [4.7.Token Validation Workflow](#4.7)
+	- [4.8.Token Revocation Workflow](#4.8)
+	- [4.9.Fernet – Multiple Data Centers](#4.9)
+	- [4.10.Proc and Cons](#4.10)
+
+
+
 
 
 <a name="1></a>

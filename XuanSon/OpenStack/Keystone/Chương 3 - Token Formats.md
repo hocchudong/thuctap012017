@@ -36,7 +36,7 @@
 
 
 
-<a name="1></a>
+<a name="1"></a>
 # 1.History of Keystone Token Formats
 \- Keystone cung cấp một vài token format. Để giúp hiểu rõ tại sao, chúng tôi cung cấp một lịch sự ngắn gọn về Keystone token formats đã phát triển ra sau.  
 Trong những ngày đầu, Keystone hỗ trợ UUID token. Token này là 32-character string được sử dụng để authentication và authorization. Ưu điểm của token format này là token small và very easy để sử dụng, và nó đủ simple để add vào cURL command. Nhược điểm của token này là nó ko mang đủ information để thực hiện authorizaton.OpenStack services sẽ luôn luôn gửi token này quay lại Keystone server để xác định xem hoạt động của nó có được authorized hay không? Điều này dẫn đến Keystone được pinged cho bất kỳ hành động OpenStack, và trở hành bottleneck cho all of OpenStack.  
@@ -51,10 +51,10 @@ A survey conducted by the OpenStack User committee indicates that UUID tokens ar
 In this chapter, we describe Keystone’s UUID, PKI, and Fernet tokens in greater detail to provide the reader with a much better understanding of the token formats that are available to them in Keystone.
 For all three token formats, it is important to note that all are bearer tokens. This means all three tokens need to be protected from unnecessary disclosure to prevent unauthorized access.
 
-<a name="2></a>
+<a name="2"></a>
 # 2.UUID Tokens
 
-<a name="2.1></a>
+<a name="2.1"></a>
 ## 2.1.Thông tin cơ bản
 \- Keystone’s first token format was the UUID token format. The UUID token is simply a randomly generated UUID 32-character string. These are issued and validated by the identity service. A hexdigest() method is used, which ensures the tokens are made up of solely hexadecimal digits. This makes the tokens URL friendly and safe for transfer in any non-binary environment. A UUID token must be saved in a persistent backend (typically a database) in order to be available for subsequent validation. A UUID token can be revoked by simply issuing a DELETE request with the token ID. Note that the token is not actually removed from the backend, but rather marked as revoked. Since the token is only 32 characters, its size in an HTTP header is 32 bytes.  
 \- A typical UUID token would look like the following: 468da447bd1c4821bbc5def0498fd441.  
@@ -66,7 +66,7 @@ For all three token formats, it is important to note that all are bearer tokens.
 provider = keystone.token.providers.uuid.Provider
 ```
 
-<a name="2.2></a>
+<a name="2.2"></a>
 ## 2.2.Token Generation Workflow
 <img src="http://imgur.com/TS2FOqU.png" />
 
@@ -83,7 +83,7 @@ provider = keystone.token.providers.uuid.Provider
 \- Sample UUID Token in SQL Backend:  
 <img src="http://imgur.com/eqe7FN9.png" />
 
-<a name="2.3></a>
+<a name="2.3"></a>
 ## 2.3.Token Validation Workflow
 <img src="http://imgur.com/6o8pfYY.png" />
 
@@ -95,7 +95,7 @@ Token Validation Workflow :
 - Check Current Time, nếu Current Time > Expiry Time thì gửi thông báo “Token Not Found”, ngược lại chuyển sang bước tiếp theo.
 - Kiểm tra xem token đã bị thu hồi chưa (kiểm tra trong bảng revocation_event của database keystone). Nếu token đã bị thu hồi (tương ứng với 1 event trong bảng revocation_event) trả về thông báo Token Not Found. Nếu chưa bị thu hồi trả về token (truy vấn HTTP thành công HTTP/1.1 200 OK )
 
-<a name="2.4></a>
+<a name="2.4"></a>
 ## 2.4.Token Revocation Workflow
 <img src="http://imgur.com/ntqrMfL.png" />
 
@@ -108,7 +108,7 @@ Token Revocation Workflow:
 \- Hủy bỏ Expired.  
 \- Set “vaild” thành False (=0).  
 
-<a name="2.5></a>
+<a name="2.5"></a>
 ## 2.5.UUID – Multiple Data Centers
 <img src="http://imgur.com/pEv0VZR.png" />
 
@@ -118,7 +118,7 @@ Nova sử dụng Keystone Middleware để gửi request tới Keystone để ch
 Nova gửi lại thông điệp cho User là VM Instance đã được tạo.  
 \- Tiếp theo, User cũng dùng “Token đó” để gửi request tạo VM đến Nova bên data centers US-EAST. Nova sử dụng Keystone Middleware để gửi request tới Keystone để chứng thực token. Keystone gửi lại Nova thông điệp “Token Not Found”, và Nova gửi lại user “thông điệp “Token Not Found”. Lý do là vì “Token Backend database” bên US-EAST không được đồng bộ với bên US-WEST.  
 
-<a name="2.6></a>
+<a name="2.6"></a>
 ## 2.6.Pros and Cons
 \- Pros  
 - Simplest and Smallest Token Format
@@ -129,10 +129,10 @@ Nova gửi lại thông điệp cho User là VM Instance đã được tạo.
 - Token validation can only be done by Identity service
 - Not feasible for multiple OpenStack deployments
 
-<a name="3></a>
+<a name="3"></a>
 # 3.PKI/PKIZ Tokens
 
-<a name="3.1></a>
+<a name="3.1"></a>
 ## 3.1.Thông tin cơ bản
 \- Token format thứ 2 được hỗ trợ bởi Keystone là PKI token format. In the PKI format, the token contains the entire validation response that would be received from Keystone.  
 \- Token này có large amount of informaton trong nó. Nó chứa user identification, project, domain và role và một số information khác. Tất cả information này được biểu diễn trong JSON document payload, và payload sau đó sử dụng cryptographic message syntax (CMS). Với PKIz format, payload được compressed sử dụng zlib compression.  
@@ -214,7 +214,7 @@ MIIDsAYCCAokGCSqGSIb3DQEHAaCCAnoEggJ2ew0KICAgICJhY2QogICAgICAgI...EBMFwwVzELMAkG
 \- So sánh PKI – PKIz:  
 <img src="http://imgur.com/uZrlaYr.png" />
 
-<a name="3.2></a>
+<a name="3.2"></a>
 ## 3.2.PKI/PKIZ Configuration – Certificates
 ### a.Certificates
 \- Signing Key (signing_key.pem) :Generate private key in PEM format  
@@ -236,7 +236,7 @@ Configuration in `keystone.conf` :
       ca_certs = /etc/keystone/ssl/certs/ca.pem
 ```
 
-<a name="3.3></a>
+<a name="3.3"></a>
 ## 3.3.Token Generation Workflow
 <img src="http://imgur.com/rThpY54.png" />
 
@@ -253,32 +253,32 @@ Tiến trình tạo ra PKI token:
 
 <img src="http://imgur.com/qn22q78.png" />
 
-<a name="3.4></a>
+<a name="3.4"></a>
 ## 3.4.Token Validation Workflow
 Tương tự như tiến trình chứng thực UUID token, chỉ khác giai đoạn đầu khi gửi yêu cầu chứng thực token tới keystone, keystone sẽ băm lại pki token với thuật toán băm đã cấu hình trước đó rồi mới kiểm tra trong backend database thu thập payload của token. Các bước chứng thực sau đó hoàn toàn tương tự như UUID token.
 
 <img src="http://imgur.com/biHhzNq.png" />
 
-<a name="3.5></a>
+<a name="3.5"></a>
 ## 3.5.Token Revocation Workflow
 Hoàn toàn tương tự như tiến trình thu hồi UUID token.  
 
 <img src="http://imgur.com/WN1tmr1.png" />
 
-<a name="3.6></a>
+<a name="3.6"></a>
 ## 3.6.PKI/PKIZ – Multiple Data Centers
 <img src="http://imgur.com/Hx1oL2K.png" />
 
 Cùng kịch bản tương tự như mutiple data centers với uuid, tuy nhiên khi yêu cầu keystone cấp một pki token và sử dụng key đó để thực hiện yêu cầu tạo máy ảo thì trên cả 2 data center US-West và US-East, keystone middle cấu hình trên nova đều xác thực và ủy quyền thành công, tạo ra máy ảo theo đúng yêu cầu.  
 
-<a name="3.7></a>
+<a name="3.7"></a>
 ## 3.7.Pros and Cons
 <img src="http://imgur.com/lapfVw4.png" />
 
-<a name="4></a>
+<a name="4"></a>
 # 4.Fernet
 
-<a name="4.1></a>
+<a name="4.1"></a>
 ## 4.1.Thông tin cơ bản
 \- The newest Keystone token format is the Fernet token format.Fernet token cải thiện các token format trước thông qua một vài phương pháp.  
 \- Đầu tiên, nó khả nhỏ, không quá 255 characters, và lớn hơn UUID tokens, nhưng nhỏ hơn PKI. Token chứa đủ information để enable token không phải lưu trữ trong persistent Keystone token database ( roles a user trên projects).  
@@ -290,7 +290,7 @@ Sử Fernet token tương tự như workflow của UUID token, tức là trái n
 - Encrypted with Primary Fernet Key
 - Decrypted with a list of Fernet Keys
 
-<a name="4.2></a>
+<a name="4.2"></a>
 ## 4.2.Fernet Configuration
 Configuration in `keystone.conf` :  
 ```
@@ -301,7 +301,7 @@ Configuration in `keystone.conf` :
 	max_active_keys = <number of keys> # default is 3
 ```
 
-<a name="4.3></a>
+<a name="4.3"></a>
 ## 4.3.Fernet Keys
 \- Fernet Key File - 256 bits  
 <img src="http://imgur.com/sibGR2R.png" />
@@ -322,7 +322,7 @@ Type 3: Staged Key
 - Decrypt and  Next In Line to become Primary Key
 - Key file named with lowest index (of 0)
 
-<a name="4.4></a>
+<a name="4.4"></a>
 ## 4.4.Fernet Key Rotation  
 \- Ban đầu, Keystone chỉ có 2 key là Staged Key(0) và Primary Key(1). User thực hiện request lấy token từ Keystone, sẽ được Keystone mã hóa token đó với Primary Key(1).  
 
@@ -345,7 +345,7 @@ Type 3: Staged Key
 \- Mặc định, số lượng max key là 3. Vì vậy Secondary Key(1) sẽ bị xóa.  
 <img src="http://imgur.com/HQfvShu.png" />
 
-<a name="4.5></a>
+<a name="4.5"></a>
 ## 4.5. Kế hoạch cho vấn đề rotated keys
 Khi sử dụng fernet tokens yêu cầu chú ý về thời hạn của token và vòng đời của khóa. Vấn đề nảy sinh khi secondary keys bị remove khỏi key repos trong khi vẫn cần dùng key đó để giải mã một token chưa hết hạn (token này được mã hóa bởi key đã bị remove).  
 Để giải quyết vấn đề này, trước hết cần lên kế hoạch xoay khóa. Ví dụ bạn muốn token hợp lệ trong vòng 24 giờ và muốn xoay khóa cứ mỗi 6 giờ. Như vậy để giữ 1 key tồn tại trong 24h cho mục đích decrypt thì cần thiết lập max_active_keys=6 trong file keytone.conf (do tính thêm 2 key đặc biệt là primary key và staged key ). Điều này giúp cho việc giữ tất cả các key cần thiết nhằm mục đích xác thực token mà vẫn giới hạn được số lượng key trong key repos `(/etc/keystone/fernet-keys/)`.  
@@ -355,11 +355,11 @@ rotation_frequency = 6
 max_active_keys = (token_expiration / rotation_frequency) + 2
 ```
 
-<a name="4.6></a>
+<a name="4.6"></a>
 ## 4.6.Token Generation Workflow
 <img src="http://imgur.com/SRs9LAL.png" />
 
-<a name="4.7></a>
+<a name="4.7"></a>
 ## 4.7.Token Validation Workflow
 <img src="http://imgur.com/m2sCX5p.png" />
 
@@ -371,7 +371,7 @@ max_active_keys = (token_expiration / rotation_frequency) + 2
 \- Kiểm tra xem token đã hết hạn chưa. Nếu thời điểm hiện tại lớn hơn so với thời điểm hết hạn thì trả về thông báo "Token not found". Nếu token chưa hết hạn thì chuyển sang bước tiếp theo  
 \- Kiểm tra xem token đã bị thu hồi chưa. Nếu token đã bị thu hồi (tương ứng với 1 sự kiện thu hồi trong bảng revocation_event của database keystone) thì trả về thông báo "Token not found". Nếu chưa bị thu hồi thì trả lại token (thông điệp phản hồi thành công HTTP/1.1 200 OK )  
 
-<a name="4.8></a>
+<a name="4.8"></a>
 ## 4.8.Token Revocation Workflow
 <img src="http://imgur.com/xMmX1cC.png" />
 
@@ -381,7 +381,7 @@ Tương tự như “Token Revocation Workflow” của UUID token format và PK
 ## 4.9.Fernet – Multiple Data Centers
 <img src="http://imgur.com/QS4OJwz.png" />
 
-<a name="4.9></a>
+<a name="4.10"></a>
 ## 4.10.Proc and Cons
 \- Pros  
 - No persistence

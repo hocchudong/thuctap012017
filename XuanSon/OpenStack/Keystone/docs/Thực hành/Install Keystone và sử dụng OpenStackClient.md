@@ -1,4 +1,4 @@
-# Chương 2 - Sử dụng Keystone
+# Install Keystone và sử dụng OpenStackClient
 
 
 

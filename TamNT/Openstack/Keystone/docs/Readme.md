@@ -8,6 +8,6 @@
 
 [4. Sử dụng Openstack Client để thao tác với Keystone ](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/docs/4.Su_dung_Keystone.md)
 
-[5. Các định dạng format token]()
+[5. Các định dạng format token](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/docs/5.Token_format.md)
 
-[6. Tổng hợp một số ghi chép]
+[6. Tổng hợp một số ghi chép]()

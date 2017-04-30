@@ -88,7 +88,9 @@ export OS_IMAGE_API_VERSION=2
 EOF
 
 chmod +x admin-openrc
-cat admin-openrc >> .profile
+cat admin-openrc >> /etc/profile
+cp  admin-openrc /root/admin-openrc
+source admin-openrc
 
 cat << EOF > demo-openrc
 export OS_PROJECT_DOMAIN_NAME=Default
@@ -102,7 +104,7 @@ export OS_IMAGE_API_VERSION=2
 EOF
 
 chmod +x demo-openrc
-
+cp  demo-openrc /root/demo-openrc
 
 # Verifying keystone
 echocolor "Verifying keystone"
@@ -112,7 +114,3 @@ openstack token issue
   
   
   
-  
-
-
-

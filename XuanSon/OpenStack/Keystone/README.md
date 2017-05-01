@@ -13,3 +13,8 @@
 - [5.Config Keystone](5.Config%20Keystone.md)
 - [6.Keystone command line](6.Keystone%20command%20line.md)
 - [Tài liệu tham khảo](Tài%20liệu%20tham%20khảo)
+
+## Scripts install Keystone
+- [Scripts install Keystone](./scripts)
+
+

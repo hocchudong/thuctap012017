@@ -14,6 +14,6 @@
 
 [3. Cài đặt Keystone và giải thích một số cấu hình trong file cấu hình keystone.conf](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/docs/3.Cai_dat_va_cau_hinh_Keystone.md)
 
-[4. Sử dụng Openstack Client để thao tác với Keystone ](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/docs/4.Su_dung_Keystone.md)
+[4. Sử dụng Openstack Client và cURL để thao tác với Keystone ](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/docs/4.Su_dung_Keystone.md)
 
-[6. Tổng hợp một số ghi chép tìm hiểu thêm vê Keystone](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/docs/6.Tim_hieu_them_ve_Keystone.md)
+[6. Tổng hợp một số ghi chép tìm hiểu thêm về Keystone](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/docs/6.Tim_hieu_them_ve_Keystone.md)

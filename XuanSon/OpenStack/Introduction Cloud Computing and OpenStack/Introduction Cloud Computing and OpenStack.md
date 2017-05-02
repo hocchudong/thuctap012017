@@ -3,7 +3,17 @@
 
 
 # MỤC LỤC
-
+- [1.Cloud Computing](#1)
+	- [1.1.Virtualization](#1.1)
+	- [1.2.Cloud Computing](#1.2)
+	- [1.3.Đặc tính (5) - Deployment models (4) và Service model (3)](#1.3)
+- [2.OpenStack](#2)
+- [2.1.Introduction](#2.1)
+	- [2.2.Lịch sử hình thành](#2.2)
+	- [2.3.Tóm tắt đặc điểm](#2.3)
+	- [2.4.Architecture](#2.4)
+	- [2.5.Các projects thành phần](#2.5)
+- [THAM KHẢO](#thamkhao)
 
 
 
@@ -54,7 +64,7 @@ Vd: Amazon, Digitalocean, Rackspaces,…
 
 <img src="./images/4.png" />
 
-## 3 mô hình dịch vụ
+### 3 mô hình dịch vụ
 \- Iaas – Infrastructure as a Services  
 - Cung cấp dịch vụ về hạ tầng, các server, resource là: RAM, CPU, Storage…
 - Trên đó user sẽ VM với OS, user chủ động cài đặt application:
@@ -79,7 +89,7 @@ Vd: Amazon, Digitalocean, Rackspaces,…
 # 2.OpenStack
 
 <a name="2.1"></a>
-# 2.1.Introduction
+## 2.1.Introduction
 OpenStack là nền tảng mã nguồn mở, được sử dụng để xây dựng mô hình private cloud và public cloud.  
 
 <img src="./images/7.png" />

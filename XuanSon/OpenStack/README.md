@@ -1,0 +1,6 @@
+# GHI CHÉP VỀ OPENSTACK
+
+
+
+
+

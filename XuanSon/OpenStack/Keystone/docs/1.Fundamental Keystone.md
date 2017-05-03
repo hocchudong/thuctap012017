@@ -1,4 +1,4 @@
-# Chương 1 - Fundamental Keystone
+# Fundamental Keystone
 
 
 # MỤC LỤC

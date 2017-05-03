@@ -38,7 +38,7 @@ chmod +x *.sh
 - Các nodes đều là máy ảo chạy trên VMware Workstation
 - Node controller và compute1 đều có các card mạng như sau
 
-	![](../images/card_net_vm.png)
+![](../images/card_net_vm.png)
 
 	- VMnet1 (hostonly): có dải địa chỉ `10.10.10.0/24`
 	- VMnet8 (NAT): có dải địa chỉ `172.16.69.0/24`

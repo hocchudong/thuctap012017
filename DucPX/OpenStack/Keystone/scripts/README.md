@@ -13,12 +13,12 @@
 ### 1.1 Mô hình mạng
 - Mô hình đầy đủ 
 
-![](/images/Mo_Hinh_Trien_Khai_OpenStack_OCATA.png)
+![](../images/Mo_Hinh_Trien_Khai_OpenStack_OCATA.png)
 
 - Script này tiến hành cài đặt 2 nodes là **controller** và **compute1**
 
 ### 2 Yêu cầu phần cứng cho 2 nodes `controller` và `computer1`
-![](/images/yeu_cau_phan_cung_de_cai_dat.png)
+![](../images/yeu_cau_phan_cung_de_cai_dat.png)
 
 ### Tải các scripts cài đặt
 ```sh
@@ -38,7 +38,7 @@ chmod +x *.sh
 - Các nodes đều là máy ảo chạy trên VMware Workstation
 - Node controller và compute1 đều có các card mạng như sau
 
-	![](/images/card_net_vm.png)
+	![](../images/card_net_vm.png)
 
 	- VMnet1 (hostonly): có dải địa chỉ `10.10.10.0/24`
 	- VMnet8 (NAT): có dải địa chỉ `172.16.69.0/24`

@@ -2,8 +2,10 @@
 
 
 # MỤC LỤC
-- [1.Lý thuyết](#1)
-- [2.Example hay dùng](#2)
+- [1.keystone-manage command](#1)
+    - [1.1.Lý thuyết](#1.1)
+    - [1.2.Example hay dùng](#1.2)
+- [2.Command sử dụng openstack-client program](#2)
 
 
 
@@ -11,7 +13,10 @@ Tham khảo:
 https://docs.openstack.org/developer/keystone/man/keystone-manage.html  
 
 <a name="1"></a>
-# 1.Lý thuyết
+# 1.keystone-manage command
+
+<a name="1.1"></a>
+# 1.1.Lý thuyết
 \- Mô tả
 keystone-manage là câu lệnh tác động đến Keystone service, dùng cho những hoạt động không thể thực hiển bởi API HTTP như such data import/export and database migrations.  
 \- Cú pháp  
@@ -41,8 +46,8 @@ keystone-manage [options] <action> [additional args]
 - saml_idp_metadata: Generate identity provider metadata.
 - token_flush: Purge expired tokens.
 
-<a name="2"></a>
-# 2.Example hay dùng
+<a name="1.2"></a>
+# 1.2.Example hay dùng
 \- Xóa token đã cấp phát  
 ```
 keystone-manage token_flush
@@ -67,6 +72,20 @@ keystone-manage fernet_rotate --keystone-user keystone --keystone-group keystone
 ```
 keystone-manage credential_rotate --keystone-user keystone --keystone-group keystone
 ```  
+
+<a name="2"></a>
+# 2.Command sử dụng openstack-client program
+- `openstack domain` command
+- `openstack project` command
+- `openstack user` command
+- `openstack group` command
+- `openstack role` command
+
+\- Note:  
+Bạn có thể sử dụng tùy chọn --help để xem dẫn sử dụng command.Ví dụ:  
+```
+openstack domain --help
+```
 
 
 

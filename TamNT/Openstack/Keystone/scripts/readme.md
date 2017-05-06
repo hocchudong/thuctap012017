@@ -12,7 +12,7 @@
 
 - Download các file scripts.
 
-- Chỉnh sửa lại cấu hình theo ý muốn tại file [config.sh]()
+- Chỉnh sửa lại cấu hình theo ý muốn tại file [config.sh](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/scripts/config.sh)
 
 - Chạy lần lượt các lệnh như sau:
 

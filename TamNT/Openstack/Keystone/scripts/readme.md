@@ -12,6 +12,12 @@
 
 - Download các file scripts.
 
+- Sử dụng người dùng sudoer hoặc người dùng root để thực hiện các lệnh sau.
+
+- Thực hiện gán quyền thực thi cho các file scripts
+
+  `chmod a+x *.sh`
+
 - Chỉnh sửa lại cấu hình theo ý muốn tại file [config.sh](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/scripts/config.sh)
 
 - Chạy lần lượt các lệnh như sau:

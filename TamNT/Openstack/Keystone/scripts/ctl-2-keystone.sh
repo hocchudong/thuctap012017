@@ -67,8 +67,26 @@ openstack user create --domain default --password $DEMO_PASS demo
 openstack role create user
 openstack role add --project demo --user demo user
 
-echocolor "Test keystone cap phat token"
+echocolorng "Test keystone cap phat token"
+echocolor "user admin xin cap phat token: "
 source admin_openrc
 openstack token issue
+
+echocolor "user demo xin cap phat token: "
+cat << EOF > demo_openrc
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USER_DOMAIN_NAME=Default
+export OS_PROJECT_NAME=demo
+export OS_USERNAME=demo
+export OS_PASSWORD=$DEMO_PASS
+export OS_AUTH_URL=http://$HOST_CTL:5000/v3
+export OS_IDENTITY_API_VERSION=3
+export OS_IMAGE_API_VERSION=2
+
+EOF
+
+source demo_openrc
+openstack token issue
+
 
 

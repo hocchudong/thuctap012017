@@ -3,7 +3,7 @@
 ## MỤC LỤC
 - [1.Introduction policy.json file](#1)
 - [2.Cấu trúc file policy.json](#2)
-- [2.Cấu trúc file policy.json](#3)
+- [3.Example](#3)
 
 
 

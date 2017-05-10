@@ -9,15 +9,27 @@
 - https://www.youtube.com/watch?v=4NspkVskbXk  
 http://www.slideshare.net/priti_desai/deep-dive-into-keystone-tokens-and-lessons-learned  
 - PATH environment variable : https://manthang.wordpress.com/2010/10/28/tim-hieu-ve-bien-moi-truong-path/  
-- Keystone's component: http://blog.flux7.com/blogs/openstack/tutorial-what-is-keystone-and-how-to-install-keystone-in-openstack 
+- Keystone's component: http://blog.flux7.com/blogs/openstack/tutorial-what-is-keystone-and-how-to-install-keystone-in-openstack  
 - Chi tiết Fernet token: https://developer.ibm.com/opentech/2015/11/11/deep-dive-keystone-fernet-tokens/  
 http://dolphm.com/openstack-keystone-fernet-tokens/  
-https://www.youtube.com/watch?v=702SRZHdNW8
+https://www.youtube.com/watch?v=702SRZHdNW8  
 - Config Keystone: https://docs.openstack.org/ocata/config-reference/identity.html  
-https://github.com/Juniper/contrail-controller/wiki/SSL-configuration-for-API,-neutron-server-and-openstack-keystone-in-Contrail
-- keystone command: https://docs.openstack.org/developer/keystone/man/keystone-manage.html
-- https://docs.openstack.org/admin-guide/identity-management.html
-https://docs.openstack.org/developer/keystone/
+https://github.com/Juniper/contrail-controller/wiki/SSL-configuration-for-API,-neutron-server-and-openstack-keystone-in-Contrail  
+- keystone command: https://docs.openstack.org/developer/keystone/man/keystone-manage.html  
+
+- https://docs.openstack.org/admin-guide/identity-management.html  
+https://docs.openstack.org/user-guide/  
+https://docs.openstack.org/developer/keystone/  
+
+- policy.json: 
+https://docs.openstack.org/ocata/config-reference/policy-json-file.html  
+https://github.com/canvietanh/Tuy-chinh-file-policy.json-openstack-  
+https://docs.openstack.org/ocata/config-reference/identity/samples/policy.json.html  
+https://docs.openstack.org/developer/glance/policies.html  
+
+
+
+
 
 
 

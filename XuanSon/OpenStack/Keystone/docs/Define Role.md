@@ -3,6 +3,7 @@
 ## MỤC LỤC
 - [1.Introduction policy.json file](#1)
 - [2.Cấu trúc file policy.json](#2)
+- [2.Cấu trúc file policy.json](#3)
 
 
 
@@ -120,13 +121,66 @@ Line 4 sets up the policy that a password can only be modified by its owner or a
 This rule determines who can use the Identity API “delete EC2 credential”. Here, boolean operators and parentheses combine three simpler rules. `admin_required` and `owner` are the same aliases as in the previous example. `user_id:%(target.credential.user_id)s` compares the API user with the user ID of the credential object associated with the target.
 
 
+<a name="3"></a>
+# 3.Example
+\- Nội dung:  
+- Tạo và định nghĩa role “test” có quyền create domain.
+- Tạo user “test” trên domain “default” và gán role “test” cho user “test” trên project “admin” thuộc domain “default”
+- Kiểm tra xem user test có quyền tạo domain hay không?
 
+\- Tạo role “test” bằng command:  
+```
+openstack role create test
+```
 
+\- Edit file `/etc/keystone/policy.json` , tìm đến dòng :  
+```
+"identity:create_domain": "rule:admin_required", 
+```
 
+và sử thành như sau:  
+```
+"identity:create_domain": "rule:admin_required or role:test",
+```
 
+\- Tạo user `test` trên domain `default`:  
+```
+openstack user create test --domain default
+```
 
+\- Gán role `test` cho user `test` trên project `admin` thuộc domain `default`:  
+```
+openstack role add --user test --user-domain default --project admin --project-domain default test
+```
 
+\- Thiết lập environment variable của user test như sau:  
+```
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USER_DOMAIN_NAME=Default
+export OS_PROJECT_NAME=admin
+export OS_USERNAME=test
+export OS_PASSWORD=test
+export OS_AUTH_URL=http://controller:5000/v3
+export OS_IDENTITY_API_VERSION=3
+```
 
+\- Thử tạo domain bằng user `test`:  
+```
+openstack domain create test
+```
+
+Kết quả:  
+
+<img src="../images/3.png" />
+
+\- Ta thử delete domain `test`:  
+```
+openstack domain delete test
+```
+
+<img src="../images/4.png" />
+
+Kết quả là không thể xóa thì role “test” không quá quyền delete domain.
 
 
 

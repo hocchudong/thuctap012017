@@ -7,7 +7,7 @@
 - [4. Glance Formats](#4)
 - [5. Glane Status Flow](#5)
 - [6. Glance Configuration Files](#6)
-
+- [7. Image and instance.](#7)
 
 <a name=1></a>
 ### 1. Glance là gì?
@@ -79,7 +79,7 @@ Các định dạng trên đĩa (Disk Formats) của một image máy ảo là �
 - Glane Status Flow cho chúng ta thấy tình trạng của Image trong khi chúng ta tải lên. Khi chúng ta khởi tại một image, bước đầu tiên là queuing. Image sẽ được sắp xếp vào một hàng đợi trong một thời gian ngắn để định danh (hàng đợi này dành cho image) và sẵn sàng được upload. Sau khi kết thúc thời gian queuing thì image sẽ được upload đến "Saving" , tuy nhiên ở đây không phải image nào cũng được tải lên hoàn toàn. Những Image nào được tải lên hoàn toàn sẽ trong trạng thái "Active". Khi upload không thành công nó sẽ đến trạng thái "killed" hoặc "deleted" . Chúng ta có thể tắt và tái kích hoạt một Image đang "Active" hoàn toàn bằng một lệnh.
 - Sơ đồ về Glance Status Flow
 
-![](../images/statusflow.png)
+![](../images/statusflow.jpg)
 
 - Các trạng thái:
   - **queued**: Bộ nhận diện image đã được dành riêng cho một image trong registry Glance. Không có dữ liệu nào trong image được tải lên Glance và kích thước image không rõ ràng sẽ được đặt thành 0 khi tạo.
@@ -96,6 +96,7 @@ Các định dạng trên đĩa (Disk Formats) của một image máy ảo là �
 - **glance-scrubber.conf** : Sử dụng tiện ích này để xóa sạch các images mà đã bị xóa. 
 - **policy.json**: Bổ sung truy cập kiểm soát áp dụng cho các image service. Trong này, chúng tra có thể xác định vai trò, chính sách, làm tăng tính bảo mật trong Glane OpenStack.
 
+<a name=7></a>
 ### 7. Image and instance.
 - Khi image được lưu trữ như các mẫu. Image service điều khiểu lưu trữ và quản lý image. Instance là những máy ảo độc lập chạy trên các compute node, compute node quản lý các instance. Người dùng có thể khởi động với số lượng bất kỳ các máy ảo cùng một image. Mỗi lần chạy một máy ảo thì được thực hiện bằng cách sao chép từ base image, bất kỳ sửa đổi nào trên instance không ảnh hưởng đển các base image. Chúng ta có thể snaphost một instance đang chạy và có thể chạy chúng như một instance khác.
 - Khi chạy một instance chúng ta cần xác định các flavor. Đó là đại diện cho tài nguyên ảo. Flavor định xác định bao nhiêu CPU ảo cho một Instance cần có và số lượng RAM sẵn có cho nó, và kích thước của nó trong bộ nhớ tạm của mình. OpenStack cung cấp một thiết lập flavor được xác định từ trước, chúng ta có thể chỉnh sửa các flavor riêng của chúng ta. Sơ đồ dưới đây cho biết tình trạng của hệ thống trước khi lauching an instance. Các image store có số lượng image được xác định trước, compute node chứa CPU có sẵn, bộ nhớ và tài nguyên local disk và cinder-volume chứa số lượng đã được xác định từ trước .

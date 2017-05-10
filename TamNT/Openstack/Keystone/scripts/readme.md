@@ -32,4 +32,4 @@
 
   - Cài đặt và cấu hình Keystone:
 
-    `source ctl-2-keystone`
+    `source ctl-2-keystone.sh`

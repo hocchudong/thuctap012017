@@ -124,13 +124,13 @@ This rule determines who can use the Identity API “delete EC2 credential”. H
 <a name="3"></a>
 # 3.Example
 \- Nội dung:  
-- Tạo và định nghĩa role “test” có quyền create domain.
-- Tạo user “test” trên domain “default” và gán role “test” cho user “test” trên project “admin” thuộc domain “default”
+- Tạo và định nghĩa role `role-test` có quyền create domain.
+- Tạo user `user-test` trên domain `default` và gán role `role-test` cho user `role-test` trên project `admin` thuộc domain `default`
 - Kiểm tra xem user test có quyền tạo domain hay không?
 
-\- Tạo role “test” bằng command:  
+\- Tạo role `role-test` bằng command:  
 ```
-openstack role create test
+openstack role create role-test
 ```
 
 \- Edit file `/etc/keystone/policy.json` , tìm đến dòng :  
@@ -140,17 +140,17 @@ openstack role create test
 
 và sử thành như sau:  
 ```
-"identity:create_domain": "rule:admin_required or role:test",
+"identity:create_domain": "rule:admin_required or role:role-test",
 ```
 
-\- Tạo user `test` trên domain `default`:  
+\- Tạo user `user-test` trên domain `default`:  
 ```
-openstack user create test --domain default
+openstack user create user-test --domain default --password test
 ```
 
-\- Gán role `test` cho user `test` trên project `admin` thuộc domain `default`:  
+\- Gán role `role-test` cho user `user-test` trên project `admin` thuộc domain `default`:  
 ```
-openstack role add --user test --user-domain default --project admin --project-domain default test
+openstack role add --user user-test --user-domain default --project admin --project-domain default role-test
 ```
 
 \- Thiết lập environment variable của user test như sau:  
@@ -158,13 +158,13 @@ openstack role add --user test --user-domain default --project admin --project-d
 export OS_PROJECT_DOMAIN_NAME=Default
 export OS_USER_DOMAIN_NAME=Default
 export OS_PROJECT_NAME=admin
-export OS_USERNAME=test
+export OS_USERNAME=user-test
 export OS_PASSWORD=test
 export OS_AUTH_URL=http://controller:5000/v3
 export OS_IDENTITY_API_VERSION=3
 ```
 
-\- Thử tạo domain bằng user `test`:  
+\- Thử tạo domain bằng user `user-test`:  
 ```
 openstack domain create test
 ```

@@ -101,12 +101,14 @@ Các định dạng trên đĩa (Disk Formats) của một image máy ảo là �
 - Khi image được lưu trữ như các mẫu. Image service điều khiểu lưu trữ và quản lý image. Instance là những máy ảo độc lập chạy trên các compute node, compute node quản lý các instance. Người dùng có thể khởi động với số lượng bất kỳ các máy ảo cùng một image. Mỗi lần chạy một máy ảo thì được thực hiện bằng cách sao chép từ base image, bất kỳ sửa đổi nào trên instance không ảnh hưởng đển các base image. Chúng ta có thể snaphost một instance đang chạy và có thể chạy chúng như một instance khác.
 - Khi chạy một instance chúng ta cần xác định các flavor. Đó là đại diện cho tài nguyên ảo. Flavor định xác định bao nhiêu CPU ảo cho một Instance cần có và số lượng RAM sẵn có cho nó, và kích thước của nó trong bộ nhớ tạm của mình. OpenStack cung cấp một thiết lập flavor được xác định từ trước, chúng ta có thể chỉnh sửa các flavor riêng của chúng ta. Sơ đồ dưới đây cho biết tình trạng của hệ thống trước khi lauching an instance. Các image store có số lượng image được xác định trước, compute node chứa CPU có sẵn, bộ nhớ và tài nguyên local disk và cinder-volume chứa số lượng đã được xác định từ trước .
 
+![](../images/instance.jpg)
 
-  
-  
-  
-  
-  
-### Tham khảo
-http://www.sparkmycloud.com/blog/openstack-glance/
+- Trước khi chạy một instance chọn một image, flavor và bất kỳ thuôc tính tùy chọn nào . Chọn flavor cung cấp một root volume, nhãn (lable) là "vda" và một bổ sung vào bộ nhớ tạm thời dán nhãn là "vdb" và cinder-volume được ánh xạ tới ổ đĩa thứ 3 gọi là "vdc".
 
+![](../images/flavor.jpg)
+
+- VDA : Các image được sao chép vào các local disk. VDA là disk đầu tiên mà các instance được truy cập.
+- VDB : là một disk tạm có các sản phẩm tạo ra cùng với instance sẽ bị xóa khi kết thức instance.
+- VDC : kết nối với cinder-volume sử dụng iSCSI. Sau khi compute node quy định vCPU và tài nguyên bộ nhớ. Các instance boots up từ root volume VDA. Instance chạy và thay đổi dữ liệu trên disk . Nếu volume store nằm trên một mạng riêng biệt , tùy chọn my_block_storage_ip trong tập tin cấu hình storage node sẽ chỉ đạo giao tiếp với compute node.
+  
+# Source: http://www.sparkmycloud.com/blog/openstack-glance/

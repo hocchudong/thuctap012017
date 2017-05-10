@@ -8,7 +8,7 @@
 
 [-  Các định dạng format token](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/docs/5.Token_format.md)
 
-
+[- Một số ghi chép về Region, Domain và Role](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/docs/7.Ghi_chep_region_domain_role.md)
 
 ## Thực hành
 
@@ -17,3 +17,5 @@
 [-  Sử dụng Openstack Client và cURL để thao tác với Keystone ](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/docs/4.Su_dung_Keystone.md)
 
 [-  Tổng hợp một số ghi chép tìm hiểu thêm về Keystone](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/docs/6.Tim_hieu_them_ve_Keystone.md)
+
+[- Sử dụng Openstack client quản lý domain, project, user, role trong Keystone](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/docs/8.Quan_ly_Keystone_bang_OpenstackClient.md)

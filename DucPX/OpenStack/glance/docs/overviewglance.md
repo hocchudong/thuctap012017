@@ -25,7 +25,7 @@
 - Glane có các thành phần sau :
   - Glane-api : Chấp nhận các lời gọi đến API để phát hiện, truy xuất và lưu trữ image.
   - Glane-registry: lưu trữ, xử lý, và lấy thông tin cho image.
-  - database : Là nơi lưu trữ image.
+  - database : Là nơi lưu trữ metadata của image.
   - storage repository : Tích hợp các thành phần bên ngoài OpenStack khác nhau như hệ thống tập tin thông thường, Amazon S3 và HTTP để lưu trữ image.
   
   ![](../images/glane_component.png)

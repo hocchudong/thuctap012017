@@ -45,7 +45,7 @@
 ### Glance Architecture
 - Glance có cấu trúc theo mô hình client-server và cung cấp RESTful API mà thông qua đó các yêu cầu được gửi đến server để thực hiện. Yêu cầu từ các client được chấp nhận thông qua RESTful API và chờ keystone xác thực.
 - Glance Domain controller thực hiện quản lý tất cả các hoạt động bên trong. Các hoạt động được chia ra thành các tầng khác nhau. Mỗi tầng thực hiện một chức năng riêng biệt.
-- Glane store là lớp giao tiếp giữa glane và và storage back end ở ngoài glane hoặc local filesystem và nó cung cấp giao diện thống nhất để truy cập. Glane sử dụng SQL central Database để truy cập cho tất cả các thành phần trong hệ thống.
+- Glane store là lớp giao tiếp giữa glane và storage back end ở ngoài glane hoặc local filesystem và nó cung cấp giao diện thống nhất để truy cập. Glane sử dụng SQL central Database để truy cập cho tất cả các thành phần trong hệ thống.
 - Glance bao gồm một vài thành phần sau:
   - **Client**: Bất kỳ ứng dụng nào sử dụng Glance server đều được gọi là client.
   - **REST API**: dùng để gọi đến các chức năng của Glance thông qua REST.
@@ -111,4 +111,5 @@ Các định dạng trên đĩa (Disk Formats) của một image máy ảo là �
 - VDB : là một disk tạm có các sản phẩm tạo ra cùng với instance sẽ bị xóa khi kết thức instance.
 - VDC : kết nối với cinder-volume sử dụng iSCSI. Sau khi compute node quy định vCPU và tài nguyên bộ nhớ. Các instance boots up từ root volume VDA. Instance chạy và thay đổi dữ liệu trên disk . Nếu volume store nằm trên một mạng riêng biệt , tùy chọn my_block_storage_ip trong tập tin cấu hình storage node sẽ chỉ đạo giao tiếp với compute node.
   
-# Source: http://www.sparkmycloud.com/blog/openstack-glance/
+### Source: 
+http://www.sparkmycloud.com/blog/openstack-glance/

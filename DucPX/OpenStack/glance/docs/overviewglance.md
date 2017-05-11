@@ -25,7 +25,7 @@
 - Glane có các thành phần sau :
   - Glane-api : Chấp nhận các lời gọi đến API để phát hiện, truy xuất và lưu trữ image.
   - Glane-registry: lưu trữ, xử lý, và lấy thông tin cho image.
-  - database : Là nơi lưu trữ image.
+  - database : Là nơi lưu trữ metadata của image.
   - storage repository : Tích hợp các thành phần bên ngoài OpenStack khác nhau như hệ thống tập tin thông thường, Amazon S3 và HTTP để lưu trữ image.
   
   ![](../images/glane_component.png)
@@ -111,5 +111,9 @@ Các định dạng trên đĩa (Disk Formats) của một image máy ảo là �
 - VDB : là một disk tạm có các sản phẩm tạo ra cùng với instance sẽ bị xóa khi kết thức instance.
 - VDC : kết nối với cinder-volume sử dụng iSCSI. Sau khi compute node quy định vCPU và tài nguyên bộ nhớ. Các instance boots up từ root volume VDA. Instance chạy và thay đổi dữ liệu trên disk . Nếu volume store nằm trên một mạng riêng biệt , tùy chọn my_block_storage_ip trong tập tin cấu hình storage node sẽ chỉ đạo giao tiếp với compute node.
   
+<<<<<<< HEAD
 ### Source: 
 http://www.sparkmycloud.com/blog/openstack-glance/
+=======
+# Source: http://www.sparkmycloud.com/blog/openstack-glance/
+>>>>>>> origin/master

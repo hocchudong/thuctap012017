@@ -19,3 +19,6 @@
 [-  Tổng hợp một số ghi chép tìm hiểu thêm về Keystone](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/docs/6.Tim_hieu_them_ve_Keystone.md)
 
 [- Sử dụng Openstack client quản lý domain, project, user, role trong Keystone](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/docs/8.Quan_ly_Keystone_bang_OpenstackClient.md)
+
+
+[***Tổng hợp Keystone***](./Keystone.mmap)

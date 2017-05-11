@@ -20,7 +20,7 @@
 - Glance cung cấp giải pháp end-to-end cho quản lý disk image trên cloud. 
 - Nó cũng có thể snapshots từ các máy ảo đang chạy để sao lưu trạng thái của VM.
 
-<a name=1></a>
+<a name=2></a>
 ### 2. Glance Components
 - Glane có các thành phần sau :
   - Glane-api : Chấp nhận các lời gọi đến API để phát hiện, truy xuất và lưu trữ image.
@@ -111,9 +111,5 @@ Các định dạng trên đĩa (Disk Formats) của một image máy ảo là �
 - VDB : là một disk tạm có các sản phẩm tạo ra cùng với instance sẽ bị xóa khi kết thức instance.
 - VDC : kết nối với cinder-volume sử dụng iSCSI. Sau khi compute node quy định vCPU và tài nguyên bộ nhớ. Các instance boots up từ root volume VDA. Instance chạy và thay đổi dữ liệu trên disk . Nếu volume store nằm trên một mạng riêng biệt , tùy chọn my_block_storage_ip trong tập tin cấu hình storage node sẽ chỉ đạo giao tiếp với compute node.
   
-<<<<<<< HEAD
 ### Source: 
 http://www.sparkmycloud.com/blog/openstack-glance/
-=======
-# Source: http://www.sparkmycloud.com/blog/openstack-glance/
->>>>>>> origin/master

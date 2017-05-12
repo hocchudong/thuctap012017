@@ -1,4 +1,4 @@
-# Glance
+# Lý thuyết Glance
 
 
 # MỤC LỤC

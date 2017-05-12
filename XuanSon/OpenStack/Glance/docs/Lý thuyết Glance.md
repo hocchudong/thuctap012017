@@ -165,6 +165,7 @@ Tham khảo tại: https://specs.openstack.org/openstack/nova-specs/specs/mitaka
 signature = RSA-PSS(SHA-256(MD5(IMAGE-CONTENT)))  
 - Trong version OpenStack Mitaka, sử dụng thuật toán SHA-256 để tạo checksum của Image data, sau đó sử dụng RSA-PSS với private key để encrypt checksum và được signature.  
 signature = RSA-PSS(SHA-256(IMAGE-CONTENT))  
+
 \- **Bước 5** : Gửi “Public Key Certificate” lên Key-Manager ( thường là Keystone ) sử dụng giao diện Castellan, để **Key-Manager** stored và thu về **signature_certificate_uuid** sử dụng cho quá trình request **Public Key certificate**.  
 \- **Bước 6** : Upload Image Data với Signature Properties lên Glance. Signature Properties bao gồm :  
 - **signature** 
@@ -173,21 +174,23 @@ signature = RSA-PSS(SHA-256(IMAGE-CONTENT))
 - **signature_certificate_uuid**: chính là **signature_certificate_uuid** thu được ở bước 5 khi tiến hành lưu trữ certificate.
 - **mask_gen_algorithm**: giá trị này chỉ ra thuật toán tạo mặt nạ được sử dụng trong quá trình tạo ra chữ ký số. Ví dụ: MGF1. Giá trị này chỉ sử dụng cho mô hình RSA-PSS.
 - **pss_salt_length**: định nghĩa sal length sử dụng trong quá trình tạo signature và chỉ áp dụng cho mô hình RSA-PSS. Giá trị mặc định là PSS.MAX_LENGTH.
+
 \- **Bước 7** : Glance request “Public key certificate” từ Key-manager. Để làm điều này Glance phải sử dụng signature_certificate_uuid thu được trong quá trình tải image lên của người dùng.
-\- **Bước 8** : Key-manager return “Public key certificate” cho Glance.
-\- **Bước 9** : Verify Image Signature, sử dụng public key thu được cùng với các signature metadata khi image được upload lên. Việc xác thực này được thực hiện bởi module **signature_utils**.
-\- **ước 10** : Glance store Image vào repository. Nếu verify fail, Glance sẽ đưa image đó vào killed state và gửi thông báo lại cho user kèm theo lý do tại sao image upload bị errir.
-\- **Bước 11** : Nova muốn create instance, Nova request Image và metadata.
-\- **Bước 12** : Glance return image và metadata. Metadata bao gồm:
+\- **Bước 8** : Key-manager return “Public key certificate” cho Glance.  
+\- **Bước 9** : Verify Image Signature, sử dụng public key thu được cùng với các signature metadata khi image được upload lên. Việc xác thực này được thực hiện bởi module **signature_utils**.  
+\- **Bước 10** : Glance store Image vào repository. Nếu verify fail, Glance sẽ đưa image đó vào killed state và gửi thông báo lại cho user kèm theo lý do tại sao image upload bị errir.  
+\- **Bước 11** : Nova muốn create instance, Nova request Image và metadata.  
+\- **Bước 12** : Glance return image và metadata. Metadata bao gồm:  
 - **img_signature** - A string representation of the base 64 encoding of the signature of the image data.
 - **img_signature_hash_method** - A string designating the hash method used for signing. Currently, the supported values are SHA-224, SHA-256, SHA-384 and SHA-512. MD5 and other cryptographically weak hash methods will not be supported for this field. Any image signed with an unsupported hash algorithm will not pass validation.
 - **img_signature_key_type** - A string designating the signature scheme used to generate the signature.
 - **img_signature_certificate_uuid** - A string encoding the certificate uuid used to retrieve the certificate from the key manager.
-\- **Bước 13** : Nova yêu cầu **Public Key Certificate** từ Key Manager bằng việc sử dụng **signature_certificate_uuid** tương tác với giao diện Castellan
-\- **Bước 14** : Key Manager return **Public Key Certificate** cho Nova.
-\- **Bước 15** : Nova verify Image Signature với metadata. Chức năng này được thực hiện bởi module signature_utils của Nova.
-\- **Bước 16** : Verify Image Signature.Để làm điều này, ta phải cấu hình trong file `nova.conf` của nova, thiết lập giá trị **verify_glance_signatures = true**. Như vậy, Nova sẽ sử dụng các properties của image, bao gồm các properties cần thiết cho quá trình verity image signature(signature metadata). Nova sẽ đưa date của image và các properties của nó tới module **signature_utils** để verity image signature.
-\- **Bước 17** : Nếu quá trình verity image signature là thành công thì Nova sử dụng image để boot virtual machine và ghi vào log chỉ ra rằng quá trình verity image signature thành công kèm theo các information liên quan. Ngược lại nếu verity image signature thất bại, Nova sẽ không boot image đó và lưu lại error vào log.
+
+\- **Bước 13** : Nova yêu cầu **Public Key Certificate** từ Key Manager bằng việc sử dụng **signature_certificate_uuid** tương tác với giao diện Castellan  
+\- **Bước 14** : Key Manager return **Public Key Certificate** cho Nova.  
+\- **Bước 15** : Nova verify Image Signature với metadata. Chức năng này được thực hiện bởi module signature_utils của Nova.  
+\- **Bước 16** : Verify Image Signature.Để làm điều này, ta phải cấu hình trong file `nova.conf` của nova, thiết lập giá trị **verify_glance_signatures = true**. Như vậy, Nova sẽ sử dụng các properties của image, bao gồm các properties cần thiết cho quá trình verity image signature(signature metadata). Nova sẽ đưa date của image và các properties của nó tới module **signature_utils** để verity image signature.  
+\- **Bước 17** : Nếu quá trình verity image signature là thành công thì Nova sử dụng image để boot virtual machine và ghi vào log chỉ ra rằng quá trình verity image signature thành công kèm theo các information liên quan. Ngược lại nếu verity image signature thất bại, Nova sẽ không boot image đó và lưu lại error vào log.  
 
 
 

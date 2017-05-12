@@ -77,11 +77,13 @@ Glance store là communication layer giữa glance và external storage backends
 \- Virtual disk là tương tự physical server’s boot driver.  
 \- Các loại virtualization khác nhau hỗ trợ disk formats khác nhau.  
 
+<a name="4.1"></a>
 ## 4.1.Disk Formats
 The Disk Formats of a virtual machine image is the format of the underlying disk image. Following are the disk formats supported by OpenStack glance.  
 
 <img src="../images/4.png" />
 
+<a name="4.2"></a>
 ## 4.2.Container Formats
 As said OpenStack glance also support the concept of container format, which describes the file formats and contains additional metadata about the actual virtual machine.  
 Following are the container formats which supported in OpenStack glance.  

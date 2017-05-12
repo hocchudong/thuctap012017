@@ -1,8 +1,8 @@
 # Mô hình cài OpenStack
 ## Mô hình cài đặt OpenStack ocata
-<img src="../images/1.png" />
+<img src="../images/28.png" />
 
-<img src="../images/2.png" />
+<img src="../images/29.png" />
 
 
 ## Hướng dẫn cài theo shell scripts
@@ -22,6 +22,7 @@ source config.cnf
 source ctl-0-ipaddr.sh
 source ctl-1-environment.sh
 source ctl-2-keystone.sh
+source ctl-3-glance.sh
 ```
 
 

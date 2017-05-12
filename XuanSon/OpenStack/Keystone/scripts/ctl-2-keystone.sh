@@ -76,7 +76,7 @@ openstack role add --project demo --user demo user
 echocolor "Create OpenStack client environment scripts" 
 sleep 3
 
-cat << EOF > admin-openrc
+cat << EOF > /root/admin-openrc
 export OS_PROJECT_DOMAIN_NAME=Default
 export OS_USER_DOMAIN_NAME=Default
 export OS_PROJECT_NAME=admin
@@ -87,12 +87,11 @@ export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
 EOF
 
-chmod +x admin-openrc
+chmod +x /root/admin-openrc
 cat admin-openrc >> /etc/profile
-cp  admin-openrc /root/admin-openrc
-source admin-openrc
+source /root/admin-openrc
 
-cat << EOF > demo-openrc
+cat << EOF > /root/demo-openrc
 export OS_PROJECT_DOMAIN_NAME=Default
 export OS_USER_DOMAIN_NAME=Default
 export OS_PROJECT_NAME=demo
@@ -103,8 +102,8 @@ export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
 EOF
 
-chmod +x demo-openrc
-cp  demo-openrc /root/demo-openrc
+chmod +x /root/demo-openrc
+
 
 # Verifying keystone
 echocolor "Verifying keystone"

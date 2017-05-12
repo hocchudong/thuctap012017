@@ -2,7 +2,19 @@
 
 
 # MỤC LỤC
-
+- [1.Introduction Glance](#1)
+- [2.Glance Component](#2)
+- [3.Glance Architecture](#3)
+- [4.Glance Formats](#4)
+	- [4.1.Disk Formats](#4.1)
+	- [4.2.Container Formats](#4.2)
+- [5.Glance Status Flow](#5)
+- [6.Glance Configuration Files](#6)
+- [7.Image and Instance](#7)
+- [8.Image Signing and Verification](#8)
+    - [8.1.Glance Image Signing and Verification](#8.1)
+    - [8.2.Nova Signature Verification](#8.2)
+    - [8.3.Glance Image Signature Verification](#8.3)
 
 
 <a name="1"></a>
@@ -145,15 +157,15 @@ Các file cấu hình glance nằm trong thư mục `/etc/glance`. Sau đây là
 <a name="8"></a>
 # 8.Image Signing and Verification
 <a name="8.1"></a>
-# 8.1.Glance Image Signing and Verification
+## 8.1.Glance Image Signing and Verification
 Tham khảo tại: https://specs.openstack.org/openstack/glance-specs/specs/mitaka/approved/image-signing-and-verification-support.html  
 
 <a name="8.2"></a>
-# 8.2.Nova Signature Verification
+## 8.2.Nova Signature Verification
 Tham khảo tại: https://specs.openstack.org/openstack/nova-specs/specs/mitaka/implemented/image-verification.html#proposed-change  
 
 <a name="8.3"></a>
-# 8.3.Glance Image Signature Verification
+## 8.3.Glance Image Signature Verification
 <img src="../images/9.png" />
 
 \- Hình trên là quá trình “Glance Image Signature Verification” trong 2 use case : Quá trình User upload image (bước 1-10) và Nova request image từ Glance (bước 11-17)  

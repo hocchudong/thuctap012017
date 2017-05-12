@@ -1,8 +1,9 @@
 # Config Glance
 
 # MỤC LỤC
-
-
+- [1.File /etc/glance/glance-api.conf](#1)
+- [2.File /etc/glance/glance-registry.conf](#2)
+- [3.File log của glance](#3)
 
 
 

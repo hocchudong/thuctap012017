@@ -1,6 +1,38 @@
 # Glance command
 
 # MỤC LỤC
+- [1.glance command](#1)
+	- [1.1.Upload (Create) a image to glance](#1.1)
+	- [1.2.Delete a image](#1.2)
+	- [1.3.List images](#1.3)
+	- [1.4.Show information image](#1.4)
+	- [1.5.Deactivate image](#1.5)
+	- [1.6.Reactivate image](#1.6)
+	- [1.7.Update image](#1.7)
+	- [1.8.Upload image](#1.8)
+- [2.openstack-client command](#2)
+	- [2.1.Upload (Create) a image to glance](#2.1)
+	- [2.2.Delete a image](#2.2)
+	- [2.3.List images](#2.3)
+	- [2.4.Show information image](#2.4)
+	- [2.5. Set image properties](#2.5)
+- [3.curl command](#3)
+	- [3.1.Xin cấp phát token](#3.1)
+	- [3.2.List images](#3.2)
+	- [3.3.Show information image](#3.3)
+	- [3.4.Create image rỗng](#3.4)
+	- [3.5.Update các attribute của image](#3.5)
+	- [3.6.Upload dữ liệu nhị phân của image lên (tải lên dữ liệu cho image đã khởi tạo)](#3.6)
+	- [3.7.Delete image](#3.7)
+- [4.Dùng Rest client trên web brower để request API](#4)
+	- [a.Cài đặt extension “Advanced REST client” trên Chrome brower](#a)
+	- [b.Get Token](#b)
+	- [c.List images](#c)
+	- [d.Các thao tác khác](#d)
+
+
+
+
 
 <a name="1"></a>
 # 1.glance command

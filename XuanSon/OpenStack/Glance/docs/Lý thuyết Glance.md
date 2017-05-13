@@ -61,9 +61,9 @@ Stores images sử dụng MongoDB.
 
 <img src="../images/3.png" />
 
-\- Glance có client-service architecture và cung cấp Rest API để request đến server được thực hiện. Request từ client được chấp nhận thông qua Rest API và chờ Keystone authentication. Glance Domain controller manages all the internal operations, which is divided in to layers, each layer implements its own tasks.  
-Glance store là communication layer giữa glance và external storage backends hoặc local file system và cung cấp uniform interface để access. Glance sử dụng SQL central Database làm điểm access cho every components khác trong system.  
-\- The Glance architecture consists of several components:  
+\- Glance có client-service architecture và cung cấp Rest API để request đến server được thực hiện. Request từ client được chấp nhận thông qua Rest API và chờ Keystone authentication. Glance Domain controller quản lý tất cả các hoạt động internal, là phân chia đến layers, mỗi layer thực hiện nhiệm vụ của nó.  
+Glance store là layer giao tiếp giữa glance và storage backends bên ngoài hoặc local file system và cung cấp uniform interface để truy cập. Glance sử dụng SQL central Database làm điểm truy cập cho mỗi components khác trong hệ thống.  
+\- The Glance architecture gồm các thành phần khác nhau:  
 - **Client** : bất kỳ ứng nào sử dụng Glance server.
 - **REST API** : gửi request tới Glance thông qua REST.
 - **Database Abstraction Layer (DAL)** : application programming interface mà hợp nhất việc giao tiếp giữa Glance và databases.

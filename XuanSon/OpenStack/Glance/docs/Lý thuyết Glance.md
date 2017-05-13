@@ -136,7 +136,7 @@ Các file cấu hình glance nằm trong thư mục `/etc/glance`. Sau đây là
 
 <img src="../images/7.png" />
 
-\- Trước khi launching instance, ta chọn image, flavor và bất kỳ optional  attributes. Selected flavor provides a root volume, labelled as vda and an additional ephemeral storage is labelled as vdb and cinder-volume is mapped to third virtual-disk and call it as vdc.
+\- Trước khi launching instance, ta chọn image, flavor và bất kỳ optional  attributes. Chọn flavor cung cấp root volume, labelled như vda và ephemeral storage phụ thêm là labelled như vdb và cinder-volume được mapped đến virtual-disk thứ 3 và gọi nó là vdc.
 
 <img src="../images/8.png" />
 

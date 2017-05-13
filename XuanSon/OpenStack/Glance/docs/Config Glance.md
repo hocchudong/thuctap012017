@@ -9,15 +9,15 @@
 
 <a name="1"></a>
 # 1.File /etc/glance/glance-api.conf
-\- In the `[database]` section, configure database access:  
+\- Trong `[database]` section, cấu hình access database:  
 ```
 [database]
 # ...
 connection = mysql+pymysql://glance:GLANCE_DBPASS@controller/glance
 ```
 
-Replace `GLANCE_DBPASS` with the password you chose for the Image service database.  
-\- In the `[keystone_authtoken]` and `[paste_deploy]` sections, configure Identity service access:  
+Thay `GLANCE_DBPASS` với password bạn chọn cho Image service database.  
+\- Trong `[keystone_authtoken]` và `[paste_deploy]` sections, cấu hình access Identity service :  
 ```
 [keystone_authtoken]
 # ...
@@ -36,12 +36,12 @@ password = GLANCE_PASS
 flavor = keystone
 ```
 
-Replace `GLANCE_PASS` with the password you chose for the glance user in the Identity service.
+Thay `GLANCE_PASS` với password bạn chọn cho glance user trong Identity service.
 
 >Note  
-Comment out or remove any other options in the [keystone_authtoken] section.  
+Comment out hoặc remove bất kỳ options trong `[keystone_authtoken]` section.  
 
-\- In the `[glance_store]` section, configure the local file system store and location of image files:  
+\- Trong `[glance_store]` section, cấu hình local file system store và vị trí của image files:  
 ```
 [glance_store]
 # ...
@@ -52,15 +52,15 @@ filesystem_store_datadir = /var/lib/glance/images/
 
 <a name="2"></a>
 # 2.File /etc/glance/glance-registry.conf
-\- In the `[database]` section, configure database access:  
+\- Trong `[database]` section, cấu hình database access:  
 ```
 [database]
 # ...
 connection = mysql+pymysql://glance:GLANCE_DBPASS@controller/glance
 ```
 
-Replace `GLANCE_DBPASS` with the password you chose for the Image service database.  
-\- In the `[keystone_authtoken]` and `[paste_deploy]` sections, configure Identity service access:  
+Thay `GLANCE_DBPASS` với password bạn chọn cho Image service database.  
+\- Trong `[keystone_authtoken]` và `[paste_deploy]` sections, cấu hình Identity service access:  
 ```
 [keystone_authtoken]
 # ...
@@ -79,10 +79,10 @@ password = GLANCE_PASS
 flavor = keystone
 ```
 
-Replace `GLANCE_PASS` with the password you chose for the glance user in the Identity service.
+Thay `GLANCE_PASS` với password bạn chọn cho glance user trong Identity service.
 
 >Note  
-Comment out or remove any other options in the `[keystone_authtoken]` section.  
+Comment out hoặc remove bất kỳ options trong `[keystone_authtoken]` section.  
 
 <a name="3"></a>
 # 3.File log của glance

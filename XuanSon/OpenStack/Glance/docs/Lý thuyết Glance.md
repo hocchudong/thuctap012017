@@ -27,33 +27,33 @@
 <a name="2"></a>
 # 2.Glance Component
 \- Glance có các components:  
-- glance-api: accepts API calls for image discovery, retrieval and storage.
-- glance-registry: stores, processes, and retrieves metadata information for images.
-- database: stores image metadata
-- storage repository: integrates with various outside OpenStack components such as regular file systems, Amazon S3 and HTTP for image storages.
+- glance-api: chấp nhận API calls cho việc tìm kiếm, lấy và lưu trữ image.
+- glance-registry: thực hiện lưu trữ, xử lý và lấy thông tin metadata của image.
+- database: lưu trữ metadata của image.
+- storage repository: tích hợp với nhiều thanh phần của OpenStack như file systems, Amazon S3 và HTTP cho image storages.
 
 <img src="../images/1.png" />
 
-Glance accepts API requests for images from end-users or Nova components and can store its files in the object storage service,swift or other storage repository.  
-\- The Image service supports these back-end stores:  
+Glance chấp nhận API request cho image từ end-users hoặc Nova components và có thể stores nó trong object storage service,swift hoặc storage repository khác.  
+\- Image server hỗ trợ các back-end stores:  
 - File system  
-The OpenStack Image service stores virtual machine images in the file system back end by default. This simple back end writes image files to the local file system.  
+OpenStack Image server lưu trữ virtual machine images trong file system back end là default.Đây là back end đơn giản lưu trữ image files trong local file system.    
 - Object Storage  
-The OpenStack highly available service for storing objects.  
+Là hệ thống lưu trữ do OpenStack Swift cung cấp - dịch vụ lưu trữ có tính sẵn sàng cao , lưu trữ các image dưới dạng các object.   
 - Block Storage  
-The OpenStack highly available service for storing blocks.  
+Hệ thống lưu trữ có tính sẵn sàng cao do OpenStack Cinder cung cấp, lưu trữ các image dưới dạng block.  
 - VMware  
 ESX/ESXi or vCenter Server target system.  
 - S3  
 The Amazon S3 service.  
 - HTTP  
-OpenStack Image service can read virtual machine images that are available on the Internet using HTTP. This store is read only.  
+OpenStack Image service có thể đọc virtual machine images mà có sẵn trên Internet sử dụng HTTP. Đây là store chỉ đọc.
 - RADOS Block Device (RBD)  
-Stores images inside of a Ceph storage cluster using Ceph’s RBD interface.  
+Stores images trong Ceph storage cluster sử dụng Ceph’s RBD interface.  
 - Sheepdog  
-A distributed storage system for QEMU/KVM.  
+A distributed storage system dành cho QEMU/KVM.  
 - GridFS  
-Stores images using MongoDB.  
+Stores images sử dụng MongoDB.  
 
 <a name="3"></a>
 # 3.Glance Architecture
@@ -64,12 +64,12 @@ Stores images using MongoDB.
 \- Glance có client-service architecture và cung cấp Rest API để request đến server được thực hiện. Request từ client được chấp nhận thông qua Rest API và chờ Keystone authentication. Glance Domain controller manages all the internal operations, which is divided in to layers, each layer implements its own tasks.  
 Glance store là communication layer giữa glance và external storage backends hoặc local file system và cung cấp uniform interface để access. Glance sử dụng SQL central Database làm điểm access cho every components khác trong system.  
 \- The Glance architecture consists of several components:  
-- **Client** : any application that uses Glance server.
-- **REST API** : exposes Glance functionality via REST.
-- **Database Abstraction Layer (DAL)** : an application programming interface which unifies the communication between Glance and databases.
-- **Glance Domain Controller** : middleware that implements the main Glance functionalities: authorization, notifications, policies, database connections.
-- **Glance Store** : organizes interactions between Glance and various data stores.
-- **Registry Layer** : optional layer organizing secure communication between the domain and the DAL by using a separate service.
+- **Client** : bất kỳ ứng nào sử dụng Glance server.
+- **REST API** : gửi request tới Glance thông qua REST.
+- **Database Abstraction Layer (DAL)** : application programming interface mà hợp nhất việc giao tiếp giữa Glance và databases.
+- **Glance Domain Controller** : middleware thực hiện các chức năng chính của Glance: authorization, notifications, policies, database connections.
+- **Glance Store** : tổ chức việc tương tác giữa Glance và các hệ thống data stores khác.
+- **Registry Layer** : optional layer tổ chức việc giao tiếp bảo mật giữa domain và DAL sử dụng một service riêng biệt.
 
 <a name="4"></a>
 # 4.Glance Formats
@@ -79,22 +79,23 @@ Glance store là communication layer giữa glance và external storage backends
 
 <a name="4.1"></a>
 ## 4.1.Disk Formats
-The Disk Formats of a virtual machine image is the format of the underlying disk image. Following are the disk formats supported by OpenStack glance.  
+Disk Formats của virtual machine image là format của underlying disk image. Disk formats được hỗ trợ bởi OpenStack glance.  
 
 <img src="../images/4.png" />
 
 <a name="4.2"></a>
 ## 4.2.Container Formats
-As said OpenStack glance also support the concept of container format, which describes the file formats and contains additional metadata about the actual virtual machine.  
-Following are the container formats which supported in OpenStack glance.  
+OpenStack glance hỗ trợ container format, mô tả file formats và chứa các thông tin metadata về actual virtual machine.  
+Container formats được hỗ trợ trong OpenStack glance :  
 
 <img src="../images/5.png" />
 
-Note that Container Formats are not currently used by Glance or other OpenStack components. So ‘bare’ is given as container format while we upload an image in glance, bare mean without container.  
+>Note :  
+Container Formats không được sử dụng hiện hành bởi Glance hoặc OpenStack components khác. Vì thế ‘bare’ là được quy định như container format khi chúng ta upload image trong glance, bare nghĩa là without container.  
 
 <a name="5"></a>
 # 5.Glance Status Flow
-\- Glance status flow show the status of image khi uploading. Khi chúng ta create image, first step là queuing, image được queued trong một thời gian ngắn, được bảo vệ và sẵn sàng upload. Sau khi queuing image đi đến status Saving, nghĩa là not fully uploaded. Image là full uploaded khi status là Active. Khi uploading fails, nó sẽ chuyển sang killed hoặc deleted state. Chúng ta có thể deactivate và reactivate các fully uploaded images bằng cách sử dụng command.  
+\- Glance statue flow cho biết status của image khi uploading.Khi chúng ta create image, first step là queuing, image được queued trong một thời gian ngắn, được bảo vệ và sẵn sàng upload. Sau khi queuing image đi đến status Saving, nghĩa là not fully uploaded.Image là full uploaded khi status là Active. Khi uploading fails, nó sẽ chuyển sang killed hoặc deleted state. Chúng ta có thể deactivate và reactivate các fully uploaded images bằng cách sử dụng command.  
 \- Diagram bên dưới show status flow của glance:  
 
 <img src="../images/6.png" />
@@ -103,30 +104,18 @@ Note that Container Formats are not currently used by Glance or other OpenStack 
 - queued  
 Image identifier được bảo vệ trong Glance registry. Không có image data được uploaded to Glance và image size không rõ ràng sẽ được set to zero khi khởi tạo.  
 - saving  
-Denotes that an image’s raw data is currently being uploaded to Glance. When an image is registered with a call to POST /images and there is an x-image-meta-location header present, that image will never be in the saving status (as the image data is already available in some other location).  
+Biểu hiện image’s raw data đang được uploaded đến Glance. Khi image được registered với call đến **POST /images** and có x-image-meta-location header hiện diện, image sẽ không bao giờ được đưa vào saving status (bởi image data đã tồn tại ở một nơi nào đó).  
 - active  
-Denotes an image that is fully available in Glance. This occurs when the image data is uploaded, or the image size is explicitly set to zero on creation.  
+Biểu thị image có đầy đủ trong Glance. Điều này xảy ra khi image data được uploaded, hoặc image size rõ ràng được thiết lập là zero trong khi tạo.  
 - deactivated  
-Denotes that access to image data is not allowed to any non-admin user. Prohibiting downloads of an image also prohibits operations like image export and image cloning that may require image data.  
+Biểu thị việc truy cập image data là không được cho phép bởi bất kỳ non-admin user. Ngăn cấm downloads của image cũng nhưu ngăn cấm hoặc động như image export và image cloning mà phải yêu cầu image data.  
 - killed  
-Denotes that an error occurred during the uploading of an image’s data, and that the image is not readable.  
+Biểu thị 1 error xảy ra khi uploading của image’s data, và image đó không được đọc.  
 - deleted  
-Glance has retained the information about the image, but it is no longer available to use. An image in this state will be removed automatically at a later date.  
+Glance vẫn giữ information về image, nhưng nó không còn tồn tại để sử dụng nữa. Image trong state này sẽ được xóa tự động sau một vài ngày.  
 - pending_delete  
-This is similar to deleted, however, Glance has not yet removed the image data. An image in this state is not recoverable.  
+Tương tự như deleted, tuy nhiên, Glance chưa xóa bỏ image data ngay. Image trong state này không thể.  
 
->Note: Deactivating and Reactivating an image  
-The cloud operators are able to deactivate (temporary) an image. Later operators can reactivate it or just remove it if they believe the image is a threat for the cloud environment.While performing the update of an image the operator might want to hide it from all the users. Then when the update is complete he can reactivate the image so the users can boot virtual machines from it.  
-
-\- Task Statuses  
-- pending  
-The task identifier has been reserved for a task in the Glance. No processing has begun on it yet.  
-- processing  
-The task has been picked up by the underlying executor and is being run using the backend Glance execution logic for that task type.  
-- success  
-Denotes that the task has had a successful run within Glance. The result field of the task shows more details about the outcome.  
-- failure  
-Denotes that an error occurred during the execution of the task and it cannot continue processing. The message field of the task shows what the error was.  
 
 <a name="6"></a>
 # 6.Glance Configuration Files
@@ -136,8 +125,8 @@ Các file cấu hình glance nằm trong thư mục `/etc/glance`. Sau đây là
 - `glance-api-paste.ini`: Cấu hình cho các API middleware pipeline của Image service
 - `glance-manage.conf`: Là tệp cấu hình ghi chép tùy chỉnh. Các tùy chọn thiết lập trong tệp `glance-manage.conf` sẽ ghi đè lên các section cùng tên thiết lập trong các tệp glance-registry.conf và glance-api.conf. Tương tự như vậy, các tùy chọn thiết lập trong tệp glance-api.conf sẽ ghi đè lên các tùy chọn thiết lập trong tệp `glance-registry.conf`
 - `glance-registry-paste.ini`: Tệp cấu hình middle pipeline cho các registry của Image service.
-- `glance-scrubber.conf` : Utility used to clean up images that have been deleted. Multiple glance-scrubber can be run in a single deployment, but only once can act as clean-up scrubber in the scrubber.conf file. The clean-up scrubber coordinates other glance scrubbers by maintaining a master queue of images that need to be removed.The glance-scrubber.conf file also specifies important configuration items such as the time between runs, length of time images can be pending before their deletion as well as registry connectivity options. Glance-scrubber can run as a periodic job or long-running daemon.
-- `policy.json` : Additional Access control that apply to image service. In this we can define roles and policies, it is the security feature in the OpenStack glance.
+- `glance-scrubber.conf` : Tiện ích được xử dụng cho quá trình dọn sạch các image trong status "deleted". Multiple glance-scrubber có thể chạy trong deployment đơn giản, nhưng chỉ có 1 scrubber được thiết lập để dọn dẹp trong `scrubber.conf` file. Clean-up scrubber phối hợp với glance scrubbers khác bởi việc duy trì một queue chính của image mà cần xóa. `glance-scrubber.conf` file chỉ định cấu hình các giá trị quan trọng như time giữa các lần runs, thời gian chờ của các image trước khi bị xóa. Glance-scrubber có thể run theo định kì hoặc như một daemon chạy trong một khoảng thời gian dài.  
+- `policy.json` : File tùy chọn được thêm vào để điều khiển truy cập áp dụng với image service. Trong file này ta có thể định nghĩa các roles và policies. Nó là tính năng bảo mật trong OpenStack Glance.  
 
 <a name="7"></a>
 # 7.Image and Instance
@@ -151,9 +140,9 @@ Các file cấu hình glance nằm trong thư mục `/etc/glance`. Sau đây là
 
 <img src="../images/8.png" />
 
-\- In this figure the base image is copied to the local disk from the image store. vda is the first disk that the instances accesses, instances starts faster if the size of image is smaller as less data needs to be copied across the network. vdb is an empty ephemeral disk created along with the instance, it will be deleted when instance terminates.  
-\- vdc connects to the cinder-volume using iSCSI.After the compute node provisions the vCPU and memory resources, the instance boots up from root volume vda.The instance runs and changes data on the disks. If the volume store is located on a separate network, the my_block_storage_ip option specified in the storage node configuration file directs image traffic to the compute node.  
-\- When the instance is deleted, the state is reclaimed with the exception of the persistent volume. The ephemeral storage is purged; memory and vCPU resources are released. The image remains unchanged throughout this process.  
+\- Trong hình này, image được copy đến local disk từ image store. vda là disk đầu tiền mà instances truy cập, instances bắt đầu nhanh nếu size của image là nhỏ cũng như data là nhỏ để copy qua network. vdb là ephemeral disk rỗng được tạo với instance, nó sẽ bị deletedkhi instance ngừng hoạt động.    
+\- vdc kết nối tới cinder-volume sử dụng iSCSI.Sau kho compute node chuẩn bị vCPU và memory resources, instance boots up từ root volume vda.instance runs và thay đổi data trên disks. Nếu volume store được đặt trên network riêng rẽ, my_block_storage_ip option chỉ định trong storage node configuration file chi ra lưu lượng image đến compute node.  
+\- Khi instance bị deleted, state đòi hỏi persistent volume. ephemeral storage bị xóa; memory and vCPU resources được giải phóng. Image không bị thay đổi sau tiến trình này.  
 
 
 <a name="8"></a>

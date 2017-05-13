@@ -11,8 +11,8 @@
 
 <a name="1"></a>
 # 1.Introduction
-\- Glance API server có thể configure option local image cache. Local cache lưu trữ copy của image files, về bản chất, enabling multiple API servers phục vụ same image file.  
-\- Local image cache là transparent đến end user, nói cách khác, end user không biết Glance API đang streaming image file từ local cache hoặc từ actual backend storage system.  
+\- Glance API server có thể cấu hình option local image cache. Local cache lưu trữ copy của image files, về bản chất, enabling multiple API servers phục vụ image file.  
+\- Local image cache là transparent đến end user, nói cách khác, end user không biết Glance API đang streaming image file từ local cache hoặc từ backend storage system thât sự.  
 
 <a name="2"></a>
 # 2.Managing the Glance Image Cache

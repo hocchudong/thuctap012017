@@ -1,5 +1,15 @@
 # Thực hành bằng lệnh trong Glance
 
+## Mục lục
+- [Các trạng thái của image](#state)
+- [Khai báo biến môi trường](#environment)
+- [1. Liệt kê các image có sẵn trong](#1)
+- [2. Deactivated một image](#2)
+- [3. Reactivate một image](#3)
+- [4. Delete một image](#4)
+- [5. Upload một image lên glance](#5)
+
+<a name=state></a>
 - Một Image có thể tồn tại ở một trạng thái nhất định trong các trạng thái sau:
 	- Create: chúng ta tạo một image sẵn trước để có thể upload lên glance
 	- Queued: Image đang ở trong hàng đợi (hàng đợi chỉ dành cho image). Registry Glance sẽ đảm nhận chức năng nhận diện image. Ở trạng thái này, dữ liệu của image chưa được tải lên Glance
@@ -14,7 +24,8 @@
 
 - Chúng ta sẽ thực hành với một số lệnh cơ bản trong glance để quản trị images.
 
-Trước khi thực hành với glance, cần khai báo biến môi trường để xác thực.
+<a name=environment></a>
+- Trước khi thực hành với glance, cần khai báo biến môi trường để xác thực.
 	
 	```sh
 	export OS_PROJECT_DOMAIN_NAME=Default
@@ -29,6 +40,7 @@ Trước khi thực hành với glance, cần khai báo biến môi trường đ
 	
 	Thay thế giá trị của OS_PASSWORD bằng mật khẩu của tài khoản admin của bạn
 
+<a name=1></a>
 1. Liệt kê các image có sẵn trong 
 	```sh
 
@@ -82,6 +94,8 @@ Như vậy trong Glance có một image đang ở trạng thái active.
 	    status: active
 	1 row in set (0.00 sec)
 	```
+
+<a name=2></a>
 2. Deactivated một image
 - Sử dụng lệnh `openstack image set --deactivate <tên hoặc id của image>` (nên sử dụng id vì có thể có hai image cùng tên với nhau)
 	```sh
@@ -96,6 +110,7 @@ Như vậy trong Glance có một image đang ở trạng thái active.
 	```
 Chúng ta thấy trạng thái của image đã thay đổi từ **active** sang **deactivated**.
 
+<a name=3></a>
 3. Reactivate một image
 - Sử dụng lệnh `openstack image set --activate <tên hoặc id của image>`
 	```sh
@@ -108,6 +123,7 @@ Chúng ta thấy trạng thái của image đã thay đổi từ **active** sang
 	+--------------------------------------+--------+--------+
 	```
 
+<a name=4></a>
 4. Delete một image
 - Sử dụng lệnh `openstack image delete <tên hoặc id của image>`
 	```sh
@@ -133,6 +149,7 @@ Chúng ta thấy trạng thái của image đã thay đổi từ **active** sang
 	```
 Như vậy chúng ta đã xóa thành công một image.
 
+<a name=5></a>
 5. Upload một image lên glance
 - Chúng ta có thể tải một file image có sẵn trên internet rồi sau đó upload lên glance.
 - Thực hiện tải image về máy. 

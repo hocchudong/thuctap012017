@@ -15,6 +15,7 @@
 - Chúng ta sẽ thực hành với một số lệnh cơ bản trong glance để quản trị images.
 
 Trước khi thực hành với glance, cần khai báo biến môi trường để xác thực.
+	
 	```sh
 	export OS_PROJECT_DOMAIN_NAME=Default
 	export OS_USER_DOMAIN_NAME=Default
@@ -25,6 +26,7 @@ Trước khi thực hành với glance, cần khai báo biến môi trường đ
 	export OS_IDENTITY_API_VERSION=3
 	export OS_IMAGE_API_VERSION=2
 	```
+	
 	Thay thế giá trị của OS_PASSWORD bằng mật khẩu của tài khoản admin của bạn
 
 1. Liệt kê các image có sẵn trong 

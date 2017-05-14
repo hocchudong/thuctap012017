@@ -270,7 +270,9 @@ Thay thế `Welcome123` bằng mật khẩu của user admin trên hệ thống 
 	Date: Sun, 14 May 2017 19:27:05 GMT
 	```
 
-### 6. Xóa image `curl -i -X DELETE -H "X-Auth-Token: $OS_TOKEN" http://controller:9292/v2/images/{id_image}`
+### 6. Xóa image 
+`curl -i -X DELETE -H "X-Auth-Token: $OS_TOKEN" http://controller:9292/v2/images/{id_image}`
+
 	```sh
 	curl -i -X DELETE -H "X-Auth-Token: $OS_TOKEN" http://controller:9292/v2/images/73924ee2-96bb-44f3-b37d-dc4d61cf96c9
 	```

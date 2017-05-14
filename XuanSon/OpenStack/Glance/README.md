@@ -12,7 +12,7 @@
 - [Multiple store locations for Glance images](docs/Multiple%20store%20locations%20for%20Glance%20images.md)
 
 
-## Scripts install Glance
+## Scripts install Glance 
 - [Scripts install Glance](./scripts)
 
 

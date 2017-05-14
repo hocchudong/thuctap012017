@@ -249,7 +249,9 @@ Thay thế `Welcome123` bằng mật khẩu của user admin trên hệ thống 
 	```
 - image đã ở trạng thái active.
 
-### 4. Thực hiện deactivate image `curl -i -X POST -H "X-Auth-Token: $OS_TOKEN" http://controller:9292/v2/images/{id_image}/actions/deactivate`
+### 4. Thực hiện deactivate image 
+- `curl -i -X POST -H "X-Auth-Token: $OS_TOKEN" http://controller:9292/v2/images/{id_image}/actions/deactivate`
+
 	```sh
 	root@controller:~# curl -i -X POST -H "X-Auth-Token: $OS_TOKEN" http://controller:9292/v2/images/73924ee2-96bb-44f3-b37d-dc4d61cf96c9/actions/deactivate
 	HTTP/1.1 204 No Content
@@ -260,7 +262,9 @@ Thay thế `Welcome123` bằng mật khẩu của user admin trên hệ thống 
 	```
 - Kết quả trả về mã 204 đã thành công. Bạn có thể xem trạng thái của image đã chuyển sang deactivated hay chưa bằng cách xem thông tin chi tiết của image đã trình bày ở trên
 
-### 5. Reactivate image `curl -i -X POST -H "X-Auth-Token: $OS_TOKEN" http://controller:9292/v2/images/{id_image}/actions/reactivate`
+### 5. Reactivate image 
+- `curl -i -X POST -H "X-Auth-Token: $OS_TOKEN" http://controller:9292/v2/images/{id_image}/actions/reactivate`
+
 	```sh
 	root@controller:~# curl -i -X POST -H "X-Auth-Token: $OS_TOKEN" http://controller:9292/v2/images/73924ee2-96bb-44f3-b37d-dc4d61cf96c9/actions/reactivate
 	HTTP/1.1 204 No Content
@@ -270,7 +274,8 @@ Thay thế `Welcome123` bằng mật khẩu của user admin trên hệ thống 
 	Date: Sun, 14 May 2017 19:27:05 GMT
 	```
 
-### 6. Xóa image `curl -i -X DELETE -H "X-Auth-Token: $OS_TOKEN" http://controller:9292/v2/images/{id_image}`
+### 6. Xóa image 
+- `curl -i -X DELETE -H "X-Auth-Token: $OS_TOKEN" http://controller:9292/v2/images/{id_image}`
 	```sh
 	curl -i -X DELETE -H "X-Auth-Token: $OS_TOKEN" http://controller:9292/v2/images/73924ee2-96bb-44f3-b37d-dc4d61cf96c9
 	```

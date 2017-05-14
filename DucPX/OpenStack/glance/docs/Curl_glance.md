@@ -1,6 +1,15 @@
 # Sử dụng cURL để thao tác image trong glance
 Tương tự như keystone, glance cũng cung cấp các endpoint cho phép người dùng gọi đến API mà nó cung cấp để thao tác với image. Trong bài viết này, mình sẽ thực hiện một số thao tác quản trị cơ bản thông qua lệnh cURL.
 
+## Mục lục
+- [1. Lấy token](#1)
+- [2. Liệt kê ra các image có trong glance](#2)
+- [3. Tạo một image](#3)
+- [4. Thực hiện deactivate image](#4)
+- [5. Reactivate image](#5)
+- [6. Xóa image](#6)
+
+<a name=1></a>
 ### 1. Lấy token
 - Token được thêm vào phần header trong lệnh cURL dùng để các dịch vụ xác thực người dùng.
 - Sử dụng cURL để lấy token
@@ -59,6 +68,7 @@ Thay thế `Welcome123` bằng mật khẩu của user admin trên hệ thống 
 	OS_TOKEN=gAAAAABZGI8XtQXM3NY6Z0Zfx96eClgw6FIlkR9yKjSjq9sVkYh0YJne7G2YIzFT3QcYIEKyTCjum4NAMDTMFEVzpQss1uKpnWL2eA4QW78TkIxneZNr2Owxu2QOB79pJ3A7s98Z1rWm_dnbKp9hgds2vBhOmM5JIOJ3iUdc8DELQEqiB5-vIcw
 	```
 
+<a name=2></a>
 ### 2. Liệt kê ra các image có trong glance 
 - Dùng lệnh sau để lấy thông tin về các image có trong glance
 	```sh
@@ -151,6 +161,7 @@ Thay thế `Welcome123` bằng mật khẩu của user admin trên hệ thống 
 	}
 	```
 
+<a name=3></a>
 ### 3. Tạo một image
 - Lệnh sau đây sẽ tạo ra một image trống (chưa có dữ liệu). Image này sẽ được vào trạng thái **queued** chờ được up dữ liệu vào
 	```sh
@@ -249,6 +260,7 @@ Thay thế `Welcome123` bằng mật khẩu của user admin trên hệ thống 
 	```
 - image đã ở trạng thái active.
 
+<a name=4></a>
 ### 4. Thực hiện deactivate image 
 - `curl -i -X POST -H "X-Auth-Token: $OS_TOKEN" http://controller:9292/v2/images/{id_image}/actions/deactivate`
 
@@ -262,6 +274,7 @@ Thay thế `Welcome123` bằng mật khẩu của user admin trên hệ thống 
 	```
 - Kết quả trả về mã 204 đã thành công. Bạn có thể xem trạng thái của image đã chuyển sang deactivated hay chưa bằng cách xem thông tin chi tiết của image đã trình bày ở trên
 
+<a name=5></a>
 ### 5. Reactivate image 
 - `curl -i -X POST -H "X-Auth-Token: $OS_TOKEN" http://controller:9292/v2/images/{id_image}/actions/reactivate`
 
@@ -274,6 +287,7 @@ Thay thế `Welcome123` bằng mật khẩu của user admin trên hệ thống 
 	Date: Sun, 14 May 2017 19:27:05 GMT
 	```
 
+<a name=6></a>
 ### 6. Xóa image 
 
 - `curl -i -X DELETE -H "X-Auth-Token: $OS_TOKEN" http://controller:9292/v2/images/{id_image}`

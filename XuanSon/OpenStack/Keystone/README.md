@@ -1,6 +1,5 @@
 # GHI CHÉP VỀ KEYSTONE PROJECT
 
-# GHI CHÉP VỀ KEYSTONE 
 
 ## Lý thuyết
 - [Introduction](docs/Introduction.md)

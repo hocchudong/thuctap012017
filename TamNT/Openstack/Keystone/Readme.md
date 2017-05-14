@@ -8,5 +8,5 @@
 
 - `ref` : Thư mục lưu trữ các tài liệu tham khảo.
 
-- `source`: Thư mục chứa scripts cài đặt cấu hình Keystone.
+- `scripts`: Thư mục chứa scripts cài đặt cấu hình Keystone.
 

@@ -71,3 +71,5 @@ Cô trích dẫn một ứng dụng rất cụ thể: phẫu thuật cơ thể. 
 
 
 
+
+***Link bài gốc***: http://superuser.openstack.org/articles/3cs-of-openstack/

@@ -31,7 +31,7 @@
 
 - Xác thực đa năng thông qua TOTP (Time-base One-Time Password): Keystone hỗ trợ xác thực thông qua Time-based One-time Password (TOTP) và password tùy theo nhu cầu về form password xác thực mà người dùng mong muốn. 
 
-- CƠ chế mapping của Định danh Federated identity hỗ trợ khả năng tự động cung cấp project cho các federated user. Một role assignment sẽ được tự động tạo ra cho user trên project xác định, nếu project được mapping đến đó chưa tồn tại thì nó sẽ tự động được tạo ra trên domain mà gán với identity provider đó. 
+- Cơ chế mapping của Định danh Federated identity hỗ trợ khả năng tự động cung cấp project cho các federated user. Một role assignment sẽ được tự động tạo ra cho user trên project xác định, nếu project được mapping đến đó chưa tồn tại thì nó sẽ tự động được tạo ra trên domain mà gán với identity provider đó. 
 
 - Version 3 API trở thành API mặc định trong cổng tích hợp testing (intergration gate testing)
 
@@ -51,13 +51,13 @@ Tham khảo: https://docs.openstack.org/releasenotes/keystone/ocata.html
 
 - **Federated intergration testing** -  Thử nghiệm tích hợp Federated.
 
-- **Integrating rolling upgrade test **: ...
+- **Integrating rolling upgrade test**: ...
 
 ## 4) Looking ahead to Queens and Rockey
 
-- **well-defined roles by default **: Cung cấp các tiêu chuẩn về các role mặc định.
+- **well-defined roles by default**: Cung cấp các tiêu chuẩn về các role mặc định.
 
-- **improving policy security **- Cải thiện khả năng bảo mật policy...
+- **improving policy security**- Cải thiện khả năng bảo mật policy...
 
 - **hierarchical limits and qoutas** 
 
@@ -72,7 +72,7 @@ Tham khảo: https://docs.openstack.org/releasenotes/keystone/ocata.html
 
 ---
 
-***link video: *** https://www.openstack.org/videos/boston-2017/project-update-keystone
+***link video:*** https://www.openstack.org/videos/boston-2017/project-update-keystone
 
 
 

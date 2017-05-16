@@ -2,11 +2,11 @@
 
 ## Topology 
 
-![img](../images/scr1.png)
+![img](../images/topo_ocata.png)
 
 ## IP planning
 
-![img](../images/scr2.png)
+![img](../images/ipplan.png)
 
 ## Hướng dẫn chạy scripts cài Keystone trên node controller
 

@@ -7,7 +7,7 @@
 - [4. Glance Formats](#4)
 - [5. Glane Status Flow](#5)
 - [6. Glance Configuration Files](#6)
-
+- [7. Image and instance.](#7)
 
 <a name=1></a>
 ### 1. Glance là gì?
@@ -20,12 +20,12 @@
 - Glance cung cấp giải pháp end-to-end cho quản lý disk image trên cloud. 
 - Nó cũng có thể snapshots từ các máy ảo đang chạy để sao lưu trạng thái của VM.
 
-<a name=1></a>
+<a name=2></a>
 ### 2. Glance Components
 - Glane có các thành phần sau :
   - Glane-api : Chấp nhận các lời gọi đến API để phát hiện, truy xuất và lưu trữ image.
   - Glane-registry: lưu trữ, xử lý, và lấy thông tin cho image.
-  - database : Là nơi lưu trữ image.
+  - database : Là nơi lưu trữ metadata của image.
   - storage repository : Tích hợp các thành phần bên ngoài OpenStack khác nhau như hệ thống tập tin thông thường, Amazon S3 và HTTP để lưu trữ image.
   
   ![](../images/glane_component.png)
@@ -45,7 +45,7 @@
 ### Glance Architecture
 - Glance có cấu trúc theo mô hình client-server và cung cấp RESTful API mà thông qua đó các yêu cầu được gửi đến server để thực hiện. Yêu cầu từ các client được chấp nhận thông qua RESTful API và chờ keystone xác thực.
 - Glance Domain controller thực hiện quản lý tất cả các hoạt động bên trong. Các hoạt động được chia ra thành các tầng khác nhau. Mỗi tầng thực hiện một chức năng riêng biệt.
-- Glane store là lớp giao tiếp giữa glane và và storage back end ở ngoài glane hoặc local filesystem và nó cung cấp giao diện thống nhất để truy cập. Glane sử dụng SQL central Database để truy cập cho tất cả các thành phần trong hệ thống.
+- Glane store là lớp giao tiếp giữa glane và storage back end ở ngoài glane hoặc local filesystem và nó cung cấp giao diện thống nhất để truy cập. Glane sử dụng SQL central Database để truy cập cho tất cả các thành phần trong hệ thống.
 - Glance bao gồm một vài thành phần sau:
   - **Client**: Bất kỳ ứng dụng nào sử dụng Glance server đều được gọi là client.
   - **REST API**: dùng để gọi đến các chức năng của Glance thông qua REST.
@@ -79,7 +79,7 @@ Các định dạng trên đĩa (Disk Formats) của một image máy ảo là �
 - Glane Status Flow cho chúng ta thấy tình trạng của Image trong khi chúng ta tải lên. Khi chúng ta khởi tại một image, bước đầu tiên là queuing. Image sẽ được sắp xếp vào một hàng đợi trong một thời gian ngắn để định danh (hàng đợi này dành cho image) và sẵn sàng được upload. Sau khi kết thúc thời gian queuing thì image sẽ được upload đến "Saving" , tuy nhiên ở đây không phải image nào cũng được tải lên hoàn toàn. Những Image nào được tải lên hoàn toàn sẽ trong trạng thái "Active". Khi upload không thành công nó sẽ đến trạng thái "killed" hoặc "deleted" . Chúng ta có thể tắt và tái kích hoạt một Image đang "Active" hoàn toàn bằng một lệnh.
 - Sơ đồ về Glance Status Flow
 
-![](../images/statusflow.png)
+![](../images/statusflow.jpg)
 
 - Các trạng thái:
   - **queued**: Bộ nhận diện image đã được dành riêng cho một image trong registry Glance. Không có dữ liệu nào trong image được tải lên Glance và kích thước image không rõ ràng sẽ được đặt thành 0 khi tạo.
@@ -96,16 +96,20 @@ Các định dạng trên đĩa (Disk Formats) của một image máy ảo là �
 - **glance-scrubber.conf** : Sử dụng tiện ích này để xóa sạch các images mà đã bị xóa. 
 - **policy.json**: Bổ sung truy cập kiểm soát áp dụng cho các image service. Trong này, chúng tra có thể xác định vai trò, chính sách, làm tăng tính bảo mật trong Glane OpenStack.
 
+<a name=7></a>
 ### 7. Image and instance.
 - Khi image được lưu trữ như các mẫu. Image service điều khiểu lưu trữ và quản lý image. Instance là những máy ảo độc lập chạy trên các compute node, compute node quản lý các instance. Người dùng có thể khởi động với số lượng bất kỳ các máy ảo cùng một image. Mỗi lần chạy một máy ảo thì được thực hiện bằng cách sao chép từ base image, bất kỳ sửa đổi nào trên instance không ảnh hưởng đển các base image. Chúng ta có thể snaphost một instance đang chạy và có thể chạy chúng như một instance khác.
 - Khi chạy một instance chúng ta cần xác định các flavor. Đó là đại diện cho tài nguyên ảo. Flavor định xác định bao nhiêu CPU ảo cho một Instance cần có và số lượng RAM sẵn có cho nó, và kích thước của nó trong bộ nhớ tạm của mình. OpenStack cung cấp một thiết lập flavor được xác định từ trước, chúng ta có thể chỉnh sửa các flavor riêng của chúng ta. Sơ đồ dưới đây cho biết tình trạng của hệ thống trước khi lauching an instance. Các image store có số lượng image được xác định trước, compute node chứa CPU có sẵn, bộ nhớ và tài nguyên local disk và cinder-volume chứa số lượng đã được xác định từ trước .
 
+![](../images/instance.jpg)
 
+- Trước khi chạy một instance chọn một image, flavor và bất kỳ thuôc tính tùy chọn nào . Chọn flavor cung cấp một root volume, nhãn (lable) là "vda" và một bổ sung vào bộ nhớ tạm thời dán nhãn là "vdb" và cinder-volume được ánh xạ tới ổ đĩa thứ 3 gọi là "vdc".
+
+![](../images/flavor.jpg)
+
+- VDA : Các image được sao chép vào các local disk. VDA là disk đầu tiên mà các instance được truy cập.
+- VDB : là một disk tạm có các sản phẩm tạo ra cùng với instance sẽ bị xóa khi kết thức instance.
+- VDC : kết nối với cinder-volume sử dụng iSCSI. Sau khi compute node quy định vCPU và tài nguyên bộ nhớ. Các instance boots up từ root volume VDA. Instance chạy và thay đổi dữ liệu trên disk . Nếu volume store nằm trên một mạng riêng biệt , tùy chọn my_block_storage_ip trong tập tin cấu hình storage node sẽ chỉ đạo giao tiếp với compute node.
   
-  
-  
-  
-  
-### Tham khảo
+### Source: 
 http://www.sparkmycloud.com/blog/openstack-glance/
-

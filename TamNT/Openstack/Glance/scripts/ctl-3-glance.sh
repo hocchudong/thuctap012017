@@ -43,7 +43,7 @@ glance_api=/etc/glance/glance-api.conf
 ops_add $glance_api database connection mysql+pymysql://glance:$GLANCE_DBPASS@$HOST_CTL/glance
 ops_add $glance_api keystone_authtoken auth_uri http://$HOST_CTL:5000
 ops_add $glance_api keystone_authtoken auth_url http://$HOST_CTL:35357
-ops_add $glance_api keystone_authtoken memcached_servers HOST_CTL:11211
+ops_add $glance_api keystone_authtoken memcached_servers $HOST_CTL:11211
 ops_add $glance_api keystone_authtoken auth_type password
 ops_add $glance_api keystone_authtoken project_domain_name default
 ops_add $glance_api keystone_authtoken user_domain_name default
@@ -59,7 +59,7 @@ glance_registry=/etc/glance/glance-registry.conf
 ops_add $glance_registry database connection mysql+pymysql://glance:$GLANCE_DBPASS@$HOST_CTL/glance
 ops_add $glance_registry keystone_authtoken auth_uri http://$HOST_CTL:5000
 ops_add $glance_registry keystone_authtoken auth_url http://$HOST_CTL:35357
-ops_add $glance_registry keystone_authtoken memcached_servers HOST_CTL:11211
+ops_add $glance_registry keystone_authtoken memcached_servers $HOST_CTL:11211
 ops_add $glance_registry keystone_authtoken auth_type password
 ops_add $glance_registry keystone_authtoken project_domain_name default
 ops_add $glance_registry keystone_authtoken user_domain_name default
@@ -83,3 +83,6 @@ openstack image create "cirros" --file cirros-0.3.5-x86_64-disk.img \
   --disk-format qcow2 --container-format bare --public
   
 openstack image list
+
+echocolorbg "Hoàn thành cài đặt và cấu hình Glance - Image service !!! =] "
+sleep 5

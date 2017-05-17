@@ -1,5 +1,21 @@
 # Sử dụng keystone cơ bản để liệt kê ra users, projects, domains,... có trong openstack
 
+## Mục lục
+- [Lấy Token](#token)
+- [I. Liệt kê ra các thông tin.](#I)
+  - [1. Liệt kê các users](#1)
+  - [2. Liệt kê Projects](#2)
+  - [3. Liệt kê Groups](#3)
+  - [4. Liệt kê Roles](#4)
+  - [5. Liệt kê Domains](#5)
+- [II. Tạo domain, project](#II)
+  - [1. Tạo một domain mới](#a)
+  - [2. Tạo một project bên trong domain đã tạo](#b)
+  - [3. Tạo User trong domain](#c)
+  - [4. Gán quyền cho user](#d)
+- [III. Sử dụng horizon](#III)
+---
+
 ## Để sử dụng các lệnh với keystone, khai báo các biến môi trường để thuận lợi trong việc xác thực
 
 ```sh
@@ -13,8 +29,9 @@ export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
 ```
 
+<a name=token></a>
 ## Sử dụng hai cách: *dùng lệnh mà openstack cung cấp* và *curl* để sử dụng keystone
-### 1. Lấy Token
+### Lấy Token
 - Sử dụng lệnh. Sau khi khai báo các biến môi trường, chúng ta chỉ cần dùng lệnh `openstack token issue` là có thể lấy token về.
 
   ```sh
@@ -87,7 +104,10 @@ export OS_IMAGE_API_VERSION=2
   ```
   
 - Sau OS_TOKEN là token mà chúng ta nhận được.
+
+<a name=I></a>
 ## I. Liệt kê ra các thông tin.
+<a name=1></a>
 ### 1. Liệt kê các users
 Trong quá trình cài đặt openstack, chúng ta đã tạo một số user trùng tên với từng dịch vụ. Dùng lệnh `openstack user list` để liệt kê ra danh sách các user có trong openstack.
 - Dùng lệnh
@@ -184,7 +204,7 @@ Trong quá trình cài đặt openstack, chúng ta đã tạo một số user tr
       ]
   }
   ```
-
+<a name=2></a>
 ### 2. Liệt kê Projects
 
 - Dùng lệnh. Để liệt kê ra các project, đơn giản chỉ cần dùng lệnh `openstack project list`.
@@ -249,6 +269,7 @@ Trong quá trình cài đặt openstack, chúng ta đã tạo một số user tr
   }
   ```
 
+<a name=3></a>
 ### 3. Liệt kê Groups
 
 - Dùng lệnh `openstack group list`
@@ -268,6 +289,7 @@ Trong quá trình cài đặt openstack, chúng ta đã tạo một số user tr
   }
   ```
 
+<a name=4></a>
 ### 4. Liệt kê Roles
 - dùng lệnh
   ```sh
@@ -318,6 +340,7 @@ Trong quá trình cài đặt openstack, chúng ta đã tạo một số user tr
   }
   ```
 
+<a name=5></a>
 ### 5. Liệt kê Domains
 - dùng lệnh
   ```sh
@@ -352,7 +375,9 @@ Trong quá trình cài đặt openstack, chúng ta đã tạo một số user tr
   }
   ```
 
+<a name=II></a>
 ## II. Tạo domain, project
+<a name=a></a>
 ### 1. Tạo một domain mới
 - Dùng lệnh
   ```sh
@@ -382,6 +407,7 @@ Trong quá trình cài đặt openstack, chúng ta đã tạo một số user tr
   }
   ```
 
+<a name=b></a>
 ### 2. Tạo một project bên trong domain đã tạo
 - Dùng lệnh, tạo project trong domain `new_domain`
   ```sh
@@ -418,6 +444,7 @@ Trong quá trình cài đặt openstack, chúng ta đã tạo một số user tr
   }
   ```
 
+<a name=c></a>
 ### 3. Tạo User trong domain
 - Dùng lệnh để tạo
   ```sh
@@ -453,6 +480,7 @@ Trong quá trình cài đặt openstack, chúng ta đã tạo một số user tr
   }
   ```
 
+<a name=d></a>
 ### 4. Gán quyền cho user
 - dùng lệnh 
 
@@ -523,6 +551,7 @@ Trong quá trình cài đặt openstack, chúng ta đã tạo một số user tr
   >  }' http://10.10.10.61:5000/v3/auth/tokens
   ```
 
+<a name=III></a>
 ## III. Sử dụng horizon
 - Đăng nhập vào horizon với đường link `10.10.10.61/horizon
 

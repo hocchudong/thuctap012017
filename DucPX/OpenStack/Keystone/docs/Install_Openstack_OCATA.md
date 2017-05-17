@@ -1,9 +1,22 @@
 # Cài đặt OpenStack OCATA
 ---
 
+## Mục lục
+- [I. Cài đặt cơ bản](#I)
+  - [1. Chuẩn bị môi trường](#I1)
+  - [2. Cài đặt node controller](#I2)
+  - [3. Cài đặt Keystone](#I3)
+  - [4. Cài đặt Glance](#I4)
+  - [5. Cài đặt NOVA](#I5)
+  - [6. Cài đặt NEUTRON](#I6)
+  - [7. Cài đặt HORIZON](#I7)
+---  
+
+<a name=I></a>
 ## I. Cài đặt cơ bản
 ---
 
+<a name=I1></a>
 ## 1. Chuẩn bị môi trường
 ### 1.1 Mô hình mạng
 - Mô hình đầy đủ 
@@ -16,6 +29,7 @@
 
 ![Imgur](http://i.imgur.com/oaXv2o4.png)
 
+<a name=I2></a>
 ## 2. Cài đặt node controller
 **Lưu ý**:
 
@@ -193,6 +207,7 @@
 	service memcached restart
 	```
 
+<a name=I3></a>
 ## 3. Cài đặt Keystone
 ***
 
@@ -390,6 +405,7 @@
 
 	![Imgur](http://i.imgur.com/10Rg5Bd.png)
 
+<a name=I4></a>
 ### 4. Cài đặt Glance
 ***
 `Glance` là dịch vụ cung cấp các image (các hệ điều hành đã được đóng gói sẵn), các image này sử dụng theo cơ chế template để tạo ra các máy ảo. )
@@ -565,6 +581,7 @@
 - Nếu kết quả lệnh trên hiển thị như bên dưới thì dịch vụ `glance` đã cài đặt thành công.
 	![Imgur](http://i.imgur.com/wcbxPwJ.png)
 
+<a name=I5></a>
 ### 5. Cài đặt NOVA (Compute service)
 ***
 
@@ -828,8 +845,8 @@
 
 	![Imgur](http://i.imgur.com/FGcHUZ4.png)
 
-
-### 6. Cài đặt NEUTRON(Networking service)
+<a name=I6></a>
+### 6. Cài đặt NEUTRON (Networking service)
 ***
 
 ### 6.1. Giới thiệu về `neutron`
@@ -1171,6 +1188,7 @@ openstack extension list --network
 
 ![Imgur](http://i.imgur.com/s7xDXeg.png)
 
+<a name=I7></a>
 ### 7. Cài đặt HORIZON (dashboad)
 ***
 - HORIZON hay còn gọi là dashboad - cung cấp giao diện trên web để người dùng có thể sử dụng OpenStack

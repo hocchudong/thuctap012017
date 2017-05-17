@@ -38,10 +38,10 @@
 <a name="3"></a>
 # 3.Kết quả đã đạt được trong phiên bản Openstack Pike
 \- **Registering và documenting những default policy**  
-\- **Unified limit**: Thống nhất phạm vi truy cập của user trên các project khác nhau. 
-\- **Project tags**: Thêm khái niệm tag nên nếu như đã sử dụng Nova, Neutron hay các resource tags thì cũng giống như làm việc với project.
-\- **Federated intergration testing** : Thử nghiệm tích hợp Federated.
-\- **Integrating rolling upgrade test**
+\- **Unified limit**: Thống nhất phạm vi truy cập của user trên các project khác nhau.  
+\- **Project tags**: Thêm khái niệm tag nên nếu như đã sử dụng Nova, Neutron hay các resource tags thì cũng giống như làm việc với project.  
+\- **Federated intergration testing** : Thử nghiệm tích hợp Federated.  
+\- **Integrating rolling upgrade test**  
 
 <a name="4"></a>
 # 4.Looking ahead to Queens and Rockey

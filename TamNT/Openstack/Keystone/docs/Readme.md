@@ -20,5 +20,7 @@
 
 [- Sử dụng Openstack client quản lý domain, project, user, role trong Keystone](https://github.com/ThanhTamPotter/thuctap012017/blob/master/TamNT/Openstack/Keystone/docs/8.Quan_ly_Keystone_bang_OpenstackClient.md)
 
+[- Tổng hợp những update mới trong project Keystone tại summit Boston 2017](../../Something_In_Summit_Boston/Project_update_Keystone.md)
 
 [***Tổng hợp Keystone***](./Keystone.mmap)
+

@@ -6,7 +6,8 @@
 	mkdir /home/images-1
 	mkdir /home/images-2
 	```
-#### 2. Chuyển hai thư mục này vào group `glance` và user `glance`
+#### 2. Chuyển hai thư mục này vào group `glance` và user `glance`.
+
 	```sh
 	chown glance:glance /home/images-1
 	chown glance:glance /home/images-2
@@ -114,7 +115,8 @@
 	| 88b19636-37ce-4c06-9025-1972a856dcbc | cirros-multiple-store-location | active |
 	| 615af8b9-9c04-4f0a-94d7-e1ed4516e247 | cirros-test-upload-image       | active |
 	+--------------------------------------+--------------------------------+--------+
-
+  ```
+  
 - Ta thấy rằng image có Id `88b19636-37ce-4c06-9025-1972a856dcbc` là image mà chúng ta vừa tạo sau khi cấu hình multiple store location. Thông tin chúng ta có được trong database chỉ rõ vị trí lưu của image này là ở thư mục `/home/images-1`. Như vậy là đúng với lý thuyết mà mình đã nêu ở trên
 
 ---

@@ -5,7 +5,7 @@
   - [I. Tổng về về các chức năng Identity, Authentication and Access Management của keystone](./docs/Overview_Keystone.md#I)
     - [1. Identity](./docs/Overview_Keystone.md#1)
     - [2. Authentication](./docs/Overview_Keystone.md#2)
-    - [3. Access Management (./docs/Overview_Keystone.mdAuthorization)](#3)
+    - [3. Access Management](./docs/Overview_Keystone.md#3)
   - [II. Các khái niệm trong keystone](./docs/Overview_Keystone.md#II)
     - [1. Project](./docs/Overview_Keystone.md#project)
     - [2. Domain](./docs/Overview_Keystone.md#domain)

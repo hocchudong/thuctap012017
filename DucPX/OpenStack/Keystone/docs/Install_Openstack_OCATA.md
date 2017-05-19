@@ -1,9 +1,22 @@
 # Cài đặt OpenStack OCATA
 ---
 
+## Mục lục
+- [I. Cài đặt cơ bản](#I)
+  - [1. Chuẩn bị môi trường](#I1)
+  - [2. Cài đặt node controller](#I2)
+  - [3. Cài đặt Keystone](#I3)
+  - [4. Cài đặt Glance](#I4)
+  - [5. Cài đặt NOVA](#I5)
+  - [6. Cài đặt NEUTRON](#I6)
+  - [7. Cài đặt HORIZON](#I7)
+---  
+
+<a name=I></a>
 ## I. Cài đặt cơ bản
 ---
 
+<a name=I1></a>
 ## 1. Chuẩn bị môi trường
 ### 1.1 Mô hình mạng
 - Mô hình đầy đủ 
@@ -16,6 +29,7 @@
 
 ![Imgur](http://i.imgur.com/oaXv2o4.png)
 
+<a name=I2></a>
 ## 2. Cài đặt node controller
 **Lưu ý**:
 
@@ -99,7 +113,7 @@
 
 #### 2.1.3 Cài đặt repos để cài OpenStack OCATA
 
-- Cài đặt gói để cài OpenStack Mitaka
+- Cài đặt gói để cài OpenStack OCATA
 	```sh
 	 apt-get install software-properties-common -y
 	 add-apt-repository cloud-archive:ocata -y
@@ -110,7 +124,7 @@
 	apt-get -y update && apt-get -y dist-upgrade
 	```
 
--Cài đặt các gói client của OpenStack
+- Cài đặt các gói client của OpenStack
 	```sh
 	apt-get -y install python-openstackclient
 	```
@@ -132,7 +146,7 @@
 	mysql_secure_installation
 	```
 
-	- Ngay đoạn đầu tiên nó sẽ hỏi bạn nhập mật khẩu root hiện tại, nhưng chúng ta chưa có mật khẩu thì hãy Enter để bỏ qua, kế tiếp chọn gõ Y để bắt đầu thiết lập mật khẩu cho root và các tùy chọn sau bạn vẫn Y hết.
+	- Ngay đoạn đầu tiên nó sẽ hỏi bạn nhập mật khẩu root hiện tại, nhưng chúng ta chưa có mật khẩu thì hãy Enter để bỏ qua, kế tiếp chọn gõ Y để bắt đầu thiết lập mật khẩu cho **root** và các tùy chọn sau bạn vẫn Y hết.
 	- Nhập mật khẩu root là: `Welcome123`
 
 - Cấu hình cho Mariadb, tạo file `/etc/mysql/mariadb.conf.d/99-openstack.cnf` với nội dung sau:
@@ -166,21 +180,18 @@
 	apt-get -y install rabbitmq-server
 	```
 
--Cấu hình RabbitMQ, tạo user `openstack` với mật khẩu là `Welcome123`
-
+- Cấu hình RabbitMQ, tạo user `openstack` với mật khẩu là `Welcome123`
 	```sh
 	rabbitmqctl add_user openstack Welcome123
 	```
 
 - Gán quyền read, write cho tài khoản `openstack` trong `RabbitMQ`
-
 	```sh
 	rabbitmqctl set_permissions openstack ".*" ".*" ".*"
 	```
 
 #### 2.1.6 Cài đặt Memcached
 - Cài đặt các gói cần thiết cho `memcached`
-
 	```sh
 	apt-get -y install memcached python-memcache
 	```
@@ -196,6 +207,7 @@
 	service memcached restart
 	```
 
+<a name=I3></a>
 ## 3. Cài đặt Keystone
 ***
 
@@ -206,7 +218,7 @@
 - Đăng nhập vào MariaDB
 
 	```sh
-	mysql -u root -p
+	mysql -u root -pWelcome123
 	```
 - Tạo user, database cho keystone
 
@@ -221,7 +233,6 @@
 
 #### 3.1.2. Cài đặt và cấu hình `keystone`
 - Cài đặt gói keystone
-
 	```sh
 	apt-get -y install keystone
 	```
@@ -233,9 +244,8 @@
 
 - Dùng lệnh `vi` để mở và sửa file `/etc/keystone/keystone.conf`.
 	- Trong section `[database]` thêm dòng dưới
- 
 		```sh
-		connection = mysql+pymysql://keystone:Welcome123@10.10.10.61/keystone
+		connection = mysql+pymysql://keystone:Welcome123@controller/keystone
 		```
 
 	- Trong section `[token]`, cấu hình Fernet token provider:
@@ -262,11 +272,11 @@
 
 - Bootstrap the Identity service:
 	```sh
-	~# keystone-manage bootstrap --bootstrap-password Welcome123 \
-  		--bootstrap-admin-url http://controller:35357/v3/ \
-  		--bootstrap-internal-url http://controller:5000/v3/ \
-  		--bootstrap-public-url http://controller:5000/v3/ \
-  		--bootstrap-region-id RegionOne
+	keystone-manage bootstrap --bootstrap-password Welcome123 \
+  	--bootstrap-admin-url http://controller:35357/v3/ \
+  	--bootstrap-internal-url http://controller:5000/v3/ \
+  	--bootstrap-public-url http://controller:5000/v3/ \
+  	--bootstrap-region-id RegionOne
 	```
 
 - Cấu hình apache cho `keysonte`
@@ -289,13 +299,13 @@
 
 - Cấu hình cho tài khoản quản trị:
 	```sh
-	$ export OS_USERNAME=admin
-	$ export OS_PASSWORD=Welcome123
-	$ export OS_PROJECT_NAME=admin
-	$ export OS_USER_DOMAIN_NAME=Default
-	$ export OS_PROJECT_DOMAIN_NAME=Default
-	$ export OS_AUTH_URL=http://controller:35357/v3
-	$ export OS_IDENTITY_API_VERSION=3
+	export OS_USERNAME=admin
+	export OS_PASSWORD=Welcome123
+	export OS_PROJECT_NAME=admin
+	export OS_USER_DOMAIN_NAME=Default
+	export OS_PROJECT_DOMAIN_NAME=Default
+	export OS_AUTH_URL=http://controller:35357/v3
+	export OS_IDENTITY_API_VERSION=3
 	```
 
 #### 3.1.3. Tạo domain, projects, users, và roles
@@ -343,7 +353,7 @@
 	unset OS_AUTH_URL OS_PASSWORD
 	```
 
-- Gõ lần lượt 2 lệnh dưới sau đó nhập mật khẩu
+- Gõ lần lượt 2 lệnh dưới sau đó nhập mật khẩu là `Welcome123`
 	```sh
 	openstack --os-auth-url http://controller:35357/v3 \
   	--os-project-domain-name default --os-user-domain-name default \
@@ -395,19 +405,11 @@
 
 	![Imgur](http://i.imgur.com/10Rg5Bd.png)
 
+<a name=I4></a>
 ### 4. Cài đặt Glance
 ***
 `Glance` là dịch vụ cung cấp các image (các hệ điều hành đã được đóng gói sẵn), các image này sử dụng theo cơ chế template để tạo ra các máy ảo. )
 - Lưu ý: Thư mục chứa các file images trong hướng dẫn này là `/var/lib/glance/images/`
-
-
-- Glance có các thành phần sau: 
- - glance-api:
- - glance-registry:
- - Database:
- - Storage repository for image file:
- - Metadata definition service
-
 
 ### 4.1. Tạo database và endpoint cho `glance`
 ***
@@ -415,7 +417,7 @@
 #### 4.1.1 Tạo database cho `glance`
 - Đăng nhập vào mysql
 	```sh
-	mysql -uroot -pWelcome123
+	mysql -u root -pWelcome123
 	```
 
 - Tạo database và gán các quyền cho user `glance` trong database glance
@@ -579,6 +581,7 @@
 - Nếu kết quả lệnh trên hiển thị như bên dưới thì dịch vụ `glance` đã cài đặt thành công.
 	![Imgur](http://i.imgur.com/wcbxPwJ.png)
 
+<a name=I5></a>
 ### 5. Cài đặt NOVA (Compute service)
 ***
 
@@ -592,7 +595,7 @@
 - Tạo database:
 	- Đăng nhập vào database với quyền `root`
 	```sh
-	mysql -uroot -pWelcome123
+	mysql -u root -pWelcome123
 	```
 
 	- Tạo database nova_api, nova, và nova_cell0:
@@ -723,6 +726,7 @@
 	```sh
 	[api_database]
 	# ...
+	#connection=sqlite:////var/lib/nova/nova.sqlite
 	connection = mysql+pymysql://nova:Welcome123@controller/nova_api
 
 	[database]
@@ -798,7 +802,7 @@
 
 -  Tạo database cho `nova_api`
 	```sh
-	 su -s /bin/sh -c "nova-manage api_db sync" nova
+	su -s /bin/sh -c "nova-manage api_db sync" nova
 	```
 
 - Đăng ký cell0 database:
@@ -841,8 +845,8 @@
 
 	![Imgur](http://i.imgur.com/FGcHUZ4.png)
 
-
-### 6. Cài đặt NEUTRON(Networking service)
+<a name=I6></a>
+### 6. Cài đặt NEUTRON (Networking service)
 ***
 
 ### 6.1. Giới thiệu về `neutron`
@@ -854,7 +858,7 @@
 - Tạo database cho neutron
  	- Đăng nhập vào `neutron`
 	 ```sh
-	 mysql -uroot -pWelcome123
+	 mysql -u root -pWelcome123
 	 ```
 
 	- Tạo database `neutron` và phân quyền:
@@ -1044,14 +1048,14 @@
 	```sh
 	cp /etc/neutron/metadata_agent.ini /etc/neutron/metadata_agent.ini.orig
 	```
-
-- Trong section `[DEFAULT]` khai báo mới hoặc sửa thành dòng dưới
+- Sửa file `vi /etc/neutron/metadata_agent.ini`
+	- Trong section `[DEFAULT]` khai báo mới hoặc sửa thành dòng dưới
 	```sh
 	nova_metadata_ip = controller
 	metadata_proxy_shared_secret = Welcome123
 	```
-- Trong file `/etc/nova/nova.conf`
-- Trong section `[neutron]` khai báo mới hoặc sửa thành dòng dưới (thêm section `[neutron]`):
+- Sửa trong file `/etc/nova/nova.conf`
+	- Trong section `[neutron]` khai báo mới hoặc sửa thành dòng dưới (thêm section `[neutron]`):
 	```sh
 	[neutron]
 	url = http://controller:9696
@@ -1184,6 +1188,7 @@ openstack extension list --network
 
 ![Imgur](http://i.imgur.com/s7xDXeg.png)
 
+<a name=I7></a>
 ### 7. Cài đặt HORIZON (dashboad)
 ***
 - HORIZON hay còn gọi là dashboad - cung cấp giao diện trên web để người dùng có thể sử dụng OpenStack

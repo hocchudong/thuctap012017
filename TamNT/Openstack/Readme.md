@@ -1,0 +1,1 @@
+ # Tổng hợp các báo cáo về Openstack =]

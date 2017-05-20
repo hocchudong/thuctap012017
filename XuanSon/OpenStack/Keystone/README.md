@@ -7,6 +7,7 @@
 - [Token Formats](docs/Token%20Formats.md)
 - [Keystone’s Component and Workflow](docs/Keystone’s%20Component%20and%20Workflow.md)
 - [Define Role](docs/Define%20Role.md)
+- [Update Keystone in Ocata, Pike](docs/Update%20Keystone%20in%20Ocata,%20Pike.md)
 
 
 ## Thực hành

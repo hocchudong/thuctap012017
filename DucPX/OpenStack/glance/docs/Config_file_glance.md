@@ -3,7 +3,7 @@
 ## Mục lục
 - [Cấu hình lữu trữ image ở nhiều nơi trong filesystem](#multi)
 - [Cấu hình các định dạng disk được hỗ trợ](#format)
-
+- [Cấu hình xác thực với keystone](#authkeystone)
 
 <a name=multi></a>
 ### Cấu hình lữu trữ image ở nhiều nơi trong filesystem.
@@ -41,3 +41,24 @@
 
 	disk_formats = ami,ari,aki,vhd,vhdx,vmdk,raw,qcow2,vdi,iso,ploop.root-tar
 	```
+
+<a name=authkeystone></a>
+### Cấu hình xác thực với keystone
+#### Cấu hình glance server để sử dụng keystone
+- Keystone được tích hợp với glance thông qua sử dụng middleware. Các file cấu hình mặc định cho cả glance API và glance registry sử dụng phần duy nhất của middleware được gọi là `unauthenticated-context`. Điều này phát sinh một ngữ cảnh yêu cầu chứa thông tin xác thực rỗng. Để cấu hình glance sử dụng keystone, xác thực token và trong ngữ cảnh middleware thì phải được triển khai ở `unauthenticated-context` của middleware. `authtoken` middleware thực hiện xác thực token xác thực (authentication token validation) và lấy thông tin xác thực user thực tế. 
+
+- **Cấu hình glance API để sử dụng keystone**
+- Để cấu hình glance api sử dung keystone, hãy chắc chắn rằng khai báo hai phần của middleware tồn tại trong `glance-api-paste.ini`.
+	- ví dụ:
+	```sh
+	[filter:authtoken]
+	paste.filter_factory = keystonemiddleware.auth_token:filter_factory
+	auth_url = http://localhost:35357
+	project_domain_id = default
+	project_name = service_admins
+	user_domain_id = default
+	username = glance_admin
+	password = password1234
+	```
+	- giá trị các biến ở đây tùy thuộc vào hệ thống của bạn. Tham khảo về [Middleware tại đây](../../Keystone/docs/Middlewarearchitecture.md)
+

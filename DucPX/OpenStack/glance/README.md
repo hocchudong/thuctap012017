@@ -24,3 +24,4 @@
   - [4. Thực hiện deactivate image](./docs/Curl_glance.md#4)
   - [5. Reactivate image](./docs/Curl_glance.md#5)
   - [6. Xóa image](./docs/Curl_glance.md#6)
+- [4. Guide định nghĩa role trong glance](./docs/Guide_define_role.md)

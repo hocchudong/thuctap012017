@@ -1,6 +1,21 @@
 # Lý thuyết
 
-[- Tìm hiểu tổng quan về Glance: các thành phần, cấu trúc, ...](./1.Tim_hieu_Glance_trong_Openstack.md)
+[Tìm hiểu tổng quan về Glance:](./1.Tim_hieu_Glance_trong_Openstack.md)
+
+\- [Các thành phần.](./1.Tim_hieu_Glance_trong_Openstack.md#2)
+
+\- [Kiến trúc Glance](./1.Tim_hieu_Glance_trong_Openstack.md#3)
+
+\- [Glance image format](./1.Tim_hieu_Glance_trong_Openstack.md#4)
+
+\- [Luồng trạng thái của Image trong Glance](./1.Tim_hieu_Glance_trong_Openstack.md#5)
+
+\- [Image và Instance](./1.Tim_hieu_Glance_trong_Openstack.md#6)
+
+\- [Glance image cache](./1.Tim_hieu_Glance_trong_Openstack.md#7)
+
+\- [Glance Image Signing and Verification](./1.Tim_hieu_Glance_trong_Openstack.md#8)
+
 
 ## Thực thành
 

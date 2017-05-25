@@ -16,7 +16,8 @@
 
 
 - Usermode Networking
-
+	
+	+ Thông thường, guest OS ( Ubuntu ) được gán mặc định với card mạng có địa chỉ ip trong dải *192.168.122.0/24* và host OS ( Ubuntu ) được truy cập thông qua địa chỉ *192.168.122.1*.
 
 # Nội dung khác
 

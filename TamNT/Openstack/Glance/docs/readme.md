@@ -23,7 +23,9 @@
 
 [- Thực hiện một số thao tác quản lý image trong Glance: sử dụng câu lệnh glance command lind, openstack client và thao tác tới API của Glance sử dụng cURL.](./3.Cac_thao_tac_su_dung_Glance.md)
 
+## Tổng kết 
 
+[Tổng kết Glance bằng biểu đồ mind map.](./Glance.mmap)
 
 
 

@@ -33,7 +33,7 @@
   - [2. UUID Tokens](./docs/Token_Format.md#uuid)
   - [3. PKI Tokens](./docs/Token_Format.md#pki)
   - [4. Fernet Tokens](./docs/Token_Format.md#fernet)
-
+- [Middleware architecture](./docs/Middlewarearchitecture.md)
 
 ## Thực hành
 - [Cài đặt keystone](./docs/Install_Openstack_OCATA.md#I3)

@@ -10,7 +10,7 @@ scripts cài đặt Ocata theo docs [trang chủ.](https://docs.openstack.org/oc
 
 ![img](../Keystone/images/ipplan.png)
 
-## Hướng dẫn chạy scripts cài Keystone trên node controller
+## Hướng dẫn chạy scripts cài trên node controller và một node compute là compute1
 
 - Download các file scripts.
 
@@ -78,11 +78,11 @@ scripts cài đặt Ocata theo docs [trang chủ.](https://docs.openstack.org/oc
 
 	Kết quả trả về như sau là thành công: 
 
-		```
-		openstack server list
-		+--------------------------------------+----------------------+--------+---------------------------+------------+
-		| ID                                   | Name                 | Status | Networks                  | Image Name |
-		+--------------------------------------+----------------------+--------+---------------------------+------------+
-		| 22cd963d-2355-4198-aac8-797c89330905 | selfservice-instance | ACTIVE | selfservice=192.168.100.9 | cirros     |
-		+--------------------------------------+----------------------+--------+---------------------------+------------+
-		```
+	```
+	openstack server list
+	+--------------------------------------+----------------------+--------+---------------------------+------------+
+	| ID                                   | Name                 | Status | Networks                  | Image Name |
+	+--------------------------------------+----------------------+--------+---------------------------+------------+
+	| 22cd963d-2355-4198-aac8-797c89330905 | selfservice-instance | ACTIVE | selfservice=192.168.100.9 | cirros     |
+	+--------------------------------------+----------------------+--------+---------------------------+------------+
+	```

@@ -37,7 +37,7 @@ service chrony restart
 sleep 3
 apt-get install -y software-properties-common
 add-apt-repository -y cloud-archive:ocata
-apt-get update && apt-get dist-upgrade
+apt-get -y update && apt-get -y dist-upgrade
 
 sleep 3
 apt-get install -y python-openstackclient

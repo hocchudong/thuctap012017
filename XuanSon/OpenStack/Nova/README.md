@@ -1,19 +1,16 @@
-# GHI CHÉP VỀ GLANCE PROJECT
+# GHI CHÉP VỀ NOVA PROJECT
 
 
 ## Lý thuyết
-- [Lý thuyết Glance](docs/Lý%20thuyết%20Glance.md)
-- [Glance database](docs/Glance%20database.md)
+- [Giới thiệu, các dịch vụ và thành phần](docs/Giới%20thiệu%2C%20các%20dịch%20vụ%20và%20thành%20phần.md)
+- [Nova, Libvirt và KVM](docs/Nova%2C%20Libvirt%20và%20KVM.md)
+- [Quá trình boot một VM trong OpenStack](docs/Quá%20trình%20boot%20một%20VM%20trong%20OpenStack.md)
 
 
 ## Thực hành
-- [Config Glance](docs/Config%20Glance.md)
-- [Glance command](docs/Glance%20command.md)
-- [Multiple store locations for Glance images](docs/Multiple%20store%20locations%20for%20Glance%20images.md)
-
+- [Nova command](docs/Nova%20command.md)
 
 ## Scripts install Glance 
-- [Scripts install Glance](./scripts)
 
 
 ## Tài liệu tham khảo

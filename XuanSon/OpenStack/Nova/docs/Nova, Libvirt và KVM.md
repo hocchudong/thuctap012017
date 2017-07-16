@@ -1,4 +1,4 @@
-# Nova - Nova, Libvirt và KVM
+# Nova, Libvirt và KVM
 
 # Mục lục
 - [3.Nova, Libvirt và KVM](#3)

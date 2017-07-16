@@ -1,4 +1,4 @@
-# Nova- Quá trình boot một VM trong OpenStack
+# Quá trình boot một VM trong OpenStack
 
 
 # 5.Quá trình boot một VM trong OpenStack

@@ -1,7 +1,4 @@
-# Nova - Quản lý quotas
-
-
-
+# Quản lý quotas
 
 # 6.Quản lý quotas
 ## 6.1.Khái niệm

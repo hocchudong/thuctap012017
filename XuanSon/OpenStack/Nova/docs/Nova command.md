@@ -1,4 +1,4 @@
-# Nova - Nova command
+# Nova command
 
 
 # MỤC LỤC

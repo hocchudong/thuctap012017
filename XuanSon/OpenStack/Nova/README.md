@@ -9,6 +9,7 @@
 
 ## Thực hành
 - [Nova command](docs/Nova%20command.md)
+- [Quản lý quotas](docs/Quản_lý_quotas.md)
 
 ## Scripts install Nova 
 

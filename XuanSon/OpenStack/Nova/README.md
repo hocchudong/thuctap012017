@@ -10,7 +10,7 @@
 ## Thực hành
 - [Nova command](docs/Nova%20command.md)
 
-## Scripts install Glance 
+## Scripts install Nova 
 
 
 ## Tài liệu tham khảo

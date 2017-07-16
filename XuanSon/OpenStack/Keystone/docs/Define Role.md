@@ -20,7 +20,7 @@ For example, the Compute service features API calls to list instances, volumes, 
 
 <a name="2"></a>
 # 2.Cấu trúc file policy.json
-\- File `policy.json` gồm có policies và aliases của form target:rule hoặc alias:definition, riêng rẽ bởi dấu phấy và đặt trong ngoặc nhọn.  
+\- File `policy.json` gồm có policies và aliases của form target:rule hoặc alias:definition, riêng rẽ bởi dấu phấy và đặt trong ngoặc kép.  
 \- Cú pháp:  
 ```
 {

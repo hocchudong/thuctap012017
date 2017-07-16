@@ -1,4 +1,4 @@
-# NOVA - Giới thiệu về Nova, các dịch vụ và thành phần của Nova
+# Giới thiệu về Nova, các dịch vụ và thành phần của Nova
 
 # MỤC LỤC
 - [1.Giới thiệu về Nova](#1)

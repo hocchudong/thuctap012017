@@ -6,11 +6,10 @@
 - [Nova, Libvirt và KVM](docs/Nova%2C%20Libvirt%20và%20KVM.md)
 - [Quá trình boot một VM trong OpenStack](docs/Quá%20trình%20boot%20một%20VM%20trong%20OpenStack.md)
 
-
 ## Thực hành
 - [Nova command](docs/Nova%20command.md)
 - [Quản lý quotas](docs/Quản_lý_quotas.md)
-
+- [Config_Nova](docs/Config_Nova.md)
 ## Scripts install Nova 
 
 

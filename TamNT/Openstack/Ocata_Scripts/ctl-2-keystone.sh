@@ -73,7 +73,7 @@ source admin-openrc
 openstack token issue
 
 echocolor "user demo xin cap phat token: "
-cat << EOF > demo_openrc
+cat << EOF > demo-openrc
 export OS_PROJECT_DOMAIN_NAME=Default
 export OS_USER_DOMAIN_NAME=Default
 export OS_PROJECT_NAME=demo
@@ -85,7 +85,7 @@ export OS_IMAGE_API_VERSION=2
 
 EOF
 
-source demo_openrc
+source demo-openrc
 openstack token issue
 
 

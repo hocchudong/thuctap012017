@@ -28,7 +28,7 @@ server 0.asia.pool.ntp.org iburst \
 server 1.asia.pool.ntp.org iburst \
 server 2.asia.pool.ntp.org iburst/g' $ntpfile
 
-echo "allow 10.10.10.61/24" >> $ntpfile
+echo "allow 10.10.10.0/24" >> $ntpfile
 
 service chrony restart
 
@@ -37,7 +37,7 @@ service chrony restart
 sleep 3
 apt-get install -y software-properties-common
 add-apt-repository -y cloud-archive:ocata
-apt-get update && apt-get dist-upgrade
+apt-get -y update && apt-get -y dist-upgrade
 
 sleep 3
 apt-get install -y python-openstackclient

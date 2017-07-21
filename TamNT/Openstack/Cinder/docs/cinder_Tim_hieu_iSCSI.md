@@ -273,7 +273,7 @@ sudo apt-get install iscsitarget iscsitarget-source iscsitarget-dkms -y
 
 [1] http://sohoa.vnexpress.net/tin-tuc/kinh-nghiem/hoi-ve-scsi-9-1530935.html 
 
-[2] https://anninhmang.net/cong-cu/thong-luu-tru-das-nas-san-iscsi-san/ 
+[2] https://www.howtoforge.com/iscsi_on_linux 
 
 [3] http://ducquang415.com/view-45717/iscsi-la-gi-gioi-thieu-cach-map-o-cung-nas-thanh-1-o-cung-local/
 
@@ -282,5 +282,3 @@ sudo apt-get install iscsitarget iscsitarget-source iscsitarget-dkms -y
 [5] http://dalaris.com/how-to-configure-iscsi-target-and-iscsi-initiator-using-ubuntu-14-04-1/ 
 
 [6] https://github.com/hocchudong/Ghichep-Storage/blob/master/TriMQ/Lab-iSCSI.md 
-
-[7] https://www.howtoforge.com/iscsi_on_linux 

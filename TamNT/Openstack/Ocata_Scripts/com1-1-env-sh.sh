@@ -29,5 +29,5 @@ add-apt-repository cloud-archive:ocata -y
 apt-get update && apt-get dist-upgrade -y
 apt-get install python-openstackclient -y
 
-echocolorbg "Hoan thanh setup moi truong cai dat openstack node controller! =]"
+echocolorbg "Hoan thanh setup moi truong cai dat openstack node compute1! =]"
 printf "\n \n"

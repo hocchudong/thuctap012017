@@ -170,7 +170,7 @@ sudo apt-get install iscsitarget iscsitarget-source iscsitarget-dkms -y
 				
 		- Trong đó `yyyy-mm` là thời điểm mà domain `<reversed domain name>` vẫn còn hoạt động. Thường thì phần này cấu hình tùy ý.
 				
-		- `incominguser <username> <password>` : thông tin về username và password của nó trên máy client để login và sử dụng thiết bị storage. 
+		- `incominguser <username> <password>` : thông tin về username và password (tùy ý) của nó trên máy client để login và sử dụng thiết bị storage. 
 				
 		- Dòng `Lun`: xác định đường dẫn tới file .img mà tạo ra làm iSCSI target chia sẻ với iSCSI initiator. 
 				
@@ -240,21 +240,27 @@ sudo apt-get install iscsitarget iscsitarget-source iscsitarget-dkms -y
 
 -	Đầu tiên, xác định phương pháp xác thực, ở đây sử dụng CHAP:
 
-	`iscsiadm -m node –targetname “iqn.iqn.2017-07.ttp.vn:storage.lun1″ –portal “10.10.10.10:3260″ –op=update –name node.session.auth.authmethod –value=CHAP`
+	```
+	iscsiadm -m node --targetname "iqn.2017--07.ttp.vn:storage.lun1" --portal "10.10.10.10:3260" --op=update --name node.session.auth.authmethod --value=CHAP
+	```
 
 -	Thứ hai là cấu hình username: 
 
-	`iscsiadm -m node –targetname “iqn.iqn.2017-07.ttp.vn:storage.lun1″ –portal “10.10.10.10:3260″ –op=update –name node.session.auth.username –value=winter`
+	```
+	iscsiadm -m node --targetname "iqn.2017-07.ttp.vn:storage.lun1" --portal "10.10.10.10:3260" --op=update --name node.session.auth.username --value=winter
+	```
 
 -	Thứ ba là cấu hình password: 
 
-	`iscsiadm -m node –targetname “iqn.iqn.2017-07.ttp.vn:storage.lun1″ –portal “10.10.10.10:3260″ –op=update –name node.session.auth.password –value=toilatam`
+	```
+	iscsiadm -m node --targetname "iqn.2017-07.ttp.vn:storage.lun1" --portal "10.10.10.10:3260" --op=update --name node.session.auth.password --value=toilatam
+	```
 
 -	Cuối cùng, sau khi đã xác định các thông tin để xác thực, dùng câu lệnh sau để đăng nhập vào target : 
 
-	`iscsiadm -m node –targetname “iqn.iqn.2017-07.ttp.vn:storage.lun1″ –portal “10.10.10.10:3260″ –login`
+	`iscsiadm -m node --targetname "iqn.2017-07.ttp.vn:storage.lun1" --portal "10.10.10.10:3260" --login`
 
--	Nếu không được thì chỉnh sửa vào file `/etc/iscsi/nodes/iqn.2017-07.ttp.vn:storage.lun1/10.10.10.10,3260,1/default` thêm các dòng cấu hình như sau: 
+-	Hoặc chỉnh sửa vào file `/etc/iscsi/nodes/iqn.2017-07.ttp.vn:storage.lun1/10.10.10.10,3260,1/default` thêm các dòng cấu hình như sau: 
 
 	```
 	node.session.auth.authmethod = CHAP

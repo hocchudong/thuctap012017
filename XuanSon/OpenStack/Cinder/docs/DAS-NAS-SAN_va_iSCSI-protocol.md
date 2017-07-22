@@ -2,6 +2,19 @@
 
 
 # MỤC LỤC
+- [1.DAS](#1)
+- [2.NAS](#2)
+- [3.SAN](#3)
+	- [3.1.Tổng quan](#3.1)
+	- [3.2.iSCSI protocol](#3.2)
+	- [3.3.LAB iSCSI protocol](#3.3)
+		- [3.3.1.Tổng quan](#3.3.1)
+		- [3.3.2.Thực hành](#3.3.2)
+			- [a.Trên iSCSI Target](#a)
+			- [b.Trên iSCSI Initiator](#b)
+- [4.So sánh NAS và SAN](#4)
+
+
 
 <img src="../images/16.png" />
 

@@ -2,7 +2,18 @@
 
 
 # MỤC LỤC
-
+- [1.Khái niệm về Cinder](#1)
+- [2.Một số hình thức lưu trữ trong OpenStack](#2)
+- [3.Cinder architecture](#3)
+- [4.Cinder driver](#4)
+- [5.Cinder attach flow](#5)
+- [6.Cinder workflow](#6)
+	- [6.1.Cinder Processes Concept Diagram](#6.1)
+	- [6.2.Volume Creation Workflow](#6.2)
+	- [6.3.Volume Attach Workflow](#6.3)
+- [7.Cinder status](#7)
+- [8.Cinder backup](#8)
+- [9.Advanced feature](#9)
 
 <a name="1"></a>
 
@@ -135,7 +146,7 @@ volume_driver = cinder.volume.drivers.lvm.LVMISCSIDriver
 
 <a name="7"></a>
 
-## 7.Cinder status
+# 7.Cinder status
 
 |Status|Mô tả|
 |---|---|

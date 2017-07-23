@@ -16,9 +16,9 @@
 
 
 
-<img src="../images/16.png" />
+<img src="images/DAS-NAS-SAN_va_iSCSI-protocol-1.png" />
 
-<img src="../images/17.png" />
+<img src="images/DAS-NAS-SAN_va_iSCSI-protocol-2.png" />
 
 <a name="1"></a>
 # 1.DAS
@@ -60,7 +60,7 @@
 ### 3.3.1.Tổng quan
 \- Mô hình:  
 
-<img src="../images/18.png" />
+<img src="images/DAS-NAS-SAN_va_iSCSI-protocol-3.png" />
 
 \- Trong đó:  
 - iSCSI Initiator: là Client sử dụng giao thức iSCSI để giao tiếp và sử dụng thiết bị lưu trữ bên Target.
@@ -110,7 +110,7 @@ mkdir /storage
 dd if=/dev/zero of=/storage/lun1.img bs=1024k count=1000
 ```
 
-<img src="../images/19.png" />
+<img src="images/DAS-NAS-SAN_va_iSCSI-protocol-4.png" />
 
 
 ( Nếu bạn muốn dụng logical volume, bạn có thể tạo logical volume storage_lun1trong volume group vg0 như sau:  
@@ -185,14 +185,14 @@ iscsiadm -m discovery -t st -p 172.16.69.101
 
 trong đó `172.16.69.101` là **IP của iSCSI Target**.
 
-<img src="../images/20.png" />
+<img src="images/DAS-NAS-SAN_va_iSCSI-protocol-5.png" />
 
 *) Xem các node đã khám phá được:  
 ```
 iscsiadm –m node
 ```
 
-<img src="../images/21.png" />
+<img src="images/DAS-NAS-SAN_va_iSCSI-protocol-6.png" />
 
 *) Thiết lập về các thiết bị được lưu trữ trong thư mục `/etc/iscsi/nodes` .Trong bài lab này, nó được lưu trữ trong file `/etc/iscsi/nodes/iqn.2017-07.com.example:storage.lun1/172.16.69.101,3260,1/default` .  
 Ta có sửa trong file default bằng cách thiết lập các dòng như sau:  
@@ -214,7 +214,7 @@ iscsiadm -m node --targetname "iqn.2017-07.com.example:storage.lun1" --portal "1
 iscsiadm -m node --targetname "iqn.2017-07.com.example:storage.lun1" --portal "172.16.69.101:3260" --login
 ```
 
-<img src="../images/22.png" />
+<img src="images/DAS-NAS-SAN_va_iSCSI-protocol-7.png" />
 
 ( Ta có thể logout:  
 ```
@@ -225,7 +225,7 @@ iscsiadm -m node --targetname "iqn.2017-07.com.example:storage.lun1" --portal "1
 
 *) Sau khi login thành công, ta kiểm tra ổ cứng mới có được:  
 
-<img src="../images/23.png" />
+<img src="images/DAS-NAS-SAN_va_iSCSI-protocol-8.png" />
 
 \- Do ở đây mình đã thiết lập phân vùng sdb1 từ trước.
 \- Sau khi đã có ổ cứng, ta có thể tạo phân dùng, format phân vùng và mount để dùng bình thường.
@@ -233,6 +233,6 @@ iscsiadm -m node --targetname "iqn.2017-07.com.example:storage.lun1" --portal "1
 
 <a name="4"></a>
 # 4.So sánh NAS và SAN
-<img src="../images/24.png" />
+<img src="images/DAS-NAS-SAN_va_iSCSI-protocol-9.png" />
 
 

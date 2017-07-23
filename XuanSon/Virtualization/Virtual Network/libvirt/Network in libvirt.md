@@ -102,14 +102,14 @@ virsh edit <name-of-vm>
 Tìm đến section `<interface>`  
 ``` 
 <interface type="network">
-   <source bridge="default"/>
+   <source network="default"/>
    <mac address="52:54:00:4f:47:f2"/>
 </interface>
 ```
 để nguyên :  
 ```
 <interface type="bridge">
-  <source netowrk="br"/>
+  <source bridge="br"/>
   <mac address="52:54:00:4f:47:f2"/>
 </interface>
 ```

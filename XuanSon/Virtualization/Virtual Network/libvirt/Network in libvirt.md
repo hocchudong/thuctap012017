@@ -94,6 +94,7 @@ và sử defualt thành virtual network bạn muốn VM connected.
 
 <a name="3.3"></a>
 ## 3.3. Config VM connected virtual switch 
+- Note: Cách này chỉ áp dụng với linux bridge, vì mặc định VM hiểu bridge là linux bridge. Với những công nghệ khác như openvswitch, ta phải tạo network tương ứng với bridge có sẵn, sau đó mới chỉ VM gắn vào network đó.  
 Open the XML configuration for the VM in a text editor.  
 ```
 virsh edit <name-of-vm>

@@ -25,7 +25,7 @@
 
 - **SCSI** là viết tắt cho **Small Computer System Interface**.
 
-- SCSI thực chất là 1 thẻ giao diện dùng để kết nối các thiết bị phần cứng trong và ngoài PC (Vi dụ: CD rom; ổ cứng v.v...). Tất nhiên tốc độ truyền dữ liệu của nó cũng nhanh hơn so với giao diện IDE (Thường dùng để nối ổ cứng với Mainboard). SCSI được dùng trong các máy chủ. Nhưng bây giờ đã có USB2.0 và IEEE là 2 giao diện đang phổ biến với tốc độ truyền dữ liệu rất cao và dễ dàng cài đặt hơn SCSI. Theo tôi nghĩ khi nói giao diện SCSI thì ý là phương thức kết nối giữa 1 phần cứng với PC, còn khi nói ổ SCSI nghĩa là cổng nối nằm trên phần cứng (vd: CD rom v.v...).
+- SCSI thực chất là 1 thẻ giao diện dùng để kết nối các thiết bị phần cứng trong và ngoài PC (Vi dụ: CD rom; ổ cứng v.v..). Tất nhiên tốc độ truyền dữ liệu của nó cũng nhanh hơn so với giao diện IDE (Thường dùng để nối ổ cứng với Mainboard). SCSI được dùng trong các máy chủ. Nhưng bây giờ đã có USB2.0 và IEEE là 2 giao diện đang phổ biến với tốc độ truyền dữ liệu rất cao và dễ dàng cài đặt hơn SCSI. Theo tôi nghĩ khi nói giao diện SCSI thì ý là phương thức kết nối giữa 1 phần cứng với PC, còn khi nói ổ SCSI nghĩa là cổng nối nằm trên phần cứng (vd: CD rom v.v..).
 
 - Thiết bị (thường là lưu trữ) sử dụng giao diện SCSI này sẽ được gọi là "ổ SCSI", card PCI (còn gọi là SCSI controller) cho phép sử dụng giao diện này trên một máy tính (không có sẵn SCSI) được gọi là "card SCSI". SCSI có tốc độ nhanh hơn IDE tuy nhiên cách quản lý phức tạp hơn, đắt hơn và không được phổ biến bằng IDE. SCSI thường được sử dụng nhiều trong máy chủ.
 
@@ -69,7 +69,7 @@
 
 - Minh họa cách hoạt động của iSCSI trên NAS Synology và các máy tính:
 
-	![img](../images/3.1.png)
+	![img](./images/3.1.png)
 
 <a name = '3'></a>
 # 3. Cách thức hoạt động của iSCSI
@@ -90,19 +90,19 @@
 
 - Hệ thống disk iSCSI:
 
-	![img](../images/3.2.png)
+	![img](./images/3.2.png)
 
 - **LUN (Logical Unit Number)**: là một con số logic dùng để tập hợp các ổ đĩa chạy bằng các loại giao thức SCSI, iSCSI và Fibre Channel. LUN là nơi quản lý tập trung các các ổ đĩa trong hệ thống Storage Network (Storage Area Network – SAN). LUNS sẽ gắn cho iSCSI một con số logic và gọi là ***“Target”***.
 
 - iSCSI gồm 2 thành phần **iSCSI Target** và **iSCSI Initiator**:
 
-	![img](../images/3.3.png)
+	![img](./images/3.3.png)
 
 	- Khi một server hoặc một thiết bị nào đó muốn kết nối tới hệ thống iSCSI SAN, chúng sẽ dùng một software gọi là iSCSI Initiator để kết nối tới con số “Target” này. Và con số này sẽ quản lý kết nối giữa iSCSI Target và iSCSI Initiator.
 
 	- Từ Windows Server 2008 trở về sau, Microsoft hỗ trợ tính năng tạo ra hệ thống lưu trữ iSCSI SAN và chúng được gọi là “iSCSI Targets Server”
 
-	![img](../images/3.4.png)
+	![img](./images/3.4.png)
 
 <a name = '4'></a>
 # 4. LAB sử dụng iSCSI
@@ -112,7 +112,7 @@
 
 - Mô hình: 
 
-	![img](../images/3.5.png)
+	![img](./images/3.5.png)
 
 
 - Các máy iSCSI-target  và iSCSI-initiator cùng là Ubuntu server  14.04.
@@ -233,7 +233,7 @@ sudo apt-get install iscsitarget iscsitarget-source iscsitarget-dkms -y
 
 	Kết quả trả về như sau:
 
-	![img](../images/3.6.png)
+	![img](./images/3.6.png)
 
 
 #### Cấu hình định danh username trên initiator
@@ -270,7 +270,7 @@ sudo apt-get install iscsitarget iscsitarget-source iscsitarget-dkms -y
 
 -	Đăng nhập lại, xác nhận thành công và kiểm tra lại được như sau là ok:
 
-	![img](../images/3.7.png)
+	![img](./images/3.7.png)
 
 -	Sau khi đã được gán ổ cứng từ target server, ta có thể sử dụng ổ `sdb` mới kia như một ổ cứng thực sự trên máy mình.  
 

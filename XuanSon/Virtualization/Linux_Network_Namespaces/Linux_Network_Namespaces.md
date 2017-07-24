@@ -11,6 +11,7 @@
 	- [3.2.Linux bridge và 2 veth pairs](#3.2)
 	- [3.3.Openvswitch và 2 veth pairs](#3.3)
 	- [3.4.Openvswitch và 2 openvswitch ports](#3.4)
+- [Tài liệu tham khảo](#tailieuthamkhao)
 
 
 <a name="1"></a>
@@ -287,7 +288,16 @@ ip netns exec ns2 ip a add 10.0.0.2/24 dev tap2
 
 => Thành công!
 
-
+<a name="tailieuthamkhao"></a>
+# Tài liệu tham khảo
+- https://en.wikipedia.org/wiki/Linux_namespaces
+- http://manpages.ubuntu.com/manpages/xenial/en/man8/ip-netns.8.html
+- http://abregman.com/2016/09/29/linux-network-namespace/
+- http://blog.scottlowe.org/2013/09/04/introducing-linux-network-namespaces/
+- http://www.opencloudblog.com/?p=42
+- LAB: http://www.opencloudblog.com/?p=66
+- https://www.youtube.com/watch?v=_WgUwUf1d34
+- http://www.packetu.com/2012/07/12/vrfing-101-understing-vrf-basics/
 
 
 

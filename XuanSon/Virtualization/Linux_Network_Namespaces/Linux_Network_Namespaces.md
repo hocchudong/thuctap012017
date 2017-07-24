@@ -2,6 +2,15 @@
 
 
 # MỤC LỤC
+- [1.Giới thiệu](#1)
+	- [1.1. Linux Namespaces](#1.1)
+	- [1.2.Linux Network Namespaces](#1.2)
+- [2.Làm việc với network namespace](#2)
+- [3.LAB](#3)
+	- [3.1.veth pair](#3.1)
+	- [3.2.Linux bridge và 2 veth pairs](#3.2)
+	- [3.3.Openvswitch và 2 veth pairs](#3.3)
+	- [3.4.Openvswitch và 2 openvswitch ports](#3.4)
 
 
 <a name="1"></a>

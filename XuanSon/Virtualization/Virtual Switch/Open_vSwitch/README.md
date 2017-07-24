@@ -1,11 +1,11 @@
-# Linux bridge
+# Open vSwitch
 
 ## Lý thuyết
-- [Linux bridge cơ bản](Lab_tinh_nang_Linux-bridge.md)
+- [Open vSwitch cơ bản](OpenvSwitch_basic.md)
 
 
 ## LAB
-- [Lab tính năng Linux bridge](Lab_tinh_nang_Linux-bridge.md)
+- [Lab tính năng Open vSwitch](Lab_tinh_nang_co_ban.md)
 
 
 ## Tài liệu tham khảo

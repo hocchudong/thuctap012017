@@ -1,7 +1,27 @@
 # Cơ bản về Open vSwitch
 
 # MỤC LỤC
-
+- [1.Tổng quan](#1)
+- [2.Open vSwitch architecture](#2)
+- [3.Install openvswitch on Ubuntu Server 16.04](#3)
+- [4.openvswitch command](#4)
+	- [4.1.Switch](#4.1)
+	- [4.2.Ports](#4.2)
+	- [4.3.STP](#4.3)
+- [5.Note quan trọng với Open vSwitch technology](#5)
+	- [5.1.Create vswitch](#5.1)
+		- [5.1.1.Create vswitch bằng command ovs-vsctl add-br](#5.1.1)
+		- [5.1.2.Create vswitch bằng file .xml](#5.1.2)
+	- [5.2.Port](#5.2)
+		- [5.2.1.Port](#5.2.1)
+		- [5.2.2.tap interface and uplink port](#5.2.2)
+			- [5.2.2.1.tap interface](#5.2.2.1)
+            - [5.2.2.2.uplink port](#5.2.2.2)
+- [6.Network mode](#6)
+	- [6.1.Giới thiệu về chế độ bridge với Open vSwitch](#6.1)
+	- [6.2.Cấu hình bridged network trên Ubuntu server 16.04](#6.2)
+		- [a.Sử dụng command](#6.2.a)
+		- [b.Cấu hình trong file /etc/network/interfaces](#6.2.b)
 
 
 
@@ -168,7 +188,7 @@ thì ( chính là NIC ) phải là đã có trong host , câu lệnh này chính
 <img src="images/9.png" />
 
 <a name="5.2.2.2"></a>
-5.2.2.2.uplink port
+#### 5.2.2.2.uplink port
 - Khi gắn 1 pNIC on host với vswitch thì chính là chế độ bridged.
 
 <a name="6"></a>

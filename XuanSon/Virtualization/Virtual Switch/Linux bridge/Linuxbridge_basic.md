@@ -201,9 +201,7 @@ thì <port>  ( chính là NIC ) phải là đã có trong host , câu lệnh nà
 
 
 #### 6.2.2.2.uplink port
-\- Khi gắn 1 pNIC on host với vswitch thì on host chỉ hiện lên duy nhất một interface.  
-
-<img src="http://i.imgur.com/lwL1W2d.png" />
+\- Khi gắn 1 pNIC on host với vswitch thì chính là chế độ bridged.
 
 <a name="6.3"></a>
 ## 6.3.Bridge network với linux bridge

@@ -1,7 +1,7 @@
 # Linux bridge
 
 ## Lý thuyết
-- [Linux bridge cơ bản](Lab_tinh_nang_Linux-bridge.md)
+- [Linux bridge cơ bản](Linuxbridge_basic.md)
 
 
 ## LAB

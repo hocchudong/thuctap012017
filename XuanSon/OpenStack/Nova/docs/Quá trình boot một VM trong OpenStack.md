@@ -1,7 +1,7 @@
 # Quá trình boot một VM trong OpenStack
 
 
-# 5.Quá trình boot một VM trong OpenStack
+# Quá trình boot một VM trong OpenStack
 <img src="../images/nova-quatrinhboot1.png" />  
 <img src="../images/nova-quatrinhboot2.png" />
 

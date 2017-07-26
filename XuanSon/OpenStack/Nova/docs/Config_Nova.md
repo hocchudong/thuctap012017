@@ -1,14 +1,14 @@
-# 7.Config Nova
+# Config Nova
 
 # MỤC LỤC
-- [Controller](#7.1)
-- [Compute](#7.2)
+- [Controller](#1)
+- [Compute](#2)
 
 
 \- Sau đây là các dòng cấu hình cơ bản để cài đặt nova.  
 
-<a name="7.1"></a>
-## 7.1.File /etc/nova/nova.conf trên node controller
+<a name="1"></a>
+## 1.File /etc/nova/nova.conf trên node controller
 \- Trong `[api_database]` và `[database]` sections, cấu hình truy cập database:  
 ```
 [api_database]
@@ -116,8 +116,8 @@ password = PLACEMENT_PASS
 
 Thay `PLACEMENT_PASS` với password bạn cho cho placement user trong Identity service. Comment bất kỳ option nào trong `[placement]` section.
 
-<a name="7.2"></a>
-## 7.2.File /etc/nova/nova.conf trên node compute
+<a name="2"></a>
+## 2.File /etc/nova/nova.conf trên node compute
 \- Trong `[DEFAULT]` section, cấu hình truy cập RabbitMQ message queue :  
 ```
 [DEFAULT]

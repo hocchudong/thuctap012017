@@ -2,29 +2,28 @@
 
 
 # MỤC LỤC
-- [4.Nova command](#4)
-	- [4.1.nova command](#4.1)
-		- [4.1.1.Nova flavor](#4.1.1)
-		- [4.1.2.Nova keypair](#4.1.2)
-		- [4.1.3.Nova security group](#4.1.3)
-		- [4.1.4.Nova instance](#4.1.4)
-		- [4.1.5.Nova interface](#4.1.5)
-	- [4.2.openstack-client command](#4.2)
-		- [4.2.1.Nova flavor](#4.2.1)
-		- [4.2.2.Nova keypair](#4.2.2)
-		- [4.2.3.Nova security group](#4.2.3)
-		- [4.2.4.Nova instance](#4.2.4)
-	- [4.3.Sử dụng Nova API](#4.3)
+- [Nova command](#)
+	- [1.nova command](#1)
+		- [1.1.Nova flavor](#1.1)
+		- [1.2.Nova keypair](#1.2)
+		- [1.3.Nova security group](#1.3)
+		- [1.4.Nova instance](#1.4)
+		- [1.5.Nova interface](#1.5)
+	- [2.openstack-client command](#2)
+		- [2.1.Nova flavor](#2.1)
+		- [2.2.Nova keypair](#2.2)
+		- [2.3.Nova security group](#2.3)
+		- [2.4.Nova instance](#2.4)
+	- [3.Sử dụng Nova API](#3)
 
-<a name="4"></a>
-# 4.Nova command
-<a name="4.1"></a>
-## 4.1.nova command
+
+<a name="1"></a>
+## 1.nova command
 \- Để sử dụng lệnh nova, ta phải cài đặt gói python-novaclient  
 \- Tham khảo: https://docs.openstack.org/cli-reference/nova.html  
 \- Mapping giữa nova command và openstack command: https://docs.openstack.org/python-openstackclient/latest/cli/decoder.html  
-<a name="4.1.1"></a>
-### 4.1.1.Nova flavor
+<a name="1.1"></a>
+### 1.1.Nova flavor
 \- List flavor  
 ```
 nova flavor-list
@@ -80,8 +79,8 @@ nova flavor-access-add m3.large demo
 nova flavor-access-remove m3.large demo
 ```
 
-<a name="4.1.2"></a>
-### 4.1.2.Nova keypair
+<a name="1.2"></a>
+### 1.2.Nova keypair
 \- List keypair  
 - Cú pháp:  
 ```
@@ -124,8 +123,8 @@ Cú pháp:
 nova keypair-delete [--user <user-id>] <name>
 ```
 
-<a name="4.1.3"></a>
-### 4.1.3.Nova security group
+<a name="1.3"></a>
+### 1.3.Nova security group
 \- List security group  
 ```
 nova list-secgroup ubuntu-test
@@ -150,8 +149,8 @@ Cú pháp:
 nova remove-secgroup ubuntu-test default
 ```
 
-<a name="4.1.4"></a>
-### 4.1.4.Nova instance
+<a name="1.4"></a>
+### 1.4.Nova instance
 \- List instamce  
 ```
 nova list
@@ -177,11 +176,28 @@ nova get-vnc-console ubuntu-test novnc
 <img src="../images/nova-command8.png" />
 
 \- Boot instance  
+- Boot từ image:  
 ```
 nova boot --flavor m2.medium --image ubuntu-16.04 --nic net-name=internal --security-groups default --key-name key-test ubuntu-test
 ```
 
 <img src="../images/nova-command9.png" />
+
+- Boot từ volume:  
+```
+nova boot --flavor m2.medium --boot-volume <volume_id> --nic net-name=internal --security-groups default --key-name key-test ubuntu-test
+```
+
+- Attach volume đến instance:  
+```
+nova volume-attach <server-name_or_server-id> <volume-id> [<device>]
+```
+
+- Detach volume khỏi instance:  
+```
+nova volume-detach <server-name_or_server-id> <volume-id>
+```
+
 
 \- Delete instance  
 ```
@@ -227,8 +243,8 @@ nova image-create [--metadata <key=value>] [--show] [--poll]
                          <server> <name>
 ```
 
-<a name="4.1.5"></a>
-### 4.1.5.Nova interface
+<a name="1.5"></a>
+### 1.5.Nova interface
 \- List interface  
 Cú pháp:  
 ```
@@ -249,14 +265,14 @@ Cú pháp:
 nova interface-detach <server> <port_id>
 ```
 
-<a name="4.2"></a>
-## 4.2.openstack-client command
+<a name="2"></a>
+## 2.openstack-client command
 \- Tham khảo:  
 https://docs.openstack.org/python-openstackclient/latest/cli/command-list.html  
 \- Mapping giữa nova command và openstack command: https://docs.openstack.org/python-openstackclient/latest/cli/decoder.html  
 
-<a name="4.2.1"></a>
-### 4.2.1.Nova flavor
+<a name="2.1"></a>
+### 2.1.Nova flavor
 \- List flavor  
 ```
 openstack flavor list
@@ -303,8 +319,8 @@ openstack flavor show m5.test
 
 <img src="../images/nova-command12.png" />
 
-<a name="4.2.2"></a>
-### 4.2.2.Nova keypair
+<a name="2.2"></a>
+### 2.2.Nova keypair
 \- List keypair  
 ```
 openstack keypair list
@@ -338,8 +354,8 @@ Cú pháp:
 openstack keypair delete key-test
 ```
 
-<a name="4.2.3"></a>
-### 4.2.3.Nova security group
+<a name="2.3"></a>
+### 2.3.Nova security group
 \- List security group  
 ```
 openstack security group list
@@ -366,8 +382,8 @@ Cú pháp:
 openstack server remove security group ubuntu-test default
 ```
 
-<a name="4.2.4"></a>
-### 4.2.4.Nova instance
+<a name="2.4"></a>
+### 2.4.Nova instance
 \- List instamce  
 ```
 openstack server list
@@ -401,11 +417,27 @@ openstack console url show --novnc ubuntu-16.04
 <img src="../images/nova-command18.png" />
 
 \- Boot instance  
+- Boot từ image:  
 ```
 openstack server create --image cirros --flavor m1.samll --nic net-id=10a233d8-bb3e-4ead-a6ae-04efc336ec09 --security-group default --key-name key-test ubuntu-test
 ```
 
 <img src="../images/nova-command19.png" />
+
+- Boot từ volume:  
+```
+openstack server create --volume <volume> --flavor m1.samll --nic net-id=10a233d8-bb3e-4ead-a6ae-04efc336ec09 --security-group default --key-name key-test ubuntu-test
+```
+
+- Attach volume đến instance:  
+```
+openstack server add volume [-h] [--device <device>] <server> <volume>
+```
+
+- Dettach volume đến instance:  
+```
+openstack server remove volume <server> <volume>
+```
 
 \- Delete instance  
 ```
@@ -459,8 +491,8 @@ openstack server image create
     <server>
 ```
 
-<a name="4.3"></a>
-## 4.3.Sử dụng Nova API
+<a name="3"></a>
+## 3.Sử dụng Nova API
 \- Tham khảo: https://developer.openstack.org/api-ref/compute/?expanded=list-servers-detail  
 
 

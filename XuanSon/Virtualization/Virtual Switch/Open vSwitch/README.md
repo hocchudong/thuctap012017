@@ -5,7 +5,7 @@
 
 
 ## LAB
-- [Lab tính năng Open vSwitch](Lab_tinh_nang_forward_packet.md)
+- [Lab tính năng forward packet của Open vSwitch](Lab_tinh_nang_forward_packet.md)
 
 
 ## Tài liệu tham khảo

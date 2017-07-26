@@ -51,7 +51,7 @@
 - ovs-testcontroller: 1 OpenFlow controller đơn giản hữu ích.
 
 <a name="3"></a>
-# 3.Install openvswitch on Ubuntu Server 16.04
+# 3.Cài đặt openvswitch trên Ubuntu Server 16.04
 \- Run command sau:  
 ```
 apt-get install openvswitch-switch

@@ -3,7 +3,7 @@
 # MỤC LỤC
 - [1.Tổng quan](#1)
 - [2.Open vSwitch architecture](#2)
-- [3.Install openvswitch on Ubuntu Server 16.04](#3)
+- [3.Cài đặt openvswitch trên Ubuntu Server 16.04](#3)
 - [4.openvswitch command](#4)
 	- [4.1.Switch](#4.1)
 	- [4.2.Ports](#4.2)

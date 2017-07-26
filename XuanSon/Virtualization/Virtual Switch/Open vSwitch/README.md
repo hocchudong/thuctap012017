@@ -1,7 +1,9 @@
 # Open vSwitch
 
 ## Lý thuyết
-- [Open vSwitch cơ bản](OpenvSwitch_basic.md)
+- [Tổng quan về Open vSwitch](OpenvSwitch_basic.md)
+- [Cài đặt OpenvSwitch trên Ubuntu 16.04](#OpenvSwitch_basic.md#3)
+- [Các lệnh Open vSwitch cơ bản](OpenvSwitch_basic.md#4)
 
 
 ## LAB

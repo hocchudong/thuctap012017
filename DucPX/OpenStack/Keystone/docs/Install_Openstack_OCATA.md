@@ -688,29 +688,19 @@
 
 - Tạo endpoint cho `placement `
 	```sh
-	openstack endpoint create --region RegionOne placement public http://controller/placement
+	openstack endpoint create --region RegionOne placement public http://controller:8778
+	
+	openstack endpoint create --region RegionOne placement internal http://controller:8778
+	
+	openstack endpoint create --region RegionOne placement admin http://controller:8778
 	```
-
-	![Imgur](http://i.imgur.com/8KwHqqt.png)
-
-	```sh
-	openstack endpoint create --region RegionOne placement internal http://controller/placement
-	```
-
-	![Imgur](http://i.imgur.com/5vv964S.png)
-
-	```sh
-	openstack endpoint create --region RegionOne placement admin http://controller/placement
-	```
-
-	![Imgur](http://i.imgur.com/KWvOxVy.png)
 
 #### 5.2.2. Cài đặt và cấu hình `nova`
 
 - Cài đặt các gói:
 	```sh
 	apt-get -y install nova-api nova-conductor nova-consoleauth \
-  nova-novncproxy nova-scheduler nova-placement-api
+  	nova-novncproxy nova-scheduler nova-placement-api
 	```
 
 - Sao lưu file `/etc/nova/nova.conf` trước khi cấu hình

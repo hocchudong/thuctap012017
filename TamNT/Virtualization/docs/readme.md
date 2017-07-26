@@ -33,6 +33,8 @@
 
 - [Lab basic với Linux bridge](./Virtual_Switch/1.Linux-Bridge.md#5)
 
+
+
 ## 3.2. Open vSwitch
 
 ### Lý thuyết
@@ -51,4 +53,14 @@
 
 - [ Thực hành lab Vlan với Openvswitch](./Virtual_Switch/3.LAB-VLAN-OVS-KVM.md)
 
+- [Lab VXLAN với Openvswitch](./Virtual_Switch/5.LAB-VXLAN-OVS-KVM.md)
 
+# 4. Tìm hiểu một số virtual network
+
+## 4.1. VXLAN
+
+- [Tìm hiểu VXLAN](./4.Tim_hieu_VXLAN.md)
+
+    - [Tìm hiểu VXLAN là gì? và các khái niệm trong VXLAN](./4.Tim_hieu_VXLAN.md#2)
+
+    - [Cách thức hoạt động trong VXLAN](./4.Tim_hieu_VXLAN.md#2)

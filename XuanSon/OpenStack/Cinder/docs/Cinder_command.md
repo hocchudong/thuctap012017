@@ -2,6 +2,13 @@
 
 
 # MỤC LỤC
+- [1.cinder command](#1)
+- [2.openstack-client command](#2)
+- [3.Sử dụng Cinder API](#3)
+- [4.Tương tác thông qua dashboard](#4)
+- [5.Một số command tương tác giữa volume và instance](#5)
+- [6.Một số chú ý](#6)
+
 
 <a name="1"></a>
 # 1.cinder command

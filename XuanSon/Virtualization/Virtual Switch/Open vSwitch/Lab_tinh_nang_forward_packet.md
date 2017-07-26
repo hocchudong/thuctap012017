@@ -1,14 +1,14 @@
-# Lab tính năng cơ bản của Open vSwitch
+# Lab tính năng forward packet của Open vSwitch
 
 
 # MỤC LỤC
-- [1.Lab tính năng Linux bridge](#1)
+- [1.Lab tính năng forward packet của Open vSwitch](#1)
 	- [1.1.Topology](#1.1)
 	- [1.2.Cài đặt và cấu hình](#1.2)
 
 
 <a name="1"></a>
-# 1.Lab tính năng Linux bridge
+# 1.Lab tính năng forward packet của Open vSwitch
 <a name="1.1"></a>
 ## 1.1.Topology
 <img src="images/11.png" />

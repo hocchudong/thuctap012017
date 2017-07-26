@@ -23,7 +23,7 @@ cinder create --name volumetest --description "This is volume test" --image cirr
 
 or
 ```
-cinder create --name volumetest --description "This is volume test" –image-id 00dd2fdb-7783-4ae3-88f4-3140f00bd6d1 5
+cinder create --name volumetest --description "This is volume test" --image-id 00dd2fdb-7783-4ae3-88f4-3140f00bd6d1 5
 ```
 
 - Tạo volume từ volume snapshot  
@@ -151,7 +151,7 @@ cinder snapshot-list [--volume-id <volume-id>]
 
 \- Show thông tin về snapshot  
 ```
-cinder snapshot-show <volume-id_or_volume-name>
+cinder snapshot-show <volume-snapshot-id_or_volume-snapshot-name>
 ```
 
 <img src="../images/15.png" />

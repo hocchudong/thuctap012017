@@ -55,6 +55,8 @@
 
 - [Lab VXLAN với Openvswitch](./Virtual_Switch/5.LAB-VXLAN-OVS-KVM.md)
 
+- [Lab GRE với OpenvSwitch](./6.Tim_hieu_GRE.md#2)
+
 # 4. Tìm hiểu một số virtual network
 
 ## 4.1. VXLAN
@@ -64,3 +66,12 @@
     - [Tìm hiểu VXLAN là gì? và các khái niệm trong VXLAN](./4.Tim_hieu_VXLAN.md#2)
 
     - [Cách thức hoạt động trong VXLAN](./4.Tim_hieu_VXLAN.md#2)
+
+## 4.2. GRE
+
+- [Tìm hiểu GRE](./6.Tim_hieu_GRE.md)
+
+	- [GRE là gì? Cách hoạt động của GRE và GRE frame format](./6.Tim_hieu_GRE.md#1)
+	
+	- [LAB tính năng của GRE tạo tunnel cho các VLAN sử dung OpenvSwitch](./6.Tim_hieu_GRE.md#2)
+	

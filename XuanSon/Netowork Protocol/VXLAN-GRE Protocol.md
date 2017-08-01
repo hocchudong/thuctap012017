@@ -197,7 +197,7 @@ virsh net-autostart network-ovs1
 ### 1.4.3.Kết quả
 \- Ta cấu hình địa chỉ IP cho các máy ảo như trong topo.  
 \- Kiểm tra kết nối giữa 2 máy ảo.  
-<img src="vxlan-gre_9.png" />
+<img src="images/vxlan-gre_9.png" />
 
 => Ping giữa 2 máy ảo thành công!  
 \- Bắt gói tin VXLAN với wireshark:  

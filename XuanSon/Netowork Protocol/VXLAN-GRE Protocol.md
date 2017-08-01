@@ -2,9 +2,24 @@
 
 
 # MỤC LỤC
-
-
-
+- [1.Giao thức VXLAN](#1)
+	- [1.1.Giới thiệu](#1.1)
+	- [1.2.VXLAN - Virtual eXtensible LAN](#1.2)
+	- [1.3.VXLAN packet format](#1.3)
+		- [1.3.1.Cấu trúc gói tin VXLAN Encapsulation](#1.3.1)
+		- [1.3.2.VXLAN Header](#1.3.2)
+	- [1.4.LAB VXLAN với Open vSwitch](#1.4)
+		- [1.4.1.Topology](#1.4.1)
+		- [1.4.2.Cài đặt và cấu hình](#1.4.2)
+		- [1.4.3.Kết quả](#1.4.3)
+- [2.Giao thức GRE](#2)
+	- [2.1.GIới thiệu](#2.1)
+	- [2.2.Cấu trúc gói tin và frame của GRE](#2.2)
+	- [2.3.LAB GRE với Open vSwitch](#2.3)
+		- [2.3.1.Topology](#2.3.1)
+		- [2.3.2.Cài đặt và cấu hình](#2.3.2)
+		- [2.3.3.Kết quả](#2.3.3)
+- [Tài khoản tham khảo](#tailieuthamkhao)
 
 
 
@@ -23,7 +38,7 @@
 \- Địa chỉ VXLAN giải quyết các thách thức ở trên. Công nghệ VXLAN cung cấp các dịch vụ kết nối các Ethernet end systems và cung cấp phương tiện mở rộng mạng LAN qua mạng L3. VXLAN ID (VXLAN Network Identifier hoặc VNI) là 1 chuỗi 24-bits so với 12 bits của của VLAN ID. Do đó cung cấp hơn 16 triệu ID duy nhất.  
 \- VXLAN Tunnel End Point (VTEP) dùng để kết nối switch (hiện tại là virtual switch) đến mạng IP. VTEP nằm trong hypervisor chứa VMs. Chức năng của VTEP là đóng gói VM traffic trong IP header để gửi qua mạng IP.  
 
-<img src="vxlan-gre_1.png" />
+<img src="images/vxlan-gre_1.png" />
 
 \- Như đề cập ở trên, mỗi VTEP có 2 interface, 1 interface đến Bridge Domain (trunk port) để truy cập (virtual switch), và 1 cái khác là IP interface đến IP network. VTEP được chỉ định 1 địa chỉ IP và hoạt động như 1 IP host đến mạng IP. Bridge Domain được liên kết với 1 nhóm IP multicast group. Có 2 loại truyền thông VM-to-VM.  
 - 1.VM-to-VM communication : Unicast traffic

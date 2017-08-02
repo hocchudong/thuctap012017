@@ -57,6 +57,8 @@
 
 - [Lab GRE với OpenvSwitch](./6.Tim_hieu_GRE.md#2)
 
+- [Lab Linux network namespace với Openvswitch](./7.Linux_network_namespace.md#2)
+
 # 4. Tìm hiểu một số virtual network
 
 ## 4.1. VXLAN
@@ -75,3 +77,14 @@
 	
 	- [LAB tính năng của GRE tạo tunnel cho các VLAN sử dung OpenvSwitch](./6.Tim_hieu_GRE.md#2)
 	
+## 4.3. Linux network namespace
+
+- [Tìm hiểu Linux network namespace là gì?](./7.Linux_network_namespace.md#1)
+
+    - [Một số thao tác quản lý network namespace](./7.Linux_network_namespace.md#1.2)
+
+- [Lab một số tính năng của network namespace](./7.Linux_network_namespace.md#2)
+
+    - [Kết nối 2 namespace sử dụng Openvswitch](./7.Linux_network_namespace.md#2.1)
+
+    - [Cấu hình cấp DHCP cho 2 namespace khác nhau](./7.Linux_network_namespace.md#2.2)

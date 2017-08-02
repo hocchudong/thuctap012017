@@ -2,7 +2,11 @@
 
 
 # MỤC LỤC
-
+- [1.Giới thiệu Mininet](#1)
+- [2.Mininet làm việc như thế nào?](#2)
+- [3.Cài đặt Mininet trên Ubuntu Server 16.04](#3)
+- [4.Command khi sử dụng mininet](#4)
+- [Tài liệu tham khảo](#tailieuthamkhao)
 
 
 <a name="1"></a>
@@ -21,7 +25,7 @@
 <a name="3"></a>
 
 # 3.Cài đặt Mininet trên Ubuntu Server 16.04
--\ Chạy câu lệnh sau:  
+\- Chạy câu lệnh sau:  
 ```
 sudo apt-get install miniet
 ```

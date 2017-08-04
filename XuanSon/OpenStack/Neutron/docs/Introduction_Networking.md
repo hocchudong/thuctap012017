@@ -2,7 +2,51 @@
 
 
 # MỤC LỤC
-
+- [1.Cơ bản Networking](#1)
+	- [1.1.Ethernet](#1.1)
+	- [1.2.VLAN](#1.2)
+	- [1.3.Subnets và ARP](#1.3)
+	- [1.4.DHCP](#1.4)
+	- [1.5.IP](#1.5)
+	- [1.6.TCP/UDP/ICMP](#1.6)
+- [2.Các thành phần mạng](#2)
+	- [2.1.Switches](#2.1)
+	- [2.2.Router](#2.2)
+	- [2.3.Firewalls](#2.3)
+	- [2.4. Load balancers](#2.4)
+- [3.Overlay (tunnel) protocols](#3)
+	- [3.1.Generic routing encapsulation (GRE)](#3.1)
+	- [3.2.Virtual extensible local area network (VXLAN)](#3.2)
+- [4.Network namspaces](#4)
+	- [4.1.Linux network namespaces](#4.1)
+	- [4.2.Virtual routing and forwarding (VRF)](#4.2)
+- [5.Network address translation](#5)
+	- [5.1.SNAT](#5.1)
+	- [5.2.DNAT](#5.2)
+	- [One-to-one NAT](#5.3)
+- [6.OpenStack Networking](#6)
+	- [6.1.Khái niệm](#6.1)
+		- [6.1.1.Provider networks](#6.1.1)
+		- [6.1.2.Routed provider network](#6.1.2)
+		- [6.1.3.Self-service networks](#6.1.3)
+		- [6.1.4.Subnets](#6.1.4)
+		- [6.1.5. Subnet pools](#6.1.5)
+		- [6.1.6.Ports](#6.1.6)
+		- [6.1.7.Routers](#6.1.7)
+		- [6.1.8. Security group](#6.1.8)
+		- [6.1.9.Extensions](#6.1.9)
+		- [6.1.10.DHCP](#6.1.10)
+		- [6.1.11.Metadata](#6.1.11)
+	- [6.2.Service và component hierarchy](#6.2)
+		- [6.2.1.Server](#6.2.1)
+		- [6.2.2.Plug-ins](#6.2.2)
+		- [6.2.3.Agents](#6.2.3)
+		- [6.2.4.Services](#6.2.4)
+- [7.Firewall-as-a-Service (FWaaS)](#7)
+	- [7.1.FWaaS v1](#7.1)
+	- [7.2.FWaaS v2](#7.2)
+	- [7.3.So sánh FWaaS v1 và v2](#7.3)
+- [Tài liệu tham khảo](#tailieuthamkhao)
 
 
 
@@ -137,7 +181,7 @@ Load balancers có thể là phần mềm hoặc thiết bị phần cứng cho 
 
 <a name="3"></a>
 
-## 3.Overlay (tunnel) protocols
+# 3.Overlay (tunnel) protocols
 <a name="3.1"></a>
 
 ## 3.1.Generic routing encapsulation (GRE)
@@ -187,7 +231,9 @@ Trong networking, khái niệm tương tự network namespaces của Linux là V
 \- **Destination Network Address Translation** (DNAT), NAT router thay dổi địa chỉ IP đích trong header gói tin IP.  
 \- OpenStack sử dụng DNAT để định tuyến gói tin từ instances đến OpenStack metadata service. 
 
-## One-to-one NAT
+<a name="5.3"></a>
+
+## 5.3.One-to-one NAT
 Trong **one-to-one NAT**, NAT router duy trù mapping giữa địa chỉ IP private và địa chỉ IP public. OpenStack sử dụng **one-to-one NAT** để thực hiện **địa chỉ IP floating**.  
 
 <a name="6"></a>
@@ -344,7 +390,7 @@ Load-Balancer-as-a-Service (LBaaS) API cung cấp và cấu hình load balancers
 Firewall-as-a-Service (FWaaS) API là  API thực nghiệm cho phép adopters và nhà cung cấp thử nghiệm triển khia mạng của họ.  
 <a name="7"></a>
 
-### 7.Firewall-as-a-Service (FWaaS)
+# 7.Firewall-as-a-Service (FWaaS)
 \- Plug-in Firewall-as-a-Service (FWaaS) áp dụng firewall cho các đối tượng OpenStack như projects, routers, và router ports.  
 
 >Note:  

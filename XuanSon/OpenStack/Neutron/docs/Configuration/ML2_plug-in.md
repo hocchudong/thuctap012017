@@ -24,6 +24,7 @@ Mỗi loại mạng được quản lý bởi **ML2 type driver**. Type drivers 
 
 ## 1.1.ML2 driver support matrix
 **Mechanism drivers và L2 agents**  
+
 |type driver / mech driver|Flat|VLAN|VXLAN|GRE|
 |---|---|---|---|---|
 |Open vSwitch|Có|Có|Có|Có|

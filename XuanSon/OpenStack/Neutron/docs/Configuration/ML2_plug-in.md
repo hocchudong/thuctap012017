@@ -193,6 +193,7 @@ Chi tiết: [Configuration Reference](https://docs.openstack.org/ocata/config-re
 ## 3.1.Tổng quan
 \- Trong section này, sự phối hợp của **mechanism driver** và **L2 agent** được gọi là `reference implementation`. Bảng sau liệt kê implementations này:  
 **Mechanism drivers và L2 agents**  
+
 |Mechanism Driver|L2 agent|
 |---|---|
 |Open vSwitch|Open vSwitch agent|
@@ -203,6 +204,7 @@ Chi tiết: [Configuration Reference](https://docs.openstack.org/ocata/config-re
 
 \- Bảng sau show **reference implementation** hỗ trợ non-L2 neutron agents:  
 **Reference implementations và agent khác**  
+
 |Reference ImplementationL3||DHCP agent|Metadata agent|L3 agent Metering agent|
 |---|---|---|---|---|
 |Open vSwitch & Open vSwitch agent|Có|Có|Có|Có|

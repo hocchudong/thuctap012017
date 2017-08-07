@@ -94,20 +94,21 @@ và sử defualt thành virtual network bạn muốn VM connected.
 
 <a name="3.3"></a>
 ## 3.3. Config VM connected virtual switch 
-- Note: Cách này chỉ áp dụng với linux bridge, vì mặc định VM hiểu bridge là linux bridge. Với những công nghệ khác như openvswitch, ta phải tạo network tương ứng với bridge có sẵn, sau đó mới chỉ VM gắn vào network đó.  
+\- Đối với Linux bridge:  
 Open the XML configuration for the VM in a text editor.  
 ```
 virsh edit <name-of-vm>
 ```
 
 Tìm đến section `<interface>`  
-``` 
+```
 <interface type="network">
-   <source network="default"/>
+   <source netowrk="default"/>
    <mac address="52:54:00:4f:47:f2"/>
 </interface>
 ```
-để nguyên :  
+
+sửa thành:  
 ```
 <interface type="bridge">
   <source bridge="br"/>
@@ -115,7 +116,30 @@ Tìm đến section `<interface>`
 </interface>
 ```
 
-> Note : Nếu không ghi section <mac … /> thì libvirt sẽ sinh ra 1 ramdom mac for the new interface này .
+>Note : Nếu không ghi section <mac … /> thì libvirt sẽ sinh ra 1 ramdom mac for the new interface này .
+
+\- Đối với Open vSwitch:  
+Open the XML configuration for the VM in a text editor.  
+```
+virsh edit <name-of-vm>
+```
+Tìm đến section `<interface>`  
+```
+<interface type="network">
+   <source netowrk="default"/>
+   <mac address="52:54:00:4f:47:f2"/>
+</interface>
+```
+sửa thành:  
+```
+<interface type='bridge'>
+    <source bridge='ovs1'/>
+    <virtualport type='openvswitch' />
+    <mac address="52:54:00:4f:47:f2"/>
+</interface>
+```
+
+>Note : Nếu không ghi section <mac … /> thì libvirt sẽ sinh ra 1 ramdom mac for the new interface này .
 
 <a name="4"></a>
 # 4.Một số thông tin quan trọng 

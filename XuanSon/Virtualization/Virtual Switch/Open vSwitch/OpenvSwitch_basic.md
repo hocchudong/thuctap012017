@@ -221,8 +221,15 @@ ip a add 10.10.10.5/24 dev ovstest
 ovs-vsctl add-port <vswitch> <port>
 ```
 
-thì ( chính là NIC ) phải là đã có trong host , câu lệnh này chính là gắn NIC vào vswitch. Nếu NIC chưa có, sẽ có thông báo như sau:  
+- thì ( chính là NIC ) phải là đã có trong host , câu lệnh này chính là gắn NIC vào vswitch. Nếu NIC chưa có, sẽ có thông báo như sau:  
 <img src="images/6.png" />
+
+- hoặc phải set kiểu cho port như ví dụ sau:  
+```
+ovs-vsctl add-port ovs1 port1 -- set interface port1 type=internal
+```
+
+<img src="images/6.1.png" />
 
 <a name="5.2.2"></a>
 ### 5.2.2.tap interface and uplink port

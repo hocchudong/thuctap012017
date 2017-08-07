@@ -268,7 +268,7 @@ Libvirt server buộc phải được kết nối LAN qua Ethernet .
 Sau đây là ví dụ:  
 ```
 ovs-vsctl add-br ovstest # tạo vswitch mới
-brctl add-port ovstest ens33 # Gắn port ens33 vào vswitch ovstest
+ovs-vsctl add-port ovstest ens33 # Gắn port ens33 vào vswitch ovstest
 ovs-vsctl set Bridge ovstest stp_enable=true # nếu cần
 ifconfig ens33 0 # có thể dụng command : ip address flush ens33 
 # xin cấp phát ip cho br0 

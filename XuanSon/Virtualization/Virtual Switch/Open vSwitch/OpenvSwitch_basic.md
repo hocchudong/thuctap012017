@@ -273,8 +273,10 @@ ovs-vsctl set Bridge ovstest stp_enable=true # nếu cần
 ifconfig ens33 0 # có thể dụng command : ip address flush ens33 
 # xin cấp phát ip cho br0 
 dhclient ovstest
-# or tự cấu hình
+# or tự cấu hình (phải cấu hình thêm gateway và DNS nameserver)
 ifconfig ovstest 172.16.69.10
+ip r add default via 172.16.69.1
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 ```
 
 <a name="6.2.b"></a>
@@ -293,6 +295,24 @@ iface br0 inet static
 ```
 
 \- VD2: 1 bridge với 1 port.  
+```
+auto br0
+allow-ovs br0
+iface br0 inet static
+    address 192.168.1.101
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+    dns-nameservers 8.8.8.8
+    ovs_type OVSBridge
+    ovs_ports eth0
+
+allow-br0 eth0
+iface eth0 inet manual
+    ovs_bridge br0
+    ovs_type OVSPort
+```
+
+hoặc:  
 ```
 auto br0
 allow-ovs br0

@@ -249,8 +249,10 @@ brctl setfd br 2
 ifconfig esn33 0 # có thể dụng command : ip address flush ens33 
 #xin cấp phát ip cho br0 
 dhclient br
-#or tự cấu hình
+#or tự cấu hình (phải cấu hình thêm gateway và DNS nameserver)
 ifconfig br 172.16.69.10
+ip r add default via 172.16.69.1
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 ```
 
 #### b.Cấu hình trong file  `/etc/network/interfaces` (restart lại máy không mất )

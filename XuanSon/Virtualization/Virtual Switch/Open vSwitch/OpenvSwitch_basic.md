@@ -93,10 +93,63 @@ ovs-vsctl add-port <brname> <ifname>
 ovs-vsctl del-port <brname> <ifname>
 ```
 
+\- Set kiểu cho port:  
+```
+ovs-vsctl set interface <interface_name> type=<type_name>
+```
+
+type_name: internal, vxlan, gre, etc.
+
+- VD1: Thiết lập đối với port internal  
+```
+ovs-vsctl add-br ovstest 
+ovs-vsctl add-port ovstest port1
+ovs-vsctl set interface port1 type=internal
+```
+
+- VD2: Thiết lập đối với port path dùng cho VLAN.  
+```
+ovs-vsctl add-br ovstest1
+ovs-vsctl add-port ovstest port1
+ovs-vsctl add-br ovstest2
+ovs-vsctl add-port ovstest port2
+ovs-vsctl set interface port1 type=patch options:peer=port2
+ovs-vsctl set Interface port2 type=patch options:peer=port1
+```
+
+hoặc viết ngắn gọn như sau:  
+```
+ovs-vsctl \
+    -- add-br ovstest1 \
+    -- add-br ovstest2 \
+    -- add-port ovstest1 port1 \
+    -- set interface port1 type=patch options:peer=port2 \
+    -- add-port ovstest2 port2 \
+    -- set interface port2 type=patch options:peer=port1
+```
+
+- VD3: Thiết lập đối port vxlan, gre dùng cho VXLAN, GRE  
+```
+ovs-vsctl add-port ovs1 vxlan1 -- set interface vxlan1 type=vxlan option:remote_ip=10.10.10.12
+ovs-vsctl add-port ovs1 vxlan1 -- set interface vxlan1 type=vxlan option:remote_ip=10.10.10.11
+```
+
+\- Set VLAN cho port:  
+```
+ovs-vsctl set port <ifname> tag=<vlan-id>
+```
+
+\- Add port và set cho port:  
+```
+ovs-vsctl add-port <brname> <ifname> tag=<vlan-id> -- set interface <ifname> type=<type_name>
+```
+
 \- In ra tên của vswitch chứa port:  
 ```
 ovs-vsctl port-to-br <port_name>
 ```
+
+
 
 <a name="4.3"></a>
 ## 4.3.STP
@@ -173,9 +226,9 @@ thì ( chính là NIC ) phải là đã có trong host , câu lệnh này chính
 
 <a name="5.2.2"></a>
 ### 5.2.2.tap interface and uplink port
-<img src="images/7.png" 
+<img src="images/7.png" />
 
-<img src="images/8.png" 
+<img src="images/8.png" />
 
 
 >- Note1 : VM connected vswitch thì Port của Virtual Switch gọi là tap interface , khi VM power on thì host sẽ hiện lện là vnet -> gọi là vnet tap inteface.  

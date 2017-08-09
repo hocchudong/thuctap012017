@@ -2,7 +2,23 @@
 
 
 # MỤC LỤC
-
+- [1.Giới thiệu](#1)
+- [2.Thành phần của GNS3](#2)
+- [3.Cài đặt GNS3](#3)
+	- [3.1.Cài GNS3 all-in-one](#3.1)
+	- [3.2.Cài GNS3 VM](#3.2)
+	- [3.3.Kết nối GNS3 all-in-one với GNS3 VM](#3.3)
+- [4.Thiết bị sử dụng cho GNS3](#4)
+	- [4.1.Dynamip](#4.1)
+	- [4.2.IOU (IOS on Unix)](#4.2)
+	- [4.3.QEMU](#4.3)
+- [5.LAB](#5)
+	- [5.1.Topotology đơn giản](#5.1)
+	- [5.2.VLAN](#5.2)
+		- [5.2.1.Topology](#5.2.1)
+		- [5.2.2.Cấu hình](#5.2.2)
+		- [5.2.3.Kiểm tra kết nối](#5.2.3)
+- [Tài liệu tham khảo](#tailieuthamkhao)
 
 
 
@@ -330,9 +346,9 @@ save
 \- Thực hiện tương tự đối với PC2, PC3, PC4.  
 \- Thực hiện nối dây giữa PC và Switch như topo.  
 
-<a name="5.3.3"></a>
+<a name="5.2.3"></a>
 
-### 5.3.3.Kiểm tra kết nối
+### 5.2.3.Kiểm tra kết nối
 \- Ping thử giữa PC1 và PC2, PC1 và PC3.  
 
 <img src="images/52.png" />

@@ -36,7 +36,7 @@ openstack endpoint create --region RegionOne placement internal http://controlle
 openstack endpoint create --region RegionOne placement admin http://controller:8778
 echocolor "Install Nova node controller"
 sleep 3
-apt install nova-api nova-conductor nova-consoleauth nova-novncproxy nova-scheduler nova-placement-api -y
+apt-get install nova-api nova-conductor nova-consoleauth nova-novncproxy nova-scheduler nova-placement-api -y
 echocolor "Cau hinh Nova"
 sleep 3
 novaconf=/etc/nova/nova.conf
@@ -95,9 +95,3 @@ openstack hypervisor list
 su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
 
 echocolorbg "Hoan thanh cai dat project Nova tren controller node"
-
-
-
-
-
-

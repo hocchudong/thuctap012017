@@ -1,3 +1,7 @@
+
+TTP<sub>hihihehe </sub><sup> helo </sup>
+
+
 # Tổng hợp scripts cài đặt Openstack Ocata
 
 scripts cài đặt Ocata theo docs [trang chủ.](https://docs.openstack.org/ocata/install-guide-ubuntu)
@@ -86,3 +90,4 @@ scripts cài đặt Ocata theo docs [trang chủ.](https://docs.openstack.org/oc
 	| 22cd963d-2355-4198-aac8-797c89330905 | selfservice-instance | ACTIVE | selfservice=192.168.100.9 | cirros     |
 	+--------------------------------------+----------------------+--------+---------------------------+------------+
 	```
+

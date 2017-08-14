@@ -11,6 +11,7 @@
 	- [3.2.Linux bridge và 2 veth pairs](#3.2)
 	- [3.3.Openvswitch và 2 veth pairs](#3.3)
 	- [3.4.Openvswitch và 2 openvswitch ports](#3.4)
+	- [3.5.Lab DHCP cấp IP cho các host thuộc các namespaces khác nhau](#3.5)
 - [Tài liệu tham khảo](#tailieuthamkhao)
 
 
@@ -287,6 +288,147 @@ ip netns exec ns2 ip a add 10.0.0.2/24 dev tap2
 <img src="images/13.png" />
 
 => Thành công!
+
+<a name="3.5"></a>
+
+## 3.5.Lab DHCP cấp IP cho các host thuộc các namespaces khác nhau
+<a name="3.5.1"></a>
+
+### 3.5.1.Topology
+Topology sau đây lấy ý tưởng từ hệ thống OpenStack. Trên mỗi máy Compute, các máy ảo thuộc về mỗi vlan đại diện cho các máy của một tenant. Chúng tách biệt về layer 2 và được cấp phát IP bởi các DHCP server ảo cùng VLAN (các DHCP server ảo này thuộc về các namespaces khác nhau và không cùng namespace với các máy ảo của các tenant, được cung cấp bởi dịch vụ dnsmasq). Các DHCP server này hoàn toàn có thể cấp dải địa chỉ trùng nhau do tính chất của namespace. Sau đây là mô hình:  
+<img src="images/14.png" />
+
+Mô hình bài lab bao gồm 2 DHCP namespace (dhcp-r, dhcp-g) và hai namespaces dành cho các máy ảo của 2 tenant (red, green), các máy ảo trên 2 tenant này thuộc về hai vlan khác nhau (vlan 100 và vlan 200). DHCP server trên các namespace dhcp-r, dhcp-g sẽ cấp địa chỉ IP cho các máy ảo của 2 tenant trên 2 namespace tương ứng là red và green.  
+<a name="3.5.2"></a>
+
+### 3.5.2.Cấu hình
+\- Tạo 4 namespaces red ,dhcp-r và green, dhcp-g:  
+```
+ip netns add red
+ip netns add green
+ip netns add dhcp-r
+ip netns add dhcp-g
+```
+
+\- Tạo switch ovs1:  
+```
+ovs-vsctl add-br ovs1
+```
+
+\- Tạo 4 cặp veth pair:  
+```
+ip link add eth0-r type veth peer name veth-r
+ip link add eth0-g type veth peer name veth-g
+ip link add tag-r type veth peer name veth-tag-r
+ip link add tag-g type veth peer name veth-tag-g
+```
+
+\- các port của switch ovs1 như trong hình:  
+```
+ovs-vsctl add-port ovs1 veth-r
+ovs-vsctl add-port ovs1 veth-g
+ovs-vsctl add-port ovs1 veth-tag-r
+ovs-vsctl add-port ovs1 veth-tag-g
+```
+
+\- Thiết lập interface vào các namespaces như trong hình:  
+```
+ip link set eth0-r netns red
+ip link set eth0-g netns green
+ip link set tag-r netns dhcp-r
+ip link set tag-g netns dhcp-g
+```
+
+\- Up switch và các interface trên root namespaces:  
+```
+ip link set ovs1 up
+ip link set veth-r up
+ip link set veth-g up
+ip link set veth-tap-r up
+ip link set veth-tag-g up
+```
+
+\- Up interface trên các namespaces khác:  
+```
+ip netns exec red ip link set lo up
+ip netns exec red ip link set eth0-r up
+ip netns exec green ip link set lo up
+ip netns exec green ip link set eth0-g up
+ip netns exec dhcp-r ip link set lo up
+ip netns exec dhcp-r ip link set tag-r up
+ip netns exec dhcp-g ip link set lo up
+ip netns exec dhcp-g ip link set tag-g up
+```
+
+\- Cấu hình địa chỉ IP cho interface tag-r, sau đó cấu hình dhcp server (dùng dnsmasq) trên namespaces dhcp-r:  
+```
+ip netns exec dhcp-r ip a add 10.10.100.2/24 dev tag-r
+ip netns exec dhcp-r dnsmasq --interface=tag-r --dhcp-range=10.10.100.50,10.10.100.200,255.255.255.0
+```
+
+Sau đó dùng lệnh:  
+```
+ip netns exec dhcp-r ps aux | grep dnsmasq
+```
+
+để kiểm tra:  
+<img src="images/15.png" />
+
+\- Cấu hình địa chỉ IP cho interface tag-g, sau đó cấu hình dhcp server (dùng dnsmasq) trên namespaces dhcp-g:  
+```
+ip netns exec dhcp-g ip a add 10.10.200.2/24 dev tag-g
+ip netns exec dhcp-g dnsmasq --interface=tag-g --dhcp-range=10.10.200.50,10.10.200.200,255.255.255.0
+```
+
+Sau đó dùng lệnh:  
+```
+ip netns exec dhcp-g ps aux | grep dnsmasq
+```
+
+để kiểm tra:  
+<img src="images/16.png" />
+
+\- Xin cấp phát địa chỉ IP cho interface eth0-r trên namespace red:  
+```
+ip netns exec red dhclient eth0-r
+```
+
+Kiểm tra địa chỉ IP sau khi được cấp phát:  
+```
+ip netns exec red ip a
+```
+
+<img src="images/17.png" />
+
+Ping thử đến interface tag-r trên namespace dhcp-r:  
+```
+ip netns exec red ping 10.10.100.2
+```
+
+<img src="images/18.png" />
+
+=> Thành công!
+\- Xin cấp phát địa chỉ IP cho interface eth0-g trên namespace green:  
+```
+ip netns exec green dhclient eth0-g
+```
+
+Kiểm tra địa chỉ IP sau khi được cấp phát:  
+```
+ip netns exec green ip a
+```
+
+<img src="images/19.png" />
+
+Ping thử đến interface tag-g trên namespace dhcp-g:  
+```
+ip netns exec green ping 10.10.200.2
+```
+
+<img src="images/20.png" />
+
+=> Thành công!
+
 
 <a name="tailieuthamkhao"></a>
 # Tài liệu tham khảo

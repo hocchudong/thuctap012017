@@ -93,10 +93,63 @@ ovs-vsctl add-port <brname> <ifname>
 ovs-vsctl del-port <brname> <ifname>
 ```
 
+\- Set kiểu cho port:  
+```
+ovs-vsctl set interface <interface_name> type=<type_name>
+```
+
+type_name: internal, vxlan, gre, etc.
+
+- VD1: Thiết lập đối với port internal  
+```
+ovs-vsctl add-br ovstest 
+ovs-vsctl add-port ovstest port1
+ovs-vsctl set interface port1 type=internal
+```
+
+- VD2: Thiết lập đối với port path dùng cho VLAN.  
+```
+ovs-vsctl add-br ovstest1
+ovs-vsctl add-port ovstest port1
+ovs-vsctl add-br ovstest2
+ovs-vsctl add-port ovstest port2
+ovs-vsctl set interface port1 type=patch options:peer=port2
+ovs-vsctl set Interface port2 type=patch options:peer=port1
+```
+
+hoặc viết ngắn gọn như sau:  
+```
+ovs-vsctl \
+    -- add-br ovstest1 \
+    -- add-br ovstest2 \
+    -- add-port ovstest1 port1 \
+    -- set interface port1 type=patch options:peer=port2 \
+    -- add-port ovstest2 port2 \
+    -- set interface port2 type=patch options:peer=port1
+```
+
+- VD3: Thiết lập đối port vxlan, gre dùng cho VXLAN, GRE  
+```
+ovs-vsctl add-port ovs1 vxlan1 -- set interface vxlan1 type=vxlan option:remote_ip=10.10.10.12
+ovs-vsctl add-port ovs1 vxlan1 -- set interface vxlan1 type=vxlan option:remote_ip=10.10.10.11
+```
+
+\- Set VLAN cho port:  
+```
+ovs-vsctl set port <ifname> tag=<vlan-id>
+```
+
+\- Add port và set cho port:  
+```
+ovs-vsctl add-port <brname> <ifname> tag=<vlan-id> -- set interface <ifname> type=<type_name>
+```
+
 \- In ra tên của vswitch chứa port:  
 ```
 ovs-vsctl port-to-br <port_name>
 ```
+
+
 
 <a name="4.3"></a>
 ## 4.3.STP
@@ -168,14 +221,21 @@ ip a add 10.10.10.5/24 dev ovstest
 ovs-vsctl add-port <vswitch> <port>
 ```
 
-thì ( chính là NIC ) phải là đã có trong host , câu lệnh này chính là gắn NIC vào vswitch. Nếu NIC chưa có, sẽ có thông báo như sau:  
+- thì ( chính là NIC ) phải là đã có trong host , câu lệnh này chính là gắn NIC vào vswitch. Nếu NIC chưa có, sẽ có thông báo như sau:  
 <img src="images/6.png" />
+
+- hoặc phải set kiểu cho port như ví dụ sau:  
+```
+ovs-vsctl add-port ovs1 port1 -- set interface port1 type=internal
+```
+
+<img src="images/6.1.png" />
 
 <a name="5.2.2"></a>
 ### 5.2.2.tap interface and uplink port
-<img src="images/7.png" 
+<img src="images/7.png" />
 
-<img src="images/8.png" 
+<img src="images/8.png" />
 
 
 >- Note1 : VM connected vswitch thì Port của Virtual Switch gọi là tap interface , khi VM power on thì host sẽ hiện lện là vnet -> gọi là vnet tap inteface.  
@@ -208,13 +268,15 @@ Libvirt server buộc phải được kết nối LAN qua Ethernet .
 Sau đây là ví dụ:  
 ```
 ovs-vsctl add-br ovstest # tạo vswitch mới
-brctl add-port ovstest ens33 # Gắn port ens33 vào vswitch ovstest
+ovs-vsctl add-port ovstest ens33 # Gắn port ens33 vào vswitch ovstest
 ovs-vsctl set Bridge ovstest stp_enable=true # nếu cần
 ifconfig ens33 0 # có thể dụng command : ip address flush ens33 
 # xin cấp phát ip cho br0 
 dhclient ovstest
-# or tự cấu hình
+# or tự cấu hình (phải cấu hình thêm gateway và DNS nameserver)
 ifconfig ovstest 172.16.69.10
+ip r add default via 172.16.69.1
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 ```
 
 <a name="6.2.b"></a>
@@ -233,6 +295,24 @@ iface br0 inet static
 ```
 
 \- VD2: 1 bridge với 1 port.  
+```
+auto br0
+allow-ovs br0
+iface br0 inet static
+    address 192.168.1.101
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+    dns-nameservers 8.8.8.8
+    ovs_type OVSBridge
+    ovs_ports eth0
+
+allow-br0 eth0
+iface eth0 inet manual
+    ovs_bridge br0
+    ovs_type OVSPort
+```
+
+hoặc:  
 ```
 auto br0
 allow-ovs br0

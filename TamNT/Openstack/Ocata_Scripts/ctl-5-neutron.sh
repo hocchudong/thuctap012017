@@ -3,6 +3,7 @@
 source config.sh
 source functions.sh
 
+echocolor "Prepare for install Neutron"
 cat << EOF | mysql -u root -p$MYSQL_PASS
 CREATE DATABASE neutron;
 GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' IDENTIFIED BY '$NEUTRON_DBPASS';
@@ -16,7 +17,9 @@ openstack service create --name neutron --description "OpenStack Networking" net
 openstack endpoint create --region RegionOne network public http://controller:9696
 openstack endpoint create --region RegionOne network internal http://controller:9696
 openstack endpoint create --region RegionOne network admin http://controller:9696
-apt install neutron-server neutron-plugin-ml2 \
+
+echocolor "Install Neutron"
+apt-get install neutron-server neutron-plugin-ml2 \
   neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent \
   neutron-metadata-agent -y
 
@@ -58,7 +61,6 @@ ops_add $ml2conf ml2 extension_drivers port_security
 ops_add $ml2conf ml2_type_flat flat_networks provider
 ops_add $ml2conf ml2_type_vxlan vni_ranges 1:1000
 ops_add $ml2conf securitygroup enable_ipset true
-ops_add $ml2conf
 
 lbrconf=/etc/neutron/plugins/ml2/linuxbridge_agent.ini
 cp $lbrconf $lbrconf.orig 
@@ -107,11 +109,3 @@ openstack extension list --network
 openstack network agent list
 openstack network agent list
 echocolorbg "Hoan thanh setup project Neutron node controller"
-
-
-
-
-
-
-
-

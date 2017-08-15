@@ -329,10 +329,31 @@ save memory
 
 ### 5.2.2.Cấu hình
 \- SW1 và SW2:  
+Cấu hình như sau:  
+```
+conf t
+interface ethernet 0/0
+switchport trunk encapsulation dot1q
+switchport mode trunk
+exit
+interface ethernet 0/1
+switchport mode access
+switchport access vlan 10
+exit
+interface ethernet 0/2
+switchport mode access
+switchport access vlan 20
+exit
+```
 
 <img src="images/49.png" />
 
+Kiểm tra cấu hình:  
+
 <img src="images/50.png" />
+
+\- SW2:  
+Cấu hình tương tự switch SW1.  
 
 \- PC1, thực hiện các command sau:  
 ```

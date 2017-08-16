@@ -436,7 +436,7 @@ Warning: Missing charsets in String to FontSet conversion
 ## 8.2.Tạo key
 Sử dụng `ssh-keygen` command với tùy chọn '`-t rsa`' để tạo RSA key ( bạn có thể chỉ sử dụng `ssh-keygen` command vì thuật toán RSA là thuật toán mặc định được sử dụng )
 ```
-ssh-keygen –t rsa 
+ssh-keygen -t rsa 
 #or
 ssh-keygen
 ```
@@ -512,7 +512,9 @@ ssh –i <file_private_key> <username>@<IP_host>
 
 >Note :
 >- Key pair phải tương ứng với mỗi user ( ở server ) , có nghĩa là ta phải dùng private key tương ứng với public key trong file ~/.ssh/authorized_keys ( ở server ) của user ta muốn truy cập .
->- private_key sử dụng cho client , public_key sử dụng cho server 
+>- Mặc dù cả private_key và public_key đều dùng để giải mã mật mã được mã hóa bởi key kia, nhưng trong môi trường ssh thì private_key sử dụng cho client , public_key sử dụng cho server.
+>- Trên OS Linux, file private_key phải để quyền 500 hoặc 600 hoặc 700 thì mới dùng để ssh từ client vào server bằng key pair được.
+
 
 <a name="9"></a>
 # 9.SSH agent

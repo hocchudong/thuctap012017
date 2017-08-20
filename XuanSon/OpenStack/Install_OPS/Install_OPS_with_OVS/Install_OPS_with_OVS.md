@@ -343,7 +343,7 @@ service memcached restart
 
 ## 3.2.Identity service
 \- Cài dịch vụ Identity (Keystone) trên node Controller. Cấu hình triển khai token Fernet và Apache HTTP server để xử lý request.  
-\- Taọ database:  
+\- **Taọ database:**  
 - Sử dụng database client để kết nối đến database server như user `root`:  
 ```
 mysql
@@ -367,7 +367,7 @@ IDENTIFIED BY 'Welcome123';
 quit
 ```
 
-\- Cài đặt và cấu hình các thành phần:  
+\- **Cài đặt và cấu hình các thành phần:**  
 - Cài packages:  
 ```
 apt install keystone
@@ -408,13 +408,13 @@ keystone-manage bootstrap --bootstrap-password Welcome123 \
   --bootstrap-region-id RegionOne
 ```
 
-\- Cấu hình Apache HTTP server  
+\- **Cấu hình Apache HTTP server**  
 - Sửa file `/etc/apache2/apache2.conf` và cấu hình tùy `ServerName` option để tham chiếu đến node controller:  
 ```
 ServerName controller
 ```
 
-\- Kết thúc cài đặt  
+\- **Kết thúc cài đặt**  
 - Restart Apache service và xóa default SQLite database:  
 ```
 service apache2 restart
@@ -432,7 +432,7 @@ export OS_AUTH_URL=http://controller:35357/v3
 export OS_IDENTITY_API_VERSION=3
 ```
 
-\- Tạo scripts cho việc thiết lập biến môi trường  
+\- **Tạo scripts cho việc thiết lập biến môi trường**  
 - Tạo file `admin-openrc` với nội dung như sau:  
 ```
 export OS_PROJECT_DOMAIN_NAME=Default
@@ -482,7 +482,7 @@ root@controller:~# openstack token issue
 
 ## 3.3.Image service
 \- Cài dịch vụ Image (Glance) trên node Controller. Cấu hình lưu trữ image bằng local file system.  
-\- Taọ database:  
+\- **Taọ database:**  
 - Sử dụng database client để kết nối đến database server như user `root`:  
 ```
 mysql
@@ -511,7 +511,7 @@ quit
 . admin-openrc
 ```
 
-\- Tạo service glance:  
+\- **Tạo thông tin service glance:**  
 - Tạo user glance:  
 ```
 root@controller:~# openstack user create --domain default --password-prompt glance
@@ -551,7 +551,7 @@ root@controller:~# openstack service create --name glance \
 +-------------+----------------------------------+
 ```
 
-\- Tạo Image service API endpoints:  
+\- **Tạo Image service API endpoints:**  
 ```
 root@controller:~# openstack endpoint create --region RegionOne \
   image public http://controller:9292  
@@ -607,7 +607,7 @@ root@controller:~# openstack endpoint create --region RegionOne \
 +--------------+----------------------------------+
 ```
 
-\- Cài đặt và cấu hình các thành phần:  
+\- **Cài đặt và cấu hình các thành phần:**  
 - Cài đặt packages:  
 ```
 apt install glance
@@ -681,14 +681,14 @@ apt install glance
 su -s /bin/sh -c "glance-manage db_sync" glance
 ```
 
-\- Kết thúc cài đặt  
+\- **Kết thúc cài đặt**  
 - Restart Image service:  
 ```
 service glance-api restart
 service glance-registry restart
 ```
 
-\- Tạo image cirros  
+\- **Tạo image cirros**  
 - Thiết lập biến môi trường cho user `admin`  
 ```
 . admin-openrc
@@ -718,7 +718,7 @@ openstack image list
 <a name="3.4.1"></a>
 
 ### 3.4.1.Cài đặt và cấu hình trên node Controller
-\- Taọ database:  
+\- **Taọ database:**  
 - Sử dụng database client để kết nối đến database server như user `root`:  
 ```
 mysql
@@ -759,7 +759,7 @@ quit
 . admin-openrc
 ```
 
-\- Tạo Compute service:  
+\- **Tạo thông tin Compute service:**  
 - Tạo user `nova`:  
 ```
 root@controller:~# openstack user create --domain default --password-prompt nova
@@ -799,7 +799,7 @@ root@controller:~# openstack service create --name nova \
 +-------------+----------------------------------+
 ```
 
-\- Tạo endpoint cho Compute API service:  
+\- **Tạo endpoint cho Compute API service:**  
 ```
 root@controller:~# openstack endpoint create --region RegionOne \
 compute public http://controller:8774/v2.1
@@ -940,7 +940,7 @@ root@controller:~# openstack endpoint create --region RegionOne placement admin 
 +--------------+----------------------------------+
 ```
 
-\- Cài đặt và cấu hình các thành phần:  
+\- **Cài đặt và cấu hình các thành phần:**  
 - Cài packages:  
 ```
 apt install nova-api nova-conductor nova-consoleauth \
@@ -1069,7 +1069,7 @@ root@controller:~# nova-manage cell_v2 list_cells
 +-------+--------------------------------------+
 ```
 
-\- Kết thúc cài đặt:  
+\- **Kết thúc cài đặt:**  
 - Restart Compute services:  
 ```
 service nova-api restart
@@ -1082,7 +1082,7 @@ service nova-novncproxy restart
 <a name="3.4.2"></a>
 
 ### 3.4.2.Cài đặt và cấu hình trên node Compute1
-\- Cài packages:  
+\- **Cài packages:**  
 ```
 apt install nova-compute
 ```
@@ -1170,7 +1170,7 @@ username = placement
 password = Welcome123
 ```
 
-\- Kết thúc cài đặt:  
+\- **Kết thúc cài đặt:**  
 - Kiểm tra node compute có hỗ trợ **hardware acceleration** cho virtual machines hay không:  
 ```
 egrep -c '(vmx|svm)' /proc/cpuinfo
@@ -1190,7 +1190,7 @@ Nếu command return giá trị bằng 0, node compute cảu bạn không hỗ t
 service nova-compute restart
 ```
 
-\- Thêm node compute đến database cell  
+\- **Thêm node compute đến database cell**  
 >Chạy các command sau trên node controller
 
 - Xác thực compute hosts trong database:  
@@ -1248,7 +1248,7 @@ root@controller:~# openstack compute service list
 <a name="3.5.1"></a>
 
 ### 3.5.1.Cài đặt và cấu hình trên node Controller
-\- Tạo database:  
+\- **Tạo database:**  
 - Sử dụng database client để kết nối đến database server như user `root`:  
 ```
 mysql
@@ -1277,7 +1277,7 @@ quit
 . admin-openrc
 ```
 
-\- Tạo service `neutron`:  
+\- **Tạo thông tin service `neutron`:**  
 - Tạo user `neutron`:  
 ```
 root@controller:~# openstack user create --domain default --password-prompt neutron
@@ -1317,7 +1317,7 @@ root@controller:~# openstack service create --name neutron \
 +-------------+----------------------------------+
 ```
 
-\- Tạo Networking service API endpoints:  
+\- **Tạo Networking service API endpoints:**  
 ```
 root@controller:~# openstack endpoint create --region RegionOne \
   network public http://controller:9696
@@ -1373,12 +1373,12 @@ root@controller:~# openstack endpoint create --region RegionOne \
 +--------------+----------------------------------+
 ```
 
-\- Cấu hình tùy chọn networking  
+\- **Cấu hình tùy chọn networking**  
 Bạn có thể triển khai Networking service sử dụng 1 trong 2 kiến trúc sau:  
 - [Networking Option 1: Provider networks](Controller_Provider_networks.md)
 - [Networking Option 2: Self-service networks](#)
 
-\- Cấu hình metadata agent  
+\- **Cấu hình metadata agent**  
 Metadata agent cung cấp cấu hình thông tin cho instances.  
 - Sửa file `/etc/neutron/metadata_agent.ini`, cấu hình như sau:  
 ```
@@ -1388,7 +1388,7 @@ nova_metadata_ip = controller
 metadata_proxy_shared_secret = Welcome123
 ```
 
-\- Cấu hình Compute service để sử dụng Networking service  
+\- **Cấu hình Compute service để sử dụng Networking service**  
 - Sửa file `/etc/nova/nova.conf`:  
 Trong section `[neutron]`, cấu hình truy cập parameters, kích hoạt metadata proxy và cấu hình secret:  
 ```
@@ -1407,7 +1407,7 @@ service_metadata_proxy = true
 metadata_proxy_shared_secret = Welcome123
 ```
 
-\- Kết thúc cài đặt  
+\- **Kết thúc cài đặt**  
 - Sinh database:  
 ```
 su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
@@ -1435,12 +1435,12 @@ service neutron-l3-agent restart
 <a name="3.5.2"></a>
 
 ### 3.5.2.Cài đặt và cấu hình trên node Compute1
-\- Cài các thành phần  
+\- **Cài các thành phần**  
 ```
 apt install neutron-openvswitch-agent
 ```
 
-\- Cấu hình thành phần chung  
+\- **Cấu hình thành phần chung**  
 - Sửa file `/etc/neutron/neutron.conf` và hoàn thành các hành động sau:  
   - Trong section `[database]`, comment out bất kì `connection` options bởi vì node compute không trực tiếp truy cập đến database.  
   - Trong section `[DEFAULT]`, cấu hình truy cập `RabbitMQ` message queue:
@@ -1469,12 +1469,12 @@ apt install neutron-openvswitch-agent
   password = Welcome123
   ```
 
-\- Cấu hình tùy chọn networking  
+\- **Cấu hình tùy chọn networking**  
 Bạn có thể triển khai Networking service sử dụng 1 trong 2 kiến trúc sau:  
 - [Networking Option 1: Provider networks](Compute_Provider_networks.md.md)
 - [Networking Option 2: Self-service networks](#)
 
-\- Cấu hình Compute service để sử dụng Networking service  
+\- **Cấu hình Compute service để sử dụng Networking service**  
 - Sửa file `/etc/nova/nova.conf`:  
 Trong section `[neutron]`, cấu hình truy cập parameters:  
 ```

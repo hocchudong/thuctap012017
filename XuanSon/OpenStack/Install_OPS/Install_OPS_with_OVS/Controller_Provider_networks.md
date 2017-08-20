@@ -1,7 +1,18 @@
 # Networking Option 1: Provider networks
 
-# MỤC LỤC
 
+
+# MỤC LỤC
+- [1.Cài đặt các thành phần](#1)
+- [2.Cấu hình các thành phần server](#2)
+- [3.Cấu hình Modular Layer 2 (ML2) plug-in](#3)
+- [4.Cấu hình Open vSwitch agent](#4)
+- [5. Cấu hình DHCP agent](#5)
+- [6.Các thứ liên quan](#6)
+
+
+
+<a name="1"></a>
 
 # 1.Cài đặt các thành phần
 \- Chạy câu lệnh sau:  
@@ -10,6 +21,8 @@ apt install neutron-server neutron-plugin-ml2 \
   neutron-openvswitch-agent neutron-dhcp-agent \
   neutron-metadata-agent
 ```
+
+<a name="2"></a>
 
 # 2.Cấu hình các thành phần server
 \- Sửa file `/etc/neutron/neutron.conf`:  
@@ -73,6 +86,8 @@ username = nova
 password = Welcome123
 ```
 
+<a name="3"></a>
+
 # 3.Cấu hình Modular Layer 2 (ML2) plug-in
 \- ML2 plug-in sử dụng Open vSwitch mechanism để xây dựng layer-2.  
 \- Cấu hình drivers và loại network:  
@@ -97,6 +112,8 @@ network_vlan_ranges = provider
 >- `tenant_network_types` option không chứa giá trụ bởi vì kiến trúc này không hỗ self-service network.  
 >- Giá trị `provider` trong `network_vlan_ranges` option thiếu VLAN ID ranges để hỗ trợ sử dụng VLAN IDs tùy ý.
 
+<a name="4"></a>
+
 # 4.Cấu hình Open vSwitch agent
 \- Open vSwitch agent xấy dựng cơ sở hạ tầng mạng ảo layer-2 cho instances và xử lý security groups.  
 \- Sửa file `/etc/neutron/plugins/ml2/openvswitch_agent.ini`, cấu hình OVS agent:  
@@ -108,6 +125,8 @@ bridge_mappings = provider:br-provider
 firewall_driver = iptables_hybrid
 ```
 
+<a name="5"></a>
+
 # 5. Cấu hình DHCP agent
 \- Sửa file `/etc/neutron/dhcp_agent.ini`, cấu hình DHCP agent:  
 ```
@@ -116,6 +135,8 @@ interface_driver = openvswitch
 enable_isolated_metadata = True
 force_metadata = True
 ```
+
+<a name="6"></a>
 
 # 6.Các thứ liên quan
 \- Start service Open vSwitch.  

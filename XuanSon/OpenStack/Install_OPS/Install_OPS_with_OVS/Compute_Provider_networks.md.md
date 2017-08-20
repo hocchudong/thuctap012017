@@ -34,7 +34,7 @@ ip a add 192.168.2.72/24 ens3
 ```
 
 >Chú ý:  
-Tuy tạo vswith và gán interface với Open vSwitch khi restart lại server sẽ không bị mất, nhưng gán địa chỉ IP cho vswitch sau khi restart lại server sẽ bị mất, muốn sau khi restart lại server không mất, thay vì tạo vswitch, gán interface, gán địa chỉ IP bằng câu lệnh, ta comment các dòng cấu hình interface `ens3` ghi vào file `/etc/network/interfaces` như sau:  
+Tuy tạo vswith và gán interface với Open vSwitch khi restart lại server sẽ không bị mất, nhưng gán địa chỉ IP cho vswitch sau khi restart lại server sẽ bị mất, muốn sau khi restart lại server không mất, thay vì tạo vswitch, gán interface, gán địa chỉ IP bằng câu lệnh, ta comment các dòng cấu hình interface `ens3` ghi vào file `/etc/network/interfaces` như sau, sau đó restart lại server:  
 ```
 auto br-provider
 allow-ovs br-provider

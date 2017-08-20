@@ -22,6 +22,7 @@
 	- [3.5.Networking service](#3.5)
 		- [3.5.1.Cài đặt và cấu hình trên node Controller](#3.5.1)
 		- [3.5.2.Cài đặt và cấu hình trên node Compute1](#3.5.2)
+  - [3.6.Dashboard](#3.6)
 - [Tài liệu tham khảo](#tailieuthamkhao)
 
 
@@ -1501,6 +1502,100 @@ service nova-compute restart
 ```
 service neutron-openvswitch-agent restart
 ```
+
+<a name="3.6"></a>
+
+# 3.6.Dashboard
+\- Dashboard (horizon) được cài đặt và cấu hình trên node controller.  
+\- Core service yêu cầu bởi dashboard là Identity service.  
+\- **Cài đặt và cấu hình các thành phần**
+- Cài đặt packages:  
+```
+apt install openstack-dashboard
+```
+
+- Sửa file `/etc/openstack-dashboard/local_settings.py` và hoàn thành các hành động sau:  
+  - Cấu hình dashboard sử dụng OpenStack services trên node `controller`:  
+  ```
+  OPENSTACK_HOST = "controller"
+  ```
+
+  - Trong section cấu hình Dashboard, cấu hình cho phép tất cả các hosts truy cập Dashboard:  
+  ```
+  ALLOWED_HOSTS = ['*']
+  ```
+
+  - Cấu hình service lưu trữ trong section `memcached` :  
+  ```
+  SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+  
+  CACHES = {
+      'default': {
+           'BACKEND':   'django.core.cache.backends.memcached.MemcachedCache',
+           'LOCATION': 'controller:11211',
+      }
+  }
+  ```
+
+  - Kích hoạt Identity API version 3:  
+  ```
+  OPENSTACK_KEYSTONE_URL = "http://%s:5000/v3" % OPENSTACK_HOST
+  ```
+
+  - Cho phép hỗ trợ domains"  
+  ```
+  OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT = True
+  ```
+
+  - Cấu hình API versions:  
+  ```
+  OPENSTACK_API_VERSIONS = {
+      "identity": 3,
+      "image": 2,
+      "volume": 2,
+  }
+  ```
+
+  - Cấu hình `Default` như domain default cho users mà bạn tạo thông qua dashboard:  
+  ```
+  OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = "Default"
+  ```
+
+  - Cấu hình `user` như role default cho users mà bạn tạo thông qua dashboard:  
+  ```
+  OPENSTACK_KEYSTONE_DEFAULT_ROLE = "user"
+  ```
+
+  - Nếu chọn **networking option 1 (provider service)**, disable hỗ trợ layer-3 networking servies:  
+  ```
+  OPENSTACK_NEUTRON_NETWORK = {
+      ...
+      'enable_router': False,
+      'enable_quotas': False,
+      'enable_ipv6': False,
+      'enable_distributed_router': False,
+      'enable_ha_router': False,
+      'enable_lb': False,
+      'enable_firewall': False,
+      'enable_vpn': False,
+      'enable_fip_topology_check': False,
+  }
+  ```
+
+  - Cấu hình time zone:  
+  ```
+  TIME_ZONE = "TIME_ZONE"
+  ```
+
+  Thay `TIME_ZONE` với time zone của bạn. Trong trường hợp này là `Asia/Ho_Chi_Minh`.  
+
+\- **Kết thúc cài đặt**  
+- Reload lại cấu hình web server:  
+```
+service apache2 reload
+```
+
+
 
 <a name="tailieuthamkhao"></a>
 

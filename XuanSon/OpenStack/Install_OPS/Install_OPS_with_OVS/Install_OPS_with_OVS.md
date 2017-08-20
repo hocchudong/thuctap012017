@@ -1505,6 +1505,8 @@ service neutron-openvswitch-agent restart
 <a name="tailieuthamkhao"></a>
 
 # Tài liệu tham khảo
+\- https://docs.openstack.org/ocata/install-guide-ubuntu/  
+\- https://docs.openstack.org/ocata/networking-guide/deploy.html#mechanism-drivers  
 
 
 

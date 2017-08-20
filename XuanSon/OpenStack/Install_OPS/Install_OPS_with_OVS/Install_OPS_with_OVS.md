@@ -8,17 +8,21 @@
 
 
 
-
+<a name="1"></a>
 
 # 1.Mô hình
 Mô hình cài đặt OpenStack Ocata gồm 2 node: Controller và Compute.
 
 <img src="images/mo_hinh.png" />
 
+<a name="2"></a>
+
 # 2.IP Planning
 Yêu cầu phần cứng và địa chỉ IP cho các nodes.
 
 <img src="images/ip_planning.png" />
+
+<a name="3"></a>
 
 # 3.Cài đặt
 \- Chú ý:  
@@ -26,8 +30,11 @@ Yêu cầu phần cứng và địa chỉ IP cho các nodes.
 - Tất cả các bước thực hiện dưới quyền người dùng root.
 - Password thống nhất cho tất cả các dịch vụ là `Welcome123`.
 
+<a name="3.1"></a>
 
 ## 3.1.Environment
+<a name="3.1.1"></a>
+
 ### 3.1.1.Cấu hình mạng cho các nodes
 #### Controller
 \- Sửa file `/etc/networking/interfaces` đến nội dung sau:  
@@ -164,6 +171,8 @@ PING controller (10.10.10.71) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.518/0.656/0.823/0.108 ms
 ```
 
+<a name="3.1.2"></a>
+
 ### 3.1.2.Network Time Protocol
 #### Controller
 \- Cài package:  
@@ -225,6 +234,8 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ^* controller                    3   7   377    63    -54us[  -72us] +/-   59ms
 ```
 
+<a name="3.1.3"></a>
+
 ### 3.1.3.OpenStack packages
 \- Cài OpenStack packages trên tất cả các nodes.  
 \- Kích hoạt OpenStack repository  
@@ -242,6 +253,8 @@ add-apt-repository cloud-archive:ocata
 ```
 apt install python-openstackclient
 ```
+
+<a name="3.1.4"></a>
 
 ### 3.1.4.SQL database
 \- Cài MySQL trên node Controller.  
@@ -269,6 +282,8 @@ Trong đó `bind-address` là địa chỉ management IP của node controller.
 service mysql restart
 ```
 
+<a name="3.1.5"></a>
+
 ### 3.1.5.Message queue
 \- Cài đặt **Message queue** trên node Controller. Ở đây dùng **RabbitMQ**.  
 \- Cài đặt package:  
@@ -286,6 +301,8 @@ rabbitmqctl add_user openstack Welcome123
 rabbitmqctl set_permissions openstack ".*" ".*" ".*"
 ```
 
+<a name="3.1.6"></a>
+
 ### 3.1.6.Memcached
 \- Cài đặt **Memcached** trên node Controller.  
 \- Cài đặt package:  
@@ -302,6 +319,8 @@ apt install memcached python-memcache
 ```
 service memcached restart
 ```
+
+<a name="3.2"></a>
 
 ## 3.2.Identity service
 \- Cài dịch vụ Identity (Keystone) trên node Controller. Cấu hình triển khai token Fernet và Apache HTTP server để xử lý request.  
@@ -439,6 +458,8 @@ root@controller:~# openstack token issue
 | user_id    | 7cd46e5a740241c29a4b4c02025d9a1d                                                                                                                   |
 +------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
 ```
+
+<a name="3.3"></a>
 
 ## 3.3.Image service
 \- Cài dịch vụ Image (Glance) trên node Controller. Cấu hình lưu trữ image bằng local file system.  
@@ -672,8 +693,11 @@ openstack image create "cirros" \
 openstack image list
 ```
 
+<a name="3.4"></a>
 
 ## 3.4.Compute service
+<a name="3.4.1"></a>
+
 ### 3.4.1.Cài đặt và cấu hình trên node Controller
 \- Taọ database:  
 - Sử dụng database client để kết nối đến database server như user `root`:  
@@ -1036,6 +1060,8 @@ service nova-conductor restart
 service nova-novncproxy restart
 ```
 
+<a name="3.4.2"></a>
+
 ### 3.4.2.Cài đặt và cấu hình trên node Compute1
 \- Cài packages:  
 ```
@@ -1176,6 +1202,8 @@ Khi thêm 1 node compute mới, bạn phải chạy command `nova-manage cell_v2
 >discover_hosts_in_cells_interval = 300
 >```
 
+<a name="3.4.3"></a>
+
 ### 3.4.3.Kiểm tra
 \- Thiết lập biến môi trường cho user `admin`:  
 ```
@@ -1195,7 +1223,11 @@ root@controller:~# openstack compute service list
 +----+------------------+------------+----------+---------+-------+----------------------------+
 ```
 
+<a name="3.5"></a>
+
 ## 3.5.Networking service
+<a name="3.5.1"></a>
+
 ### 3.5.1.Cài đặt và cấu hình trên node Controller
 \- Tạo database:  
 - Sử dụng database client để kết nối đến database server như user `root`:  
@@ -1381,6 +1413,8 @@ Cho networking option 2, restart layer-3 service:
 service neutron-l3-agent restart
 ```
 
+<a name="3.5.1"></a>
+
 ### 3.5.1.Cài đặt và cấu hình trên node Compute1
 \- Cài các thành phần  
 ```
@@ -1449,6 +1483,7 @@ service nova-compute restart
 service neutron-openvswitch-agent restart
 ```
 
+<a name="tailieuthamkhao"></a>
 
 # Tài liệu tham khảo
 

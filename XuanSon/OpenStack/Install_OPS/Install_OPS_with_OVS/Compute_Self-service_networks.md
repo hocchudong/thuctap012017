@@ -1,4 +1,4 @@
-# Networking Option 1: Provider networks
+# Networking Option 2: Self-service networks
 
 
 
@@ -7,8 +7,13 @@
 \- Open vSwitch agent xấy dựng cơ sở hạ tầng mạng ảo layer-2 cho instances và xử lý security groups.  
 \- Sửa file `/etc/neutron/plugins/ml2/openvswitch_agent.ini`, cấu hình OVS agent:  
 ```
+[agent]
+tunnel_types = vxlan
+l2_population = True
+
 [ovs]
 bridge_mappings = provider:br-provider
+local_ip = 10.10.10.72
 
 [securitygroup]
 firewall_driver = iptables_hybrid

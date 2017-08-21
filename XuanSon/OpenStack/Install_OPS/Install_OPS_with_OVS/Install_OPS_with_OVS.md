@@ -1377,7 +1377,7 @@ root@controller:~# openstack endpoint create --region RegionOne \
 \- **Cấu hình tùy chọn networking**  
 Bạn có thể triển khai Networking service sử dụng 1 trong 2 kiến trúc sau:  
 - [Networking Option 1: Provider networks](Controller_Provider_networks.md)
-- [Networking Option 2: Self-service networks](#)
+- [Networking Option 2: Self-service networks](Controller_Self-service_networks.md)
 
 \- **Cấu hình metadata agent**  
 Metadata agent cung cấp cấu hình thông tin cho instances.  
@@ -1473,7 +1473,7 @@ apt install neutron-openvswitch-agent
 \- **Cấu hình tùy chọn networking**  
 Bạn có thể triển khai Networking service sử dụng 1 trong 2 kiến trúc sau:  
 - [Networking Option 1: Provider networks](Compute_Provider_networks.md.md)
-- [Networking Option 2: Self-service networks](#)
+- [Networking Option 2: Self-service networks](Controller_Self-service_networks.md)
 
 \- **Cấu hình Compute service để sử dụng Networking service**  
 - Sửa file `/etc/nova/nova.conf`:  

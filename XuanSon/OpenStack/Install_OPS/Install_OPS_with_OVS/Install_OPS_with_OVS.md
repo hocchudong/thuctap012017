@@ -16,12 +16,12 @@
 	- [3.2.Identity service](#3.2)
 	- [3.3.Image service](#3.3)
 	- [3.4.Compute service](#3.4)
-		- [3.4.1.Cài đặt và cấu hình trên node Controller](#3.4.1)
-		- [3.4.2.Cài đặt và cấu hình trên node Compute1](#3.4.2)
+		- [3.4.1.Cài đặt và cấu hình Nova trên node Controller](#3.4.1)
+		- [3.4.2.Cài đặt và cấu hình Nova trên node Compute1](#3.4.2)
 		- [3.4.3.Kiểm tra](#3.4.3)
 	- [3.5.Networking service](#3.5)
-		- [3.5.1.Cài đặt và cấu hình trên node Controller](#3.5.1)
-		- [3.5.2.Cài đặt và cấu hình trên node Compute1](#3.5.2)
+		- [3.5.1.Cài đặt và cấu hình Neutron trên node Controller](#3.5.1)
+		- [3.5.2.Cài đặt và cấu hình Neutron trên node Compute1](#3.5.2)
   - [3.6.Dashboard](#3.6)
 - [Tài liệu tham khảo](#tailieuthamkhao)
 
@@ -1436,7 +1436,7 @@ service neutron-l3-agent restart
 
 <a name="3.5.2"></a>
 
-### 3.5.2.Cài đặt và cấu hình trên node Compute1
+### 3.5.2.Cài đặt và cấu hình Neutron trên node Compute1
 \- **Cài các thành phần**  
 ```
 apt install neutron-openvswitch-agent

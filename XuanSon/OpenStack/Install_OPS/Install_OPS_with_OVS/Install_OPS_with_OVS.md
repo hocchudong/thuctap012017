@@ -330,7 +330,7 @@ rabbitmqctl set_permissions openstack ".*" ".*" ".*"
 apt install memcached python-memcache
 ```
 
-\- Sửa fuke `/etc/memcached.conf` và cấu hình service sử dụng địa chỉ management IP của node controller.  
+\- Sửa file `/etc/memcached.conf` và cấu hình service sử dụng địa chỉ management IP của node controller.  
 ```
 -l 10.10.10.71
 ```
@@ -718,7 +718,7 @@ openstack image list
 ## 3.4.Compute service
 <a name="3.4.1"></a>
 
-### 3.4.1.Cài đặt và cấu hình trên node Controller
+### 3.4.1.Cài đặt và cấu hình Nova trên node Controller
 \- **Taọ database:**  
 - Sử dụng database client để kết nối đến database server như user `root`:  
 ```
@@ -1082,7 +1082,7 @@ service nova-novncproxy restart
 
 <a name="3.4.2"></a>
 
-### 3.4.2.Cài đặt và cấu hình trên node Compute1
+### 3.4.2.Cài đặt và cấu hình Nova trên node Compute1
 \- **Cài packages:**  
 ```
 apt install nova-compute
@@ -1248,7 +1248,7 @@ root@controller:~# openstack compute service list
 ## 3.5.Networking service
 <a name="3.5.1"></a>
 
-### 3.5.1.Cài đặt và cấu hình trên node Controller
+### 3.5.1.Cài đặt và cấu hình Neutron trên node Controller
 \- **Tạo database:**  
 - Sử dụng database client để kết nối đến database server như user `root`:  
 ```
@@ -1374,7 +1374,8 @@ root@controller:~# openstack endpoint create --region RegionOne \
 +--------------+----------------------------------+
 ```
 
-\- **Cấu hình tùy chọn networking**  
+<a name="config_neutron_controller"></a>
+\- **Cấu hình tùy chọn networking trên node Controller**  
 Bạn có thể triển khai Networking service sử dụng 1 trong 2 kiến trúc sau:  
 - [Networking Option 1: Provider networks](Controller_Provider_networks.md)
 - [Networking Option 2: Self-service networks](Controller_Self-service_networks.md)
@@ -1470,10 +1471,11 @@ apt install neutron-openvswitch-agent
   password = Welcome123
   ```
 
-\- **Cấu hình tùy chọn networking**  
+<a name="config_neutron_compute1"></a>
+\- **Cấu hình tùy chọn networking trên node Compute1**  
 Bạn có thể triển khai Networking service sử dụng 1 trong 2 kiến trúc sau:  
 - [Networking Option 1: Provider networks](Compute_Provider_networks.md.md)
-- [Networking Option 2: Self-service networks](Controller_Self-service_networks.md)
+- [Networking Option 2: Self-service networks](Compute_Self-service_networks.md)
 
 \- **Cấu hình Compute service để sử dụng Networking service**  
 - Sửa file `/etc/nova/nova.conf`:  

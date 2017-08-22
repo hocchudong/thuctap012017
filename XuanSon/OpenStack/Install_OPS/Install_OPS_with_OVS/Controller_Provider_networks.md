@@ -1,4 +1,4 @@
-# Networking Option 1: Provider networks
+# Networking Option 1: Provider networks trên node Controller
 
 
 
@@ -179,12 +179,7 @@ iface ens3 inet manual
 
 
 
-
-
-
-
-
-
+Quay lại [**Cấu hình Neutron trên node Controller**](Install_OPS_with_OVS.md#config_neutron_controller)
 
 
 

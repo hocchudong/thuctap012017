@@ -51,3 +51,6 @@ iface ens3 inet manual
     ovs_bridge br-provider
     ovs_type OVSPort
 ```
+
+
+Quay lại [**Cấu hình Neutron trên node Compute1**](Install_OPS_with_OVS.md#config_neutron_compute1)

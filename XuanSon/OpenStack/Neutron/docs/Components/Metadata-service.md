@@ -2,6 +2,13 @@
 
 
 # MỤC LỤC
+- [1.Giới thiệu](#1)
+- [2.Các phần mềm của Metadata Service](#2)
+  - [2.1.Nova-api-metadata](#2.1)
+  - [2.2.Neutron-metadata-agent](#2.2)
+  - [2.3.Neutron-ns-metadata-proxy](#2.3)
+- [Tài liệu tham khảo](#tailieuthamkhao)
+
 
 
 <a name="1"></a>
@@ -34,7 +41,7 @@ Khi instance được boot, instance yêu cầu thông tin cấu hình bằng c�
 <a name="2.2"></a>
 
 ## 2.2.Neutron-metadata-agent
-\- `Nova-api-metadata` chạy trên node controller,lấy `OpenStack internal management network`, instance không thể trực tiếp truy cập đến metadata service `http: // controller_ip: 8775`, bởi vì có cách rào cản mạng.  
+\- `Nova-api-metadata` chạy trên node controller,lấy `OpenStack internal management network`, instance không thể trực tiếp truy cập đến metadata service `http: // controller_ip: 8775`, bởi vì có các rào cản mạng.  
 Cấu trả lời là dùng `neutron-metadata-agent` chạy trên trên node network để giải quyết vấn đề này. Instance gửi request metadata đến `neutron-metadata-agent` và `neutron-metadata-agent` chuyển tiếp request đến `nova-api-metadata`.  
 \- Vậy làm thế nào để instance gửi request đến `neutron-metadata-agent`.  
 Trong thực tế, instance không thể liên lạc trực tiếp với `neutron-metadata-agent`, bởi vì `neutron-metadata-agent` cũng là trên `OpenStack internal management network`. Tuy nhiên, có 2 thành phần khác trên **node network** là `dhcp agent` và `l3 agent`, 2 agent này và instance có thể đặt cùng trong 1 **OpenStack network**, điều này đẫn đến thành phần tiếp theo được sinh ra: `neutron-ns-metadata-proxy`.  

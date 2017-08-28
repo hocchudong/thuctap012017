@@ -435,6 +435,37 @@ export OS_AUTH_URL=http://controller:35357/v3
 export OS_IDENTITY_API_VERSION=3
 ```
 
+\- Tạo domain, projects, users và roles  
+- Tạo project `service` để chứa user của mỗi service:  
+```
+openstack project create --domain default \
+  --description "Service Project" service
+```
+
+- Tạo user và project `demo`:  
+  - Tạo project `demo`:  
+  ```
+  openstack project create --domain default \
+  --description "Demo Project" demo
+  ```
+
+  - Tạo user `demo`:  
+  ```
+  openstack user create --domain default \
+  --password-prompt demo
+  ```
+
+  - Tạo role `user`:  
+  ```
+  openstack role create user
+  ```
+
+  - Thêm role `user` đến user `demo` của project `demo`:  
+  ```
+  openstack role add --project demo --user demo user
+  ```
+
+
 \- **Tạo scripts cho việc thiết lập biến môi trường**  
 - Tạo file `admin-openrc` với nội dung như sau:  
 ```

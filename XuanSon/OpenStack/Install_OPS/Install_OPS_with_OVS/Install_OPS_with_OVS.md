@@ -228,6 +228,8 @@ apt install chrony
 server controller iburst
 ```
 
+\- Comment dòng `pool 2.debian.pool.ntp.org offline iburst` .  
+
 \- Restart dịch vụ NTP:  
 ```
 service chrony restart

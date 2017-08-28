@@ -1167,7 +1167,7 @@ firewall_driver = nova.virt.firewall.NoopFirewallDriver
 
 - Trong section `[vnc]`, kích hoạt và cấu hình truy cập remote console:  
 ```
-vnc]
+[vnc]
 # ...
 enabled = True
 vncserver_listen = 0.0.0.0

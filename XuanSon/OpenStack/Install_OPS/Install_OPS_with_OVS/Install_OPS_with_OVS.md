@@ -1023,7 +1023,7 @@ apt install nova-api nova-conductor nova-consoleauth \
   ```
   [DEFAULT]
   # ...
-  my_ip = 10.0.0.11
+  my_ip = 10.0.0.71
   ```
 
   - Trong section `[DEFAULT]`, cho phép hỗ trợ Networking service:  

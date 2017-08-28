@@ -651,8 +651,8 @@ apt install glance
   - Trong section `[database]`, cấu hình truy cập database:  
   ```
   [database]
-    # ...
-    connection = mysql+pymysql://glance:Welcome123@controller/glance
+  # ...
+  connection = mysql+pymysql://glance:Welcome123@controller/glance
   ```
 
   - Trong section `[keystone_authtoken]` và `[paste_deploy]`, cấu hình truy cập Identity service:  

@@ -1152,10 +1152,10 @@ password = Welcome123
 ```
 [DEFAULT]
 # ...
-my_ip = 10.10.10.62
+my_ip = 10.10.10.72
 ```
 
-trong đó `10.10.10.62` là địa chỉ IP của management interface trên node compute.  
+trong đó `10.10.10.72` là địa chỉ IP của management interface trên node compute.  
 
 - Trong section `[DEFAULT]`, cho phép hỗ trợ Networking service:  
 ```

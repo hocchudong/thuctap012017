@@ -528,7 +528,7 @@
   +------------+------------------------------------------------------------------------------------------------------------------------------------+
   | Field      | Value                                                                                                                              |
   +------------+------------------------------------------------------------------------------------------------------------------------------------+
-  | expires    | 2017-06-08T14:37:45+0000                                                                                                           |
+  | expires    | 2017-08-08T14:37:45+0000                                                                                                           |
   | id         | gAAAAABZOVMpzGj_G62qWkgpIL58u2l1FKFBkWTpqW5zocPPdraLwYWEdHUsKsOkCZwMNGFelZlI0vilWo4gMsZ5nWXb2ELD4aMHU4W3rnMSxKqv4QtSxiRCv8hTJ_IGIj |
   |            | vYFF_e2qtySAsuhoRCZVOhy3KfS2FelCpzQE4UDRP5VHWKX5OMeI4                                                                              |
   | project_id | b54646bf669746db8c62ec0410bd0528                                                                                                   |
@@ -545,7 +545,7 @@
   +------------+------------------------------------------------------------------------------------------------------------------------------------+
   | Field      | Value                                                                                                                              |
   +------------+------------------------------------------------------------------------------------------------------------------------------------+
-  | expires    | 2017-06-08T14:39:37+0000                                                                                                           |
+  | expires    | 2017-08-08T14:39:37+0000                                                                                                           |
   | id         | gAAAAABZOVOZu1qQ0_9OkDgoDiQjRhiNH8UxWEwbXZCtiFZ7r4dX37cs5edGxwKpDVriIc3SpRWmPK-YY2Qt0VVaxJ1m8210RsQRitplup1_kBZMp86lZKLibnjoEX-    |
   |            | gqXssudHceQObctojg_m8hwihsy5wGsRk-H3HYBQqiIroJ_OHuY7T7gA                                                                           |
   | project_id | 46c2ef11a6904008be75a90d28b1928c                                                                                                   |
@@ -587,7 +587,7 @@
   +------------+------------------------------------------------------------------------------------------------------------------------------------+
   | Field      | Value                                                                                                                              |
   +------------+------------------------------------------------------------------------------------------------------------------------------------+
-  | expires    | 2017-06-08T14:45:58+0000                                                                                                           |
+  | expires    | 2017-08-08T14:45:58+0000                                                                                                           |
   | id         | gAAAAABZOVUWFfzGA7YgH4B8E22pSmM1z0woDouvaBCUF8NhnY1ne65hCFHU1TnfFadXXtX8RH0NXLa1KNKClrf-                                           |
   |            | Xxdl6qOyNGHBJ2jLHSws8TCaLtZYu6UoCIHxLzVus35krZGYS1DXpfBjB77YiLmuXhvf8qryZbWvBQX5K9otIbPv7e_dHqU                                    |
   | project_id | b54646bf669746db8c62ec0410bd0528                                                                                                   |
@@ -613,7 +613,7 @@
   GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'localhost' IDENTIFIED BY 'Welcome123';
   GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'%' IDENTIFIED BY 'Welcome123';
   FLUSH PRIVILEGES;
- 	exit;
+  Exit;
   ```
 #### 5.2 Tạo user glance, gán quyền và tạo endpoint API cho dịch vụ glance
 - 1. Chạy script biến môi trường: `source admin-openrc`

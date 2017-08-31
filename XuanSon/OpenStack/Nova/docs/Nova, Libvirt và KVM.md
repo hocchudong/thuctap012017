@@ -1,46 +1,45 @@
 # Nova, Libvirt và KVM
 
 # Mục lục
-- [3.Nova, Libvirt và KVM](#3)
-  - [3.1. Các khái niệm căn bản](#3.1)
-    - [3.1.1.KVM - QEMU](#3.1.1)
-    - [3.1.2.Libvirt](#3.1.2)
-  - [3.2. Tích hợp Nova với Libvirt, KVM quản lý máy ảo](#3.2)
-    - [3.2.1. Workflow của Nova Compute](#3.2.1)
-    - [3.2.2. Spawn](#3.2.2)
-    - [3.2.3. Reboot](#3.2.3)
-    - [3.2.4.Suspend](#3.2.4)
-    - [3.2.5.Live Migration](#3.2.5)
-    - [3.2.6.Resize/Migrate](#3.2.6)
-    - [3.2.7.Snapshots](#3.2.7)
+- [Nova, Libvirt và KVM](#)
+  - [1. Các khái niệm căn bản](#1)
+    - [1.1.KVM - QEMU](#1.1)
+    - [1.2.Libvirt](#1.2)
+  - [2. Tích hợp Nova với Libvirt, KVM quản lý máy ảo](#2)
+    - [2.1. Workflow của Nova Compute](#2.1)
+    - [2.2. Spawn](#2.2)
+    - [2.3. Reboot](#2.3)
+    - [2.4.Suspend](#2.4)
+    - [2.5.Live Migration](#2.5)
+    - [2.6.Resize/Migrate](#2.6)
+    - [2.7.Snapshots](#2.7)
 
 
 
-<a name="3"></a>
-# 3.Nova, Libvirt và KVM
-<a name="3.1"></a>
-## 3.1. Các khái niệm căn bản
-<a name="3.1.1"></a>
-### 3.1.1.KVM - QEMU
+
+<a name="1"></a>
+## 1. Các khái niệm căn bản
+<a name="1.1"></a>
+### 1.1.KVM - QEMU
 \- KVM - module của hạt nhân linux đóng vai trò tăng tốc phần cứng khi sử dụng kết hợp với hypervisor QEMU, cung cấp giải pháp ảo hóa full virtualization.  
 \- Sử dụng libvirt làm giao diện trung gian tương tác giữa QEMU và KVM  
-<a name="3.1.2"></a>
-### 3.1.2.Libvirt
+<a name="1.2"></a>
+### 1.2.Libvirt
 \- Thực thi tất cả các thao tác quản trị và tương tác với QEMU bằng việc cung cấp các API.  
 \- Các máy ảo được định nghĩa trong Libvirt thông qua một file XML, tham chiếu tới khái niệm "domain".  
 \- Libvirt chuyển XML thành các tùy chọn của các dòng lệnh nhằm mục đích gọi QEMU  
 \- Tương thích khi sử dụng với virsh (một công cụ quản quản lý tài nguyên ảo hóa giao diện dòng lệnh)  
-<a name="3.2"></a>
-## 3.2. Tích hợp Nova với Libvirt, KVM quản lý máy ảo
-<a name="3.2.1"></a>
-### 3.2.1. Workflow của Nova Compute
+<a name="2"></a>
+## 2. Tích hợp Nova với Libvirt, KVM quản lý máy ảo
+<a name="2.1"></a>
+### 2.1. Workflow của Nova Compute
 \- Compute Manager  
 Cấu hình trong hai file: `nova/compute/api.py` và `nova/compute/manager.py`  
 Các compute API tiếp nhận yêu cầu từ người dùng từ đó gọi tới compute manager. Compute manager lại gọi tới Nova libvirt driver. Driver này sẽ gọi tới API của libvirt thực hiện các thao tác quản trị.  
 \- Nova Libvirt Driver  
 Được cấu hình trong các file `nova/virt/libvirt/driver.py` và `nova/virt/libvirt/*.py` có vai trò tương tác với libvirt.  
-<a name="3.2.2"></a>
-### 3.2.2. Spawn
+<a name="2.2"></a>
+### 2.2. Spawn
 \- Đây là thao tác boot máy ảo, nova tiếp nhận lời gọi API từ người dùng mang đi xử lý qua các module **API -> Scheduler -> Compute (manager) -> Libvirt Driver**. Libvirt sẽ thực hiện tất cả các thao tác cần thiết để tạo máy ảo như cấp phát tài nguyên mạng, tài nguyên tính toán(ram, cpu), volume, etc.  
 \- Tiếp đó, tiến trình spawn này cũng tạo ra file đĩa bằng các thao tác sau:  
 - Tải image từ glance đưa vào thư mục tương ứng chứa ảnh đĩa gốc bên máy compute được lựa chọn (instance_dir/_base) và chuyển nó sang định dạng RAW.
@@ -58,8 +57,8 @@ Các compute API tiếp nhận yêu cầu từ người dùng từ đó gọi t�
 - Định nghĩa domain với libvirt, sử dụng file XML đã tạo. Thao tác này tương đương thao tác 'virsh define instance_dir//libvirt.xml' khi sử dụng virsh.  
 - Bật máy ảo. Thao tác này tương đương thao tác 'virsh start ’ or ‘virsh start ' khi sử dụng virsh.
 
-<a name="3.2.3"></a>
-### 3.2.3. Reboot
+<a name="2.3"></a>
+### 2.3. Reboot
 \- Có 2 loại reboot có thể thực hiện thông qua API: hard reboot và soft reboot. Soft reboot thực hiện hoàn toàn dựa vào guest OS và ACPI thông qua QEMU. Hard reboot thực hiện ở mức hypervisor và Nova cũng như các cấp độ phù hợp khác.  
 \- Hard reboot workflow:  
 - Hủy domain. Tương đương với lệnh "virsh destroy", không hủy bỏ dữ liệu, mà kill tiến trình QEMU.
@@ -69,8 +68,8 @@ Các compute API tiếp nhận yêu cầu từ người dùng từ đó gọi t�
 - "Cắm" lại các card mạng ảo (tái tạo lại các bridges, VLAN interfaces)
 - Tái tạo và áp dụng lại các iptables rules
 
-<a name="3.2.4"></a>
-### 3.2.4.Suspend
+<a name="2.4"></a>
+### 2.4.Suspend
 \- Thực hiện với câu lệnh “nova suspend”.  
 \- Tương tự như câu lệnh “virsh managed-save”.  
 \- Thao tác này dễ gây hiểu lầm, vì nó khá giống hành động hibernate hệ thống.  
@@ -80,8 +79,8 @@ Các compute API tiếp nhận yêu cầu từ người dùng từ đó gọi t�
 - Cả hai giải pháp migration và live migration đều có những vấn đề đối với trạng thái này.
 - Cài đặt QEMU phiên bản khác nhau có thể có sự thay đổi giữa suspend và resume.
 
-<a name="3.2.5"></a>
-### 3.2.5.Live Migration
+<a name="2.5"></a>
+### 2.5.Live Migration
 \- Thực hiện bởi câu lệnh "nova live-migration [--block-migrate]"  
 \- Có 2 loại live migration: normal migration và “block” migrations.  
 \- Normal live migration yêu cầu cả hai source và target hypervisor phải truy cập đến data của instance ( trên hệ thống lưu trữ có chia sẻ, ví dụ: NAS, SAN)  
@@ -98,8 +97,8 @@ Các compute API tiếp nhận yêu cầu từ người dùng từ đó gọi t�
 - Trên source, khởi tạo tiến trình migration.
 - Khi tiến trình hoàn tất, tái sinh file Libvirt XML và define nó trên destination.
 
-<a name="3"></a>
-### 3.2.6.Resize/Migrate
+<a name="2.6"></a>
+### 2.6.Resize/Migrate
 \- Resize/Migrate được nhóm lại với nhau bởi chúng sử dụng chung code.  
 \- Migrate khác live migrate ở chỗ nó thực hiện migration khi tắt máy ảo ( Libvirt domain không chạy)  
 \- Yêu cầu SSH key pairs được triển khai cho user đang chạy nova-compute với mọi hypervisors.  
@@ -111,8 +110,8 @@ Các compute API tiếp nhận yêu cầu từ người dùng từ đó gọi t�
 - Nếu sử dụng QCOW2, convert image sang dạng RAW.
 - Với hệ thống shared storage, di chuyển thư mục instance_dir mới vào. Nếu không, copy thông qua SCP.
 
-<a name="3"></a>
-### 3.2.7.Snapshots
+<a name="2.7"></a>
+### 2.7.Snapshots
 \- 2 kiểu snapshot hoàn toàn khác nhau: "live" snapshot và "cold" snapshot.  
 \- Hệ thống file hoặc dữ liệu bền vững có thể không được đảm bảo với mỗi kiểu snapshot khác nhau.  
 \- Live snapshot không có yêu cầu đặc biệt gì về cấu hình, Nova sẽ thực hiện tự động (được giới thiệu trong bản Grizzly, yêu cầu Libvirt 1.0.0 và QEMU 1.3).  Live snapshot workflow như sau:  

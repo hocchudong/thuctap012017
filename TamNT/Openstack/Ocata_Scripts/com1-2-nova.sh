@@ -43,4 +43,6 @@ ops_add $novaconf placement auth_url http://controller:35357/v3
 ops_add $novaconf placement username placement
 ops_add $novaconf placement password $PLACEMENT_PASS
 
+service nova-compute restart
+
 echocolorbg "Hoan thanh cai dat nova-compute node compute1"

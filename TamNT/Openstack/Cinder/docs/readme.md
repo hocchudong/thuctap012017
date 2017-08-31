@@ -4,6 +4,7 @@
 
 [Tìm hiểu sơ lược về Cinder.](./Tong_quan_Cinder.md)
 
+
 # Thực hành
 
 [Lab cấu hình LVM](./Tim_hieu_LVM.md#2)

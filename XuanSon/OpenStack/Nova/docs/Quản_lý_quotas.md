@@ -1,11 +1,11 @@
 # Quản lý quotas
 
-# 6.Quản lý quotas
-## 6.1.Khái niệm
+# Quản lý quotas
+## 1.Khái niệm
 \- Quota là khái niệm chỉ sự giới hạn resource.  
 \- Nó cho biết số resource được cho phép trên mỗi project.  
-\- Được định nghĩa trong file cấu hình: `/etc/nova/nova.conf`.  
-## 6.2.Cấu hình
+\- Được định nghĩa trong file cấu hình: `/etc/nova/nova.conf` trên controller.  
+## 2.Cấu hình
 \- Từ phiên bản OpenStack Ocata trở về trước, **quota** được cấu hình trong section `[DEFAULT]`với các thông số như sau:  
 ```
 # Number of instances allowed per project (integer value)
@@ -38,7 +38,7 @@ quota_key_pairs=100
 \- Trong phiên bản OpenStack Ocata, **quota** được cấu hình tương tự trong section `[quota]` , tham khảo tại : 
 https://docs.openstack.org/ocata/config-reference/compute/config-options.html 
 \- Nếu muốn thay đổi quota, ta phải cấu hình trong file `/etc/nova/nova.conf` và restart lại các service nova.  
-## 6.3.Các command liên quan
+## 3.Các command liên quan
 \- Show thông tin về quota:  
 ```
 nova quota-show

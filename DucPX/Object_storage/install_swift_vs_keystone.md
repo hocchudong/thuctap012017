@@ -1,5 +1,36 @@
 # Cài đặt Swift với keystone trên Ubuntu 16.04 64-bit.
 
+# Mục lục
+- [Mô hình mạng](#1)
+- [1. Cài đặt môi trường trên node controller](#2)
+  - [1.1 Cài đặt networking.](#3)
+  - [1.2 Cài đặt NTP](#4)
+  - [1.3 Cài đặt repos để cài OpenStack PIKE](#5)
+  - [1.4 Cài đặt SQL database](#6)
+  - [1.5 Cài đặt RabbitMQ](#7)
+  - [1.6 Cài đặt Memcached](#8)
+- [2. Cài đặt môi trường trên 2 node object.](#9)
+  - [2.1 Cài đặt networking cho object1](#10)
+  - [2.2 Cài đặt networking cho object2](#11)
+  - [2.3 Cài đặt NTP](#12)
+  - [2.4 Cài đặt repos để cài OpenStack PIKE](#13)
+- [3. Thực hiện cài đặt keystone.](#14)
+  - [3.1 Tạo database cho keystone](#15)
+  - [3.2 Cài đặt và cấu hình keystone](#16)
+  - [3.3 Kết thúc cài đặt](#17)
+  - [3.4 Tạo domain, projects, users, và roles](#18)
+  - [3.5  Kiểm chứng lại các bước cài đặt keysonte](#19)
+  - [3.6 Tạo script biến môi trường cho client](#20)
+- [4. Cài đặt swift trên controller](#21)
+  - [4.1. Tạo user swift, gán quyền và tạo endpoint API cho dịch vụ swift](#22)
+  - [4.2. Cài đặt và cấu hình cho dịch vụ Swift](#23)
+- [5. Cài đặt các thành phần trên 2 node object.](#24)
+  - [5.1. Cài đặt các gói hỗ trợ.](#25)
+  - [5.2. Cài đặt và cấu hình các thành phần](#26)
+- [6. Tạo và phân phối các rings ban đầu.](#27)
+- [7. Hoàn thành cài đặt](#28)
+
+<a name=1></a>
 # Mô hình mạng
 
   ![](../images/layout_swift.png)
@@ -12,6 +43,7 @@
   - Password thống nhất cho tất cả các dịch vụ là Welcome123
   ```
   
+<a name=2></a>
 # 1. Cài đặt môi trường trên node controller.
 - Cập nhật các gói phần mềm
 
@@ -19,7 +51,8 @@
   apt-get update
   ```
   
-### 1.1 Cài đặt networking cho máy
+<a name=3></a>
+### 1.1 Cài đặt networking.
 - Dùng lệnh vi để sửa file /etc/network/interfaces với nội dung như sau.
 
   ```sh
@@ -96,6 +129,7 @@
   init 6
   ```
   
+<a name=4></a>
 ### 1.2 Cài đặt NTP.
 - 1. Cài gói chrony.
 
@@ -126,6 +160,7 @@
   service chrony restart
   ```
   
+<a name=5></a>
 ### 1.3 Cài đặt repos để cài OpenStack PIKE
 - 1. Cài đặt gói để cài OpenStack PIKE
   ```sh
@@ -148,6 +183,7 @@
   init 6
   ```
   
+<a name=6></a>
 ### 1.4 Cài đặt SQL database
 - 1. Cài đặt MariaDB
   ```sh
@@ -179,6 +215,7 @@
   service mysql restart
   ```
   
+<a name=7></a>
 ### 1.5 Cài đặt RabbitMQ
 - Cài đặt gói
   ```sh
@@ -195,6 +232,7 @@
   rabbitmqctl set_permissions openstack ".*" ".*" ".*"
   ```
   
+<a name=8></a>
 ### 1.6 Cài đặt Memcached
 - 1. Cài đặt các gói cần thiết cho memcached
   ```sh
@@ -211,6 +249,7 @@
   service memcached restart
   ```
   
+<a name=9></a>
 # 2. Cài đặt môi trường trên 2 node object.
 - Cập nhật các gói phần mềm
 
@@ -218,6 +257,7 @@
   apt-get update
   ```
   
+<a name=10></a>
 ### 2.1 Cài đặt networking cho object1
 - Dùng lệnh vi để sửa file /etc/network/interfaces với nội dung như sau.
 
@@ -270,6 +310,7 @@
   init 6
   ```
   
+<a name=11></a>
 ### 2.2 Cài đặt networking cho object2
 - Dùng lệnh vi để sửa file /etc/network/interfaces với nội dung như sau.
 
@@ -322,6 +363,7 @@
   init 6
   ```
   
+<a name=12></a>
 # Các bước cài đặt sau được thực hiện trên cả 2 node object
 ### 2.3 Cài đặt NTP.
 - 1. Cài gói chrony.
@@ -349,6 +391,7 @@
   service chrony restart
   ```
   
+<a name=13></a>
 ### 2.4 Cài đặt repos để cài OpenStack PIKE
 - 1. Cài đặt gói để cài OpenStack PIKE
   ```sh
@@ -371,9 +414,10 @@
   init 6
   ```
   
-# 3. Thực hiện cài đặt keystone và swift trên node controller
-## 3.1 Cài đặt keystone
-### 3.1.1 Tạo database cho keystone
+<a name=14></a>
+# 3. Thực hiện cài đặt keystone.
+<a name=15></a>
+### 3.1 Tạo database cho keystone
 - 1. Đăng nhập vào MariaDB
   ```sh
   mysql -u root -pWelcome123
@@ -392,7 +436,8 @@
   exit;
   ```
   
-### 3.1.2 Cài đặt và cấu hình keystone
+<a name=16></a>
+### 3.2 Cài đặt và cấu hình keystone
 - 1. Cài đặt keystone
   ```sh
   apt install keystone apache2 libapache2-mod-wsgi -y
@@ -435,7 +480,8 @@
   ServerName controller
   ```
   
-### 3.3.3 Kết thúc cài đặt
+<a name=17></a>
+### 3.3 Kết thúc cài đặt
 - 1. Restart lại apache và xóa database SQLite mặc định
   ```sh
   service apache2 restart
@@ -453,7 +499,8 @@
   export OS_IDENTITY_API_VERSION=3
   ```
   
-### 3.3.4 Tạo domain, projects, users, và roles
+<a name=18></a>
+### 3.4 Tạo domain, projects, users, và roles
 - 1. Tạo project `service`
   ```sh
   ~# openstack project create --domain default \
@@ -525,7 +572,8 @@
   openstack role add --project demo --user demo user
   ```
   
-### 3.3.5  Kiểm chứng lại các bước cài đặt keysonte
+<a name=19></a>
+### 3.5  Kiểm chứng lại các bước cài đặt keysonte
 - 1. Vô hiệu hóa cơ chế xác thực bằng token tạm thời trong keysonte bằng cách xóa `admin_token_auth` trong các section `[pipeline:public_api]`, `[pipeline:admin_api]` và `[pipeline:api_v3]` của file `/etc/keystone/keystone-paste.ini`
 - 2. Bỏ thiết lập trong biến môi trường của `OS_AUTH_URL` và `OS_PASSWORD` bằng lệnh:
   ```sh
@@ -569,7 +617,8 @@
   +------------+------------------------------------------------------------------------------------------------------------------------------------+
   ```
   
-### 3.3.6 Tạo script biến môi trường cho client
+<a name=20></a>
+### 3.6 Tạo script biến môi trường cho client
 - 1. Tạo file `admin-openrc` với nội dung sau:
   ```sh
   export OS_PROJECT_DOMAIN_NAME=Default
@@ -615,8 +664,10 @@
   ```
   
 - Đã cài xong keystone. Tiếp theo sẽ cài swift trên controller.
-# 4. Cài đặt swift trên controller
 
+<a name=21></a>
+# 4. Cài đặt swift trên controller
+<a name=22></a>
 ### 4.1. Tạo user swift, gán quyền và tạo endpoint API cho dịch vụ swift
 - 1. Chạy script biến môi trường: `source admin-openrc`
 - 2. Tạo user `swift`
@@ -681,6 +732,7 @@
   object-store admin http://controller:8080/v1
   ```
  
+<a name=23></a>
 ### 4.2. Cài đặt và cấu hình cho dịch vụ Swift
 - 1. Cài đặt gói swift
 
@@ -767,6 +819,7 @@
   memcache_servers = controller:11211
   ```
  
+<a name=24></a>
 # 5. Cài đặt các thành phần trên 2 node object.
 - Trên mỗi node object đều có 3 ổ đĩa. Kiểm tra bằng lệnh sau
   ```sh
@@ -788,6 +841,7 @@
   
 - Trên cả 2 node, chúng ta đều thực hiện như sau:
 
+<a name=25></a>
 ### 5.1. Cài đặt các gói hỗ trợ.
 - 1. Cài đặt các gói hỗ trợ.
 
@@ -866,6 +920,7 @@
   service rsync start
   ```
  
+<a name=26></a>
 ### 5.2. Cài đặt và cấu hình các thành phần
 - 1. Cài đặt các gói
 
@@ -994,10 +1049,11 @@
   chown -R root:swift /var/cache/swift
   chmod -R 775 /var/cache/swift
   ```
-  
+
+<a name=27></a>  
 ## 6. Tạo và phân phối các rings ban đầu.
 - Bước này thực hiện trên node controller
-### 1. Tạo tài khoản ring
+### 6.1. Tạo tài khoản ring
 - 1. đến thư mục `/etc/swift`
 
   ```sh
@@ -1049,7 +1105,7 @@
   Reassigned 3072 (300.00%) partitions. Balance is now 0.00.  Dispersion is now 0.00
   ```
   
-### 2. Tạo container ring
+### 6.2. Tạo container ring
 - 1. đến thư mục `/etc/swift`
 
   ```sh
@@ -1101,7 +1157,7 @@
   Reassigned 3072 (300.00%) partitions. Balance is now 0.00.  Dispersion is now 0.00
   ```
 
-### 3. Tạo object ring
+### 6.3. Tạo object ring
 - 1. đến thư mục `/etc/swift`
 
   ```sh
@@ -1153,7 +1209,7 @@
   Reassigned 3072 (300.00%) partitions. Balance is now 0.00.  Dispersion is now 0.00
   ```
  
-### 4. Copy các file `account.ring.gz, container.ring.gz, and object.ring.gz` đến thư mục `/etc/swift` trên mỗi node object storage
+### 6.4. Copy các file `account.ring.gz, container.ring.gz, and object.ring.gz` đến thư mục `/etc/swift` trên mỗi node object storage
 - Sử dụng lệnh scp để đẩy các file này đến mỗi node Object storage
 
   ```sh
@@ -1161,6 +1217,7 @@
   scp /etc/swift/account.ring.gz /etc/swift/container.ring.gz /etc/swift/object.ring.gz root@10.10.10.101:/etc/swift
   ```
 
+<a name=28></a>
 # 7. Hoàn thành cài đặt
 - Thực hiện trên node controller
 - 1. Lấy file `/etc/swift/swift.conf` từ kho lưu trữ Object storage

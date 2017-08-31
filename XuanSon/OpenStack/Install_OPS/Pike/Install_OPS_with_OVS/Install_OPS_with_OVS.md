@@ -263,7 +263,7 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 \- Kích hoạt OpenStack repository  
 ```
 apt install software-properties-common
-add-apt-repository cloud-archive:ocata
+add-apt-repository cloud-archive:pike
 ```
 
 \- Update và upgrade:  
@@ -373,7 +373,7 @@ quit
 \- **Cài đặt và cấu hình các thành phần:**  
 - Cài packages:  
 ```
-apt install keystone
+apt install keystone  apache2 libapache2-mod-wsgi
 ```
 
 - Sửa file `/etc/keystone/keystone.conf` và thực hiện các hành động sau:  
@@ -421,7 +421,6 @@ ServerName controller
 - Restart Apache service và xóa default SQLite database:  
 ```
 service apache2 restart
-rm -f /var/lib/keystone/keystone.db
 ```
 
 - Thiết lập biến môi trường cho account admin:  
@@ -1230,12 +1229,12 @@ service nova-compute restart
 - Xác thực compute hosts trong database:  
 ```
 root@controller:~# . admin-openrc
-root@controller:~# openstack hypervisor list
-+----+---------------------+-----------------+-------------+-------+
-| ID | Hypervisor Hostname | Hypervisor Type | Host IP     | State |
-+----+---------------------+-----------------+-------------+-------+
-|  1 | compute1            | QEMU            | 10.10.10.72 | up    |
-+----+---------------------+-----------------+-------------+-------+
+root@controller:~# openstack compute service list --service nova-compute
++----+--------------+----------+------+---------+-------+----------------------------+
+| ID | Binary       | Host     | Zone | Status  | State | Updated At                 |
++----+--------------+----------+------+---------+-------+----------------------------+
+|  1 | nova-compute | compute1 | nova | enabled | up    | 2017-08-31T03:40:00.000000 |
++----+--------------+----------+------+---------+-------+----------------------------+
 ```
 
 \- Khám phá compute hosts:  
@@ -1635,8 +1634,7 @@ service apache2 reload
 <a name="tailieuthamkhao"></a>
 
 # Tài liệu tham khảo
-\- https://docs.openstack.org/ocata/install-guide-ubuntu/  
-\- https://docs.openstack.org/ocata/networking-guide/deploy.html#mechanism-drivers  
+\- https://docs.openstack.org/pike/install/   
 
 
 

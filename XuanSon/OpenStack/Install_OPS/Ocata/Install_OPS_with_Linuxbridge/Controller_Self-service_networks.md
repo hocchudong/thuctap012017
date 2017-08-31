@@ -5,7 +5,7 @@
 - [1.Cài đặt các thành phần](#1)
 - [2.Cấu hình các thành phần server](#2)
 - [3.Cấu hình Modular Layer 2 (ML2) plug-in](#3)
-- [4.Cấu hình Open vSwitch agent](#4)
+- [4.Cấu hình Linux bridge agent](#4)
 - [5.Cấu hình L3 agent](#5)
 - [6. Cấu hình DHCP agent](#6)
 - [7.Các thứ liên quan](#7)
@@ -17,7 +17,7 @@
 \- Chạy câu lệnh sau:  
 ```
 apt install neutron-server neutron-plugin-ml2 \
-  neutron-openvswitch-agent neutron-l3-agent neutron-dhcp-agent \
+  neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent \
   neutron-metadata-agent
 ```
 
@@ -89,49 +89,86 @@ password = Welcome123
 <a name="3"></a>
 
 # 3.Cấu hình Modular Layer 2 (ML2) plug-in
-\- ML2 plug-in sử dụng Open vSwitch mechanism để xây dựng layer-2.  
-- Cấu hình drivers và loại network:  
+\- ML2 plug-in sử dụng Linux bridge mechanism để xây dựng cơ sở hạng tầng mạng ảo layer-2 cho instances.  
+\- Sửa file `/etc/neutron/plugins/ml2/ml2_conf.ini` và hoàn thành các hành động sau:  
+- Trong section `[ml2]`, kích hoạt mạng flat, VLAN và VXLAN:  
 ```
 [ml2]
-type_drivers = flat,vxlan,vlan
+# ...
+type_drivers = flat,vlan,vxlan
+```
+
+- Trong section `[ml2]`, enable VXLAN self-service networks:  
+```
+[ml2]
+# ...
 tenant_network_types = vxlan
-mechanism_drivers = openvswitch,l2population
+```
+
+- Trong section `[ml2]`, enable Linux bridge và layer-2 population mechanisms:  
+```
+[ml2]
+# ...
+mechanism_drivers = linuxbridge,l2population
+```  
+
+>Note:  
+>Linux bridge agent chỉ hỗ trợ VXLAN overlay networks.  
+
+- Trong section `[ml2]`, enable port security extension driver:  
+```
+[ml2]
+# ...
 extension_drivers = port_security
 ```
 
-- Cấu hình network mappings:  
+- Trong section `[ml2_type_flat]`, cấu hình provider virtual network như flat network:  
 ```
 [ml2_type_flat]
+# ...
 flat_networks = provider
-
-[ml2_type_vlan]
-network_vlan_ranges = provider
 ```
 
-- Cấu hình dải VXLAN network ID (VNI):  
+- Trong section `[ml2_type_vxlan]`, cấu hình VXLAN network identifier range cho self-service networks:  
 ```
 [ml2_type_vxlan]
+# ...
 vni_ranges = 1:1000
 ```
 
 
+
+
 <a name="4"></a>
 
-# 4.Cấu hình Open vSwitch agent
-\- Open vSwitch agent xấy dựng cơ sở hạ tầng mạng ảo layer-2 cho instances và xử lý security groups.  
-\- Sửa file `/etc/neutron/plugins/ml2/openvswitch_agent.ini`, cấu hình OVS agent:  
+# 4.Cấu hình Linux bridge agent
+\- Linux bridge agent xây dựng cơ sở hạ tầng mạng ảo layer-2 cho instances và xử lý security groups.  
+\- Sửa file `/etc/neutron/plugins/ml2/linuxbridge_agent.ini`, làm như sau:  
+- Trong section [linux_bridge], map **provider virtual network** đến **provider physical network interface**:  
 ```
-[agent]
-tunnel_types = vxlan
-l2_population = True
+[linux_bridge]
+physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
+```
 
-[ovs]
-bridge_mappings = provider:br-provider
-local_ip = 10.10.10.71
+Thay `PROVIDER_INTERFACE_NAME` bằng tên của **provider physical network interface**, trong bài lab này `ens3`.  
+- Trong section [vxlan], enable VXLAN overlay networks, cấu hình địa chỉ IP của **physical network interface** xử lý overlay networks, enable layer-2 population:  
+```
+[vxlan]
+enable_vxlan = true
+local_ip = OVERLAY_INTERFACE_IP_ADDRESS
+l2_population = true
+```  
 
+Thay `OVERLAY_INTERFACE_IP_ADDRESS` bằng địa chỉ IP của **physical network interface** xử lý overlay network.  Trong bài lab này là `10.10.10.71`.  
+
+- Trong section [securitygroup], enable security groups và cấu hình Linux bridge **iptables** firewall driver:  
+```
 [securitygroup]
-firewall_driver = iptables_hybrid
+# ...
+enable_security_group = true
+firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 ```
+
 
 <a name="5"></a>
 
@@ -139,63 +176,21 @@ firewall_driver = iptables_hybrid
 \- Sửa file `/etc/neutron/l3_agent.ini`  như sau:  
 ```
 [DEFAULT]
-interface_driver = openvswitch
-external_network_bridge =
+interface_driver = linuxbridge
 ```
 
 <a name="6"></a>
 
 # 6. Cấu hình DHCP agent
 \- Sửa file `/etc/neutron/dhcp_agent.ini`, cấu hình DHCP agent:  
+- Trong section `[DEFAULT]`, cấu hình Linux bridge interface driver, Dnsmasq và enable isolated metadata để instance trên mạng provider có thể truy cập metadata thông qua network.  
+
 ```
 [DEFAULT]
-interface_driver = openvswitch
-enable_isolated_metadata = True
-force_metadata = True
-```
-
-<a name="7"></a>
-
-# 7.Các thứ liên quan
-\- Start service Open vSwitch.  
-\- Tạo OVS privider bridge `br-provider`:  
-```
-ovs-vsctl add-br br-provider
-```
-
-\- Thêm provider network interface như 1 port trên OVS provider bridge `br-provider`:  
-```
-ovs-vsctl add-port br-provider PROVIDER_INTERFACE
-```
-
-Thay `PROVIDER_INTERFACE` với tên của interface xử lý provider network, trong mô hình này là `ens3`.  
-
-\- Chuyển địa chỉ IP của network interface `ens3` sang cho vswitch `br-provider`:  
-```
-ip a flush ens3
-ip a add 192.168.2.71/24 dev br-provider
-ip link set br-provider up
-ip r add default via 192.168.2.1
-echo "nameserver 8.8.8.8" > /etc/resolv.conf
-```
-
->Chú ý:  
-Tuy tạo vswith và gán interface với Open vSwitch khi restart lại server sẽ không bị mất, nhưng gán địa chỉ IP cho vswitch sau khi restart lại server sẽ bị mất, muốn sau khi restart lại server không mất, thay vì tạo vswitch, gán interface, gán địa chỉ IP bằng câu lệnh, ta comment các dòng cấu hình interface `ens3` ghi vào file `/etc/network/interfaces` như sau, sau đó restart lại server:  
-```
-auto br-provider
-allow-ovs br-provider
-iface br-provider inet static
-    address 192.168.2.71
-    netmask 255.255.255.0
-    gateway 192.168.2.1
-    dns-nameservers 8.8.8.8
-    ovs_type OVSBridge
-    ovs_ports ens3
-
-allow-br-provider ens3
-iface ens3 inet manual
-    ovs_bridge br-provider
-    ovs_type OVSPort
+# ...
+interface_driver = linuxbridge
+dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
+enable_isolated_metadata = true
 ```
 
 

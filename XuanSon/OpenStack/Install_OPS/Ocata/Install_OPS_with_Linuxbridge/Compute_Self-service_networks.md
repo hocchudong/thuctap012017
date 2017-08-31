@@ -3,61 +3,32 @@
 
 
 
-# Cấu hình Open vSwitch agent
-\- Open vSwitch agent xấy dựng cơ sở hạ tầng mạng ảo layer-2 cho instances và xử lý security groups.  
-\- Sửa file `/etc/neutron/plugins/ml2/openvswitch_agent.ini`, cấu hình OVS agent:  
+# Cấu hình Linux bridge agent
+\- Linux bridge agent xây dựng cơ sở hạ tầng mạng ảo layer-2 cho instances và xử lý security groups.  
+\- Sửa file `/etc/neutron/plugins/ml2/linuxbridge_agent.ini`, làm như sau:  
+- Trong section [linux_bridge], map **provider virtual network** đến **provider physical network interface**:  
 ```
-[agent]
-tunnel_types = vxlan
-l2_population = True
+[linux_bridge]
+physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
+```
 
-[ovs]
-bridge_mappings = provider:br-provider
-local_ip = 10.10.10.72
+Thay `PROVIDER_INTERFACE_NAME` bằng tên của **provider physical network interface**, trong bài lab này `ens3`.  
+- Trong section [vxlan], enable VXLAN overlay networks, cấu hình địa chỉ IP của **physical network interface** xử lý overlay networks, enable layer-2 population:  
+```
+[vxlan]
+enable_vxlan = true
+local_ip = OVERLAY_INTERFACE_IP_ADDRESS
+l2_population = true
+```  
 
+Thay `OVERLAY_INTERFACE_IP_ADDRESS` bằng địa chỉ IP của **physical network interface** xử lý overlay network trên node compute.  Trong bài lab này là `10.10.10.72`.  
+
+- Trong section [securitygroup], enable security groups và cấu hình Linux bridge **iptables** firewall driver:  
+```
 [securitygroup]
-firewall_driver = iptables_hybrid
-```
-
-\- Start service Open vSwitch.  
-\- Tạo OVS provider bridge `br-provider`:  
-```
-ovs-vsctl add-br br-provider
-```
-
-\- Thêm provider network interface như 1 port trên OVS provider bridge `br-provider`:  
-```
-ovs-vsctl add-port br-provider PROVIDER_INTERFACE
-```
-
-Thay `PROVIDER_INTERFACE` với tên của interface xử lý provider network, trong mô hình này là `ens3`.
-
-\- Chuyển địa chỉ IP của network interface `ens3` sang cho vswitch `br-provider`:  
-```
-ip a flush ens3
-ip a add 192.168.2.72/24 dev br-provider
-ip link set br-provider up
-ip r add default via 192.168.2.1
-echo "nameserver 8.8.8.8" > /etc/resolv.conf
-```
-
->Chú ý:  
-Tuy tạo vswith và gán interface với Open vSwitch khi restart lại server sẽ không bị mất, nhưng gán địa chỉ IP cho vswitch sau khi restart lại server sẽ bị mất, muốn sau khi restart lại server không mất, thay vì tạo vswitch, gán interface, gán địa chỉ IP bằng câu lệnh, ta comment các dòng cấu hình interface `ens3` ghi vào file `/etc/network/interfaces` như sau, sau đó restart lại server:  
-```
-auto br-provider
-allow-ovs br-provider
-iface br-provider inet static
-    address 192.168.2.72
-    netmask 255.255.255.0
-    gateway 192.168.2.1
-    dns-nameservers 8.8.8.8
-    ovs_type OVSBridge
-    ovs_ports ens3
-
-allow-br-provider ens3
-iface ens3 inet manual
-    ovs_bridge br-provider
-    ovs_type OVSPort
+# ...
+enable_security_group = true
+firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 ```
 
 

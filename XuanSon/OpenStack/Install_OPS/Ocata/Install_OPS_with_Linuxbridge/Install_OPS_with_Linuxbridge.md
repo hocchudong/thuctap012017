@@ -1457,7 +1457,7 @@ service nova-api restart
 - Restart Networking services.  
 ```
 service neutron-server restart
-service neutron-openvswitch-agent restart
+service neutron-linuxbridge-agent restart
 service neutron-dhcp-agent restart
 service neutron-metadata-agent restart
 ```
@@ -1472,7 +1472,7 @@ service neutron-l3-agent restart
 ### 3.5.2.Cài đặt và cấu hình Neutron trên node Compute1
 \- **Cài các thành phần**  
 ```
-apt install neutron-openvswitch-agent
+apt install neutron-linuxbridge-agent
 ```
 
 \- **Cấu hình thành phần chung**  
@@ -1533,9 +1533,9 @@ password = Welcome123
 service nova-compute restart
 ```
 
-- Restart Open vSwitch agent:  
+- Restart Linux bridge agent:  
 ```
-service neutron-openvswitch-agent restart
+service neutron-linuxbridge-agent restart
 ```
 
 <a name="3.6"></a>
@@ -1635,8 +1635,8 @@ service apache2 reload
 <a name="tailieuthamkhao"></a>
 
 # Tài liệu tham khảo
-\- https://docs.openstack.org/ocata/install-guide-ubuntu/  
-\- https://docs.openstack.org/ocata/networking-guide/deploy.html#mechanism-drivers  
+\- https://docs.openstack.org/ocata/networking-guide/deploy-lb.html  
+
 
 
 

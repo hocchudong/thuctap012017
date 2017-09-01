@@ -18,7 +18,7 @@
 ```
 apt install neutron-server neutron-plugin-ml2 \
   neutron-openvswitch-agent neutron-l3-agent neutron-dhcp-agent \
-  neutron-metadata-agent
+  neutron-metadata-agent -y
 ```
 
 <a name="2"></a>

@@ -197,7 +197,7 @@ rtt min/avg/max/mdev = 0.518/0.656/0.823/0.108 ms
 #### Controller
 \- Cài package:  
 ```
-apt install chrony
+apt install chrony -y
 ```
 
 \- Sửa file `/etc/chrony/chrony.conf` và comment, xóa tất cả các dòng có chứa `server` và thay bằng các dòng sau:  
@@ -220,7 +220,7 @@ service chrony restart
 #### Compute1
 \- Cài package:  
 ```
-apt install chrony
+apt install chrony -y
 ```
 
 \- Sửa file `/etc/chrony/chrony.conf` và comment, xóa tất cả các dòng có chứa `server` và thay bằng các dòng sau:  
@@ -268,12 +268,12 @@ add-apt-repository cloud-archive:pike
 
 \- Update và upgrade:  
 ```
-# apt update && apt dist-upgrade
+# apt update -y && apt dist-upgrade -y
 ```
 
 \- Cài OpenStack client:  
 ```
-apt install python-openstackclient
+apt install python-openstackclient -y
 ```
 
 <a name="3.1.4"></a>
@@ -282,7 +282,7 @@ apt install python-openstackclient
 \- Cài MySQL trên node Controller.  
 \- Cài đặt packages:  
 ```
-apt install mariadb-server python-pymysql
+apt install mariadb-server python-pymysql -y
 ```
 
 \- Tạo và sửa file `/etc/mysql/mariadb.conf.d/99-openstack.cnf` theo nội dung sau:  
@@ -304,13 +304,18 @@ Trong đó `bind-address` là địa chỉ management IP của node controller.
 service mysql restart
 ```
 
+\- Chạy script `mysql_secure_installation` để thiết lập an toàn cho database. Đặc biệt là chọn mật khẩu thích hợp cho account `root` của database:  
+```
+# mysql_secure_installation
+```
+
 <a name="3.1.5"></a>
 
 ### 3.1.5.Message queue
 \- Cài đặt **Message queue** trên node Controller. Ở đây dùng **RabbitMQ**.  
 \- Cài đặt package:  
 ```
-apt install rabbitmq-server
+apt install rabbitmq-server -y
 ```
 
 \- Thêm user `openstack` với mật khẩu `Welcome123`:  
@@ -329,7 +334,7 @@ rabbitmqctl set_permissions openstack ".*" ".*" ".*"
 \- Cài đặt **Memcached** trên node Controller.  
 \- Cài đặt package:  
 ```
-apt install memcached python-memcache
+apt install memcached python-memcache -y
 ```
 
 \- Sửa file `/etc/memcached.conf` và cấu hình service sử dụng địa chỉ management IP của node controller.  
@@ -373,7 +378,7 @@ quit
 \- **Cài đặt và cấu hình các thành phần:**  
 - Cài packages:  
 ```
-apt install keystone  apache2 libapache2-mod-wsgi
+apt install keystone  apache2 libapache2-mod-wsgi -y
 ```
 
 - Sửa file `/etc/keystone/keystone.conf` và thực hiện các hành động sau:  
@@ -451,7 +456,7 @@ openstack project create --domain default \
   - Tạo user `demo`:  
   ```
   openstack user create --domain default \
-  --password-prompt demo
+  --password Welcome123 demo
   ```
 
   - Tạo role `user`:  
@@ -547,10 +552,8 @@ quit
 \- **Tạo thông tin service glance:**  
 - Tạo user glance:  
 ```
-root@controller:~# openstack user create --domain default --password-prompt glance
+root@controller:~# openstack user create --domain default --password Welcome123 glance
 
-User Password:
-Repeat User Password:
 +---------------------+----------------------------------+
 | Field               | Value                            |
 +---------------------+----------------------------------+
@@ -643,7 +646,7 @@ root@controller:~# openstack endpoint create --region RegionOne \
 \- **Cài đặt và cấu hình các thành phần:**  
 - Cài đặt packages:  
 ```
-apt install glance
+apt install glance -y
 ```
 
 - Sửa file `/etc/glance/glance-api.conf`:  
@@ -795,10 +798,8 @@ quit
 \- **Tạo thông tin Compute service:**  
 - Tạo user `nova`:  
 ```
-root@controller:~# openstack user create --domain default --password-prompt nova
+root@controller:~# openstack user create --domain default --password Welcome123 nova
 
-User Password:
-Repeat User Password:
 +---------------------+----------------------------------+
 | Field               | Value                            |
 +---------------------+----------------------------------+
@@ -890,10 +891,8 @@ compute admin http://controller:8774/v2.1
 
 \- Tạo user cho Placement service:  
 ```
-root@controller:~# openstack user create --domain default --password-prompt placement
+root@controller:~# openstack user create --domain default --password Welcome123 placement
 
-User Password:
-Repeat User Password:
 +---------------------+----------------------------------+
 | Field               | Value                            |
 +---------------------+----------------------------------+
@@ -977,7 +976,7 @@ root@controller:~# openstack endpoint create --region RegionOne placement admin 
 - Cài packages:  
 ```
 apt install nova-api nova-conductor nova-consoleauth \
-  nova-novncproxy nova-scheduler nova-placement-api
+  nova-novncproxy nova-scheduler nova-placement-api -y
 ```
 
 - Sửa file `/etc/nova/nova.conf` và hoàn thành các hành động sau:  
@@ -1117,7 +1116,7 @@ service nova-novncproxy restart
 ### 3.4.2.Cài đặt và cấu hình Nova trên node Compute1
 \- **Cài packages:**  
 ```
-apt install nova-compute
+apt install nova-compute -y
 ```
 
 \- Sửa file `/etc/nova/nova.conf` và hoàn thành các thực hiện sau:  
@@ -1313,10 +1312,8 @@ quit
 \- **Tạo thông tin service `neutron`:**  
 - Tạo user `neutron`:  
 ```
-root@controller:~# openstack user create --domain default --password-prompt neutron
+root@controller:~# openstack user create --domain default --password Welcome123 neutron
 
-User Password:
-Repeat User Password:
 +---------------------+----------------------------------+
 | Field               | Value                            |
 +---------------------+----------------------------------+
@@ -1471,7 +1468,7 @@ service neutron-l3-agent restart
 ### 3.5.2.Cài đặt và cấu hình Neutron trên node Compute1
 \- **Cài các thành phần**  
 ```
-apt install neutron-openvswitch-agent
+apt install neutron-openvswitch-agent -y
 ```
 
 \- **Cấu hình thành phần chung**  
@@ -1545,7 +1542,7 @@ service neutron-openvswitch-agent restart
 \- **Cài đặt và cấu hình các thành phần**
 - Cài đặt packages:  
 ```
-apt install openstack-dashboard
+apt install openstack-dashboard -y
 ```
 
 - Sửa file `/etc/openstack-dashboard/local_settings.py` và hoàn thành các hành động sau:  

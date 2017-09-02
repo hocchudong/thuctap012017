@@ -1,5 +1,14 @@
 # Tổng quan về dịch vụ lưu trữ Block và Object
 
+## Mục lục
+- [1. Dịch vụ lưu trữ Block](#1)
+  - [Một số ưu điểm của lưu trữ Block](#a)
+  - [Một số nhược điểm](#b)
+- [2. Dịch vụ lưu trữ Object](#2)
+  - [Ưu điểm của Object storage](#c)
+  - [Nhược điểm của Object storage](#d)
+
+<a name=1></a>
 ## 1. Dịch vụ lưu trữ Block
 - Cung cấp các thiết bị lưu trữ tương tự như hard disk thông qua mạng.
 - Block storage cung cấp một block với kích thước bất kỳ và cắm block vào máy ảo để sử dụng.
@@ -9,12 +18,14 @@
   - Có thể thay đổi kích thước để lưu trữ lượng data cần thiết (ví dụ khi data tăng lên hoặc giảm, không gây lãng phí, đáp ứng nhu cầu lưu trữ).
   - Dễ dàng tháo gỡ và chuyển qua các máy khác.
 
+<a name=a></a>
 ### Một số ưu điểm của lưu trữ Block
 - Người dùng phổ thông dễ dàng hiểu và sử dụng.
 - Các thiết bị block hỗ trợ tốt. Các ngôn ngữ lập trình dễ dàng đọc và ghi các files.
 - Kiểm soát truy cập và phân quyền truy cập filesystem quen thuộc (như trên các thiết bị hard disk).
 - Độ trễ thấp, phù hợp để sử dụng cho lưu trữ database.
 
+<a name=b></a>
 ### Một số nhược điểm.
 - Kho lưu trữ phải gắn vào một server tại cùng một thời điểm.
 - Blocks và filesystems giới hạn matadata (lưu matadata: thời gian tạo, chủ sở hữu, kích thước). Các thông tin cần lưu thêm thì phải lưu ở mức ứng dụng và database. Điều này gây ra sự phức tạp cho các nhà phát triển.
@@ -23,6 +34,7 @@
 
 => Vì đặc điểm tốc độ IO nhanh nên nó phù hợp với các hệ thống lưu trữ database. Hơn nữa có nhiều phần mềm được kế thừa từ các phần mềm cũ có yêu cầu lưu trữ filesystem thông thường nên yêu cầu sử dụng thiết bị lưu trữ block.
 
+<a name=2></a>
 ## 2. Dịch vụ lưu trữ Object.
 - Trong mô hình lưu trữ hiện đại của cloud computing, lưu trữ object là việc lưu trữ và thu hồi data và metadata thông qua HTTP API.
 - Thay vì "băm" files thành các block và lưu trữ chúng xuống disk sử dụng filesystem, thì chúng ta sẽ lưu theo đối tượng thông qua mạng.
@@ -31,6 +43,7 @@
 - Tìm kiếm files đã lưu trữ thường thông qua GET request.
 - Chỉ tính phí cho không gian lưu trữ mà người dùng sử dụng (một số thì có thể tính theo số lượng http request hoặc băng thông).
 
+<a name=c></a>
 ### Ưu điểm của Object storage
 - Sử dụng HTTP API, phổ biến cho hầu hết các hệ điều hành và ngôn ngữ lập trình.
 - Chỉ chi trả cho những gì bạn sử dụng.
@@ -39,6 +52,7 @@
 - Không phải quản lý các thiết bị disk.
 - Việc lưu trữ đoạn metadata của dữ liệu làm đơn giản hóa trong cấu trúc của ứng dụng.
 
+<a name=d></a>
 ### Nhược điểm của Object storage.
 - Không thể sử dụng để lưu database vì độ trễ cao.
 - Không thể thay đổi data, tất cả object đều phải được đồng bộ một lần. Nếu muốn thay đổi thì phải lấy lại object và thay đổi, rồi ghi cả object mới.

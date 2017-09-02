@@ -1,5 +1,11 @@
 # Một số thao tác quản trị Swift trên Openstack
 
+## Mục lục
+- [1. Một số thao tác cơ bản](#1)
+- [2. Quản lý phân quyền trên container](#2)
+- [3. Sử dụng lệnh cURL](#3)
+
+<a name=1></a>
 ## 1. Một số thao tác cơ bản.
 - Sử dụng lệnh `swift stat`
 
@@ -71,12 +77,14 @@
   file1 [auth 5.006s, headers 5.860s, total 5.861s, 0.000 MB/s]
   ```
   
+<a name=2></a>
 ## 2. Quản lý phân quyền trên container.
 - Người dùng có thể thiết lập kiểm soát truy cập ở mức container và định nghĩa truy cập đọc ghi.
 - Để có quyền ghi lên container, user phải có quyền đọc trên container đó.
-- 
 
+<Sẽ cập nhật sau>
 
+<a name=3></a>
 ## 3. Sử dụng lệnh cURL.
 - Lệnh cURL phổ biến trong giao thức HTTP.
 - Lấy thông tin xác thực và URL của storage, sử dụng lệnh `swift auth`
@@ -160,32 +168,3 @@
           netmask 255.255.255.0
   ```
  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-

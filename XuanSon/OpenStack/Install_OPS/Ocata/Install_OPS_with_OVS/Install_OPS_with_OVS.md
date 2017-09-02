@@ -228,6 +228,8 @@ apt install chrony
 server controller iburst
 ```
 
+\- Comment dòng `pool 2.debian.pool.ntp.org offline iburst` .  
+
 \- Restart dịch vụ NTP:  
 ```
 service chrony restart
@@ -433,6 +435,37 @@ export OS_AUTH_URL=http://controller:35357/v3
 export OS_IDENTITY_API_VERSION=3
 ```
 
+\- Tạo domain, projects, users và roles  
+- Tạo project `service` để chứa user của mỗi service:  
+```
+openstack project create --domain default \
+  --description "Service Project" service
+```
+
+- Tạo user và project `demo`:  
+  - Tạo project `demo`:  
+  ```
+  openstack project create --domain default \
+  --description "Demo Project" demo
+  ```
+
+  - Tạo user `demo`:  
+  ```
+  openstack user create --domain default \
+  --password-prompt demo
+  ```
+
+  - Tạo role `user`:  
+  ```
+  openstack role create user
+  ```
+
+  - Thêm role `user` đến user `demo` của project `demo`:  
+  ```
+  openstack role add --project demo --user demo user
+  ```
+
+
 \- **Tạo scripts cho việc thiết lập biến môi trường**  
 - Tạo file `admin-openrc` với nội dung như sau:  
 ```
@@ -618,8 +651,8 @@ apt install glance
   - Trong section `[database]`, cấu hình truy cập database:  
   ```
   [database]
-    # ...
-    connection = mysql+pymysql://glance:Welcome123@controller/glance
+  # ...
+  connection = mysql+pymysql://glance:Welcome123@controller/glance
   ```
 
   - Trong section `[keystone_authtoken]` và `[paste_deploy]`, cấu hình truy cập Identity service:  
@@ -990,7 +1023,7 @@ apt install nova-api nova-conductor nova-consoleauth \
   ```
   [DEFAULT]
   # ...
-  my_ip = 10.0.0.11
+  my_ip = 10.0.0.71
   ```
 
   - Trong section `[DEFAULT]`, cho phép hỗ trợ Networking service:  
@@ -1119,10 +1152,10 @@ password = Welcome123
 ```
 [DEFAULT]
 # ...
-my_ip = 10.10.10.62
+my_ip = 10.10.10.72
 ```
 
-trong đó `10.10.10.62` là địa chỉ IP của management interface trên node compute.  
+trong đó `10.10.10.72` là địa chỉ IP của management interface trên node compute.  
 
 - Trong section `[DEFAULT]`, cho phép hỗ trợ Networking service:  
 ```
@@ -1134,7 +1167,7 @@ firewall_driver = nova.virt.firewall.NoopFirewallDriver
 
 - Trong section `[vnc]`, kích hoạt và cấu hình truy cập remote console:  
 ```
-vnc]
+[vnc]
 # ...
 enabled = True
 vncserver_listen = 0.0.0.0

@@ -6,7 +6,7 @@
 - [1.Cài đặt các thành phần](#1)
 - [2.Cấu hình các thành phần server](#2)
 - [3.Cấu hình Modular Layer 2 (ML2) plug-in](#3)
-- [4.Cấu hình Open vSwitch agent](#4)
+- [4.Cấu hình Linux bridge agent](#4)
 - [5. Cấu hình DHCP agent](#5)
 - [6.Các thứ liên quan](#6)
 
@@ -18,7 +18,7 @@
 \- Chạy câu lệnh sau:  
 ```
 apt install neutron-server neutron-plugin-ml2 \
-  neutron-openvswitch-agent neutron-dhcp-agent \
+  neutron-linuxbridge-agent neutron-dhcp-agent \
   neutron-metadata-agent
 ```
 
@@ -89,24 +89,49 @@ password = Welcome123
 <a name="3"></a>
 
 # 3.Cấu hình Modular Layer 2 (ML2) plug-in
-\- ML2 plug-in sử dụng Open vSwitch mechanism để xây dựng layer-2.  
-\- Cấu hình drivers và loại network:  
+\- ML2 plug-in sử dụng Linux bridge mechanism để xây dựng cơ sở hạng tầng mạng ảo layer-2 cho instances.  
+\- Sửa file `/etc/neutron/plugins/ml2/ml2_conf.ini` và hoàn thành các hành động sau:  
+- Trong section `[ml2]`, kích hoạt mạng flat và VLAN:  
 ```
 [ml2]
+# ...
 type_drivers = flat,vlan
+```
+
+- Trong section `[ml2]`, disable self-service networks:  
+```
+[ml2]
+# ...
 tenant_network_types =
-mechanism_drivers = openvswitch
+```
+
+- Trong section `[ml2]`, enable Linux bridge:  
+```
+[ml2]
+# ...
+mechanism_drivers = linuxbridge
+```   
+
+- Trong section `[ml2]`, enable port security extension driver:  
+```
+[ml2]
+# ...
 extension_drivers = port_security
 ```
 
-- Cấu hình network mappings:  
+- Trong section `[ml2_type_flat]`, cấu hình provider virtual network như flat network:  
 ```
 [ml2_type_flat]
+# ...
 flat_networks = provider
+```
 
+- Trong section `[ml2_type_vlan]`, cấu hình provider virtual network như vlan network:  
+```
 [ml2_type_vlan]
 network_vlan_ranges = provider
 ```
+
 
 >Chú ý:  
 >- `tenant_network_types` option không chứa giá trụ bởi vì kiến trúc này không hỗ self-service network.  
@@ -114,15 +139,28 @@ network_vlan_ranges = provider
 
 <a name="4"></a>
 
-# 4.Cấu hình Open vSwitch agent
-\- Open vSwitch agent xấy dựng cơ sở hạ tầng mạng ảo layer-2 cho instances và xử lý security groups.  
-\- Sửa file `/etc/neutron/plugins/ml2/openvswitch_agent.ini`, cấu hình OVS agent:  
+# 4.Cấu hình Linux bridge agent
+\- Linux bridge agent xây dựng cơ sở hạ tầng mạng ảo layer-2 cho instances và xử lý security groups.  
+\- Sửa file `/etc/neutron/plugins/ml2/linuxbridge_agent.ini`, làm như sau:  
+- Trong section [linux_bridge], map **provider virtual network** đến **provider physical network interface**:  
 ```
-[ovs]
-bridge_mappings = provider:br-provider
+[linux_bridge]
+physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
+```
 
+Thay `PROVIDER_INTERFACE_NAME` bằng tên của **provider physical network interface**, trong bài lab này `ens3`.  
+- Trong section [vxlan], disable VXLAN overlay networks:  
+```
+[vxlan]
+enable_vxlan = false
+```
+
+- Trong section [securitygroup], enable security groups và cấu hình Linux bridge **iptables** firewall driver:  
+```
 [securitygroup]
-firewall_driver = iptables_hybrid
+# ...
+enable_security_group = true
+firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 ```
 
 <a name="5"></a>
@@ -131,52 +169,11 @@ firewall_driver = iptables_hybrid
 \- Sửa file `/etc/neutron/dhcp_agent.ini`, cấu hình DHCP agent:  
 ```
 [DEFAULT]
-interface_driver = openvswitch
-enable_isolated_metadata = True
-force_metadata = True
+# ...
+interface_driver = linuxbridge
+dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
+enable_isolated_metadata = true
 ```
-
-<a name="6"></a>
-
-# 6.Các thứ liên quan
-\- Start service Open vSwitch.  
-\- Tạo OVS privider bridge `br-provider`:  
-```
-ovs-vsctl add-br br-provider
-```
-
-\- Thêm provider network interface như 1 port trên OVS provider bridge `br-provider`:  
-```
-ovs-vsctl add-port br-provider PROVIDER_INTERFACE
-```
-
-Thay `PROVIDER_INTERFACE` với tên của interface xử lý provider network, trong mô hình này là `ens3`.  
-
-\- Chuyển địa chỉ IP của network interface `ens3` sang cho vswitch `br-provider`:  
-```
-ip a flush ens3
-ip a add 192.168.2.71/24 ens3
-```
-
->Chú ý:  
-Tuy tạo vswith và gán interface với Open vSwitch khi restart lại server sẽ không bị mất, nhưng gán địa chỉ IP cho vswitch sau khi restart lại server sẽ bị mất, muốn sau khi restart lại server không mất, thay vì tạo vswitch, gán interface, gán địa chỉ IP bằng câu lệnh, ta comment các dòng cấu hình interface `ens3` ghi vào file `/etc/network/interfaces` như sau, sau đó restart lại server:  
-```
-auto br-provider
-allow-ovs br-provider
-iface br-provider inet static
-    address 192.168.2.71
-    netmask 255.255.255.0
-    gateway 192.168.2.1
-    dns-nameservers 8.8.8.8
-    ovs_type OVSBridge
-    ovs_ports ens3
-
-allow-br-provider ens3
-iface ens3 inet manual
-    ovs_bridge br-provider
-    ovs_type OVSPort
-```
-
 
 
 Quay lại [**Cấu hình Neutron trên node Controller**](Install_OPS_with_OVS.md#config_neutron_controller)

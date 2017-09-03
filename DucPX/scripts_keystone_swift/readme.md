@@ -113,6 +113,7 @@
   ```
 
 ## Kiểm tra lại bước cài đặt
+- Thực hiện trên node controller
 
   ```sh
   bash test.sh

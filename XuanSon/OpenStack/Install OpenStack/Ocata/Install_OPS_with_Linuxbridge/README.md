@@ -47,6 +47,11 @@ Thực thi các file bằng command như sau:
   source com1-3-neutron-provider.sh
   ```
 
+  - Sau khi cài xong trên node **Controller** và **Compute1**, thực hiện command sau để tìm kiếm các node **Compute**:  
+  ```
+  source ctl-4-nova_discoveryhost.sh
+  ```
+
 - Mô hình **Self-service network**:  
 Thực thi các file bằng command như sau:  
   - Trên node **Controller**:  
@@ -56,7 +61,7 @@ Thực thi các file bằng command như sau:
   source ctl-2-keystone.sh
   source ctl-3-glance.sh
   source ctl-4-nova.sh
-  source ctl-5-neutron-provider.sh
+  source ctl-5-neutron-selfservice.sh
   source ctl-6-horizon.sh
   ```
 
@@ -65,5 +70,13 @@ Thực thi các file bằng command như sau:
   source com1-0-ipaddr.sh
   source com1-1-environment.sh
   source com1-2-nova.sh
-  source com1-3-neutron-provider.sh
+  source com1-3-neutron-selfservice.sh
   ```
+
+  - Sau khi cài xong trên node **Controller** và **Compute1**, thực hiện command sau để tìm kiếm các node **Compute**:  
+  ```
+  source ctl-4-nova_discoveryhost.sh
+  ```
+
+
+

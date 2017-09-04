@@ -39,7 +39,7 @@ openstack endpoint create --region RegionOne \
 echocolor "Install the components"
 sleep 3
 apt install neutron-server neutron-plugin-ml2 \
-  neutron-linuxbridge-agent neutron-dhcp-agent \
+  neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent \
   neutron-metadata-agent -y
 
 ## Configure the server component
@@ -58,7 +58,9 @@ ops_del $neutronfile DEFAULT core_plugin
 ops_add $neutronfile DEFAULT \
 	core_plugin ml2
 ops_add $neutronfile DEFAULT \
-	service_plugins
+	service_plugins router
+ops_add $neutronfile DEFAULT \
+	allow_overlapping_ips true
 
 ops_add $neutronfile DEFAULT \
 	transport_url rabbit://openstack:$NEUTRON_PASS@controller
@@ -114,12 +116,13 @@ ml2filebak=/etc/neutron/plugins/ml2/ml2_conf.ini.bak
 cp $ml2file $ml2filebak
 egrep -v "^$|^#" $ml2filebak > $ml2file
 
-ops_add $ml2file ml2 type_drivers flat,vlan
-ops_add $ml2file ml2 tenant_network_types
-ops_add $ml2file ml2 mechanism_drivers linuxbridge
+ops_add $ml2file ml2 type_drivers flat,vlan,vxlan
+ops_add $ml2file ml2 tenant_network_types vxlan
+ops_add $ml2file ml2 mechanism_drivers linuxbridge,l2population
 ops_add $ml2file ml2 extension_drivers port_security
 ops_add $ml2file ml2_type_flat flat_networks provider
 ops_add $ml2file ml2_type_vlan network_vlan_ranges provider
+ops_add $ml2file ml2_type_vxlan vni_ranges 1:1000
 
 
 ## Configure the Linux bridge agent
@@ -131,11 +134,20 @@ cp $linuxbridgefile $linuxbridgefilebak
 egrep -v "^$|^#" $linuxbridgefilebak > $linuxbridgefile
 
 ops_add $linuxbridgefile linux_bridge physical_interface_mappings provider:$CTL_EXT_IF
-ops_add $linuxbridgefile vxlan enable_vxlan false
+ops_add $linuxbridgefile vxlan enable_vxlan true
+ops_add $linuxbridgefile vxlan local_ip $CTL_MGNT_IP
 ops_add $linuxbridgefile securitygroup enable_security_group true
 ops_add $linuxbridgefile securitygroup \
 	firewall_driver neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 
+## Configure the L3 agent
+echocolor "Configure the L3 agent"
+l3file=/etc/neutron/l3_agent.ini
+l3filebak=/etc/neutron/l3_agent.ini.bak
+cp $l3file $l3filebak
+egrep -v "^$|^#" $l3filebak > $l3file
+ops_add $l3file DEFAULT interface_driver linuxbridge
+	
 ## Configure the DHCP agent
 echocolor "Configure the DHCP agent"
 sleep 3

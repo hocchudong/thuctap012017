@@ -10,12 +10,6 @@ echocolor "Update and Update controller"
 sleep 3
 apt-get update -y&& apt-get upgrade -y
 
-# Install crudini
-echocolor "Install crudini"
-sleep 3
-apt-get install -y crudini
-
-
 # Install and config NTP
 echocolor "Install NTP"
 sleep 3

@@ -8,6 +8,7 @@ source config.cnf
 # Install the packages
 echocolor "Install the packages"
 sleep 3
+apt install openstack-dashboard -y
 
 # Edit the /etc/openstack-dashboard/local_settings.py file
 echocolor "Edit the /etc/openstack-dashboard/local_settings.py file"

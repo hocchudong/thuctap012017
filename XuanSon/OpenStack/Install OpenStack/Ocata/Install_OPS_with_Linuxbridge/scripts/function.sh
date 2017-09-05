@@ -8,10 +8,6 @@ function echocolor {
     echo "$(tput setaf 2)##### $1 #####$(tput sgr0)"
 }
 
-# Install crudini
-echocolor "Install crudini"
-sleep 3
-apt-get install -y crudini
 
 # Ham sua file config cua OpenStack
 ## Ham add 

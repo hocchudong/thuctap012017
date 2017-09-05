@@ -42,7 +42,7 @@ ops_add $neutronfile keystone_authtoken \
 ops_add $neutronfile keystone_authtoken \
 	username neutron
 ops_add $neutronfile keystone_authtoken \
-	password = $NEUTRON_PASS
+	password $NEUTRON_PASS
 
 
 #Configure the Linux bridge agent
@@ -74,7 +74,7 @@ ops_add $novafile neutron project_name service
 ops_add $novafile neutron username neutron
 ops_add $novafile neutron password $NEUTRON_PASS
 ops_add $novafile neutron service_metadata_proxy true
-ops_add $novafile neutron metadata_proxy_shared_secret = $METADATA_SECRET	
+ops_add $novafile neutron metadata_proxy_shared_secret $METADATA_SECRET	
 	
 # Finalize installation
 echocolor "Finalize installation"

@@ -5,6 +5,11 @@
 source function.sh
 source config.cnf
 
+# Install crudini
+echocolor "Install crudini"
+sleep 3
+apt-get install -y crudini
+
 # Update and upgrade for controller
 echocolor "Update and Update controller"
 sleep 3

@@ -5,6 +5,11 @@
 source function.sh
 source config.cnf
 
+# Install crudini
+echocolor "Install crudini"
+sleep 3
+apt-get install -y crudini
+
 # Update and upgrade for COMPUTE1
 echocolor "Update and Update COMPUTE1"
 sleep 3

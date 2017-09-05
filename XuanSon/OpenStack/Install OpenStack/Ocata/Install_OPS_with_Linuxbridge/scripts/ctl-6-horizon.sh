@@ -56,15 +56,4 @@ sleep 3
 service apache2 reload
 
 
-    
-    
-   
-    
-    
-    
-    
-    
-
-
-
 

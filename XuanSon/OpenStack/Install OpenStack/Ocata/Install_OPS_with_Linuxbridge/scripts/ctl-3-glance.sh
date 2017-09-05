@@ -150,7 +150,6 @@ echocolor "Upload image to Glance"
 sleep 3
 source /root/admin-openrc
 apt-get install wget -y
-cd /root
 wget http://download.cirros-cloud.net/0.3.5/cirros-0.3.5-x86_64-disk.img
 
 openstack image create "cirros" \

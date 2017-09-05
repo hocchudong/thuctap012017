@@ -1,4 +1,5 @@
-# Networking Option 2: Self-service networks on node Controller
+# Networking Option 1: Provider networks trên node Controller
+
 
 
 # MỤC LỤC
@@ -6,9 +7,9 @@
 - [2.Cấu hình các thành phần server](#2)
 - [3.Cấu hình Modular Layer 2 (ML2) plug-in](#3)
 - [4.Cấu hình Linux bridge agent](#4)
-- [5.Cấu hình L3 agent](#5)
-- [6. Cấu hình DHCP agent](#6)
-- [7.Các thứ liên quan](#7)
+- [5. Cấu hình DHCP agent](#5)
+- [6.Các thứ liên quan](#6)
+
 
 
 <a name="1"></a>
@@ -17,7 +18,7 @@
 \- Chạy câu lệnh sau:  
 ```
 apt install neutron-server neutron-plugin-ml2 \
-  neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent \
+  neutron-linuxbridge-agent neutron-dhcp-agent \
   neutron-metadata-agent
 ```
 
@@ -37,8 +38,7 @@ connection = mysql+pymysql://neutron:Welcome123@controller/neutron
 [DEFAULT]
 # ...
 core_plugin = ml2
-service_plugins = router
-allow_overlapping_ips = true
+service_plugins =
 ```
 
 - Trong section `[DEFAULT]`, cấu hình `RabbitMQ` truy cập message queue:  
@@ -91,29 +91,26 @@ password = Welcome123
 # 3.Cấu hình Modular Layer 2 (ML2) plug-in
 \- ML2 plug-in sử dụng Linux bridge mechanism để xây dựng cơ sở hạng tầng mạng ảo layer-2 cho instances.  
 \- Sửa file `/etc/neutron/plugins/ml2/ml2_conf.ini` và hoàn thành các hành động sau:  
-- Trong section `[ml2]`, kích hoạt mạng flat, VLAN và VXLAN:  
+- Trong section `[ml2]`, kích hoạt mạng flat và VLAN:  
 ```
 [ml2]
 # ...
-type_drivers = flat,vlan,vxlan
+type_drivers = flat,vlan
 ```
 
-- Trong section `[ml2]`, enable VXLAN self-service networks:  
+- Trong section `[ml2]`, disable self-service networks:  
 ```
 [ml2]
 # ...
-tenant_network_types = vxlan
+tenant_network_types =
 ```
 
-- Trong section `[ml2]`, enable Linux bridge và layer-2 population mechanisms:  
+- Trong section `[ml2]`, enable Linux bridge:  
 ```
 [ml2]
 # ...
-mechanism_drivers = linuxbridge,l2population
-```  
-
->Note:  
->Linux bridge agent chỉ hỗ trợ VXLAN overlay networks.  
+mechanism_drivers = linuxbridge
+```   
 
 - Trong section `[ml2]`, enable port security extension driver:  
 ```
@@ -129,15 +126,16 @@ extension_drivers = port_security
 flat_networks = provider
 ```
 
-- Trong section `[ml2_type_vxlan]`, cấu hình VXLAN network identifier range cho self-service networks:  
+- Trong section `[ml2_type_vlan]`, cấu hình provider virtual network như vlan network:  
 ```
-[ml2_type_vxlan]
-# ...
-vni_ranges = 1:1000
+[ml2_type_vlan]
+network_vlan_ranges = provider
 ```
 
 
-
+>Chú ý:  
+>- `tenant_network_types` option không chứa giá trụ bởi vì kiến trúc này không hỗ self-service network.  
+>- Giá trị `provider` trong `network_vlan_ranges` option thiếu VLAN ID ranges để hỗ trợ sử dụng VLAN IDs tùy ý.
 
 <a name="4"></a>
 
@@ -151,15 +149,11 @@ physical_interface_mappings = provider:PROVIDER_INTERFACE_NAME
 ```
 
 Thay `PROVIDER_INTERFACE_NAME` bằng tên của **provider physical network interface**, trong bài lab này `ens3`.  
-- Trong section [vxlan], enable VXLAN overlay networks, cấu hình địa chỉ IP của **physical network interface** xử lý overlay networks, enable layer-2 population:  
+- Trong section [vxlan], disable VXLAN overlay networks:  
 ```
 [vxlan]
-enable_vxlan = true
-local_ip = OVERLAY_INTERFACE_IP_ADDRESS
-l2_population = true
-```  
-
-Thay `OVERLAY_INTERFACE_IP_ADDRESS` bằng địa chỉ IP của **physical network interface** xử lý overlay network.  Trong bài lab này là `10.10.10.71`.  
+enable_vxlan = false
+```
 
 - Trong section [securitygroup], enable security groups và cấu hình Linux bridge **iptables** firewall driver:  
 ```
@@ -169,22 +163,10 @@ enable_security_group = true
 firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 ```
 
-
 <a name="5"></a>
 
-# 5.Cấu hình L3 agent 
-\- Sửa file `/etc/neutron/l3_agent.ini`  như sau:  
-```
-[DEFAULT]
-interface_driver = linuxbridge
-```
-
-<a name="6"></a>
-
-# 6. Cấu hình DHCP agent
+# 5. Cấu hình DHCP agent
 \- Sửa file `/etc/neutron/dhcp_agent.ini`, cấu hình DHCP agent:  
-- Trong section `[DEFAULT]`, cấu hình Linux bridge interface driver, Dnsmasq và enable isolated metadata để instance trên mạng provider có thể truy cập metadata thông qua network.  
-
 ```
 [DEFAULT]
 # ...
@@ -194,13 +176,7 @@ enable_isolated_metadata = true
 ```
 
 
-Quay lại [**Cấu hình Neutron trên node Controller**](Install_OPS_with_OVS.md#config_neutron_controller)
-
-
-
-
-
-
+Quay lại [**Cấu hình Neutron trên node Controller**](Install_OPS_with_Linuxbridge.md#config_neutron_controller)
 
 
 

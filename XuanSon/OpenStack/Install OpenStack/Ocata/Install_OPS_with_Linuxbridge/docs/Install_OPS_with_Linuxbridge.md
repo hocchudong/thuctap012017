@@ -33,14 +33,14 @@
 # 1.Mô hình
 Mô hình cài đặt OpenStack Ocata gồm 2 node: Controller và Compute.
 
-<img src="images/mo_hinh.png" />
+<img src="../images/mo_hinh.png" />
 
 <a name="2"></a>
 
 # 2.IP Planning
 Yêu cầu phần cứng và địa chỉ IP cho các nodes.
 
-<img src="images/ip_planning.png" />
+<img src="../images/ip_planning.png" />
 
 <a name="3"></a>
 
@@ -377,14 +377,14 @@ apt install keystone
 ```
 
 - Sửa file `/etc/keystone/keystone.conf` và thực hiện các hành động sau:  
-  - Trong section `[database], cấu hình truy cập database:  
+  - Trong section `[database]`, cấu hình truy cập database:  
     ```
     [database]
     # ...
     connection = mysql+pymysql://keystone:Welcome123@controller/keystone
     ```
 
-  - Trong section `[token`], caasu hinhf Fernet token provider:  
+  - Trong section `[token]`, caasu hinhf Fernet token provider:  
     ```
     [token]
     # ...
@@ -1175,7 +1175,7 @@ vncserver_proxyclient_address = $my_ip
 novncproxy_base_url = http://controller:6080/vnc_auto.html
 ```
 
-- Trong section `[glance], cấu hình vị trí của Image service API:  
+- Trong section `[glance]`, cấu hình vị trí của Image service API:  
 ```
 [glance]
 # ...

@@ -53,7 +53,7 @@ ops_add $glance_api keystone_authtoken password $GLANCE_PASS
 ops_add $glance_api paste_deploy flavor keystone
 ops_add $glance_api glance_store stores file,http
 ops_add $glance_api glance_store default_store file
-ops_add $glance_apii glance_store filesystem_store_datadir /var/lib/glance/images/
+ops_add $glance_api glance_store filesystem_store_datadir /var/lib/glance/images/
 
 glance_registry=/etc/glance/glance-registry.conf
 ops_add $glance_registry database connection mysql+pymysql://glance:$GLANCE_DBPASS@$HOST_CTL/glance
@@ -79,8 +79,7 @@ echocolorbg "Xac nhan lai dich vu image service"
 apt-get install wget -y
 . admin-openrc
 wget http://download.cirros-cloud.net/0.3.5/cirros-0.3.5-x86_64-disk.img
-openstack image create "cirros" --file cirros-0.3.5-x86_64-disk.img \
-  --disk-format qcow2 --container-format bare --public
-  
+openstack image create "cirros" --file cirros-0.3.5-x86_64-disk.img --disk-format qcow2 --container-format bare --public
+
 openstack image list
 

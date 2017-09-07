@@ -22,6 +22,6 @@ sed -i 's/#OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = /OPENSTACK_KEYSTONE_DEFAULT_DOMAI
 sed -i 's/_member_/user/g' $horizonconf 
 sed -i 's/UTC/Asia\/\Ho_Chi_Minh/g' $horizonconf 
 echo "SESSION_ENGINE = 'django.contrib.sessions.backends.cache' " >> $horizonconf
-
-echocolor "Hoan thanh cai dat Horizon! Tien hanh kiem tra tren trinh duyet: http://controller/horizon" 
 service apache2 reload
+chown -R www-data:www-data /var/lib/openstack-dashboard
+echocolor "Hoan thanh cai dat Horizon! Tien hanh kiem tra tren trinh duyet: http://controller/horizon" 

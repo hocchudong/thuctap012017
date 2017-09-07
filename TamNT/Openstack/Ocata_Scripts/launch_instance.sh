@@ -11,21 +11,16 @@ openstack network create  --share --external \
   --provider-network-type flat provider 
 
 openstack subnet create --network provider \
-  --allocation-pool start=$START_IP_ADDRESS,end=$END_IP_ADDRESS \
-  --dns-nameserver 8.8.8.8 --gateway $PROVIDER_NETWORK_GATEWAY \
-  --subnet-range $PROVIDER_NETWORK_CIDR provider
-
-openstack subnet create --network provider \
-  --allocation-pool start=172.16.100.21,end=172.16.100.28 \
-  --dns-nameserver $DNS_RESOLVER --gateway $PROVIDER_NETWORK_GATEWAY \
-  --subnet-range $PROVIDER_NETWORK_CIDR provider
+  --allocation-pool start=192.168.101.200,end=192.168.101.220 \
+  --dns-nameserver 8.8.8.8 --gateway 192.168.101.1 \
+  --subnet-range 192.168.101.0/24 provider
 
 . demo-openrc
 openstack network create selfservice
 
 openstack subnet create --network selfservice \
-  --dns-nameserver $DNS_RESOLVER --gateway 192.168.100.1 \
-  --subnet-range 192.168.100.0/24 selfservice
+  --dns-nameserver $DNS_RESOLVER --gateway 10.0.1.1 \
+  --subnet-range 10.0.1.0/24 selfservice
 echocolor "Create route"
 sleep 3
 openstack router create router
@@ -34,17 +29,16 @@ neutron router-gateway-set router provider
 . admin-openrc
 ip netns
 neutron router-port-list router
-echocolor"create flavor"
+echocolor "create flavor"
 sleep 3
-openstack flavor create --id 0 --vcpus 1 --ram 64 --disk 1 m1.nano
+openstack flavor create --id 0 --vcpus 1 --ram 128 --disk 1 m1.nano
 . demo-openrc
 openstack flavor list
 openstack image list
 openstack network list
 echocolor "Launch instance"
 sleep 3
-openstack server create --flavor m1.nano --image cirros \
-  --nic net-id=9b140fe8-d63c-4ce0-b7f4-7c82b7b0b2d7 selfservice-instance
+openstack server create --flavor m1.nano --image cirros --nic net-id=e0c6ad46-377d-414f-a9b5-c732dfa43b25 vm1
 
 
 

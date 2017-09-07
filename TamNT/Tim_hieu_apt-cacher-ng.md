@@ -29,7 +29,9 @@
 
 	![img](./images/acng.1.png)
 
-- Khi bạn có một mô hình mạng nhỏ với một vài máy tính và muốn cài đặt cũng như cập nhật các gói phần mềm trên mỗi máy một cách thủ công, thì đó sẽ là một công việc khó và rất mất thời gian, đây là lý do để cấu hình một máy chủ **apt-cacher-ng** trên hệ thống, bởi vì nó sẽ cache lại tất cả những gói phần mềm đã download từ Internet trên apt-cache server và khi các máy trong mạng local download các phần mềm thay vì download từ các server chủ của Debian và Ubuntu thì nó sẽ download từ máy chủ server apt-cache như một proxy. Điều này sẽ làm tiết kiệm băng thông và giảm thiểu thời gian download đáng kể.  
+- Khi bạn có một mô hình mạng nhỏ với một vài máy tính và muốn cài đặt cũng như cập nhật các gói phần mềm trên mỗi máy một cách thủ công, thì đó sẽ là một công việc khó và rất mất thời gian, đây là lý do để cấu hình một máy chủ **apt-cacher-ng** trên hệ thống, bởi vì nó sẽ cache lại tất cả những gói phần mềm đã download từ Internet trên apt-cache server và khi các máy trong mạng local download các phần mềm thay vì download từ các server chủ của Debian và Ubuntu thì nó sẽ download từ máy chủ server apt-cache như một proxy. Điều này sẽ làm tiết kiệm băng thông và giảm thiểu thời gian download đáng kể. 
+
+- Với apt-cacher-ng, bạn có thể theo dõi sự update và download các gói phần mềm được thiết lập, và hỗ trợ sử dụng trong cả các môi trường không phải Debian.   
 - Các tính năng:  
 	- Tiết kiệm thời gian  
 	- Tiết kiệm băng thông  
@@ -120,6 +122,8 @@ Chuẩn bị:
 - Sau khi cài đặt trên Client 1, các gói phần mềm đã được lưu lại trong cache của apt-cacher-ng. Từ Client 2, ta thử cài đặt lại gói chrony ta được kết quả như sau:
 
 	![img](./images/acng.5.png)
+
+	Khi đó, Client2 có thể download các gói phần mềm cài đặt chrony nhanh hơn, do các gói đó đã được cache lại trong apt-cacher-ng.
 
 - Kiểm tra report trên giao diện trình duyệt ta thấy như sau:
 

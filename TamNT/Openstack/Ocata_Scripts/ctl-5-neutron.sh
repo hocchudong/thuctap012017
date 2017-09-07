@@ -19,9 +19,7 @@ openstack endpoint create --region RegionOne network internal http://controller:
 openstack endpoint create --region RegionOne network admin http://controller:9696
 
 echocolor "Install Neutron"
-apt-get install neutron-server neutron-plugin-ml2 \
-  neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent \
-  neutron-metadata-agent -y
+apt-get install neutron-server neutron-plugin-ml2 neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent -y
 
 echocolor "Cau hinh Neutron option 2 ..."
 neutronconf=/etc/neutron/neutron.conf
@@ -95,8 +93,7 @@ ops_add $novaconf neutron username neutron
 ops_add $novaconf neutron password $NEUTRON_PASS
 ops_add $novaconf neutron service_metadata_proxy true
 ops_add $novaconf neutron metadata_proxy_shared_secret $METADATA_SECRET
-su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
-  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
+su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
 service nova-api restart 
 service neutron-server restart
 service neutron-linuxbridge-agent restart
@@ -106,6 +103,5 @@ service neutron-l3-agent restart
 echocolor "verify project neutron"
 . admin-openrc
 openstack extension list --network
-openstack network agent list
 openstack network agent list
 echocolorbg "Hoan thanh setup project Neutron node controller"

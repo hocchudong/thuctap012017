@@ -2,7 +2,6 @@
 
 ### ***Mục lục***
 
-
 [1.	Tổng quan apt-cacher-ng](#1)
 
 [2.	Lab tính năng của apt-cache-ng](#2)

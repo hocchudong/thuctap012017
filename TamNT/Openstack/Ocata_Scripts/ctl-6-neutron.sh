@@ -6,8 +6,8 @@ source functions.sh
 echocolor "Prepare for install Neutron"
 cat << EOF | mysql -u root -p$MYSQL_PASS
 CREATE DATABASE neutron;
-GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' IDENTIFIED BY '$NEUTRON_DBPASS';
-GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' IDENTIFIED BY '$NEUTRON_DBPASS';
+GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' IDENTIFIED BY 'welcome123';
+GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' IDENTIFIED BY 'welcome123';
 EOF
 
 . admin-openrc
@@ -72,6 +72,7 @@ ops_add $lbrconf securitygroup firewall_driver neutron.agent.linux.iptables_fire
 l3_agent=/etc/neutron/l3_agent.ini
 cp $l3_agent $l3_agent.orig
 ops_add $l3_agent DEFAULT interface_driver linuxbridge
+
 dhcp_agent=/etc/neutron/dhcp_agent.ini
 ops_add $dhcp_agent DEFAULT interface_driver linuxbridge
 ops_add $dhcp_agent DEFAULT dhcp_driver neutron.agent.linux.dhcp.Dnsmasq
@@ -102,6 +103,4 @@ service neutron-metadata-agent restart
 service neutron-l3-agent restart
 echocolor "verify project neutron"
 . admin-openrc
-openstack extension list --network
-openstack network agent list
 echocolorbg "Hoan thanh setup project Neutron node controller"

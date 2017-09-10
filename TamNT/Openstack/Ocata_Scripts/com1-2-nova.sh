@@ -8,9 +8,9 @@ sleep 3
 apt-get install nova-compute -y
 echocolor "Cau hinh Nova-compute"
 sleep 3
+
 novaconf=/etc/nova/nova.conf
 cp $novaconf $novaconf.orig
-
 ops_add $novaconf DEFAULT transport_url rabbit://openstack:$RABBIT_PASS@controller
 ops_add $novaconf DEFAULT my_ip $COM1_MGNT_IP
 ops_add $novaconf DEFAULT use_neutron True
@@ -44,5 +44,4 @@ ops_add $novaconf placement username placement
 ops_add $novaconf placement password $PLACEMENT_PASS
 
 service nova-compute restart
-
 echocolorbg "Hoan thanh cai dat nova-compute node compute1"

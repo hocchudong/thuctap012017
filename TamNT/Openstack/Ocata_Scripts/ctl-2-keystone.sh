@@ -1,16 +1,17 @@
 #! /bin/bash 
-
 source config.sh
 source functions.sh
 
 # create database for Keystone
+
 echocolorbg "Tao database cho Keystone: "
 sleep 3
 
 cat << EOF | mysql -u root -p$KEYSTONE_DBPASS
+
 CREATE DATABASE keystone;
-GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' IDENTIFIED BY '$KEYSTONE_DBPASS';
-GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' IDENTIFIED BY '$KEYSTONE_DBPASS';
+GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' IDENTIFIED BY 'welcome123';
+GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' IDENTIFIED BY 'welcome123';
 
 EOF
 
@@ -18,7 +19,6 @@ echocolorbg "Cai dat Keystone"
 sleep 3
 
 apt-get install keystone -y
-
 echocolor "Cau hinh Keystone"
 sleep 3
 
@@ -50,12 +50,11 @@ export OS_USERNAME=admin
 export OS_PASSWORD=$ADMIN_PASS
 export OS_AUTH_URL=http://$HOST_CTL:35357/v3
 export OS_IDENTITY_API_VERSION=3
-
 EOF
-
 chmod a+x admin-openrc
 echocolorbg "Tao domains, projects, users, roles "
 sleep 5
+
 source admin-openrc
 openstack project create --domain default --description "Service Project" service
 openstack project create --domain default --description "Demo Project" demo
@@ -78,11 +77,8 @@ export OS_PASSWORD=$DEMO_PASS
 export OS_AUTH_URL=http://$HOST_CTL:5000/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
-
 EOF
 
+chmod a+x demo-openrc
 source demo-openrc
 openstack token issue
-
-
-

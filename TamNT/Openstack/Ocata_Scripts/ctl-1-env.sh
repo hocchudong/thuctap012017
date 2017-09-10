@@ -23,10 +23,8 @@ sed -i 's/pool 2.debian.pool.ntp.org offline iburst/ \
 server 0.asia.pool.ntp.org iburst \
 server 1.asia.pool.ntp.org iburst \
 server 2.asia.pool.ntp.org iburst/g' $chronyconf
-
 echo "allow $SUBNETMASK_MGNT" >> $chronyconf
 service chrony restart
-
 
 echocolor "Enable install openstack client"
 sleep 3
@@ -35,7 +33,6 @@ apt-get install software-properties-common -y
 add-apt-repository cloud-archive:ocata -y
 apt-get update && apt-get dist-upgrade -y
 apt-get install python-openstackclient -y
-
 
 echocolor "Install SQL database "
 sleep 3
@@ -47,13 +44,10 @@ apt-get install mariadb-server python-pymysql -y
 
 echocolor "Cau hinh Maria DB"
 sleep 3
-
 mysqlconf=/etc/mysql/mariadb.conf.d/99-openstack.cnf
 touch $mysqlconf
 cat << EOF > $mysqlconf
-
 [mysqld]
-
 bind-address = $CTL_MGNT_IP
 
 default-storage-engine = innodb
@@ -61,27 +55,19 @@ innodb_file_per_table = on
 max_connections = 4096
 collation-server = utf8_general_ci
 character-set-server = utf8
-
 EOF
-
 service mysql restart
 
 echocolor "Install Rabbitmsq"
 sleep 3
-
 apt-get install rabbitmq-server -y
 rabbitmqctl add_user openstack $RABBIT_PASS
 rabbitmqctl set_permissions openstack ".*" ".*" ".*"
-
 printf "\n \n"
 echocolor "Install Memcache"
 sleep 3
 apt-get install memcached python-memcache -y
-
 sed -i 's/-l 127.0.0.1/-l 0.0.0.0/g' /etc/memcached.conf
-
 service memcached restart
-
-
 echocolorbg "Hoan thanh setup moi truong cai dat openstack node controller! =]"
 printf "\n \n"

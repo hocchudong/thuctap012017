@@ -1,7 +1,3 @@
-
-TTP<sub>hihihehe </sub><sup> helo </sup>
-
-
 # Tổng hợp scripts cài đặt Openstack Ocata
 
 scripts cài đặt Ocata theo docs [trang chủ.](https://docs.openstack.org/ocata/install-guide-ubuntu)
@@ -18,7 +14,7 @@ scripts cài đặt Ocata theo docs [trang chủ.](https://docs.openstack.org/oc
 
 - Download các file scripts.
 
-- Sử dụng người dùng sudoer hoặc người dùng root để thực hiện các lệnh sau.
+- Sử dụng người dùng sudoer hoặc người dùng `root` để thực hiện các lệnh sau.
 
 - Thực hiện gán quyền thực thi cho các file scripts
 
@@ -52,11 +48,11 @@ scripts cài đặt Ocata theo docs [trang chủ.](https://docs.openstack.org/oc
 
 	- Cài đặt và cấu hình Neutron (option 2):
 
-		`source ctl-5-neutron.sh`
+		`source ctl-6-neutron.sh`
 
 	- Cài đặt và cấu hình Horizon: 
 
-		`source ctl-6-horizon.sh` (*script đang cập nhật, chưa hoàn thiện*)
+		`source ctl-7-horizon.sh`
 
 - **Node compute1**:
 
@@ -72,22 +68,14 @@ scripts cài đặt Ocata theo docs [trang chủ.](https://docs.openstack.org/oc
 
 		`source com1-2-nova.sh`
 
+		Sau khi cài đặt service nova-compute trên node 	`compute1`, cần update lại trên node `controller` để nó có thể liên kết với compute1 trong service nova. Chạy script sau (***lưu ý thực hiện trên node `controller`***): 
+
+		`source ctl-5-discoveryHost.sh`
+
 	- Cài đặt và cấu hình Neutron node compute:
 
 		`source com1-3-neutron.sh`
 
-- Launch instance kiểm tra hoạt động của Openstack: 
+- Vậy là hoàn thành setup Openstack Ocata. 
 
-	`source launch_instance.sh`
-
-	Kết quả trả về như sau là thành công: 
-
-	```
-	openstack server list
-	+--------------------------------------+----------------------+--------+---------------------------+------------+
-	| ID                                   | Name                 | Status | Networks                  | Image Name |
-	+--------------------------------------+----------------------+--------+---------------------------+------------+
-	| 22cd963d-2355-4198-aac8-797c89330905 | selfservice-instance | ACTIVE | selfservice=192.168.100.9 | cirros     |
-	+--------------------------------------+----------------------+--------+---------------------------+------------+
-	```
 

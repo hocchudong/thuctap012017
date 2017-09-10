@@ -20,17 +20,12 @@ $COM1_MGNT_IP   $HOST_COM1
 $CINDER_MGNT_IP    $HOST_CINDER
 EOF
 
-sleep 5
-
 echocolor "Cau hinh IP: "
 sleep 3
-
 cp /etc/network/interfaces /etc/network/interfaces.orig
-
 cat << EOF > /etc/network/interfaces
 
 #Dat IP cho controller node
-
 # LOOPBACK NET
 auto lo
 iface lo inet loopback
@@ -40,7 +35,6 @@ auto $COM1_MGNT_IF
 iface $COM1_MGNT_IF inet static
 address $COM1_MGNT_IP
 netmask $NETMASK_ADD_MGNT
-
 
 # NAT NETWORK
 auto $COM1_EXT_IF
@@ -57,9 +51,6 @@ address $COM1_DATA_IP
 netmask $NETMASK_ADD_DATA
 
 EOF
-
-
 echocolorbg "Rebooting compute1"
 sleep 5
-
 init 6

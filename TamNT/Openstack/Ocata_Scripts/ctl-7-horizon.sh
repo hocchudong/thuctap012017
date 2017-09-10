@@ -4,10 +4,10 @@ source config.sh
 source functions.sh
 echocolor "Cai dat Horizon"
 sleep 3
+
 apt-get install openstack-dashboard -y
 
 horizonconf=/etc/openstack-dashboard/local_settings.py
-
 sed -i 's/OPENSTACK_HOST = "127.0.0.1"/OPENSTACK_HOST = "controller"/g' $horizonconf 
 sed -i 's/127.0.0.1/controller/g' $horizonconf 
 sed -i 's/v2.0/v3/g' $horizonconf 

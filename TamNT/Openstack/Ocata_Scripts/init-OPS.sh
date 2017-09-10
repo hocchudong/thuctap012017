@@ -6,14 +6,10 @@ source functions.sh
 . admin-openrc
 echocolor "Create network:"
 sleep 3
-openstack network create  --share --external \
-  --provider-physical-network provider \
-  --provider-network-type flat provider 
+openstack network create  --share --external --provider-physical-network provider --provider-network-type flat provider 
 
-openstack subnet create --network provider \
-  --allocation-pool start=192.168.101.200,end=192.168.101.220 \
-  --dns-nameserver 8.8.8.8 --gateway 192.168.101.1 \
-  --subnet-range 192.168.101.0/24 provider
+openstack subnet create --network provider --allocation-pool start=192.168.101.200,end=192.168.101.220 \
+  --dns-nameserver 8.8.8.8 --gateway 192.168.101.1 --subnet-range 192.168.101.0/24 provider
 
 . demo-openrc
 openstack network create selfservice
@@ -36,10 +32,3 @@ openstack flavor create --id 0 --vcpus 1 --ram 128 --disk 1 m1.nano
 openstack flavor list
 openstack image list
 openstack network list
-echocolor "Launch instance"
-sleep 3
-openstack server create --flavor m1.nano --image cirros --nic net-id=e0c6ad46-377d-414f-a9b5-c732dfa43b25 vm1
-
-
-
-

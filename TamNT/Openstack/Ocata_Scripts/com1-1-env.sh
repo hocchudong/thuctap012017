@@ -2,7 +2,6 @@
 
 source config.sh
 source functions.sh
-
 echocolorbg "Update compute1"
 apt-get update && apt-get dist-upgrade -y
 
@@ -18,7 +17,6 @@ sleep 3
 apt-get install chrony -y
 chronyconf=/etc/chrony/chrony.conf
 cp $chronyconf $chronyconf.orig
-
 sed -i 's/pool 2.debian.pool.ntp.org offline iburst/server controller iburst/g' $chronyconf
 service chrony restart
 

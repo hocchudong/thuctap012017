@@ -1,0 +1,12 @@
+DISPLAY boot.txt
+
+DEFAULT Ubuntu_server_16.04_Install
+
+LABEL Ubuntu_server_16.04_Install
+        kernel ubuntu-installer/amd64/linux
+        append ks=http://172.16.100.220/kickstartForUS16.04.cfg ksdevice=ens33 vga=normal initrd=ubuntu-installer/amd64/initrd.gz --
+
+PROMPT 1
+TIMEOUT 0
+
+mkdir -p /var/lib/tftpboot/ubuntu-installer/amd64

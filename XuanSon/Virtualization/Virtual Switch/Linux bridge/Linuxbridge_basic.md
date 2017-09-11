@@ -201,9 +201,7 @@ thì <port>  ( chính là NIC ) phải là đã có trong host , câu lệnh nà
 
 
 #### 6.2.2.2.uplink port
-\- Khi gắn 1 pNIC on host với vswitch thì on host chỉ hiện lên duy nhất một interface.  
-
-<img src="http://i.imgur.com/lwL1W2d.png" />
+\- Khi gắn 1 pNIC on host với vswitch thì chính là chế độ bridged.
 
 <a name="6.3"></a>
 ## 6.3.Bridge network với linux bridge
@@ -251,8 +249,10 @@ brctl setfd br 2
 ifconfig esn33 0 # có thể dụng command : ip address flush ens33 
 #xin cấp phát ip cho br0 
 dhclient br
-#or tự cấu hình
+#or tự cấu hình (phải cấu hình thêm gateway và DNS nameserver)
 ifconfig br 172.16.69.10
+ip r add default via 172.16.69.1
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 ```
 
 #### b.Cấu hình trong file  `/etc/network/interfaces` (restart lại máy không mất )

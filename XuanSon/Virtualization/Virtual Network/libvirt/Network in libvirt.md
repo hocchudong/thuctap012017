@@ -11,6 +11,8 @@
 	- [3.1. Config VM connected virtual network](#3.1)
 	- [3.2. Thêm Network Card cho VM](#3.2)
 	- [3.3. Config VM connected virtual switch](#3.3)
+  - [3.4.Config VM connected port on virtual switch](#3.4)
+  - [3.5.Listen on all interface use vnc](#3.5)
 - [4.Một số thông tin quan trọng](#4)
 	- [4.0.Tóm lại network](#4.0)
 	- [4.1.Libvirt directory on Ubuntu Server 16.04](#4.1)
@@ -94,27 +96,96 @@ và sử defualt thành virtual network bạn muốn VM connected.
 
 <a name="3.3"></a>
 ## 3.3. Config VM connected virtual switch 
+\- Đối với Linux bridge:  
 Open the XML configuration for the VM in a text editor.  
 ```
 virsh edit <name-of-vm>
 ```
 
 Tìm đến section `<interface>`  
-``` 
+```
 <interface type="network">
-   <source bridge="default"/>
+   <source netowrk="default"/>
    <mac address="52:54:00:4f:47:f2"/>
 </interface>
 ```
-để nguyên :  
+
+sửa thành:  
 ```
 <interface type="bridge">
-  <source netowrk="br"/>
+  <source bridge="br"/>
   <mac address="52:54:00:4f:47:f2"/>
 </interface>
 ```
 
-> Note : Nếu không ghi section <mac … /> thì libvirt sẽ sinh ra 1 ramdom mac for the new interface này .
+>Note : Nếu không ghi section <mac … /> thì libvirt sẽ sinh ra 1 ramdom mac for the new interface này .
+
+\- Đối với Open vSwitch:  
+Open the XML configuration for the VM in a text editor.  
+```
+virsh edit <name-of-vm>
+```
+Tìm đến section `<interface>`  
+```
+<interface type="network">
+   <source netowrk="default"/>
+   <mac address="52:54:00:4f:47:f2"/>
+</interface>
+```
+sửa thành:  
+```
+<interface type='bridge'>
+    <source bridge='ovs1'/>
+    <virtualport type='openvswitch' />
+    <mac address="52:54:00:4f:47:f2"/>
+</interface>
+```
+
+>Note : Nếu không ghi section <mac … /> thì libvirt sẽ sinh ra 1 ramdom mac for the new interface này .
+
+<a name="3.4"></a>
+## 3.4.Config VM connected port on virtual switch
+\- Đối với Open vSwitch, khi ta đã tạo switch và tạo port trên switch. VD như sau:  
+```
+ovs-vsctl add-br ovs1
+ovs-vsctl add-port ovs1 port1 --set interface port1 type=internal
+```
+
+\- Muốn connected VM đến port1, Open the XML configuration for the VM in a text editor.  
+```
+virsh edit <name-of-vm>
+```
+
+Tìm đến section `<interface>`  
+```
+<interface type="network">
+   <source netowrk="default"/>
+   <mac address="52:54:00:4f:47:f2"/>
+</interface>
+```
+
+sửa thành:  
+```
+<interface type='bridge'>
+    <source bridge='ovs1'/>
+    <virtualport type='openvswitch' />
+    <target dev='port1'/>
+    <mac address="52:54:00:4f:47:f2"/>
+</interface>
+```
+
+>Note : Nếu không ghi section <mac … /> thì libvirt sẽ sinh ra 1 ramdom mac for the new interface này .  
+
+\- Note: Mình chưa tìm được cách connected VM đến port (đã được tạo trước) trên Linux bridge.  
+
+<a name="3.5"></a>
+## 3.5.Listen on all interface use vnc  
+Tìm đến section graphics và sửa như sau :  
+```
+    <graphics type='vnc' port='-1' autoport='yes' listen='0.0.0.0'>
+      <listen type='address' address='0.0.0.0'/>
+    </graphics>
+```
 
 <a name="4"></a>
 # 4.Một số thông tin quan trọng 

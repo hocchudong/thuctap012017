@@ -2,6 +2,23 @@
 
 
 # MỤC LỤC
+- [1.Proxy server](#1)
+	- [1.1.Giới thiệu](#1.1)
+	- [1.2.Nguyên tắc hoạt động của Proxy Server](#1.2)
+	- [1.3.Các loại proxy server](#1.3)
+- [2.Caching Proxy Server](#2)
+	- [2.1.Giới thiệu caching proxy server](#2.1)
+	- [2.2.Apt-Cacher-NG](#2.2)
+	- [2.3.Cài đặt và cấu hình Apt-Cacher-NG trên Ubuntu 16.04](#2.3)
+		- [a.Trên Server](#2.3.a)
+		- [b.Trên Client](#2.3.b)
+- [3.LAB về Caching Proxy Server](#3)
+	- [3.1.Mô hình](#3.1)
+	- [3.2.Cài đặt và cấu hình](#3.2)
+		- [a.Trên Caching Server](#3.2.a)
+		- [b.Trên Client 1 và Client 2](#3.2.b)
+	- [3.3.Kiểm tra](#3.3)
+- [Tài liệu tham khảo](#tailieuthamkhao)
 
 
 <a name="1"></a>

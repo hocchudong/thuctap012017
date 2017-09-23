@@ -26,7 +26,7 @@ timezone Asia/Ho_Chi_Minh
 # Set the system's root password
 rootpw rootpassword123
 
-# Creates a new user on the system
+# Creates a new user on the system (not in group sudoer)
 user ttp --fullname=ttp --password=ttppassword123
 # create partition on the system with LVM
 part pv.01 --size 1 --grow

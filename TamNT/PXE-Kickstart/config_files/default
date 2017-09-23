@@ -8,5 +8,3 @@ LABEL Ubuntu_server_16.04_Install
 
 PROMPT 1
 TIMEOUT 0
-
-mkdir -p /var/lib/tftpboot/ubuntu-installer/amd64

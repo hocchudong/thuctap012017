@@ -1,4 +1,3 @@
-
 # set language to use during installation
 lang en_US
 langsupport en_US
@@ -9,7 +8,7 @@ keyboard us
 # reboot the system after installation
 reboot
 # config repo source.list
-url --url http://vn.archive.ubuntu.com/ubuntu/
+url --url http://172.16.100.10/US/
 
 # Sets up the authentication options for the system.
 auth --useshadow --enablemd5
@@ -26,7 +25,7 @@ timezone Asia/Ho_Chi_Minh
 # Set the system's root password
 rootpw rootpassword123
 
-# Creates a new user on the system (not in group sudoer)
+# Creates a new user on the system
 user ttp --fullname=ttp --password=ttppassword123
 # create partition on the system with LVM
 part pv.01 --size 1 --grow
@@ -41,10 +40,8 @@ preseed partman-auto-lvm/no_boot boolean true
 
 # Configures network information
 
-network --bootproto=dhcp --device=ens34 --active
+#network --bootproto=dhcp --device=ens34 --active
 network --bootproto=dhcp --device=ens33 --active
-#network --bootproto=static --ip=10.10.10.120 --netmask=255.255.255.0 --device=ens38
-#network --bootproto=dhcp --device=eth2 --active
 
 # Do not configure the X Window System
 skipx
@@ -56,4 +53,7 @@ openssh-server
 
 ## Run script after installation
 %post
-apt-get update -y && apt-get upgrade -y
+#apt-get update -y && apt-get upgrade -y
+sed -i 's/172.16.100.10/vn.archive.ubuntu.com/g' /etc/apt/sources.list
+sed -i 's/US/ubuntu/g' /etc/apt/sources.list
+mkdir /root/test

@@ -7,3 +7,5 @@
 ### Thực hành:
 
 - [Lab cài đặt OS ubuntu server 16.04 từ PXE boot server](./2.Lab_PXE-kickstart.md)
+
+- [Lab thực hiện một số tính năng nâng cao với PXE - kickstart](./3.Cau_hinh_nang_cao.md)

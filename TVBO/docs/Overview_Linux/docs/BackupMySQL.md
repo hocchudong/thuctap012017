@@ -134,6 +134,10 @@ ____
 
         để chỉ restore database_name trong file all_databases.sql
 
+
 ____
 
 # <a name="content-others">Các nội dung khác</a>
+
+
+- Tài liệu tham khảo [Vultr - How to install and configure automysqlbackup](https://www.vultr.com/docs/how-to-install-and-configure-automysqlbackup-on-ubuntu-16-04)

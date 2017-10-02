@@ -6,8 +6,9 @@
 
 <a name=1></a>
 # 1. Kiến trúc logic
+- Tổ chức logic.
 
-	![](../images/swift_logic.png)
+	![](./images/swift_logic.png)
 
 	
 - Mỗi tenant được gán một **Account**. 

@@ -7,7 +7,7 @@
 <a name=1></a>
 # 1. Kiến trúc logic
 
-	![](../../images/swift_logic.png)
+	![](../images/swift_logic.png)
 	
 - Mỗi tenant được gán một **Account**. 
 - Trong account, có thể chứa nhiều **container** (tương tự như folder).
@@ -19,4 +19,4 @@
 <a name=2></a>
 # 2. Kiến trúc vật lý
 
-	![](../../images/swift_physical.png)
+	![](../images/swift_physical.png)

@@ -1,9 +1,9 @@
 # Chương 1: Công nghệ lưu trữ điện toán đám mây - Cloud Storage
 
 ## Mục lục
-[1. Ưu điểm và nhược điểm của lưu trữ điện toán đám mây.](#1)
-[2. Object Storage](#2)
-[3. Openstack Swift](#3)
+- [1. Ưu điểm và nhược điểm của lưu trữ điện toán đám mây.](#1)
+- [2. Object Storage](#2)
+- [3. Openstack Swift](#3)
 
 ---
 - Swift đã phát triển vượt ra khỏi giới hạn của openstack, trở thành một công nghệ lưu trữ điện toán đám mây độc lập

@@ -1,8 +1,8 @@
 # Kiến trúc của Openstack Swift.
 
 ## Mục lục.
-[1. Kiến trúc logic](#1)
-[2. Kiến trúc vật lý](#2)
+- [1. Kiến trúc logic](#1)
+- [2. Kiến trúc vật lý](#2)
 
 <a name=1></a>
 # 1. Kiến trúc logic

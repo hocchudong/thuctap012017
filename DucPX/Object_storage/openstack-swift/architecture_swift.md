@@ -20,4 +20,4 @@
 <a name=2></a>
 # 2. Kiến trúc vật lý
 
-	![](./images/swift_physical.png)
+	![](./images/swift_logic.png)

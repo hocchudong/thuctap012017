@@ -3,6 +3,7 @@
 ## Mục lục.
 - [1. Kiến trúc logic](#1)
 - [2. Kiến trúc vật lý](#2)
+- [3. Tổng quan về kiến trúc phần mềm trong Swift](#3)
 
 <a name=1></a>
 # 1. Kiến trúc logic
@@ -20,5 +21,33 @@
 
 <a name=2></a>
 # 2. Kiến trúc vật lý
+- Tổ chức vật lý.
 
 	![](./images/swift_logic.png)
+
+- Hệ thống phân cấp trong tổ chức vật lý của Swift như sau:
+	- Region: Tại mức cao nhất, Swift lưu trữ dữ liệu trong các regions (gọi là khu vực) bị chia cắt về mặt vật lý - phân chia theo địa lý.
+	- Zone: Bên trong các regions là các zones. Zone là tập các máy chủ riêng biệt, các máy chủ này được gọi là node storage. Khi có máy chủ xảy ra lỗi, Swift sẽ tách biệt các zone có máy chủ bị lỗi đó với các zone khác.
+	- Storage server (máy chủ lưu trữ): Trong các zones sẽ chứa các máy chủ để lưu trữ.
+	- Disk (ổ đĩa hoặc là thiết bị lưu trữ): Là một phần của storage server, có thể là các đĩa cứng cắm trực tiếp bên trong storage server hoặc được liên kết qua mạng.
+	
+<a name=3></a>
+# 3. Tổng quan về kiến trúc phần mềm trong Swift.
+- Trong Swift có 4 service chính. Document của swift gọi là Servers:
+	- Proxy server
+	- Account server
+	- Container server
+	- Object server
+	
+- Thông thường, proxy server được cài đặt trên một node riêng, còn 3 server còn lại sẽ được cài đặt trên cùng một node gọi là storage server.
+
+	![](./images/swift_servers.png)
+	
+- Chức năng chính của từng server:
+	- Proxy server: Thịu trách nhiệm nhận các yêu cầu HTTP từ người dùng. Nó sẽ tìm kiếm vị trí của storage server nơi mà yêu cầu cần được chuyển tiếp bằng cách sử dụng ring phù hợp. Proxy server tính toán các node bị hư hại bằng cách tìm kiếm các handoff node và thực hiện đọc/ghi.
+	
+	- Account server: Theo dõi tên các containers có trong account. Dữ liệu được lưu trữ trong cơ sở dữ liệu SQL, các files cơ sở dữ liệu sẽ được lưu trong filesystem. Server này cũng theo dõi thống kê nhưng không có bất kỳ thông tin nào về vị trí của các containers. Proxy server xác định vị trí container dựa trên container ring. Thông thường, account server sẽ được cài đặt với container server và object server trên cùng một máy chủ vật lý. Tuy nhiên, với một hệ thống lớn thì có thể cài đặt các server trên các máy chủ riêng biệt.
+	
+	- Container server: Giống như account server, ngoại trừ container server quản lý các objects bên trong nó.
+	
+	- Object server: Đơn giản là server quản lý lưu trữ đối tượng. Trên các ổ đĩa có các filesystem, và các đối tượng được lưu trên đó.

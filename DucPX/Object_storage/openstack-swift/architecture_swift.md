@@ -51,3 +51,20 @@
 	- Container server: Giống như account server, ngoại trừ container server quản lý các objects bên trong nó.
 	
 	- Object server: Đơn giản là server quản lý lưu trữ đối tượng. Trên các ổ đĩa có các filesystem, và các đối tượng được lưu trên đó.
+	
+<a name=4></a>
+# 4. Kiến trúc xác thực trong Swift
+- Xác thực là một phần quan trọng trong swift. 
+- Các thành phần trong swift đều dạng module, do vậy thành phần xác thực cũng là một project riêng.
+- Người dùng có thể lựa chọn các hệ thống xác thực khác nhau. Keystone là project xác thực ở trong Openstack mà có thể được sử dụng cho Swift.
+
+	![](../images/swift_keystone.png)
+	
+- Luồng làm việc của Swift với keystone.
+	- 1. Người dùng cung cấp thông tin xác thực cho hệ thống xác thực. Điều này được thực hiện bằng cách thực hiện thông qua lời gọi HTTP REST API.
+	- 2. Hệ thống xác thực cung cấp cho người dùng một mã (token) thông báo AUTH.
+	- 3. Mã thông báo AUTH không phải là duy nhất cho mọi yêu cầu và hết hạn sau một khoảng thời gian nhất định (trong trường hợp TempAuth, thời gian mặc định thời gian sống là 86.400 giây). Mọi yêu cầu được gửi cho Swift đều phải kèm theo mã thông báo AUTH.
+	- 4. Swift kiểm tra mã thông báo với hệ thống xác thực và lưu trữ kết quả vào bộ nhớ đệm. Kết quả được làm sạch khi hết hạn.
+	- 5. Thông thường, hệ thống xác thực có khái niệm tài khoản quản trị và không quản trị. Các yêu cầu của quản trị viên rõ ràng sẽ được thông qua.
+	- 6. Các yêu cầu không quản trị được kiểm tra dựa vào danh sách kiểm soát truy cập mức kho chứa (ACL – access control lists). Các danh sách này cho phép quản trị viên thiết lập các quyền đọc ghi cho người dùng không phải quản trị.
+	- 7. Như vậy, với các yêu cầu không phải quản trị, ACL được kiểm tra trước khi proxy server có các bước xử lý tiếp theo với yêu cầu này.

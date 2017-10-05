@@ -56,3 +56,4 @@ mkdir /root/test
 sed -i 's/192.168.122.110/vn.archive.ubuntu.com/g' /etc/apt/sources.list
 sed -i 's/cblr\/links\/US1604-x86_64/ubuntu/g' /etc/apt/sources.list
 apt-get update -y && apt-get upgrade -y
+%end

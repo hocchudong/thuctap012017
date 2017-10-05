@@ -12,7 +12,7 @@
 
 # Nội dung tìm hiểu về Cobbler
 
-- [ Tổng quan về Cobbler](./4.Cobbler-tong_quan.md)
+- [ Tổng quan về Cobbler](./4.Cobbler-Tong_quan.md)
 
 - [Lab cài đặt Cobbler và boot OS từ cobbler](./5.Cobbler-cai_dat.md)
 

@@ -9,3 +9,10 @@
 - [Lab cài đặt OS ubuntu server 16.04 từ PXE boot server](./2.Lab_PXE-kickstart.md)
 
 - [Lab thực hiện một số tính năng nâng cao với PXE - kickstart](./3.Cau_hinh_nang_cao.md)
+
+# Nội dung tìm hiểu về Cobbler
+
+- [ Tổng quan về Cobbler](./4.Cobbler-tong_quan.md)
+
+- [Lab cài đặt Cobbler và boot OS từ cobbler](./5.Cobbler-cai_dat.md)
+

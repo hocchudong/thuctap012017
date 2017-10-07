@@ -36,7 +36,8 @@
 
 <a name=3></a>
 # 3. Openstack Swift.
-- Openstack Swift là một mã nguồn mở lưu trữ đối tượng. Được Rackspace đã tạo ra Swift vào năm 2010, và các công ty lớn đóng góp vào sự phát triển Swift bao gồm SwiftStack, Rackspace, Red Hat, HP, Intel, IBM, 
+- Openstack Swift là một mã nguồn mở lưu trữ Object. Được Rackspace đã tạo ra Swift vào năm 2010, và các công ty lớn đóng góp vào sự phát triển Swift bao gồm SwiftStack, Rackspace, Red Hat, HP, Intel, IBM, ...
+- Swift ban đầu được tạo ra với mục đích làm backend lưu trữ cho các project khác trong openstack như glance, ...
 
 ### Một số đặc điểm của Openstack Swift.
 - Open Source: Swift là phần mềm mã nguồn mở, người dùng không phải trả bất cứ chi phí nào.

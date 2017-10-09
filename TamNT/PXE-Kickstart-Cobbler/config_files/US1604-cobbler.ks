@@ -40,7 +40,7 @@ preseed partman-auto-lvm/no_boot boolean true
 
 # Configures network information
 
-network --bootproto=dhcp --device=ens3 --active
+network --bootproto=dhcp --device=ens3 
 
 # Do not configure the X Window System
 skipx
@@ -53,6 +53,11 @@ openssh-server
 ## Run script after installation
 %post
 mkdir /root/test
+### Fix loi khong hien thi man hinh voi Ubuntu
+sed -i 's/GRUB_HIDDEN_TIMEOUT=0/#GRUB_HIDDEN_TIMEOUT=0/g' /etc/default/grub
+sed -i 's/quiet splash//g' /etc/default/grub
+update-grub
+### Dieu chinh repo
 sed -i 's/192.168.122.110/vn.archive.ubuntu.com/g' /etc/apt/sources.list
 sed -i 's/cblr\/links\/US1604-x86_64/ubuntu/g' /etc/apt/sources.list
 apt-get update -y && apt-get upgrade -y

@@ -62,7 +62,7 @@ ____
 
         đây chính là những volume hoàn chỉnh ở mức cuối cùng trước khi có thể mount vào hệ điều hành. Ta có thể thay đổi, thêm bớt kích thước của những volume một cách nhanh chóng. Cho tới khi chúng được chứa trong các Volume Group, ta có thể cung cấp dung lượng cho chúng lớn hơn nhưng Physical Volume đơn. Ví dụ: Ban đầu, ta có 4 ổ cứng với dung lượng 10GB. Thì ta có thể có một Logical Volume với bất kỳ dung lượng nào được cho với giá trị tối đa là 40GB, sau đó là những giá trị khác 20GB, 30GB hoặc 10GB.
 
-            > ![img](https://www.centos.org/docs/5/html/Deployment_Guide-en-US/images/lvm/lvg.png)
+          > ![img](https://www.centos.org/docs/5/html/Deployment_Guide-en-US/images/lvm/lvg.png)
 
     - Tóm lại, LVM có thể sử dụng các chức năng trên để sử dụng các kết hợp Physical Volume vào trong một Volume Group để thống nhất không gian lưu trữ có sẵn trên hệ thống. Sau đó, ta có thể chia chúng thành những phân vùng có kích thước khác nhau.
 

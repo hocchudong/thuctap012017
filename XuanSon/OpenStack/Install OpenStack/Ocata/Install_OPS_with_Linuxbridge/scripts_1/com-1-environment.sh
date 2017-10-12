@@ -38,6 +38,3 @@ apt-get install python-openstackclient -y
 
 
 
-
-
-

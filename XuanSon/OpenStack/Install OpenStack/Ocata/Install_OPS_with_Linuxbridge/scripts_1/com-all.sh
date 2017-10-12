@@ -2,6 +2,13 @@
 
 #Author Son Do Xuan
 
+IP=$1
+NAME_SCRIPTS=$2
+
+scp -r $NAME_SCRIPTS root@$IP:
+ssh -i mykey root@$IP <EOF
+cd $NAME_SCRIPTS
+
 source function.sh
 source config.sh
 
@@ -17,7 +24,7 @@ source com-2-nova.sh
 echocolor "Neutron"
 source com-3-neutron-provider.sh
 
-
+EOF
 
 
 

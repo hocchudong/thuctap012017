@@ -6,7 +6,7 @@ IP=$1
 NAME_SCRIPTS=$2
 
 scp -r $NAME_SCRIPTS root@$IP:
-ssh -i mykey root@$IP <EOF
+ssh -i mykey root@$IP <<EOF
 cd $NAME_SCRIPTS
 
 source function.sh

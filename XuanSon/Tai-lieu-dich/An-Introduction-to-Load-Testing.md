@@ -11,7 +11,7 @@
 - **Latency** là thước đo tốc độ server đáp ứng các yêu cầu từ client. Thông thường được tính bằng milliseconds (ms), **latency** thường được gọi là **response time**. Con số thấp cho thấy thời gian đáp ứng nhanh. **Latency** được đo ở phía client, từ thời điểm yêu cầu được gửi đến khi nhận được phản hồi.
 - **Throughput** là bao nhiêu yêu cầu server có thể xử lý được trong 1 khoảng thời gian cụ thể, thường được tính bằng số yêu cầu mỗi giây.
 - **Percentiles** là cách để nhóm kết quả theo tỷ phần trăm của toàn bộ mẫu. Nếu thời gian đáp ứng 50% của bạn là 100ms, nghĩa là 50% yêu cầu đã được trả lại trong 100ms hoặc nhỏ hơn.Biểu đồ dưới đây cho thấy lý do tại sao nên xem các phép đo theo **percentiles**:  
-<img src="image/An-Introduction-to-Load-Testing_1.png" />
+<img src="images/An-Introduction-to-Load-Testing_1.png" />
 
 \- Biểu đồ trên cho biết **latency** của web server trong 1 khoảng thời gian. Mặc dù thời gian đáp ứng trung bình khá phù hợp, nhưng có 1 sự tăng đột biến trong phân đoạn thứ 99. Điều này có nghĩa 1% yêu cầu của người dùng hoặc hơn thế nữa có độ trễ quá lớn, trong khu mức trung bình vẫn tương đối ổn. Vì lý do này, bạn nên xem xét **percentiles** để có cảm giác chính xác hơn về những gì mfa người dùng đang thực sự trải nghiệm.
 
@@ -26,7 +26,7 @@
 \- Việc sử dụng chung phần mềm **load testing** để tìm số lượng yêu cầu tối đa mỗi giây mà server có thể xử lý. Điều này được thực hiện bằng cách gửi càng nhiều yêu cầu đến server càng tốt và xem có bao nhiêu yêu cầu được đáp ứng.  
 \- Điều này cho ta biết được dung lượng tối đa mà server có thể đáp ứng, nhưng nó không cung cấp cho chúng ta thông tin về **latency** và hiệu suất hàng ngày thực tế mà người dùng trải nghiệm. Server có phần cứng mạnh có thể trả về hàng ngàn yêu cầu mỗi giây, nhưng nếu phản hồi mất 10 giây, người dùng sẽ cảm thấy không vui.
 \- Biểu đồ dưới đây cho thấy mối quan hệ giữa **throughput**(phản hồi/giây) và **latency**:  
-<img src="An-Introduction-to-Load-Testing_2.png" />
+<img src="images/An-Introduction-to-Load-Testing_2.png" />
 
 Đây chỉ là ví dụ, tuy nhiên xu hướng chung là tải cao hơn (yêu cầu nhiều hơn / giây) dẫn đến độ trễ cao hơn. Để có được ý tưởng thực tế về đỗ trễ của máy chủ ở tải nhất nhất định, chúng ta cần phải thử nghiệm nhiều lần theo các mức giá yêu cầu khác nhau. Không phải tất cả các phần mềm **load testing** đều có khả năng này, nhưng sau này chúng ta sẽ thảo luận về công cụ kiểm tra tải `wrk2`, câu lệnh thực hiện chúc này này.  
 

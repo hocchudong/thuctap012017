@@ -260,6 +260,20 @@ ____
 
                 bên trên chính là một cách cơ bản để sử dụng LVM cho việc quản lý phân vùng ổ cứng.
 
+            + Sau cùng, nếu bạn muốn disk sẽ tự động mount khi reboot lại OS, ta cần phải thực hiện cấu hình để nó có thể làm điều này bằng việc thực hiện như sau:
+
+                vi /etc/fstab
+
+              sau đó thêm nội dung như sau vào file và lưu lại:
+
+                /dev/mapper/LVMVolGroup-Public    /mnt/Public  ext4    defaults 0 0
+                /dev/mapper/LVMVolGroup-Private    /mnt/Private  ext4    defaults 0 0
+
+            + Hãy kiểm tra kết quả bằng việc chạy câu lệnh sau và restart lại OS:
+
+                mount -av
+
+
 ____
 
 # Tài liệu tham khảo

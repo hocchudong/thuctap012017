@@ -111,7 +111,7 @@ Thực thi các file bằng command như sau:
   wget https://github.com/doxuanson/thuctap012017/blob/master/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/scripts_ssh/COM/ip_setup.sh
   ```
 
-  - Thực hiện script theo cú pháp:  
+  - Thực hiện script setup địa chỉ IP cho node Compute1 theo cú pháp:  
   ```
   source ip_setup.sh <node_name> <NIC_name> <IP_address> <netmask> <gateway>
   ```

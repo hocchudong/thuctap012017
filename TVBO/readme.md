@@ -4,13 +4,13 @@ ____
 
 # <a name="content">Nội dung</a>
 
-- [Tính sẵn sàng cao là gì?](thuctap012017\TVBO\docs\Posts_Translated\what-is-ha.md)
+- [Tính sẵn sàng cao là gì?](docs\Posts_Translated\what-is-ha.md)
 
-- [Tìm hiểu về LVM](thuctap012017\TVBO\docs\LVM\readme.md)
+- [Tìm hiểu về LVM](docs\LVM\readme.md)
 
-- [Tổng quan về Web Server](thuctap012017\TVBO\docs\Web_Server\readme.md)
+- [Tổng quan về Web Server](docs\Web_Server\readme.md)
 
-- [Tổng quan về hệ điều hành Linux](thuctap012017\TVBO\docs\Overview_Linux\readme.md)
+- [Tổng quan về hệ điều hành Linux](docs\Overview_Linux\readme.md)
 
 - []
 ____

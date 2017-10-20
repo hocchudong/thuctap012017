@@ -3,7 +3,7 @@
 #Author Son Do Xuan
 
 source function.sh
-source config.cnf
+source config.sh
 
 # Install nova-compute
 echocolor "Install nova-compute"
@@ -44,7 +44,7 @@ ops_add $novafile keystone_authtoken \
 	password Welcome123
 
 ops_add $novafile DEFAULT \
-	my_ip $COM1_MGNT_IP
+	my_ip $COM_MGNT_IP
 
 ops_add $novafile DEFAULT \
 	use_neutron True
@@ -94,5 +94,3 @@ ops_add $novafile placement \
 echocolor "Finalize installation"
 sleep 3
 service nova-compute restart
-
-	

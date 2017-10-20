@@ -3,7 +3,7 @@
 #Author Son Do Xuan
 
 source function.sh
-source config.cnf
+source config.sh
 
 # Install the components Neutron
 echocolor "Install the components Neutron"
@@ -42,7 +42,7 @@ ops_add $neutronfile keystone_authtoken \
 ops_add $neutronfile keystone_authtoken \
 	username neutron
 ops_add $neutronfile keystone_authtoken \
-	password = $NEUTRON_PASS
+	password $NEUTRON_PASS
 
 
 #Configure the Linux bridge agent
@@ -53,9 +53,8 @@ linuxbridgefilebak=/etc/neutron/plugins/ml2/linuxbridge_agent.ini.bak
 cp $linuxbridgefile $linuxbridgefilebak
 egrep -v "^$|^#" $linuxbridgefilebak > $linuxbridgefile
 
-ops_add $linuxbridgefile linux_bridge physical_interface_mappings provider:$COM1_EXT_IF
-ops_add $linuxbridgefile vxlan enable_vxlan true
-ops_add $linuxbridgefile vxlan local_ip $COM1_MGNT_IP
+ops_add $linuxbridgefile linux_bridge physical_interface_mappings provider:$COM_EXT_IF
+ops_add $linuxbridgefile vxlan enable_vxlan false
 ops_add $linuxbridgefile securitygroup enable_security_group true
 ops_add $linuxbridgefile securitygroup \
 	firewall_driver neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
@@ -75,12 +74,10 @@ ops_add $novafile neutron project_name service
 ops_add $novafile neutron username neutron
 ops_add $novafile neutron password $NEUTRON_PASS
 ops_add $novafile neutron service_metadata_proxy true
-ops_add $novafile neutron metadata_proxy_shared_secret = $METADATA_SECRET	
+ops_add $novafile neutron metadata_proxy_shared_secret $METADATA_SECRET	
 	
 # Finalize installation
 echocolor "Finalize installation"
 sleep 3
 service nova-compute restart
 service neutron-linuxbridge-agent restart
-	
-	

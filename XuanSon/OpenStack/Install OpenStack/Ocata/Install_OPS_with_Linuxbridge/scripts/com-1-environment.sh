@@ -3,10 +3,15 @@
 #Author Son Do Xuan
 
 source function.sh
-source config.cnf
+source config.sh
 
-# Update and upgrade for COMPUTE1
-echocolor "Update and Update COMPUTE1"
+# Install crudini
+echocolor "Install crudini"
+sleep 3
+apt-get install -y crudini
+
+# Update and upgrade for COMPUTE
+echocolor "Update and Update COMPUTE"
 sleep 3
 apt-get update -y && apt-get upgrade -y
 
@@ -30,9 +35,3 @@ add-apt-repository cloud-archive:ocata -y
 apt-get update -y && apt-get dist-upgrade -y
 
 apt-get install python-openstackclient -y
-
-
-
-
-
-

@@ -23,9 +23,9 @@ apt-get install chrony -y
 ntpfile=/etc/chrony/chrony.conf
 
 sed -i 's/pool 2.debian.pool.ntp.org offline iburst/ \
+pool 2.debian.pool.ntp.org offline iburst \
 server 0.asia.pool.ntp.org iburst \
-server 1.asia.pool.ntp.org iburst \
-server 2.asia.pool.ntp.org iburst/g' $ntpfile
+server 1.asia.pool.ntp.org iburst/g' $ntpfile
 
 echo "allow 10.10.10.0/24" >> $ntpfile
 

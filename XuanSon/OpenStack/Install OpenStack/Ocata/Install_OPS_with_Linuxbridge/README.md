@@ -2,7 +2,13 @@
 
 
 # MỤC LỤC
-
+- [1.Mô hình](#1)
+- [2.IP Planning](#2)
+- [3.Cài đặt](#3)
+  - [3.1.Cài thủ công theo hướng dẫn](#3.1)
+  - [3.2.Sử dụng scripts](#3.2)
+    - [3.2.1.Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute1](#3.2.1)
+    - [3.2.2.Cách 2: Trên node Controller, chạy scripts cài đặt cho cả 2 node.](#3.2.2)
 
 <a name="1"></a>
 # 1.Mô hình
@@ -29,7 +35,7 @@ Sử dụng scripts có 2 cách:
 - Cách 2: Trên node Controller, chạy scripts cài đặt cho cả 2 node.
 
 <a name="3.2.1"></a>
-### 3.2.1.Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute1.
+### 3.2.1.Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute1
 \- Download các file shell scripts trên cả 2 node. Thực hiện các câu lệnh sau:  
 ```
 apt-get install svn -y
@@ -80,7 +86,7 @@ Thực thi các file bằng command như sau:
   ```
 
 <a name="3.2.2"></a>
-### 3.2.2.Cách 2: Trên node Controller, chạy scripts cài đặt cho cả 2 node.
+### 3.2.2.Cách 2: Trên node Controller, chạy scripts cài đặt cho cả 2 node
 \- **Ý tưởng**: Thực hiện cài Cài đặt các project trên node Controller, sau đó từ Controller, ta sử dụng scripts để cài các project trên node Compute1.  
 \- **Yêu cầu**: Trên 2 node đều cài ssh server và được cấu hình cho phép ssh qua `root`.  
 \- **Trên node Controller**  

@@ -16,6 +16,8 @@ Yêu cầu phần cứng và địa chỉ IP cho các nodes.
 
 
 # Sử dụng scripts theo hướng dẫn
+Sử dụng scripts có 2 cách:  
+## Cách 1
 \- Download các file shell scripts. Sau đó thực hiện các bước sau với quyền root.  
 [Links](scripts)
 
@@ -77,6 +79,80 @@ Thực thi các file bằng command như sau:
   ```
   source ctl-4-nova_discoveryhost.sh
   ```
+
+## Cách 2
+\- Ý tưởng: Thực hiện cài Cài đặt các project trên node Controller, sau đó từ Controller, ta sử dụng scripts để cài các project trên node Compute.   
+\- Trên node Controller  
+  - download các file shell scripts theo link bên dưới. Sau đó thực hiện các bước sau với quyền root.  
+[Links](scripts_ssh)
+
+  - Set quyền 755 cho các files đó.  
+```
+chmod 755 CTL/*
+chmod 755 COM/*
+```
+
+  - Chỉnh sửa tên network card theo server của bạn trong file `config.sh`.  
+
+\- Trên code Compute
+  - download file setup địa chỉ IP theo link bên dưới.  
+[Links](scripts_ssh/COM/ip_setup.sh)
+
+  - Thực hiện script theo cú pháp:  
+  ```
+  source ip_setup.sh <node_name> <NIC_name> <IP_address> <netmask> <gateway>
+  ```
+
+  Ví dụ trong trường hợp này:  
+  ```
+  source ip_setup.sh compute1 ens3 192.168.2.72 255.255.255.0 192.168.2.1
+  ```
+  
+  - Yêu cầu cấu hình cho phép SSH qua root.  
+
+\- Bạn có thể cài theo mô hình **Provider netowrk** hoặc **Self-service network**:  
+  - Mô hình **Provider netowrk**, thực thi trên node Controller  
+    Cài đặt các project trên node Controller:  
+    ```
+    cd CTL
+    source ctl-provider-all.sh
+    ```
+    
+    Cài đặt các project trên node Compute:
+    ```
+    cd COM
+    source sshkey_setup.sh 192.168.2.72 #điền mật khẩu của user root trên node Compute
+    source com-provider-all_ssh.sh 192.168.2.72
+    ```
+
+  - Mô hình **Self-service netowrk**, thực thi trên node Controller  
+    Cài đặt các project trên node Controller:  
+    ```
+    cd CTL
+    source ctl-selfservice-all.sh
+    ```
+    
+    Cài đặt các project trên node Compute:
+    ```
+    cd COM
+    source sshkey_setup.sh 192.168.2.72 #điền mật khẩu của user root trên node Compute
+    source com-selfservice-all_ssh.sh 192.168.2.72
+    ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

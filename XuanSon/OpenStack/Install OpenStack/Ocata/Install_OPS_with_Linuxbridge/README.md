@@ -38,7 +38,7 @@ Sử dụng scripts có 2 cách:
 ### 3.2.1.Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute1
 \- Download các file shell scripts trên cả 2 node. Thực hiện các câu lệnh sau:  
 ```
-apt-get install svn -y
+apt-get install subversion -y
 svn export https://github.com/doxuanson/thuctap012017/trunk/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/scripts
 ```
 
@@ -92,7 +92,7 @@ Thực thi các file bằng command như sau:
 \- **Trên node Controller**  
   - Download các file shell scripts. Thực hiện các câu lệnh sau:  
   ```
-  apt-get install svn -y
+  apt-get install subversion -y
   svn export https://github.com/doxuanson/thuctap012017/trunk/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/scripts_ssh
   ```
   - Sau đó thực hiện các bước sau với quyền root.  

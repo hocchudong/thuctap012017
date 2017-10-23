@@ -11,3 +11,13 @@ Các ghi chép về LVM
 - [2. Cách thay đổi dung lượng sử dụng LVM cho Volume Group](docs/lvm-change-size.md)
     - [2.1 Thay đổi dung lượng cho Volume Group](docs/lvm-change-size.md#change)
     - [2.2 Xóa Volume](docs/lvm-change-size.md#delete)
+
+- [3. Tính năng Snapshot của LVM](docs/lvm-snapshot.md)
+    - [3.1 Snapshot là gì?](docs/lvm-snapshot.md#about)
+    - [3.2 Cách tạo ra một snapshot](docs/lvm-snapshot.md#create)
+    - [3.3 Cách sử dụng Snapshot](docs/lvm-snapshot.md#)
+
+- [4.Tìm hiểu về tính năng Thin Provisioning trong LVM](docs/lvm-thin.md)
+    - [4.1 Giới thiệu về tính năng](docs/lvm-thin.md#about)
+    - [4.2 Làm thế nào để sử dụng tính năng?](docs/lvm-thin.md#set-up)
+    - [4.3 Tính năng Over Provisioning](docs/lvm-thin.md#over-provision)

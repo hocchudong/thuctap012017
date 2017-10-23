@@ -7,7 +7,7 @@ ____
 
 - [3.1 Snapshot là gì?](#about)
 - [3.2 Cách tạo ra một snapshot](#create)
-- [3.3 Cách sử dụng, quản lý Snapshot](#)
+- [3.3 Cách sử dụng Snapshot](#)
 - [Các nội dung khác](#content-others)
 
 ____
@@ -65,7 +65,7 @@ ____
               Free  PE / Size       252 / 1008.00 MiB
               VG UUID               ctKE4d-azxn-wQ8C-BXOK-nBvi-3neH-3VG2L1
 
-        để ý vào `Free  PE / Size       252 / 1008.00 MiB` ta biết được dung lượng còn trống, và ta sẽ sử dụng toàn bộ dung lượng này để tạo ra một snapshot cho `/dev/LVMVolGroup/Private` với câu lệnh sau:
+        để ý vào `Free  PE / Size       252 / 1008.00 MiB` ta biết được dung lượng còn trống, và ta sẽ sử dụng 1 phần của toàn bộ dung lượng này để tạo ra một snapshot cho `/dev/LVMVolGroup/Private` với câu lệnh sau:
 
             lvcreate -l 50 --snapshot -n Private_Snapshot /dev/LVMVolGroup/Private
 
@@ -98,7 +98,7 @@ ____
                 lvremove /dev/LVMVolGroup/Private_Snapshot
 
 
-- ### <a name="">3.3 Cách sử dụng, quản lý Snapshot</a>
+- ### <a name="">3.3 Cách sử dụng Snapshot</a>
 
     - Để phục hồi một snapshot cho Logical Volume, ta cần phải unmount Logical Volume đó ra trước tiên và sử dụng snapshot. Cách thực hiện như sau:
             

@@ -36,7 +36,7 @@ ____
         - `/dev/sdd`: 1Gb
         - `/dev/sde`: 1Gb
 
-            # pvs
+              # pvs
               PV         VG Fmt  Attr PSize  PFree
               /dev/sda2  cl lvm2 a--  19.00g    0
               /dev/sdb      lvm2 ---   1.00g 1.00g

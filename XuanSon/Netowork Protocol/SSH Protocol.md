@@ -146,7 +146,7 @@ $sudo apt-get install ssh
 There are two different sets of configuration files: those for client programs (that is, ssh, scp, and sftp), and those for the server (the sshd daemon).
 
 <a name="5.1"></a>
-## 5.1.File in Openssh-client
+## 5.1.User-specific configuration files
 \- User-specific SSH configuration information is stored in `~/.ssh/` within the user's home directory .  
 
 <img src="http://i.imgur.com/Vqj8gPg.png" >  
@@ -156,7 +156,7 @@ Các file được lưu trong thư mục `/MobaXterm/home/[user]/.ssh`
 
 <a name="5.1.1"></a>
 ### 5.1.1.~/.ssh/know_hosts file
-\- file /MobaXterm/home/.ssh/known_hosts  :  chứa thông tin về các host đã đăng nhập , thuật toán mã hóa , private key .  
+\- file /MobaXterm/home/.ssh/known_hosts  :  chứa thông tin về các host đã đăng nhập , thuật toán mã hóa , host key .  
 **VD** : Nội dung trong file `/home/.ssh/known_hosts`  :  
 ```
 10.10.10.137 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqgwEdhKDwm6xzV6Mp1yiFFXvbS6DVOviV7h1/xV90/NwlbDIur/gh9TVCMza4d0HfXdsgocMclBd2xZ0oDHB2wOyqQRoFFdZnYxqgWK/DKue/P/M82Uf103fcMoRG8gnwDQNM3vvs3ZmsLLz4nLc+Dw2RvyoAy5lRsj3X9wroP8FUFE1SsKJvONgZ5fxQdd0A3mT8TFe0lDFDCNK+ptGTVmrGuDu3hG8j21xnzTBFKeUM/LCIX0qV4KPb7forh6NccGBlbW/qc82JaGdKsLlt5bpk5I0NK94T1yg9wdnWku+u0rgQf9wIUZAinxZHRhr1QSlfP6KNWqpJIQkPy6Sv
@@ -203,7 +203,7 @@ port <port_number>
 https://www.ssh.com/manuals/ 
 
 <a name="5.2"></a>
-## 5.2.File in openssh-server 
+## 5.2.System-wide configuration files
 \- System-wide SSH configuration information is stored in the `/etc/ssh` .  
 
 <img src="http://i.imgur.com/ZqldjAf.png" >  

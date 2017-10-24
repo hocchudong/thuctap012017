@@ -142,11 +142,17 @@ Một DHCP Client gửi một gói DHCP Release đến một server để giải
 <a name="3.2.2"></a>
 ### 3.2.2.Configuration
 #### a.File /etc/default/isc-dhcp-server
-Sửa hoặc tạo ( nếu không có ) 1 file `/etc/default/isc-dhcp-server` với quyền root có nội dung như sau :  
+\- Sửa hoặc tạo ( nếu không có ) 1 file `/etc/default/isc-dhcp-server` với quyền root có nội dung như sau :  
 ```
 INTERFACES="<ethx> <ethy>"
 ```
 với `ethx` , `ethy` là network card thuộc mạng LAN cần cài dhcp server .  
+\- Chú ý: Nếu để cấu hình như sau:  
+```
+INTERFACES=""
+```
+
+thì DHCP server sẽ lắng nghe trên tất cả các địa chỉ IP.
 
 #### b.File /etc/dhcp/dhcpd.conf
 \- Nội dung file `/etc/dhcp/dhcpd.conf` :  

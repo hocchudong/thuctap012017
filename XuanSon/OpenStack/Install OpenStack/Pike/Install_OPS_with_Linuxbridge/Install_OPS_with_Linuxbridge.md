@@ -57,7 +57,7 @@ Yêu cầu phần cứng và địa chỉ IP cho các nodes.
 
 ### 3.1.1.Cấu hình mạng cho các nodes
 #### Controller
-\- Sửa file `/etc/networking/interfaces` đến nội dung sau:  
+\- Sửa file `/etc/network/interfaces` đến nội dung sau:  
 ```
 auto lo
 iface lo inet loopback
@@ -1022,7 +1022,7 @@ apt install nova-api nova-conductor nova-consoleauth \
   ```
   [DEFAULT]
   # ...
-  my_ip = 10.0.0.71
+  my_ip = 10.10.10.71
   ```
 
   - Trong section `[DEFAULT]`, cho phép hỗ trợ Networking service:  

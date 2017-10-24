@@ -21,3 +21,8 @@ Các ghi chép về LVM
     - [4.1 Giới thiệu về tính năng](docs/lvm-thin.md#about)
     - [4.2 Làm thế nào để sử dụng tính năng?](docs/lvm-thin.md#set-up)
     - [4.3 Tính năng Over Provisioning](docs/lvm-thin.md#over-provision)
+
+- [5. Cơ chế ghi đĩa Striping - LVM Stripe](docs/lvm-stripping.md)
+    - [5.1 Giới thiệu về LVM Stripe](docs/lvm-stripping.md#about)
+    - [5.2 Cách thực hiện tạo một Logical Volume với LVM Stripe](docs/lvm-stripping.md#setup)
+    - [5.3 Kiểm tra kết quả](docs/lvm-stripping.md#check_result)

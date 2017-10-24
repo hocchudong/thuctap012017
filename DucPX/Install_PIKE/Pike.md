@@ -64,7 +64,8 @@
 	apt-get update
 	```
 	
-### 1. Cấu hình card mạng.
+### 1. Cấu hình network
+- 1. Cấu hình card mạng.
 
 	```sh
 	auto ens3
@@ -490,7 +491,8 @@
 	```sh
 	server controller iburst
 	```
-Restart NTP service:
+	
+- Restart NTP service:
 
 	```sh
 	service chrony restart
@@ -507,6 +509,7 @@ Restart NTP service:
 	```
 
 ### 3. Thêm Openstack repository
+- add các packages
 
 	```sh
 	apt install software-properties-common -y
@@ -883,7 +886,7 @@ Restart NTP service:
 	+------------+------------------------------------------------------------------------------------------------------------------------------------+
 	```
 
-và
+	- và
 
 	```sh
 	openstack --os-auth-url http://controller:5000/v3 \
@@ -1272,7 +1275,7 @@ và
 	| name        | placement                        |
 	| type        | placement                        |
 	+-------------+----------------------------------+
-	```sh
+	```
 	
 - Tạo endpoint cho placement
 
@@ -1930,7 +1933,7 @@ và
 	
 - Kết thúc quá trình cài đặt neutron trên controller node
 	
-### 7.1.4 Đồng bộ database cho neutron
+- **7.1.4 Đồng bộ database cho neutron**
 
 	```sh
 	su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
@@ -2174,10 +2177,10 @@ và
 	SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 	CACHES = {
-			'default': {
-					 'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-					 'LOCATION': 'controller:11211',
-			}
+		'default': {
+				'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+				'LOCATION': 'controller:11211',
+		}
 	}
 	```
 	
@@ -2428,7 +2431,8 @@ và
 	service nova-api restart	
 	```
 	
-- - Restart dịch vụ nova compute trên compute1:
+- Restart dịch vụ nova compute trên compute1:
+
 	```sh
 	systemctl restart nova-compute
 	```
@@ -2925,7 +2929,7 @@ Trong [DEFAULT] section, cấu hình địa chỉ bind IP, bind port, user, cấ
 	
 #### IV. Tạo và phân phối các rings ban đầu.
 - Bước này thực hiện trên node controller
-#### 1. Tạo tài khoản ring
+#### 1. Tạo account ring
 - đến thư mục /etc/swift
 
 	```sh
@@ -2977,5 +2981,232 @@ Trong [DEFAULT] section, cấu hình địa chỉ bind IP, bind port, user, cấ
 	Reassigned 3072 (300.00%) partitions. Balance is now 0.00.  Dispersion is now 0.00
 	```
 	
+### 2. Tạo container ring
+- 1. đến thư mục `/etc/swift`
+
+  ```sh
+  cd /etc/swift
+  ```
+  
+- 2. tạo file `container.builder`
+
+  ```sh
+  swift-ring-builder container.builder create 10 3 1
+  ```
+  
+- 3. thêm mỗi node đến ring
+
+  ```sh
+  swift-ring-builder container.builder add \
+  --region 1 --zone 1 --ip 10.10.10.193 --port 6201 --device vdb --weight 15
+
+  swift-ring-builder container.builder add \
+  --region 1 --zone 1 --ip 10.10.10.193 --port 6201 --device vdc --weight 15
+
+  swift-ring-builder container.builder add \
+  --region 1 --zone 1 --ip 10.10.10.194 --port 6201 --device vdb --weight 15
+
+  swift-ring-builder container.builder add \
+  --region 1 --zone 1 --ip 10.10.10.194 --port 6201 --device vdc --weight 15
+
+- 4. Kiểm tra lại nội dung của ring
+
+  ```sh
+  /etc/swift# swift-ring-builder container.builder
+  container.builder, build version 4
+  1024 partitions, 3.000000 replicas, 1 regions, 1 zones, 4 devices, 100.00 balance, 0.00 dispersion
+  The minimum number of hours before a partition can be reassigned is 1 (0:00:00 remaining)
+  The overload factor is 0.00% (0.000000)
+  Ring file container.ring.gz not found, probably it hasn't been written yet
+  Devices:   id region zone   ip address:port replication ip:port  name weight partitions balance flags meta
+              0      1    1 10.10.10.193:6201   10.10.10.193:6201   vdb  15.00          0 -100.00
+              1      1    1 10.10.10.193:6201   10.10.10.193:6201   vdc  15.00          0 -100.00
+              2      1    1 10.10.10.194:6201   10.10.10.194:6201   vdb  15.00          0 -100.00
+              3      1    1 10.10.10.194:6201   10.10.10.194:6201   vdc  15.00          0 -100.00
+  ```
+  
+- 5. Tái cân bằng ring
+
+  ```sh
+  /etc/swift# swift-ring-builder container.builder rebalance
+  Reassigned 3072 (300.00%) partitions. Balance is now 0.00.  Dispersion is now 0.00
+  ```
+  
+### 3. Tạo object ring
+- 1. đến thư mục `/etc/swift`
+
+  ```sh
+  cd /etc/swift
+  ```
+  
+- 2. Tạo file `object.builder`
+
+  ```sh
+  swift-ring-builder object.builder create 10 3 1
+  ```
+  
+- 3. thêm mỗi node đến ring
+
+  ```sh
+  swift-ring-builder object.builder add \
+  --region 1 --zone 1 --ip 10.10.10.193 --port 6200 --device vdb --weight 15
+  
+  swift-ring-builder object.builder add \
+  --region 1 --zone 1 --ip 10.10.10.193 --port 6200 --device vdc --weight 15
+  
+  swift-ring-builder object.builder add \
+  --region 1 --zone 1 --ip 10.10.10.194 --port 6200 --device vdb --weight 15
+  
+  swift-ring-builder object.builder add \
+  --region 1 --zone 1 --ip 10.10.10.194 --port 6200 --device vdc --weight 15
+  ```
+
+- 4. Kiểm tra lại nội dung của ring
+
+  ```sh
+  /etc/swift# swift-ring-builder object.builder
+  object.builder, build version 4
+  1024 partitions, 3.000000 replicas, 1 regions, 1 zones, 4 devices, 100.00 balance, 0.00 dispersion
+  The minimum number of hours before a partition can be reassigned is 1 (0:00:00 remaining)
+  The overload factor is 0.00% (0.000000)
+  Ring file object.ring.gz not found, probably it hasn't been written yet
+  Devices:   id region zone   ip address:port replication ip:port  name weight partitions balance flags meta
+              0      1    1 10.10.10.193:6200   10.10.10.193:6200   vdb  15.00          0 -100.00
+              1      1    1 10.10.10.193:6200   10.10.10.193:6200   vdc  15.00          0 -100.00
+              2      1    1 10.10.10.194:6200   10.10.10.194:6200   vdb  15.00          0 -100.00
+              3      1    1 10.10.10.194:6200   10.10.10.194:6200   vdc  15.00          0 -100.00
+  ```
+  
+- 5. Tái cân bằng ring
+
+  ```sh
+  /etc/swift# swift-ring-builder object.builder rebalance
+  Reassigned 3072 (300.00%) partitions. Balance is now 0.00.  Dispersion is now 0.00
+  ```
+  
+### 4. Copy các file `account.ring.gz, container.ring.gz, and object.ring.gz` đến thư mục `/etc/swift` trên mỗi node object storage
+- Sử dụng lệnh scp để đẩy các file này đến mỗi node Object storage
+
+  ```sh
+  scp /etc/swift/account.ring.gz /etc/swift/container.ring.gz /etc/swift/object.ring.gz root@172.16.69.193:/etc/swift
+  scp /etc/swift/account.ring.gz /etc/swift/container.ring.gz /etc/swift/object.ring.gz root@172.16.69.194:/etc/swift
+  ```
+
+## V. Hoàn thành cài đặt
+- Thực hiện trên node controller
+- 1. Lấy file `/etc/swift/swift.conf` từ kho lưu trữ Object storage
+
+  ```sh
+  curl -o /etc/swift/swift.conf \
+  https://git.openstack.org/cgit/openstack/swift/plain/etc/swift.conf-sample?h=stable/newton
+  ```
+  
+- 2. Sửa file `/etc/swift/swift.conf`
+- Trong `[swift-hash]` section.
+
+  ```sh
+  [swift-hash]
+  ...
+  swift_hash_path_suffix = HASH_PATH_SUFFIX
+  swift_hash_path_prefix = HASH_PATH_PREFIX
+  ```
+  
+  - Thay HASH_PATH_PREFIX and HASH_PATH_SUFFIX với giá trị duy nhất.
+  
+- Trong `[storage-policy:0]` section, cấu hình chính sách storage mặc định
+
+  ```sh
+  [storage-policy:0]
+  ...
+  name = Policy-0
+  default = yes
+  ```
+  
+- 3. copy file `swift.conf` đến thư mục `/etc/swift` trên tất cả các node Object storage
+
+  ```sh
+  scp /etc/swift/swift.conf root@172.16.69.193:/etc/swift/
+  
+  scp /etc/swift/swift.conf root@172.16.69.194:/etc/swift/
+  ```
+  
+- 4. Thực hiện lệnh sau trên các node controller và 2 node Object storage
+
+  ```sh
+  chown -R root:swift /etc/swift
+  ```
+  
+- 5. Restart các dịch vụ trên controller
+
+  ```sh
+  service memcached restart
+  service swift-proxy restart
+  ```
+  
+#### Start dịch vụ Object storage
+- thực hiện trên node Object storage
+
+  ```sh
+  swift-init all start
+  ```
+  
+## Kiểm tra lại các bước cài đặt
+- Khai cáo cridentials cho user demo:
+
+  ```sh
+  source demo-openrc
+  ```
+  
+- Xem trạng thái dịch vụ
+
+  ```sh
+  ~# swift stat
+                 Account: AUTH_b54646bf669746db8c62ec0410bd0528
+              Containers: 0
+                 Objects: 0
+                   Bytes: 0
+         X-Put-Timestamp: 1502470995.64351
+             X-Timestamp: 1502470995.64351
+              X-Trans-Id: txa09f5c3dd9494bf6aa0a3-00598de350
+            Content-Type: text/plain; charset=utf-8
+  X-Openstack-Request-Id: txa09f5c3dd9494bf6aa0a3-00598de350
+  ```
+  
+- Tạo `container1` container
+
+  ```sh
+  ~# openstack container create container1
+  +--------------------------------+------------+--------------------------------+
+  | account                        | container  | x-trans-id                     |
+  +--------------------------------+------------+--------------------------------+
+  | AUTH_b54646bf669746db8c62ec041 | container1 | tx38e4667d3e6b49a087cc5-00598d |
+  | 0bd0528                        |            | f2ec                           |
+  +--------------------------------+------------+--------------------------------+
+  ```
+  
+- upload `file1` để test
+
+  ```sh
+  root@controller:~# touch file1
+    
+  root@controller:~# openstack object create container1 file1
+  +--------+------------+----------------------------------+
+  | object | container  | etag                             |
+  +--------+------------+----------------------------------+
+  | file1  | container1 | d41d8cd98f00b204e9800998ecf8427e |
+  +--------+------------+----------------------------------+
+  ```
+  
+- List các file trong container1
+
+  ```sh
+  ~# openstack object list container1
+  +-------+
+  | Name  |
+  +-------+
+  | file1 |
+  +-------+
+  ```
+  
 ---
 # Kết thúc cài đặt

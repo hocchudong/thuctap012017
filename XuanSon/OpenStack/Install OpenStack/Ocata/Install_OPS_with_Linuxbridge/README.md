@@ -83,7 +83,7 @@ source ctl-4-nova_discoveryhost.sh
 \- **Trên node Controller và node Compute**  
   - Download các file shell scripts. Thực hiện các câu lệnh sau:  
   ```
-  wget https://github.com/doxuanson/thuctap012017/blob/master/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/OPS-setup/ip_setup.sh
+  wget https://raw.githubusercontent.com/doxuanson/thuctap012017/master/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/OPS-setup/ip_setup.sh
   ```
 
   - Thực hiện script setup địa chỉ IP cho **Provider Network** theo cú pháp:  
@@ -95,7 +95,7 @@ source ctl-4-nova_discoveryhost.sh
   ```
   source ip_setup.sh controller ens3 192.168.2.71 255.255.255.0 192.168.2.1
   ```
-  
+
 \- **Trên node OPS-setup**  
   - Download các file shell scripts. Thực hiện các câu lệnh sau:  
   ```

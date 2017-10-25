@@ -91,6 +91,11 @@ source ctl-4-nova_discoveryhost.sh
   wget https://raw.githubusercontent.com/doxuanson/thuctap012017/master/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/OPS-setup/ip_setup.sh
   ```
 
+  - Chú ý:  
+    - Do trong quá trình chạy scripts, IP của node sẽ bị thay đổi => vì vậy, nếu bạn nào SSH vào node, sau đó thực hiện scripts, địa chỉ IP sẽ bị thay đổi dẫn đến ngắt kết nối phiên SSH, điều đó làm dừng quá trình thực hiện scripts.  
+    - Ta nên thiết lập địa chỉ IP theo mô hình cho 1 trong 2 card mạng của 2 node, sau đó sử dụng chính địa chỉ IP đó để SSH và thực hiện quá trình chạy scripts.  
+    - VD: Ta thiết lập địa chỉ IP trên node Controller cho card `ens3` là 192.168.2.71, thiết lập địa chỉ IP trên node Compute cho card `ens3` là 192.168.2.72.  
+
   - Thực hiện script setup địa chỉ IP cho **Provider Network** theo mô hình theo cú pháp:  
   ```
   source ip_setup.sh <node_name> <NIC_name> <IP_address> <netmask> <gateway>

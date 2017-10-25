@@ -8,11 +8,11 @@
   - [3.1.Cài thủ công theo hướng dẫn](#3.1)
   - [3.2.Sử dụng scripts](#3.2)
     - [3.2.1.Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute1](#3.2.1)
-    - [3.2.2.Cách 2: Cách 2: Tạo thêm 1 node OPS-setup, sau đó đứng trên node OPS-setup cài 2 node Controller và Compute](#3.2.2)
+    - [3.2.2.Cách 2: Tạo thêm 1 node OPS-setup, sau đó đứng trên node OPS-setup cài 2 node Controller và Compute](#3.2.2)
 
 <a name="1"></a>
 # 1.Mô hình
-Mô hình cài đặt OpenStack Ocata gồm 2 node: Controller và Compute1.
+Mô hình cài đặt OpenStack Ocata gồm 2 node: Controller và Compute.
 
 <img src="images/mo_hinh.png" />
 
@@ -31,11 +31,11 @@ Yêu cầu phần cứng và địa chỉ IP cho các nodes.
 <a name="3.2"></a>
 ## 3.2.Sử dụng scripts 
 Sử dụng scripts có 2 cách:  
-- Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute1.
-- Cách 2: Trên node Controller, chạy scripts cài đặt cho cả 2 node.
+- Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute.
+- Cách 2: Tạo thêm 1 node OPS-setup, sau đó đứng trên node OPS-setup cài 2 node Controller và Compute
 
 <a name="3.2.1"></a>
-### 3.2.1.Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute1
+### 3.2.1.Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute
 \- Download các file shell scripts trên cả 2 node. Thực hiện các câu lệnh sau:  
 ```
 apt-get install subversion -y

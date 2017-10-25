@@ -166,6 +166,14 @@ ____
 
             ![img](../pictures/linear-vs-striped-logical-volume-overview.png)
     
+    - Ngoài ra, ta hãy thực hiện mount Logical Volume `LVM_LV_Stripe` với thư mục `/mnt/Stripe`. Sau đó, ta sẽ tạo ra một file với dung lượng `256Mb` với câu lệnh như sau:
+
+        # truncate -s 256M filename
+
+      trong đó:
+
+        - `-s 256M`: Khai báo kích thước file tạo ra sẽ là 256Mb.
+        - `filename`: Khai báo tên của file sẽ được tạo ra.
 ____
 
 # Tài liệu tham khảo:

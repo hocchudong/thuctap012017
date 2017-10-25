@@ -169,9 +169,9 @@
 	+ #### <a name="Webvirt">Cài đặt Webvirt</a>
 		- Webvirt hay WebvirtMgr là một công cụ được phát triển để quản lý các VMs. Nó hỗ trợ một số tính năng như: tạo, xóa, quản lý VMs. Có hỗ trợ truy cập VMs qua giao diện website. Quản lý các card network, và có thể xem được thông tin, tình trạng về hệ thống cài đặt VMs.
 		- Sau đây là một vài hình ảnh khi sử dụng WebvirtMgr
-			> [Thông tin các máy chủ quản lý](../../Pictures/QEMU-KVM/create-guest-os/cgos-webvirtmgr-home.png)
+			> ![Thông tin các máy chủ quản lý](../../Pictures/QEMU-KVM/create-guest-os/cgos-webvirtmgr-home.png)
 
-			> [Thông tin card network](../../Pictures/QEMU-KVM/create-guest-os/cgos-webvirtmgr-cardnet.png)
+			> ![Thông tin card network](../../Pictures/QEMU-KVM/create-guest-os/cgos-webvirtmgr-cardnet.png)
 
 		- Bạn có thể tiến hành tìm hiểu về công cụ này và tham khảo cách cài đặt tại [Github - WebvirtMgr](https://github.com/retspen/webvirtmgr)
 
@@ -180,11 +180,11 @@
 
 		- Sau đây là một vài hình ảnh của WebvirtCloud:
 
-			> [Trang đăng nhập](../../Pictures/QEMU-KVM/create-guest-os/cgos-webvirtcloud-login.png)
+			> ![Trang đăng nhập](../../Pictures/QEMU-KVM/create-guest-os/cgos-webvirtcloud-login.png)
 
-			> [Trang compute](../../Pictures/QEMU-KVM/create-guest-os/cgos-webvirtcloud-compute.png)
+			> ![Trang compute](../../Pictures/QEMU-KVM/create-guest-os/cgos-webvirtcloud-compute.png)
 
-			> [Trang user manage](../../Pictures/QEMU-KVM/create-guest-os/cgos-webvirtcloud-user.png)
+			> ![Trang user manage](../../Pictures/QEMU-KVM/create-guest-os/cgos-webvirtcloud-user.png)
 
 		- Bạn có thể tìm hiểu về công cụ và cách cài đặt nó tại [Github - WebvirtCloud](https://github.com/retspen/webvirtcloud)
 

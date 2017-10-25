@@ -1,8 +1,8 @@
 #!/bin/bash
 #Author Son Do Xuan
 
-source function.sh
-source config.sh
+source ../function.sh
+source ../config.sh
 
 source /root/admin-openrc
 openstack hypervisor list

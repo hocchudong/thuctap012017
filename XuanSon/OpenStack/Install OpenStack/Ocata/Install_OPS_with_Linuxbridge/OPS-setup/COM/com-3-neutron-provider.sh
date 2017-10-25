@@ -1,8 +1,8 @@
 #!/bin/bash
 #Author Son Do Xuan
 
-source function.sh
-source config.sh
+source ../function.sh
+source ../config.sh
 
 # Function install the components Neutron
 neutron_install () {
@@ -57,8 +57,7 @@ neutron_config_linuxbridge () {
 	egrep -v "^$|^#" $linuxbridgefilebak > $linuxbridgefile
 
 	ops_add $linuxbridgefile linux_bridge physical_interface_mappings provider:$COM_EXT_IF
-	ops_add $linuxbridgefile vxlan enable_vxlan true
-	ops_add $linuxbridgefile vxlan local_ip $COM_MGNT_IP
+	ops_add $linuxbridgefile vxlan enable_vxlan false
 	ops_add $linuxbridgefile securitygroup enable_security_group true
 	ops_add $linuxbridgefile securitygroup \
 		firewall_driver neutron.agent.linux.iptables_firewall.IptablesFirewallDriver

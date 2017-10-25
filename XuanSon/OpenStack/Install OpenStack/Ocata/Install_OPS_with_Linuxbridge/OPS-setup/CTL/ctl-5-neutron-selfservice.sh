@@ -1,6 +1,12 @@
 #!/bin/bash
 # Author Son Do Xuan
 
+source ../function.sh
+source ../config.sh
+
+#!/bin/bash
+# Author Son Do Xuan
+
 source function.sh
 source config.sh
 
@@ -22,7 +28,6 @@ EOF
 neutron_create_info () {
 	echocolor "Set environment variable for admin user"
 	source /root/admin-openrc
-
 	echocolor "Create the neutron service credentials"
 	sleep 3
 
@@ -43,7 +48,7 @@ neutron_install () {
 	echocolor "Install the components"
 	sleep 3
 	apt install neutron-server neutron-plugin-ml2 \
-	  neutron-linuxbridge-agent neutron-dhcp-agent \
+	  neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent \
 	  neutron-metadata-agent -y
 }
 
@@ -64,7 +69,9 @@ neutron_config_server_component () {
 	ops_add $neutronfile DEFAULT \
 		core_plugin ml2
 	ops_add $neutronfile DEFAULT \
-		service_plugins
+		service_plugins router
+	ops_add $neutronfile DEFAULT \
+		allow_overlapping_ips true
 
 	ops_add $neutronfile DEFAULT \
 		transport_url rabbit://openstack:$NEUTRON_PASS@controller
@@ -121,12 +128,13 @@ neutron_config_ml2 () {
 	cp $ml2file $ml2filebak
 	egrep -v "^$|^#" $ml2filebak > $ml2file
 
-	ops_add $ml2file ml2 type_drivers flat,vlan
-	ops_add $ml2file ml2 tenant_network_types
-	ops_add $ml2file ml2 mechanism_drivers linuxbridge
+	ops_add $ml2file ml2 type_drivers flat,vlan,vxlan
+	ops_add $ml2file ml2 tenant_network_types vxlan
+	ops_add $ml2file ml2 mechanism_drivers linuxbridge,l2population
 	ops_add $ml2file ml2 extension_drivers port_security
 	ops_add $ml2file ml2_type_flat flat_networks provider
 	ops_add $ml2file ml2_type_vlan network_vlan_ranges provider
+	ops_add $ml2file ml2_type_vxlan vni_ranges 1:1000
 }
 
 # Function configure the Linux bridge agent
@@ -139,10 +147,21 @@ neutron_config_linuxbridge () {
 	egrep -v "^$|^#" $linuxbridgefilebak > $linuxbridgefile
 
 	ops_add $linuxbridgefile linux_bridge physical_interface_mappings provider:$CTL_EXT_IF
-	ops_add $linuxbridgefile vxlan enable_vxlan false
+	ops_add $linuxbridgefile vxlan enable_vxlan true
+	ops_add $linuxbridgefile vxlan local_ip $CTL_MGNT_IP
 	ops_add $linuxbridgefile securitygroup enable_security_group true
 	ops_add $linuxbridgefile securitygroup \
 		firewall_driver neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
+}
+
+# Function configure the L3 agent
+neutron_config_l3 () {
+	echocolor "Configure the L3 agent"
+	l3file=/etc/neutron/l3_agent.ini
+	l3filebak=/etc/neutron/l3_agent.ini.bak
+	cp $l3file $l3filebak
+	egrep -v "^$|^#" $l3filebak > $l3file
+	ops_add $l3file DEFAULT interface_driver linuxbridge
 }
 
 # Function configure the DHCP agent
@@ -171,6 +190,7 @@ neutron_config_metadata () {
 	ops_add $metadatafile DEFAULT nova_metadata_ip controller
 	ops_add $metadatafile DEFAULT metadata_proxy_shared_secret $METADATA_SECRET
 }
+
 
 # Function configure the Compute service to use the Networking service
 neutron_config_compute_use_network () {
@@ -206,6 +226,7 @@ neutron_restart () {
 	service neutron-linuxbridge-agent restart
 	service neutron-dhcp-agent restart
 	service neutron-metadata-agent restart
+	service neutron-l3-agent restart
 }
 
 #######################
@@ -230,6 +251,9 @@ neutron_config_ml2
 # Configure the Linux bridge agent
 neutron_config_linuxbridge
 
+# Configure the L3 agent
+neutron_config_l3
+	
 # Configure the DHCP agent
 neutron_config_dhcp
 

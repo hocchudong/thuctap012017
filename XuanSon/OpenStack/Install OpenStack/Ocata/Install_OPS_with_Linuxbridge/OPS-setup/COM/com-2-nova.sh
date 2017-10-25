@@ -1,9 +1,8 @@
 #!/bin/bash
-
 #Author Son Do Xuan
 
-source function.sh
-source config.sh
+source ../function.sh
+source ../config.sh
 
 # Function install nova-compute
 nova_install () {

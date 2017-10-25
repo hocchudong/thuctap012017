@@ -1,28 +1,25 @@
 #!/bin/bash
-
 #Author Son Do Xuan
 
 source function.sh
 source config.sh
 
+# Function config COMPUTE node
+config_hostname () {
+	echo "$HOST_COM" > /etc/hostname
+	hostnamectl set-hostname $HOST_COM
 
-# Config COMPUTE1 node
-echocolor "Config COMPUTE node"
-sleep 3
-## Config hostname
-echo "$HOST_COM" > /etc/hostname
-hostnamectl set-hostname $HOST_COM
-
-cat << EOF >/etc/hosts
+	cat << EOF >/etc/hosts
 127.0.0.1	localhost
 
 $CTL_MGNT_IP	$HOST_CTL
 $COM_MGNT_IP	$HOST_COM	
 EOF
+}
 
-
-## IP address
-cat << EOF > /etc/network/interfaces
+# Function IP address
+config_ip () {
+	cat << EOF > /etc/network/interfaces
 # loopback network interface
 auto lo
 iface lo inet loopback
@@ -41,9 +38,23 @@ iface $COM_MGNT_IF inet static
 address $COM_MGNT_IP
 netmask $COM_MGNT_NETMASK
 EOF
- 
+	 
 
-ip a flush $COM_EXT_IF
-ip a flush $COM_MGNT_IF
-ip r del default
-ifdown -a && ifup -a
+	ip a flush $COM_EXT_IF
+	ip a flush $COM_MGNT_IF
+	ip r del default
+	ifdown -a && ifup -a
+}
+
+#######################
+###Execute functions###
+#######################
+
+# Config COMPUTE node
+echocolor "Config COMPUTE node"
+sleep 3
+## Config hostname
+config_hostname
+
+## IP address
+config_ip

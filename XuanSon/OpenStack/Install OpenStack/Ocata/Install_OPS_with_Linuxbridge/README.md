@@ -96,12 +96,14 @@ source ctl-4-nova_discoveryhost.sh
   apt-get install subversion -y
   svn export https://github.com/doxuanson/thuctap012017/trunk/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/OPS-setup
   ```
+
   - Sau đó thực hiện các bước sau với quyền root.  
-  - Set quyền 755 cho các files đó.  
+  - Set quyền 755 cho các files đó. 
+   
   ```
-  cd OPS-setup
-  chmod 755 CTL/*
-  chmod 755 COM/*
+  cd OPS-setup  
+  chmod 755 CTL/*  
+  chmod 755 COM/*  
   ```
 
   - Cấu hình mạng và mô hình cài đặt (`provider` hoặc `selfservice`) theo mô hình của bạn trong file `OPS-setup/config.sh`.  

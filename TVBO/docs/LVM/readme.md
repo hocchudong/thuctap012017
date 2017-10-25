@@ -26,3 +26,8 @@ Các ghi chép về LVM
     - [5.1 Giới thiệu về LVM Stripe](docs/lvm-stripping.md#about)
     - [5.2 Cách thực hiện tạo một Logical Volume với LVM Stripe](docs/lvm-stripping.md#setup)
     - [5.3 Kiểm tra kết quả](docs/lvm-stripping.md#check_result)
+
+- [6. Tính năng LVM Migrating](docs/lvm-migrating.md)
+    - [6.1 Giới thiệu về tính năng](docs/lvm-migrating.md#about)
+    - [6.2 Các bước thực hiện để có thể sử dụng tính năng](docs/lvm-migrating.md#set-up)
+    - [6.3 Kiểm tra kết quả của tính năng](docs/lvm-migrating.md#check-result)

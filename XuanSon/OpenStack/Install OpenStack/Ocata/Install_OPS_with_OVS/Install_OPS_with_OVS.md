@@ -17,11 +17,11 @@
 	- [3.3.Image service](#3.3)
 	- [3.4.Compute service](#3.4)
 		- [3.4.1.Cài đặt và cấu hình Nova trên node Controller](#3.4.1)
-		- [3.4.2.Cài đặt và cấu hình Nova trên node Compute1](#3.4.2)
+		- [3.4.2.Cài đặt và cấu hình Nova trên node Compute](#3.4.2)
 		- [3.4.3.Kiểm tra](#3.4.3)
 	- [3.5.Networking service](#3.5)
 		- [3.5.1.Cài đặt và cấu hình Neutron trên node Controller](#3.5.1)
-		- [3.5.2.Cài đặt và cấu hình Neutron trên node Compute1](#3.5.2)
+		- [3.5.2.Cài đặt và cấu hình Neutron trên node Compute](#3.5.2)
   - [3.6.Dashboard](#3.6)
 - [Tài liệu tham khảo](#tailieuthamkhao)
 
@@ -86,8 +86,8 @@ controller
 # controller
 10.10.10.71       controller
 
-# compute1
-10.10.10.72       compute1
+# compute
+10.10.10.72       compute
 
 # block1
 10.10.10.73       block1
@@ -95,7 +95,7 @@ controller
 
 \- Reboot lại hệ thống.  
 
-#### Compute1
+#### Compute
 \- Sửa file `/etc/networking/interfaces` đến nội dung sau:  
 ```
 auto lo
@@ -112,10 +112,10 @@ iface ens4 inet static
 address 10.10.10.72/24
 ```
 
-\- Thiết lập hostname cho node **compute1**.  
+\- Thiết lập hostname cho node **compute**.  
 Sửa file `/etc/hostname` đến nội dụng sau:  
 ```
-compute1
+compute
 ```
 
 \- Sửa file `/etc/hosts` đến nội dung sau:  
@@ -125,8 +125,8 @@ compute1
 # controller
 10.10.10.71       controller
 
-# compute1
-10.10.10.72       compute1
+# compute
+10.10.10.72       compute
 
 # block1
 10.10.10.73       block1
@@ -151,21 +151,21 @@ rtt min/avg/max/mdev = 203.701/203.989/204.514/0.636 ms
 
 \- Từ Controller, kiểm tra truy cập đến management interface trên node Compute.  
 ```
-root@controller:~# ping -c 4 compute1
-PING compute1 (10.10.10.72) 56(84) bytes of data.
-64 bytes from compute1 (10.10.10.72): icmp_seq=1 ttl=64 time=0.884 ms
-64 bytes from compute1 (10.10.10.72): icmp_seq=2 ttl=64 time=0.543 ms
-64 bytes from compute1 (10.10.10.72): icmp_seq=3 ttl=64 time=0.587 ms
-64 bytes from compute1 (10.10.10.72): icmp_seq=4 ttl=64 time=0.516 ms
+root@controller:~# ping -c 4 compute
+PING compute (10.10.10.72) 56(84) bytes of data.
+64 bytes from compute (10.10.10.72): icmp_seq=1 ttl=64 time=0.884 ms
+64 bytes from compute (10.10.10.72): icmp_seq=2 ttl=64 time=0.543 ms
+64 bytes from compute (10.10.10.72): icmp_seq=3 ttl=64 time=0.587 ms
+64 bytes from compute (10.10.10.72): icmp_seq=4 ttl=64 time=0.516 ms
 
---- compute1 ping statistics ---
+--- compute ping statistics ---
 4 packets transmitted, 4 received, 0% packet loss, time 3001ms
 rtt min/avg/max/mdev = 0.516/0.632/0.884/0.149 ms
 ```
 
-\- Từ Compute1, kiểm tra truy cập Internet.  
+\- Từ Compute, kiểm tra truy cập Internet.  
 ```
-root@compute1:~# ping -c 4 openstack.org
+root@compute:~# ping -c 4 openstack.org
 PING openstack.org (162.242.140.107) 56(84) bytes of data.
 64 bytes from 162.242.140.107: icmp_seq=1 ttl=46 time=204 ms
 64 bytes from 162.242.140.107: icmp_seq=2 ttl=46 time=204 ms
@@ -177,9 +177,9 @@ PING openstack.org (162.242.140.107) 56(84) bytes of data.
 rtt min/avg/max/mdev = 203.619/203.982/204.296/0.400 ms
 ```
 
-\- Từ Compute1, kiểm tra truy cập đến management interface trên node Controller.  
+\- Từ Compute, kiểm tra truy cập đến management interface trên node Controller.  
 ```
-root@compute1:~# ping -c 4 controller
+root@compute:~# ping -c 4 controller
 PING controller (10.10.10.71) 56(84) bytes of data.
 64 bytes from controller (10.10.10.71): icmp_seq=1 ttl=64 time=0.640 ms
 64 bytes from controller (10.10.10.71): icmp_seq=2 ttl=64 time=0.643 ms
@@ -217,7 +217,7 @@ allow 10.10.10.0/24
 service chrony restart
 ```
 
-#### Compute1
+#### Compute
 \- Cài package:  
 ```
 apt install chrony
@@ -247,9 +247,9 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ^* sin.wrtpoona.in               2  10   377   926  +9362us[+9871us] +/-  180ms
 ```
 
-\- Chạy lệnh sau trên node compute1:  
+\- Chạy lệnh sau trên node compute:  
 ```
-root@compute1:~# chronyc sources
+root@compute:~# chronyc sources
 210 Number of sources = 1
 MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ===============================================================================
@@ -1115,7 +1115,7 @@ service nova-novncproxy restart
 
 <a name="3.4.2"></a>
 
-### 3.4.2.Cài đặt và cấu hình Nova trên node Compute1
+### 3.4.2.Cài đặt và cấu hình Nova trên node Compute
 \- **Cài packages:**  
 ```
 apt install nova-compute
@@ -1234,7 +1234,7 @@ root@controller:~# openstack hypervisor list
 +----+---------------------+-----------------+-------------+-------+
 | ID | Hypervisor Hostname | Hypervisor Type | Host IP     | State |
 +----+---------------------+-----------------+-------------+-------+
-|  1 | compute1            | QEMU            | 10.10.10.72 | up    |
+|  1 | compute             | QEMU            | 10.10.10.72 | up    |
 +----+---------------------+-----------------+-------------+-------+
 ```
 
@@ -1245,7 +1245,7 @@ Found 2 cell mappings.
 Skipping cell0 since it does not contain hosts.
 Getting compute nodes from cell 'cell1': 68457ec9-57cb-48a4-9fab-e2b97f9091ce
 Found 1 computes in cell: 68457ec9-57cb-48a4-9fab-e2b97f9091ce
-Checking host mapping for compute host 'compute1': 3e73c383-f334-4f1d-a41d-94bd878507b8
+Checking host mapping for compute host 'compute': 3e73c383-f334-4f1d-a41d-94bd878507b8
 ```
 
 >Chú ý:  
@@ -1272,7 +1272,7 @@ root@controller:~# openstack compute service list
 |  1 | nova-conductor   | controller | internal | enabled | up    | 2017-08-18T11:10:09.000000 |
 |  2 | nova-consoleauth | controller | internal | enabled | up    | 2017-08-18T11:10:09.000000 |
 |  3 | nova-scheduler   | controller | internal | enabled | up    | 2017-08-18T11:10:12.000000 |
-|  9 | nova-compute     | compute1   | nova     | enabled | up    | 2017-08-18T11:10:09.000000 |
+|  9 | nova-compute     | compute    | nova     | enabled | up    | 2017-08-18T11:10:09.000000 |
 +----+------------------+------------+----------+---------+-------+----------------------------+
 ```
 
@@ -1469,7 +1469,7 @@ service neutron-l3-agent restart
 
 <a name="3.5.2"></a>
 
-### 3.5.2.Cài đặt và cấu hình Neutron trên node Compute1
+### 3.5.2.Cài đặt và cấu hình Neutron trên node Compute
 \- **Cài các thành phần**  
 ```
 apt install neutron-openvswitch-agent
@@ -1504,8 +1504,8 @@ apt install neutron-openvswitch-agent
   password = Welcome123
   ```
 
-<a name="config_neutron_compute1"></a>
-\- **Cấu hình tùy chọn networking trên node Compute1**  
+<a name="config_neutron_compute"></a>
+\- **Cấu hình tùy chọn networking trên node Compute**  
 Bạn có thể triển khai Networking service sử dụng 1 trong 2 kiến trúc sau:  
 - [Networking Option 1: Provider networks](Compute_Provider_networks.md.md)
 - [Networking Option 2: Self-service networks](Compute_Self-service_networks.md)

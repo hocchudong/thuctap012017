@@ -56,4 +56,4 @@ iface ens3 inet manual
 ```
 
 
-Quay lại [**Cấu hình Neutron trên node Compute1**](Install_OPS_with_OVS.md#config_neutron_compute1)
+Quay lại [**Cấu hình Neutron trên node Compute**](Install_OPS_with_OVS.md#config_neutron_compute)

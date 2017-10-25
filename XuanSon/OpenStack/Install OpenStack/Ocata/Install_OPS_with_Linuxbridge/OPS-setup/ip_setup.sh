@@ -41,6 +41,6 @@ gateway $GATEWAY_IP
 dns-nameservers 8.8.8.8
 EOF
  
-ip a flush $EXT_IF
+ip a flush $IF
 ip r del default
 ifdown -a && ifup -a

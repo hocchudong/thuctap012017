@@ -49,6 +49,11 @@ cd scripts
 chmod 755 *
 ```
 
+\- Chú ý:  
+- Do trong quá trình chạy scripts, IP của 2 node Controller và Compute sẽ bị thay đổi => vì vậy, nếu bạn nào SSH vào node Controller và Compute, sau đó thực hiện scripts, địa chỉ IP sẽ bị thay đổi dẫn đến ngắt kết nối phiên SSH, điều đó làm dừng quá trình thực hiện scripts.  
+- Ta nên thiết lập địa chỉ IP theo mô hình cho 1 trong 2 card mạng của 2 node, sau đó sử dụng chính địa chỉ IP đó để SSH và thực hiện quá trình chạy scripts.  
+- VD: Ta thiết lập địa chỉ IP trên node Controller cho card `ens3` là 192.168.2.71, thiết lập địa chỉ IP trên node Compute cho card `ens3` là 192.168.2.72.  
+
 \- Cấu hình mạng và mô hình cài đặt (`provider` hoặc `selfservice`) theo mô hình của bạn trong file `config.sh`.  
 \- Thực thi các file bằng command như sau:  
 - Trên node **Controller**:  

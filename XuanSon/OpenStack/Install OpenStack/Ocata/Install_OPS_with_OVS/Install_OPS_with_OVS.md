@@ -377,14 +377,14 @@ apt install keystone
 ```
 
 - Sửa file `/etc/keystone/keystone.conf` và thực hiện các hành động sau:  
-  - Trong section `[database], cấu hình truy cập database:  
+  - Trong section `[database]`, cấu hình truy cập database:  
     ```
     [database]
     # ...
     connection = mysql+pymysql://keystone:Welcome123@controller/keystone
     ```
 
-  - Trong section `[token`], caasu hinhf Fernet token provider:  
+  - Trong section `[token]`, caasu hinhf Fernet token provider:  
     ```
     [token]
     # ...
@@ -1175,7 +1175,7 @@ vncserver_proxyclient_address = $my_ip
 novncproxy_base_url = http://controller:6080/vnc_auto.html
 ```
 
-- Trong section `[glance], cấu hình vị trí của Image service API:  
+- Trong section `[glance]`, cấu hình vị trí của Image service API:  
 ```
 [glance]
 # ...

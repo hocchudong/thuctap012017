@@ -7,7 +7,7 @@
 - [3.Cài đặt](#3)
   - [3.1.Cài thủ công theo hướng dẫn](#3.1)
   - [3.2.Sử dụng scripts](#3.2)
-    - [3.2.1.Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute1](#3.2.1)
+    - [3.2.1.Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute](#3.2.1)
     - [3.2.2.Cách 2: Tạo thêm 1 node OPS-setup, sau đó đứng trên node OPS-setup cài 2 node Controller và Compute](#3.2.2)
 
 <a name="1"></a>
@@ -91,7 +91,7 @@ source ctl-4-nova_discoveryhost.sh
   wget https://raw.githubusercontent.com/doxuanson/thuctap012017/master/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/OPS-setup/ip_setup.sh
   ```
 
-  - Thực hiện script setup địa chỉ IP cho **Provider Network** theo cú pháp:  
+  - Thực hiện script setup địa chỉ IP cho **Provider Network** theo mô hình theo cú pháp:  
   ```
   source ip_setup.sh <node_name> <NIC_name> <IP_address> <netmask> <gateway>
   ```

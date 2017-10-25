@@ -68,11 +68,16 @@ source ctl-4-nova_discoveryhost.sh
 
 
 <a name="3.2.2"></a>
+
 ### 3.2.2.Cách 2: Tạo thêm 1 node OPS-setup, sau đó đứng trên node OPS-setup cài 2 node Controller và Compute
+
 #### Mô hình
 <img src="images/mo_hinh_1.png" />
+
 #### IP Planning
+
 <img src="images/ip_planning_1.png" />
+
 #### Cài đặt
 \- **Yêu cầu**: Trên 2 node đều cài ssh server và được cấu hình cho phép ssh qua `root`.  
 \- **Trên node Controller và node Compute**  
@@ -89,7 +94,8 @@ source ctl-4-nova_discoveryhost.sh
   Ví dụ trên node Controller:  
   ```
   source ip_setup.sh controller ens3 192.168.2.71 255.255.255.0 192.168.2.1
-
+  ```
+  
 \- **Trên node OPS-setup**  
   - Download các file shell scripts. Thực hiện các câu lệnh sau:  
   ```
@@ -99,7 +105,7 @@ source ctl-4-nova_discoveryhost.sh
 
   - Sau đó thực hiện các bước sau với quyền root.  
   - Set quyền 755 cho các files đó. 
-   
+
   ```
   cd OPS-setup  
   chmod 755 CTL/*  

@@ -12,7 +12,7 @@ ____
 
 - [Tổng quan về hệ điều hành Linux](docs/Overview_Linux/readme.md)
 
-- [Tìm hiểu về KVM](docs/Virtualization/QEMU-KVM/README.md)
+- [Tìm hiểu về KVM](docs/Virtualization/README.md)
 ____
 
 # <a name="content-others">Các nội dung khác</a>

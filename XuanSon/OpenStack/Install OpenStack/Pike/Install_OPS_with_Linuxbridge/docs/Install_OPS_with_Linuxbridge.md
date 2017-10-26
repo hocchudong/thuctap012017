@@ -31,7 +31,7 @@
 <a name="1"></a>
 
 # 1.Mô hình
-Mô hình cài đặt OpenStack Ocata gồm 2 node: Controller và Compute.
+Mô hình cài đặt OpenStack Pike gồm 2 node: Controller và Compute.
 
 <img src="../images/mo_hinh.png" />
 

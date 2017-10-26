@@ -32,4 +32,4 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 ```
 
 
-Quay lại [**Cấu hình Neutron trên node Compute**](Install_OPS_with_OVS.md#config_neutron_compute)
+Quay lại [**Cấu hình Neutron trên node Compute**](Install_OPS_with_Linuxbridge.md#config_neutron_compute)

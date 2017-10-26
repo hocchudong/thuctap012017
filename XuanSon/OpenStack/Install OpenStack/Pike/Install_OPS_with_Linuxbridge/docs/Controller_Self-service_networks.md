@@ -194,7 +194,7 @@ enable_isolated_metadata = true
 ```
 
 
-Quay lại [**Cấu hình Neutron trên node Controller**](Install_OPS_with_OVS.md#config_neutron_controller)
+Quay lại [**Cấu hình Neutron trên node Controller**](Install_OPS_with_Linuxbridge.md#config_neutron_controller)
 
 
 

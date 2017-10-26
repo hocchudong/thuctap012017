@@ -8,6 +8,7 @@
 - [X] [Tạo một máy ảo kvm](QEMU-KVM/Guest-creation.md)
 - [ ] [Quản lý các máy ảo kvm](QEMU-KVM/Guest-management.md)
 - [ ] [Truy cập, sử dụng các máy ảo](QEMU-KVM/Guest-console-access.md)
+- [ ] [Cài đặt công cụ quản lý KVM - webvirtmgr](QEMU-KVM/install-webvirtmgr.md)
 - [X] [Các trang website tham khảo](#website)
 
 

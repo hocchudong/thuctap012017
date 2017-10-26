@@ -218,7 +218,11 @@ ____
                 - `0` có thể là một địa chỉ IP mà bạn muốn. Ở đây để 0 với mục đích cho phép có thể truy cập qua tất cả các interface network.
                 - `8000`: Khai báo port
 
+        - Để truy cập và quản lý công cụ, trên trình duyệt, ta truy cập tới đường dẫn:
 
+                http://ip_server:8000
+
+            trong đó: `ip_server` là địa chỉ IP của máy cài webvirtmgr
 
     - #### <a name="runubuntu">6.5.2 Ubuntu 16.10</a>
 
@@ -263,6 +267,12 @@ ____
             trong đó: 
                 - `0` có thể là một địa chỉ IP mà bạn muốn. Ở đây để 0 với mục đích cho phép có thể truy cập qua tất cả các interface network.
                 - `8000`: Khai báo port
+
+        - Để truy cập và quản lý công cụ, trên trình duyệt, ta truy cập tới đường dẫn:
+
+                http://ip_server:8000
+
+            trong đó: `ip_server` là địa chỉ IP của máy cài webvirtmgr
 ____
 
 

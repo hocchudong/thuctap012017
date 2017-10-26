@@ -33,14 +33,14 @@
 # 1.Mô hình
 Mô hình cài đặt OpenStack Ocata gồm 2 node: Controller và Compute.
 
-<img src="images/mo_hinh.png" />
+<img src="../images/mo_hinh.png" />
 
 <a name="2"></a>
 
 # 2.IP Planning
 Yêu cầu phần cứng và địa chỉ IP cho các nodes.
 
-<img src="images/ip_planning.png" />
+<img src="../images/ip_planning.png" />
 
 <a name="3"></a>
 

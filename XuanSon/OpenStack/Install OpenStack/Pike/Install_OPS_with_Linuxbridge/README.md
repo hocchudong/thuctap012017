@@ -38,9 +38,9 @@ Sử dụng scripts có 2 cách:
 - Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute.
 - Cách 2: Tạo thêm 1 node OPS-setup, sau đó đứng trên node OPS-setup cài 2 node Controller và Compute
 
+> Chú ý: Thực hiện tất cả các lệnh với quyển user `root`.   
 <a name="3.2.1"></a>
 ### 3.2.1.Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute
-> Chú ý: Thực hiện tất cả các lệnh với quyển user `root`.   
 
 \- Trên cả 2 node Controller và Compute:  
 - Download các file shell scripts trên cả 2 node. Thực hiện các câu lệnh sau:  
@@ -132,19 +132,17 @@ source ctl-4-nova_discoveryhost.sh
   chmod 755 COM/*  
   ```
 
-  - Cấu hình mạng và mô hình cài đặt (`provider` hoặc `selfservice`) theo mô hình của bạn trong file `OPS-setup/config.sh`.  
+  - Cấu hình mạng, mô hình cài đặt (`provider` hoặc `selfservice`), password các node Controller và Compute theo mô hình của bạn trong file `OPS-setup/config.sh`.  
   - Thực thi các file bằng command như sau:  
     - Cài đặt các project trên node Controller, thực hiện các lệnh sau:  
     ```
     cd OPS-setup/CTL
-    source sshkey_setup.sh #điền mật khẩu của user root trên node Controller
     source ssh_ctl-all.sh
     ```
     
     - Cài đặt các project trên node Compute, thực hiện các lệnh sau:  
     ```
     cd OPS-setup/COM
-    source sshkey_setup.sh #điền mật khẩu của user root trên node Compute
     source ssh_com-all.sh
     ```
 

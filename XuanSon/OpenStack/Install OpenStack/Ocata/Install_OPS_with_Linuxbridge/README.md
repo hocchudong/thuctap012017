@@ -38,9 +38,9 @@ Sử dụng scripts có 2 cách:
 - Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute.
 - Cách 2: Tạo thêm 1 node OPS-setup, sau đó đứng trên node OPS-setup cài 2 node Controller và Compute
 
+> Chú ý: Thực hiện tất cả các lệnh với quyển user `root`.   
 <a name="3.2.1"></a>
 ### 3.2.1.Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute
-> Chú ý: Thực hiện tất cả các lệnh với quyển user `root`.   
 
 \- Trên cả 2 node Controller và Compute:  
 - Download các file shell scripts trên cả 2 node. Thực hiện các câu lệnh sau:  

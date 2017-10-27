@@ -1,4 +1,4 @@
-# Cài OpenStack Pike với Linux bridge
+# Cài OpenStack Pike với Open vSwitch
 
 
 # MỤC LỤC
@@ -30,7 +30,7 @@ Yêu cầu phần cứng và địa chỉ IP cho các nodes.
 
 <a name="3.1"></a>
 ## 3.1.Cài thủ công theo hướng dẫn
-[Cài OpenStack Pike với Linux bridge](docs/Install_OPS_with_Linuxbridge.md)
+[Cài OpenStack Pike với Open vSwitch](docs/Install_OPS_with_OVS.md)
 
 <a name="3.2"></a>
 ## 3.2.Sử dụng scripts 
@@ -46,7 +46,7 @@ Sử dụng scripts có 2 cách:
 - Download các file shell scripts trên cả 2 node. Thực hiện các câu lệnh sau:  
 ```
 apt-get install subversion -y
-svn export https://github.com/doxuanson/thuctap012017/trunk/XuanSon/OpenStack/Install%20OpenStack/Pike/Install_OPS_with_Linuxbridge/scripts
+svn export https://github.com/doxuanson/thuctap012017/trunk/XuanSon/OpenStack/Install%20OpenStack/Pike/Install_OPS_with_OVS/scripts
 ```
 
 - Set quyền 755 cho các files đó.  
@@ -101,7 +101,7 @@ source ctl-4-nova_discoveryhost.sh
 \- **Trên node Controller và node Compute**  
   - Download file shell script. Thực hiện các câu lệnh sau:  
   ```
-  wget https://raw.githubusercontent.com/doxuanson/thuctap012017/master/XuanSon/OpenStack/Install%20OpenStack/Pike/Install_OPS_with_Linuxbridge/OPS-setup/ip_setup.sh
+  wget https://raw.githubusercontent.com/doxuanson/thuctap012017/master/XuanSon/OpenStack/Install%20OpenStack/Pike/Install_OPS_with_OVS/OPS-setup/ip_setup.sh
   ```
 
  - Thực hiện script setup địa chỉ IP cho **Provider Network** theo mô hình theo cú pháp:  
@@ -120,7 +120,7 @@ source ctl-4-nova_discoveryhost.sh
   - Download các file shell scripts. Thực hiện các câu lệnh sau:  
   ```
   apt-get install subversion -y
-  svn export https://github.com/doxuanson/thuctap012017/trunk/XuanSon/OpenStack/Install%20OpenStack/Pike/Install_OPS_with_Linuxbridge/OPS-setup
+  svn export https://github.com/doxuanson/thuctap012017/trunk/XuanSon/OpenStack/Install%20OpenStack/Pike/Install_OPS_with_OVS/OPS-setup
   ```
 
   - Sau đó thực hiện các bước sau với quyền root.  

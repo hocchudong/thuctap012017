@@ -66,7 +66,6 @@ nova_config () {
 	ops_add $novafile glance \
 		api_servers http://controller:9292
 
-	ops_del $novafile oslo_concurrency lock_path
 
 	ops_add $novafile oslo_concurrency \
 		lock_path /var/lib/nova/tmp

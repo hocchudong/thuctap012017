@@ -1,4 +1,4 @@
-# Cài OpenStack Ocata với Linux bridge
+# Cài OpenStack Pike với Linux bridge
 
 
 # MỤC LỤC
@@ -12,7 +12,7 @@
 
 <a name="1"></a>
 # 1.Mô hình
-Mô hình cài đặt OpenStack Ocata gồm 2 node: Controller và Compute.
+Mô hình cài đặt OpenStack Pike gồm 2 node: Controller và Compute.
 
 <img src="images/mo_hinh.png" />
 
@@ -30,7 +30,7 @@ Yêu cầu phần cứng và địa chỉ IP cho các nodes.
 
 <a name="3.1"></a>
 ## 3.1.Cài thủ công theo hướng dẫn
-[Cài OpenStack Ocata với Linux bridge](docs/Install_OPS_with_Linuxbridge.md)
+[Cài OpenStack Pike với Linux bridge](docs/Install_OPS_with_Linuxbridge.md)
 
 <a name="3.2"></a>
 ## 3.2.Sử dụng scripts 
@@ -46,7 +46,7 @@ Sử dụng scripts có 2 cách:
 - Download các file shell scripts trên cả 2 node. Thực hiện các câu lệnh sau:  
 ```
 apt-get install subversion -y
-svn export https://github.com/doxuanson/thuctap012017/trunk/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/scripts
+svn export https://github.com/doxuanson/thuctap012017/trunk/XuanSon/OpenStack/Install%20OpenStack/Pike/Install_OPS_with_Linuxbridge/scripts
 ```
 
 - Set quyền 755 cho các files đó.  
@@ -101,7 +101,7 @@ source ctl-4-nova_discoveryhost.sh
 \- **Trên node Controller và node Compute**  
   - Download file shell script. Thực hiện các câu lệnh sau:  
   ```
-  wget https://raw.githubusercontent.com/doxuanson/thuctap012017/master/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/OPS-setup/ip_setup.sh
+  wget https://raw.githubusercontent.com/doxuanson/thuctap012017/master/XuanSon/OpenStack/Install%20OpenStack/Pike/Install_OPS_with_Linuxbridge/OPS-setup/ip_setup.sh
   ```
 
  - Thực hiện script setup địa chỉ IP cho **Provider Network** theo mô hình theo cú pháp:  
@@ -120,7 +120,7 @@ source ctl-4-nova_discoveryhost.sh
   - Download các file shell scripts. Thực hiện các câu lệnh sau:  
   ```
   apt-get install subversion -y
-  svn export https://github.com/doxuanson/thuctap012017/trunk/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/OPS-setup
+  svn export https://github.com/doxuanson/thuctap012017/trunk/XuanSon/OpenStack/Install%20OpenStack/Pike/Install_OPS_with_Linuxbridge/OPS-setup
   ```
 
   - Sau đó thực hiện các bước sau với quyền root.  

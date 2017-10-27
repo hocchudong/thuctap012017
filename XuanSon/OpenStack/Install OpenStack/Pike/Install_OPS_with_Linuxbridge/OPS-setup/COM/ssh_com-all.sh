@@ -5,6 +5,8 @@ source ../function.sh
 source ../config.sh
 source ../folder-name_config.sh
 
+source sshkey_setup.sh
+
 if [ $network_model = "provider" -o $network_model = "selfservice" ]
 then
 	echo -e "\e[32mScripts start install \e[0m"

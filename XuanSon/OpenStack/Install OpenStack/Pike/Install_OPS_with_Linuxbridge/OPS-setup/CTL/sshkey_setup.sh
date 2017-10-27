@@ -4,9 +4,17 @@
 source ../function.sh
 source ../config.sh
 
+apt-get install fping -y
+fping $CTL_EXT_IP
+if [ $? != "0" ]
+then
+	echocolor "Node Controller not known"
+	exit 1;
+fi
+
+apt-get install sshpass -y
 ssh-keygen -t rsa -N "" -f mykey
-echo -e "\e[32mEnter password of root user on node Controller:\e[0m"
-ssh-copy-id -i mykey.pub root@$CTL_EXT_IP
+sshpass -p $CTL_PASS ssh-copy-id -i mykey.pub root@$CTL_EXT_IP
 
 ssh -i mykey root@$CTL_EXT_IP <<EOF
 # Update and upgrade for Controller

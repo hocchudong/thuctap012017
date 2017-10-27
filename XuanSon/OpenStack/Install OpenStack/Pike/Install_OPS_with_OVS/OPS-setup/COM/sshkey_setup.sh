@@ -4,9 +4,17 @@
 source ../function.sh
 source ../config.sh
 
+apt-get install fping -y
+fping $COM_EXT_IP
+if [ $? != "0" ]
+then
+	echocolor "Node Compute not known"
+	exit 1;
+fi
+
+apt-get install sshpass -y
 ssh-keygen -t rsa -N "" -f mykey
-echo -e "\e[32mEnter password of root user on node Compute:\e[0m"
-ssh-copy-id -i mykey.pub root@$COM_EXT_IP
+sshpass -p $COM_PASS ssh-copy-id -i mykey.pub root@$COM_EXT_IP
 
 ssh -i mykey root@$COM_EXT_IP <<EOF
 # Update and upgrade for COMPUTE

@@ -24,6 +24,10 @@ Yêu cầu phần cứng và địa chỉ IP cho các nodes.
 
 <a name="3"></a>
 # 3.Cài đặt
+\- Có 2 cách cài đặt OpenStack:  
+- Cài thủ công.
+- Cài sử dụng scripts.
+
 <a name="3.1"></a>
 ## 3.1.Cài thủ công theo hướng dẫn
 [Cài OpenStack Ocata với Linux bridge](docs/Install_OPS_with_Linuxbridge.md)
@@ -36,23 +40,32 @@ Sử dụng scripts có 2 cách:
 
 <a name="3.2.1"></a>
 ### 3.2.1.Cách 1: Thực hiện chạy scripts trên từng node Controller và Compute
-\- Download các file shell scripts trên cả 2 node. Thực hiện các câu lệnh sau:  
+> Chú ý: Thực hiện tất cả các lệnh với quyển user `root`.   
+
+\- Trên cả 2 node Controller và Compute:  
+- Download các file shell scripts trên cả 2 node. Thực hiện các câu lệnh sau:  
 ```
 apt-get install subversion -y
 svn export https://github.com/doxuanson/thuctap012017/trunk/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/scripts
 ```
 
-\- Sau đó thực hiện các bước sau với quyền root.  
-\- Set quyền 755 cho các files đó.  
+- Set quyền 755 cho các files đó.  
 ```
 cd scripts
 chmod 755 *
 ```
 
-\- Chú ý:  
-- Do trong quá trình chạy scripts, IP của 2 node Controller và Compute sẽ bị thay đổi => vì vậy, nếu bạn nào SSH vào node Controller và Compute, sau đó thực hiện scripts, địa chỉ IP sẽ bị thay đổi dẫn đến ngắt kết nối phiên SSH, điều đó làm dừng quá trình thực hiện scripts.  
-- Ta nên thiết lập địa chỉ IP theo mô hình cho 1 trong 2 card mạng của 2 node, sau đó sử dụng chính địa chỉ IP đó để SSH và thực hiện quá trình chạy scripts.  
-- VD: Ta thiết lập địa chỉ IP trên node Controller cho card `ens3` là 192.168.2.71, thiết lập địa chỉ IP trên node Compute cho card `ens3` là 192.168.2.72.  
+- Thực hiện script setup địa chỉ IP cho **Provider Network** theo mô hình theo cú pháp:  
+```
+source ip_setup.sh <node_name> <NIC_name> <IP_address> <netmask> <gateway>
+```
+
+Ví dụ trên node **Controller**:  
+```
+source ip_setup.sh controller ens3 192.168.2.71 255.255.255.0 192.168.2.1
+```
+
+- Sau khi setup địa chỉ IP, ta sử dụng địa chỉ IP đó để ssh vào 2 node Controller và Compute để thực hiện scripts.  
 
 \- Cấu hình mạng và mô hình cài đặt (`provider` hoặc `selfservice`) theo mô hình của bạn trong file `config.sh`.  
 \- Thực thi các file bằng command như sau:  
@@ -86,25 +99,22 @@ source ctl-4-nova_discoveryhost.sh
 #### Cài đặt
 \- **Yêu cầu**: Trên 2 node đều cài ssh server và được cấu hình cho phép ssh qua `root`.  
 \- **Trên node Controller và node Compute**  
-  - Download các file shell scripts. Thực hiện các câu lệnh sau:  
+  - Download file shell script. Thực hiện các câu lệnh sau:  
   ```
   wget https://raw.githubusercontent.com/doxuanson/thuctap012017/master/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/OPS-setup/ip_setup.sh
   ```
 
-  - Chú ý:  
-    - Do trong quá trình chạy scripts, IP của node sẽ bị thay đổi => vì vậy, nếu bạn nào SSH vào node, sau đó thực hiện scripts, địa chỉ IP sẽ bị thay đổi dẫn đến ngắt kết nối phiên SSH, điều đó làm dừng quá trình thực hiện scripts.  
-    - Ta nên thiết lập địa chỉ IP theo mô hình cho 1 trong 2 card mạng của 2 node, sau đó sử dụng chính địa chỉ IP đó để SSH và thực hiện quá trình chạy scripts.  
-    - VD: Ta thiết lập địa chỉ IP trên node Controller cho card `ens3` là 192.168.2.71, thiết lập địa chỉ IP trên node Compute cho card `ens3` là 192.168.2.72.  
-
-  - Thực hiện script setup địa chỉ IP cho **Provider Network** theo mô hình theo cú pháp:  
+ - Thực hiện script setup địa chỉ IP cho **Provider Network** theo mô hình theo cú pháp:  
   ```
   source ip_setup.sh <node_name> <NIC_name> <IP_address> <netmask> <gateway>
   ```
 
-  Ví dụ trên node Controller:  
+  Ví dụ trên node **Controller**:  
   ```
   source ip_setup.sh controller ens3 192.168.2.71 255.255.255.0 192.168.2.1
   ```
+
+  - Sau khi setup địa chỉ IP, ta sử dụng địa chỉ IP đó để ssh vào 2 node Controller và Compute để thực hiện scripts.  
 
 \- **Trên node OPS-setup**  
   - Download các file shell scripts. Thực hiện các câu lệnh sau:  

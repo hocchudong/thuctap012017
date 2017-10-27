@@ -24,6 +24,10 @@ Yêu cầu phần cứng và địa chỉ IP cho các nodes.
 
 <a name="3"></a>
 # 3.Cài đặt
+\- Có 2 cách cài đặt OpenStack:  
+- Cài thủ công.
+- Cài sử dụng scripts.
+
 <a name="3.1"></a>
 ## 3.1.Cài thủ công theo hướng dẫn
 [Cài OpenStack Ocata với Open vSwitch](docs/Install_OPS_with_OVS.md)

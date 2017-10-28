@@ -46,11 +46,11 @@ nova_create_info () {
 	openstack service create --name nova \
 	  --description "OpenStack Compute" compute
 	openstack endpoint create --region RegionOne \
-	  compute public http://controller:8774/v2.1
+	  compute public http://$HOST_CTL:8774/v2.1
 	openstack endpoint create --region RegionOne \
-	  compute internal http://controller:8774/v2.1
+	  compute internal http://$HOST_CTL:8774/v2.1
 	openstack endpoint create --region RegionOne \
-	  compute admin http://controller:8774/v2.1
+	  compute admin http://$HOST_CTL:8774/v2.1
 
 	## Create info for placement user
 	echocolor "Create info for placement user"
@@ -59,9 +59,9 @@ nova_create_info () {
 	openstack user create --domain default --password $PLACEMENT_PASS placement
 	openstack role add --project service --user placement admin
 	openstack service create --name placement --description "Placement API" placement
-	openstack endpoint create --region RegionOne placement public http://controller:8778
-	openstack endpoint create --region RegionOne placement internal http://controller:8778
-	openstack endpoint create --region RegionOne placement admin http://controller:8778
+	openstack endpoint create --region RegionOne placement public http://$HOST_CTL:8778
+	openstack endpoint create --region RegionOne placement internal http://$HOST_CTL:8778
+	openstack endpoint create --region RegionOne placement admin http://$HOST_CTL:8778
 }
 
 # Function install components of Nova
@@ -81,23 +81,23 @@ nova_config () {
 
 	ops_del $novafile api_database connection
 	ops_add $novafile api_database \
-		connection mysql+pymysql://nova:$NOVA_DBPASS@controller/nova_api
+		connection mysql+pymysql://nova:$NOVA_DBPASS@$HOST_CTL/nova_api
 
 	ops_add $novafile database \
-		connection mysql+pymysql://nova:$NOVA_DBPASS@controller/nova
+		connection mysql+pymysql://nova:$NOVA_DBPASS@$HOST_CTL/nova
 
 	ops_add $novafile DEFAULT \
-		transport_url rabbit://openstack:$RABBIT_PASS@controller
+		transport_url rabbit://openstack:$RABBIT_PASS@$HOST_CTL
 
 	ops_add $novafile api \
 		auth_strategy keystone
 
 	ops_add $novafile keystone_authtoken \
-		auth_uri http://controller:5000
+		auth_uri http://$HOST_CTL:5000
 	ops_add $novafile keystone_authtoken \
-		auth_url http://controller:35357
+		auth_url http://$HOST_CTL:35357
 	ops_add $novafile keystone_authtoken \
-		memcached_servers controller:11211
+		memcached_servers $HOST_CTL:11211
 	ops_add $novafile keystone_authtoken \
 		auth_type password
 	ops_add $novafile keystone_authtoken \
@@ -126,7 +126,7 @@ nova_config () {
 		vncserver_proxyclient_address \$my_ip
 
 	ops_add $novafile glance \
-		api_servers http://controller:9292
+		api_servers http://$HOST_CTL:9292
 
 	ops_add $novafile oslo_concurrency \
 		lock_path /var/lib/nova/tmp
@@ -139,7 +139,7 @@ nova_config () {
 	ops_add $novafile placement project_name service
 	ops_add $novafile placement auth_type password
 	ops_add $novafile placement user_domain_name Default
-	ops_add $novafile placement auth_url http://controller:35357/v3
+	ops_add $novafile placement auth_url http://$HOST_CTL:35357/v3
 	ops_add $novafile placement username placement
 	ops_add $novafile placement password $PLACEMENT_PASS
 }

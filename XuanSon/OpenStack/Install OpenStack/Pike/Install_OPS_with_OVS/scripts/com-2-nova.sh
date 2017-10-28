@@ -22,17 +22,17 @@ nova_config () {
 	egrep -v "^$|^#" $novafilebak > $novafile
 
 	ops_add $novafile DEFAULT \
-		transport_url rabbit://openstack:$NOVA_DBPASS@controller
+		transport_url rabbit://openstack:$NOVA_DBPASS@$HOST_CTL
 
 	ops_add $novafile api \
 		auth_strategy keystone
 
 	ops_add $novafile keystone_authtoken \
-		auth_uri http://controller:5000
+		auth_uri http://$HOST_CTL:5000
 	ops_add $novafile keystone_authtoken \
-		auth_url http://controller:35357
+		auth_url http://$HOST_CTL:35357
 	ops_add $novafile keystone_authtoken \
-		memcached_servers controller:11211
+		memcached_servers $HOST_CTL:11211
 	ops_add $novafile keystone_authtoken \
 		auth_type password
 	ops_add $novafile keystone_authtoken \
@@ -62,10 +62,10 @@ nova_config () {
 	ops_add $novafile vnc \
 		vncserver_proxyclient_address \$my_ip
 	ops_add $novafile vnc \
-		novncproxy_base_url http://controller:6080/vnc_auto.html
+		novncproxy_base_url http://$HOST_CTL:6080/vnc_auto.html
 
 	ops_add $novafile glance \
-		api_servers http://controller:9292
+		api_servers http://$HOST_CTL:9292
 
 	ops_add $novafile oslo_concurrency \
 		lock_path /var/lib/nova/tmp
@@ -84,7 +84,7 @@ nova_config () {
 	ops_add $novafile placement \
 		user_domain_name Default
 	ops_add $novafile placement \
-		auth_url http://controller:35357/v3
+		auth_url http://$HOST_CTL:35357/v3
 	ops_add $novafile placement \
 		username placement
 	ops_add $novafile placement \

@@ -24,8 +24,8 @@ install_ntp () {
 	apt-get install chrony -y
 	ntpfile=/etc/chrony/chrony.conf
 
-	sed -i 's/pool 2.debian.pool.ntp.org offline iburst/ \
-	server controller iburst/g' $ntpfile
+	sed -i 's|'"pool 2.debian.pool.ntp.org offline iburst"'| \
+	'"server $HOST_CTL iburst"'|g' $ntpfile
 
 	service chrony restart
 }

@@ -33,7 +33,7 @@ keystone_config () {
 	egrep -v "^#|^$" $keystonefilebak > $keystonefile
 
 	ops_add $keystonefile database \
-	connection mysql+pymysql://keystone:$KEYSTONE_DBPASS@controller/keystone
+	connection mysql+pymysql://keystone:$KEYSTONE_DBPASS@$HOST_CTL/keystone
 
 	ops_add $keystonefile token provider fernet
 }
@@ -52,9 +52,9 @@ keystone_initialize_key () {
 # Function bootstrap the Identity service
 keystone_bootstrap () {
 	keystone-manage bootstrap --bootstrap-password $ADMIN_PASS \
-	  --bootstrap-admin-url http://controller:35357/v3/ \
-	  --bootstrap-internal-url http://controller:5000/v3/ \
-	  --bootstrap-public-url http://controller:5000/v3/ \
+	  --bootstrap-admin-url http://$HOST_CTL:35357/v3/ \
+	  --bootstrap-internal-url http://$HOST_CTL:5000/v3/ \
+	  --bootstrap-public-url http://$HOST_CTL:5000/v3/ \
 	  --bootstrap-region-id RegionOne
 }
 	
@@ -79,7 +79,7 @@ keystone_create_domain_project_user_role () {
 	export OS_PROJECT_NAME=admin
 	export OS_USER_DOMAIN_NAME=Default
 	export OS_PROJECT_DOMAIN_NAME=Default
-	export OS_AUTH_URL=http://controller:35357/v3
+	export OS_AUTH_URL=http://$HOST_CTL:35357/v3
 	export OS_IDENTITY_API_VERSION=3
 	
 	echocolor "Create domain, projects, users and roles"
@@ -110,7 +110,7 @@ export OS_USER_DOMAIN_NAME=Default
 export OS_PROJECT_NAME=admin
 export OS_USERNAME=admin
 export OS_PASSWORD=$ADMIN_PASS
-export OS_AUTH_URL=http://controller:35357/v3
+export OS_AUTH_URL=http://$HOST_CTL:35357/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
 EOF
@@ -124,7 +124,7 @@ export OS_USER_DOMAIN_NAME=Default
 export OS_PROJECT_NAME=demo
 export OS_USERNAME=demo
 export OS_PASSWORD=$DEMO_PASS
-export OS_AUTH_URL=http://controller:5000/v3
+export OS_AUTH_URL=http://$HOST_CTL:5000/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
 EOF

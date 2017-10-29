@@ -4,6 +4,12 @@
 source ../function.sh
 source ../config.sh
 
+cat << EOF > /root/.ssh/config
+Host *
+	StrictHostKeyChecking no
+	UserKnownHostsFile /dev/null
+EOF
+
 apt-get install fping -y
 fping $CTL_EXT_IP
 if [ $? != "0" ]

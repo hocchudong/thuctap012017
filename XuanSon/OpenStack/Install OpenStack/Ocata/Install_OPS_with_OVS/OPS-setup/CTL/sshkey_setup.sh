@@ -10,7 +10,7 @@ ssh-copy-id -i mykey.pub root@$CTL_EXT_IP
 
 ssh -i mykey root@$CTL_EXT_IP <<EOF
 # Update and upgrade for Controller
-echo -e "\e[32mUpdate and Update controller \e[0m"
+echo -e "\e[32mUpdate and Upgrade controller \e[0m"
 sleep 3
 apt-get update -y&& apt-get upgrade -y
 

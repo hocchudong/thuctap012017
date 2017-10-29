@@ -18,7 +18,7 @@ sshpass -p $COM_PASS ssh-copy-id -i mykey.pub root@$COM_EXT_IP
 
 ssh -i mykey root@$COM_EXT_IP <<EOF
 # Update and upgrade for COMPUTE
-echo -e "\e[32mUpdate and Update COMPUTE \e[0m"
+echo -e "\e[32mUpdate and Upgrade COMPUTE \e[0m"
 sleep 3
 apt-get update -y && apt-get upgrade -y
 

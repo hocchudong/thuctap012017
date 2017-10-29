@@ -11,7 +11,7 @@ apt-get install -y crudini
 
 # Function update and upgrade for COMPUTE
 update_upgrade () {
-	echocolor "Update and Update COMPUTE"
+	echocolor "Update and Upgrade COMPUTE"
 	sleep 3
 	apt-get update -y && apt-get upgrade -y
 }

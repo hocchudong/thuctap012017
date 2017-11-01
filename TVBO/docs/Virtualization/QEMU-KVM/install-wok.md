@@ -137,7 +137,9 @@ ____
 
         tại giao diện website, lần lượt ta làm các bước như sau: `Virtualization` > `Templates` > `+ Add Template`. Nhập tên của Template và điền /var/lib/kimchi/isos/ubuntu-16.04.2-server-amd64.iso vào `File Path` và chọn `Create`.
 
-    - Chọn `Guest` > `+ Guest`. Sau đó chọn template vừa tạo và click vào `Create`. Như vậy là ta đã tạo xong một VM. Để quản lý VM này, ta chọn vào `Actions`. Một cửa sổ sẽ trượt xuống, ta chọn `Start` > `View Console`.
+    - Chọn `Guest` > `+ Guest`. Sau đó chọn template vừa tạo và click vào `Create`. Như vậy là ta đã tạo xong một VM. Để quản lý VM này, ta chọn vào `Actions`. Một cửa sổ sẽ trượt xuống, ta chọn `Start` > `View Console` để quản lý máy ảo vừa tạo.
+
+    - Lưu ý: Không giống như `Webvirtmgr`, đối với `Wok` ta chỉ quản lý được các KVM được cài đặt ngay trên máy cài đặt `Wok`. Ngoài ra, ta còn có thể quản lý, sử dụng các `hard disk` được chia sẻ qua NFS, ...
 ____
 
 # <a name="content-others">Các nội dung khác</a>

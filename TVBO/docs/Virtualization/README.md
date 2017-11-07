@@ -9,6 +9,7 @@
 - [ ] [Quản lý các máy ảo kvm](QEMU-KVM/Guest-management.md)
 - [ ] [Truy cập, sử dụng các máy ảo](QEMU-KVM/Guest-console-access.md)
 - [X] [Cài đặt công cụ quản lý KVM - webvirtmgr](QEMU-KVM/install-webvirtmgr.md)
+- [X] [Cài đặt công cụ quản lý KVM - wok](QEMU-KVM/install-wok.md)
 - [X] [Các trang website tham khảo](#website)
 
 

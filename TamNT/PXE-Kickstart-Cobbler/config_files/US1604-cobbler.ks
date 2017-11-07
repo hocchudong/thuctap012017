@@ -5,6 +5,9 @@ langsupport en_US
 # set keyboard layout for the system
 keyboard us
 
+# install the system
+install
+
 # reboot the system after installation
 reboot
 # config repo source.list

@@ -1,11 +1,11 @@
 # PXE - KICKSTART
 
 # MỤC LỤC
-- [1.PXE](#`)
+- [1.PXE](#1)
 	- [1.1.Giới thiệu PXE](#1.1)
 	- [1.2.PXE workflow](#1.2)
 	- [1.3.LAB PXE](#1.3)
-		- [1.3.1.Mô hình](#1.3)
+		- [1.3.1.Mô hình](#1.3.1)
 		- [1.3.2.Cài đặt và cấu hình](#1.3.2)
 			- [1.3.2.1.Trên PXE Server](#1.3.2.1)
 				- [a.Cài đặt và cấu hình DHCP Server](#1.3.2.1.a)
@@ -16,7 +16,7 @@
 - [2. Kickstart](#2)
 	- [2.1.Giới thiệu](#2.1)
 	- [2.2.Thực hiện cài đặt Kickstart như thế nào?](#2.2)
-- [2.3.PXE workflow khi sử dụng kickstart](#2.3)
+    - [2.3.PXE workflow khi sử dụng kickstart](#2.3)
 	- [2.4.netboot image](#2.4)
 	- [2.5.LAB PXE sử dụng KICKSTART](#2.5)
 		- [2.5.1.Mô hình](#2.5.1)
@@ -224,7 +224,7 @@ Cài đặt Kickstart có thể được thực hiện bằng sử dụng local 
 - Bắt đầu cài đặt Kickstart.
 
 <a name="2.3"></a>
-# 2.3.PXE workflow khi sử dụng kickstart
+## 2.3.PXE workflow khi sử dụng kickstart
 <img src="images/5.png" />
 
 1) Client được khởi động (bật nguồn). NIC của client gửi đi bản tin DHCP broadcast để tìm DHCP server.  
@@ -255,7 +255,7 @@ VD: nếu file boot là `/tftpboot/pxelinux.0`, địa chỉ MAC là `88:99:AA:B
 <a name="2.4"></a>
 ## 2.4.netboot image
 \- Nội dung trong  netboot image ( install/netboot) bao gồm:  
-|||
+|File|Ý nghĩa|
 |---|---|
 |pxelinux.0|boot file image|
 |ldlinux.c32|library used by pxelinux.0|
@@ -604,6 +604,7 @@ Tạo file `/var/www/html/kscentos.cfg` với nội dung như sau:
 - Cài đặt thủ công:  
 <img src="images/8.png" />
 
+<a name="2.5.2.3"></a>
 #### 2.5.2.3.Trên Client 2
 \- Yêu cầu NIC hỗ trợ boot bằng PXE.
 \- Chọn boot từ PXE.

@@ -255,6 +255,7 @@ VD: nếu file boot là `/tftpboot/pxelinux.0`, địa chỉ MAC là `88:99:AA:B
 <a name="2.4"></a>
 ## 2.4.netboot image
 \- Nội dung trong  netboot image ( install/netboot) bao gồm:  
+
 |File|Ý nghĩa|
 |---|---|
 |pxelinux.0|boot file image|

@@ -1,6 +1,38 @@
 # PXE - KICKSTART
 
 # MỤC LỤC
+- [1.PXE](#`)
+	- [1.1.Giới thiệu PXE](#1.1)
+	- [1.2.PXE workflow](#1.2)
+	- [1.3.LAB PXE](#1.3)
+		- [1.3.1.Mô hình](#1.3)
+		- [1.3.2.Cài đặt và cấu hình](#1.3.2)
+			- [1.3.2.1.Trên PXE Server](#1.3.2.1)
+				- [a.Cài đặt và cấu hình DHCP Server](#1.3.2.1.a)
+				- [b.Cài đặt và cấu hình TFTP Server](#1.3.2.1.b)
+				- [c.Cấu hình cài đặt để boot](#1.3.2.1.c)
+				- [d.Cấu hình để PXE client cài Ubuntu Server 16.04 từ repo local](#1.3.2.1.d)
+			- [1.3.2.2.Trên Client 1](#1.3.2.2)
+- [2. Kickstart](#2)
+	- [2.1.Giới thiệu](#2.1)
+	- [2.2.Thực hiện cài đặt Kickstart như thế nào?](#2.2)
+- [2.3.PXE workflow khi sử dụng kickstart](#2.3)
+	- [2.4.netboot image](#2.4)
+	- [2.5.LAB PXE sử dụng KICKSTART](#2.5)
+		- [2.5.1.Mô hình](#2.5.1)
+		- [2.5.2.Cài đặt và cấu hình](#2.5.2)
+			- [2.5.2.1.Trên PXE Server](#2.5.2.1)
+				- [a.Cài đặt và cấu hình DHCP Server](#2.5.2.1.a)
+				- [b.Cài đặt và cấu hình TFTP Server](#2.5.2.1.b)
+                - [c.Cấu hình prelinux](#2.5.2.1.c)
+				- [d.Cấu hình netboot image](#2.5.2.1.d)
+				- [e.Cấu hình để PXE client cài Ubuntu Server 16.04 và Centos 7 từ repo local](#2.5.2.1.e)
+		        - [f.File kickstart](#2.5.2.1.f)
+			- [2.5.2.2.Trên Client 1](#2.5.2.2)
+			- [2.5.2.3.Trên Client 2](#2.5.2.3)
+	- [2.6.Hướng dẫn viết file kickstart](#2.6)
+- [Tài liệu tham khảo](#tailieuthamkhao)
+
 
 <a name="1"></a>
 # 1.PXE
@@ -41,9 +73,9 @@
 <a name="1.3.2"></a>
 ### 1.3.2.Cài đặt và cấu hình
 <a name="1.3.2.1"></a>
-##### 1.3.2.1.Trên PXE Server
+#### 1.3.2.1.Trên PXE Server
 <a name="1.3.2.1.a"></a>
-###### a.Cài đặt và cấu hình DHCP Server
+##### a.Cài đặt và cấu hình DHCP Server
 \- Cài phần mềm `isc-dhcp-server` làm DHCP server:  
 ```
 # apt install isc-dhcp-server
@@ -340,7 +372,7 @@ filename "pxelinux.0";
 ```
 
 <a name="2.5.2.1.c"></a>
-#####c.Cấu hình prelinux
+##### c.Cấu hình prelinux
 >Chú ý : Thực hiện đúng như sau, không nên tự ý thay đổi cách khác.
 
 \- Download file `.iso` Ubuntu Server 16.04, sử dụng câu lệnh sau:  
@@ -481,7 +513,7 @@ Sau đó ta umount `/mnt`:
 ```
 
 <a name="2.5.2.1.f"></a>
-### f.File kickstart
+##### f.File kickstart
 \- File kickstart cho `Ubuntu 16.04`:  
 Tạo file `/var/www/html/ksubuntu.cfg` với nội dung như sau:  
 ```

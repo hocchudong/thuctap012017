@@ -4,18 +4,23 @@
 # MỤC LỤC
 - [1.DAS](#1)
 - [2.NAS](#2)
-- [3.SAN](#3)
+	- [2.1.Tổng quan về NAS](#2.1)
+	- [2.2.NFS protocol](#2.2)
+		- [2.2.1.Giới thiệu](#2.2.1)
+		- [2.2.2.Lab](#2.2.2)
+			- [2.2.2.1.Mô hình](#2.2.2.1)
+			- [2.2.2.2.Cài đặt và cấu hình](#2.2.2.2)
+	  	- [2.2.2.3.Chú ý](#2.2.2.3)
+- [3.SAN](#2)
 	- [3.1.Tổng quan](#3.1)
 	- [3.2.iSCSI protocol](#3.2)
 	- [3.3.LAB iSCSI protocol](#3.3)
 		- [3.3.1.Tổng quan](#3.3.1)
 		- [3.3.2.Thực hành](#3.3.2)
-			- [a.Trên iSCSI Target](#a)
-			- [b.Trên iSCSI Initiator](#b)
 - [4.So sánh NAS và SAN](#4)
 - [Tài liệu tham khảo](#tailieuthamkhao)
 
-<img src="images/DAS-NAS-SAN_va_iSCSI-protocol-1.png" />
+<img src="images/DAS-NAS-SAN_va_iSCSI-protocol-11.png" />
 
 <img src="images/DAS-NAS-SAN_va_iSCSI-protocol-2.png" />
 
@@ -67,7 +72,7 @@
 \- NFS-server: có 2 user là root và wind.  
 
 <a name="2.2.2.2"></a>
-##### 2.2.2.2.Cài đặt và cấu hình
+#### 2.2.2.2.Cài đặt và cấu hình
 ##### a.Trên NFS-server
 \- Cài đặt phần mềm `nfs-kernel-server` :  
 ```
@@ -201,7 +206,7 @@ Viết vào file `/etc/fstab` với quyền `root`:
 ```
 
 <a name="2.2.2.3"></a>
-### 2.2.2.3.Chú ý
+#### 2.2.2.3.Chú ý
 Trong quá trình vận hành có thể xảy ra một số trường hợp sau:  
 - Có 2 client đồng thời mount cùng một thư mục trên server: cả 2 đều có thể đồng thời chỉnh sửa cùng một file => hệ thống sẽ thông báo cho client sử dụng sau biết rằng có một client khác đang chỉnh sửa file. Nếu client này thực hiện sửa thì file sẽ lưu lại theo client nào thực hiện lưu cuối cùng.
 - NFS server bị shutdown hoặc dịch vụ tắt. Client sẽ bị treo máy và chờ đến khi được kết nối trở lại. Việc kết nối được thực hiện ngầm, trong suốt với người dùng.

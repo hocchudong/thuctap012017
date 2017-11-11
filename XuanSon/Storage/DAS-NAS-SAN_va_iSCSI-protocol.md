@@ -417,12 +417,16 @@ iscsiadm -m node --targetname "iqn.2017-07.com.example:storage.lun1" --portal "1
 
 <a name="tailieuthamkhao"></a>
 # Tài liệu tham khảo
-https://en.wikipedia.org/wiki/Direct-attached_storage
-https://en.wikipedia.org/wiki/Network-attached_storage
-https://en.wikipedia.org/wiki/Storage_area_network
- https://en.wikipedia.org/wiki/ISCSI
-https://www.howtoforge.com/iscsi_on_linux
-https://www.howtoforge.com/using-iscsi-on-ubuntu-10.04-initiator-and-target
-https://github.com/hocchudong/Ghichep-Storage/blob/master/TriMQ/Lab-iSCSI.md
+- DAS: https://en.wikipedia.org/wiki/Direct-attached_storage  
+- NAS: https://en.wikipedia.org/wiki/Network-attached_storage  
+https://en.wikipedia.org/wiki/Network_File_System  
+https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-16-04#step-2-—-creating-the-share-directories-on-the-host  
+https://github.com/hocchudong/thuctap012017/blob/master/DucPX/NFS/nfs_basic.md  
+https://www.server-world.info/en/note?os=Ubuntu_14.04&p=nfs&f=1  
+- SAN: https://en.wikipedia.org/wiki/Storage_area_network  
+iSCSI: https://en.wikipedia.org/wiki/ISCSI  
+LAB iSCSI: https://www.howtoforge.com/iscsi_on_linux  
+https://www.howtoforge.com/using-iscsi-on-ubuntu-10.04-initiator-and-target  
+https://github.com/hocchudong/Ghichep-Storage/blob/master/TriMQ/Lab-iSCSI.md  
 
 

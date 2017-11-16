@@ -7,6 +7,7 @@
 - [Quá trình boot một VM trong OpenStack](docs/Quá%20trình%20boot%20một%20VM%20trong%20OpenStack.md)
 - [Log trong Nova](docs/Log_trong_Nova.md)
 - [Thư mục lưu trữ thông tin về instance](docs/Thu_muc_luu_tru_thong_tin_ve_instance.md)
+- [Nova scheduler](#docs/nova-scheduler.md)
 
 ## Thực hành
 - [Nova command](docs/Nova%20command.md)

@@ -10,13 +10,14 @@
 - [Log trong Nova](docs/Log_trong_Nova.md)
 - [Thư mục lưu trữ thông tin về instance](docs/Thu_muc_luu_tru_thong_tin_ve_instance.md)
 - [Nova scheduler](docs/nova-scheduler.md)
-- [Migration](docs/Migration.md)
-- [Resize](docs/Resize.md)
+
 
 ## Thực hành
 - [Nova command](docs/Nova%20command.md)
 - [Quản lý quotas](docs/Quản_lý_quotas.md)
 - [Config_Nova](docs/Config_Nova.md)
+- [Migration](docs/Migration.md)
+- [Resize](docs/Resize.md)
 ## Scripts install Nova 
 
 

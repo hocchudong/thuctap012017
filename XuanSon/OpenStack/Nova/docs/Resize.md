@@ -1,8 +1,11 @@
 # Resize
 
 # MỤC LỤC
+- [1.Giới thiệu](#1)
+- [2.LAB](#2)
+- [3.Chú ý](#3)
 
-
+<a name="1"></a>
 # 1.Giới thiệu
 \- Resize là quá trình thay đổi flavor của VM, resize có thể thực hiện trên cùng host hoặc resize đến host khác.  
 \- Các đặc điểm cần chú ý:  
@@ -14,7 +17,8 @@
 
 \- Resize đến host khác yêu cầu cấu hình SSH giữa 2 host.  
 
-## 2.LAB
+<a name="2"></a>
+# 2.LAB
 \- Mô hình  
 <img src="../images/resize-1.png" />
 
@@ -165,6 +169,7 @@ openstack server resize --flavor <flavor> <vm-name>
 openstack server resize --confirm <vm-name>
 ```
 
+<a name="3"></a>
 # 3.Chú ý
 \- Tùy chọn `allow_resize_to_same_host` trong file `/etc/nova/nova.conf` trên node Controller mặc định là `False`. Điều này có nghĩa là bạn không thể resize trên cùng một host. Bạn nên chỉnh thành True để có thể resize trên cùng một host.  
 \- Tuy nhiên khi mình đã lab thử, mình để nguyên mặc định đó, thì VM vẫn có thể resize trên cùng 1 host.  

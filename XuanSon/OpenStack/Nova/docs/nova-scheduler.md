@@ -1,20 +1,23 @@
 # nova-scheduler
 
 # Mục lục
-
-
-
-
+- [1.Filter Scheduler](#1)
+    - [1.1.Khái niệm](#1.1)
+    - [1.2.Filtering](#1.2)
+    - [1.3.Weights](#1.3)
+- [2.Compute scheduler](#2)
+	- [2.1.Cấu hình filtering](#2.1)
+	- [2.2.Cấu hình weighting](#2.2)
 
 
 <a name="1"></a>
 # 1.Filter Scheduler
 <a name="1.1"></a>
-# 1.1.Khái niệm
+## 1.1.Khái niệm
 \- **Filter Scheduler** hỗ trợ *filtering* và *weighting* để quyết định instance mới được tạo trên node Compute nào. Scheduler chỉ hỗ trợ nodes Compute.  
 
 <a name="1.2"></a>
-# 1.2.Filtering
+## 1.2.Filtering
 <img src="images/nova-scheduler1.png" />
 
 \- Trong quá trính làm việc, Filter Scheduler lặp đi lặp lại trên nodes Compute được tìm thấy, đánh giá lại đói với mỗi thiết lập của filters. Dánh sách kết quả các hosts được sắp xếp bởi weighers. Scheduler sau đó chọn hosts có weighted cao nhất cho instance..  
@@ -55,7 +58,7 @@
 - `NUMATopologyFilter`
 
 <a name="1.3"></a>
-# 1.3.Weights
+## 1.3.Weights
 \- Filter Scheduler sử udngj lời gọi đến weights để làm việc. Weigher là phương pháp để chọn host phù hợp nhất từ nhóm các host có hiệu lực.  
 \- Để ưu tiên 1 weigher só với weigher khác, tất cả các weigher cần phải xác định multiplier sẽ được áp dụng trước khi tính toán weight cho node. Tất cả weights được chuẩn hóa trước khi multiplier có thể được áp dụng. Do đó, weight cuối dùng của object sẽ là :  
 ```

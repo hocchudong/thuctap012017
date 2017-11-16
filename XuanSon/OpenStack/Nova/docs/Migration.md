@@ -1,7 +1,14 @@
 # Migration
 
 # MỤC LỤC
-
+- [1.Giới thiệu về migrate trong OpenStack](#1)
+- [2.Các kiểu migrate hiện có trong OPS và workflow của chúng](#2)
+	- [2.1.Cool Migrate ( Non-live migrate)](#2.1)
+	- [2.2.Live Migration](#2.2)
+	- [2.3. So sánh ưu nhược điểm giữa cold và live migrate](#2.3)
+- [3.LAB](#3)
+	- [3.1.Cool migarte](#3.1)
+	- [3.2.Live migrate](#3.2)
 
 <a name="1"></a>
 # 1.Giới thiệu về migrate trong OpenStack

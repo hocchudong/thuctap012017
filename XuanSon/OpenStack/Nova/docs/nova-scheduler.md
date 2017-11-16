@@ -18,7 +18,7 @@
 
 <a name="1.2"></a>
 ## 1.2.Filtering
-<img src="images/nova-scheduler1.png" />
+<img src="../images/nova-scheduler1.png" />
 
 \- Trong quá trính làm việc, Filter Scheduler lặp đi lặp lại trên nodes Compute được tìm thấy, đánh giá lại đói với mỗi thiết lập của filters. Dánh sách kết quả các hosts được sắp xếp bởi weighers. Scheduler sau đó chọn hosts có weighted cao nhất cho instance..  
 \- Nếu Scheduler không thể tìm thấy host phù hợp cho instance, nó có nghĩa là không có hosts thích hợp cho việc tạo instance.  
@@ -65,9 +65,9 @@
 weight = w1_multiplier * norm(w1) + w2_multiplier * norm(w2) + ...
 ```
 
-<img src="images/nova-scheduler2.png" />
+<img src="../images/nova-scheduler2.png" />
 
-<img src="images/nova-scheduler3.png" />
+<img src="../images/nova-scheduler3.png" />
 
 <a name="2"></a>
 # 2.Compute scheduler

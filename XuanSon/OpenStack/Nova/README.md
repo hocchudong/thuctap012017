@@ -6,6 +6,7 @@
 - [Nova, Libvirt và KVM](docs/Nova%2C%20Libvirt%20và%20KVM.md)
 - [Quá trình boot một VM trong OpenStack](docs/Quá%20trình%20boot%20một%20VM%20trong%20OpenStack.md)
 - [Quản lý quotas](docs/Quản_lý_quotas.md)
+- [Overcommit](docs/Overcommit.md)
 - [Log trong Nova](docs/Log_trong_Nova.md)
 - [Thư mục lưu trữ thông tin về instance](docs/Thu_muc_luu_tru_thong_tin_ve_instance.md)
 - [Nova scheduler](docs/nova-scheduler.md)

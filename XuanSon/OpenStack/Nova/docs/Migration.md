@@ -3,11 +3,11 @@
 # MỤC LỤC
 - [1.Giới thiệu về migrate trong OpenStack](#1)
 - [2.Các kiểu migrate hiện có trong OPS và workflow của chúng](#2)
-	- [2.1.Cool Migrate ( Non-live migrate)](#2.1)
+	- [2.1.Cold Migrate ( Non-live migrate)](#2.1)
 	- [2.2.Live Migration](#2.2)
 	- [2.3. So sánh ưu nhược điểm giữa cold và live migrate](#2.3)
 - [3.LAB](#3)
-	- [3.1.Cool migarte](#3.1)
+	- [3.1.Cold migarte](#3.1)
 	- [3.2.Live migrate](#3.2)
 
 <a name="1"></a>
@@ -30,7 +30,7 @@ OpenStack hỗ trợ 2 kiểu migration đó là:
   - Block live migration
 
 <a name="2.1"></a>
-## 2.1.Cool Migrate ( Non-live migrate)
+## 2.1.Cold Migrate ( Non-live migrate)
 \- Migrate khác live migrate ở chỗ nó thực hiện migration khi tắt máy ảo ( Libvirt domain không chạy)  
 \- Yêu cầu SSH key pairs được triển khai cho user đang chạy nova-compute với mọi hypervisors.  
 \- Migrate workflow:  
@@ -109,7 +109,7 @@ VM2 có thể lưu trữ file image hoặc là volume trên Block1.
 <img src="../images/migration-9.png" />
 
 <a name="3.1"></a>
-## 3.1.Cool migarte
+## 3.1.Cold migarte
 \- Trong OpenStack, cool migrate sử dụng SSH.  
 \- Migrate khi VM1 có thể lưu trữ file image hoặc là volume trên Block1 ta làm như sau cho cả 2 trường hợp.  
 \- Trên COM1 và COM2 kích hoạt tính năng đăng nhập và thiết lập passwd cho user nova:  

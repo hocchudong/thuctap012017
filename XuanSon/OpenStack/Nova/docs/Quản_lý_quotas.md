@@ -1,11 +1,11 @@
 # Quản lý quotas
 
 # MỤC LỤC
-- [1.Khái niệm](#)
-- [2.Cấu hình](#)
-- [3.Các command liên quan](#)
-	- [3.1.Show thông tin về quota](#)
-	- [3.2.Set quotas for project](#)
+- [1.Khái niệm](#1)
+- [2.Cấu hình](#1)
+- [3.Các command liên quan](#3)
+	- [3.1.Show thông tin về quota](#3.1)
+	- [3.2.Set quotas for project](#3.2)
 
 <a name="1"></a>
 # 1.Khái niệm

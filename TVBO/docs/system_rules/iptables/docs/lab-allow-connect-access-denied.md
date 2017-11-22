@@ -22,7 +22,7 @@ ____
 - ### <a name="models-l3">3.2 Mô hình</a>
     - Bài thực hành này sẽ giải quyết vấn đề trên với mô hình như sau:
 
-        > ![models-l3](..images/models-l3.png)
+        > ![models-l3](../images/models-l3.png)
 
     - Bài thực hành sử dụng các máy sử dụng hệ điều hành CentOS 7 và iptables làm firewall
     - 2 host `Backends01` và `Backends02` được cài đặt Web Service lắng nghe trên cổng 80.

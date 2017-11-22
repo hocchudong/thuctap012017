@@ -144,7 +144,13 @@ ____
 
         > ![ssh-done](../images/ssh-done.png)
 
-    Sẽ cập nhật tiếp.
+    - Từ cửa sổ trình duyệt, ta truy cập đến địa chỉ:
+
+            http://ip_address
+
+        trong đó: ip_address là địa chỉ IP của máy cấu hình iptables nằm trên interface ens36. Ta nhận được kết quả như sau:
+
+        > ![http-done.png](http-done.png)
 
 ____
 

@@ -41,6 +41,7 @@ ____
 - ### <a name="execute-chain">2.3 Các thao tác với chain trong iptables</a>
 - ### <a name="execute-rule">2.4 Các thao tác với rule trong iptables</a>
 
+    Sẽ cập nhật sau
 
 ____
 

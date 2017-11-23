@@ -144,6 +144,18 @@ ____
 
         > ![ssh-done](../images/ssh-done.png)
 
+    - Tại máy chủ có địa chỉ IP là `10.10.10.30`. Ta thực hiện các thao tác sau:
+
+        + Cài đặt httpd và tắt firewalld:
+
+                yum install -y httpd
+                systemctl start httpd
+                systemctl stop firewalld
+
+        + Chỉnh lại nội dung của file `index.html` mặc định của httpd để kiểm tra kết quả:
+
+                echo "Welcome to 10.10.10.30" > /usr/share/http/noindex/index.html
+                
     - Từ cửa sổ trình duyệt, ta truy cập đến địa chỉ:
 
             http://ip_address

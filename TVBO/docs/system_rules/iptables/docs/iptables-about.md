@@ -64,6 +64,18 @@ ____
                 systemctl start iptables
                 systemctl enable iptables
 
+        - Tiếp theo ta cần cấu hình cho `iptables` để có thể lưu lại các rule đã tạo ra khi ta restart lại iptables bằng cách thực hiện như sau:
+
+                vi /etc/sysconfig/iptables-config
+
+            tìm đến 2 dòng có nội dung:
+
+                IPTABLES_SAVE_ON_STOP="no"
+                IPTABLES_SAVE_ON_RESTART="no"
+
+            ta đổi các giá trị `no` thành `yes` sau đó lưu lại để hoàn tất.
+
+
 - ### <a name="concepts">1.2 Các khái niệm cần biết trước khi tìm hiểu về iptables</a>
     - #### <a name="about-NAT">1.2.1 Khái niệm về NAT</a>
 

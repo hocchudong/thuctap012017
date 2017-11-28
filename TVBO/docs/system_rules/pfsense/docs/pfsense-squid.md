@@ -246,7 +246,7 @@ ____
 
             - Hãy nhập thông tin tương tự như hình dưới đây:
 
-                ![Screenshot-2017-11-28 pfSense localdomain - System Certificate Manager CAs Edit.png](../images/Screenshot-2017-11-28 pfSense localdomain - System Certificate Manager CAs Edit.png)
+                ![Screenshot-2017-11-28 pfSense localdomain - System Certificate Manager CAs Edit.png](../images/ca-edit.png)
 
                 chọn Save để lưu lại.
             - Quy trở lại phần cấu hình `General` của `Squid Proxy Server`. Tìm đến mục `HTTPS/SSL Interception`, tích vào ô vuông bên cạnh để cho phép filter https request:
@@ -273,9 +273,9 @@ ____
 
             - Từ máy client, thực hiện truy cập website với các trang đã chặn và các trang khác để kiểm tra kết quả. Một số hình ảnh về kết quả như sau:
 
-                > [Kali-Linux-2017.1-vm-amd64-2017-11-28-11-27-04](../images/Kali-Linux-2017.1-vm-amd64-2017-11-28-11-27-04.png)
+                > ![Kali-Linux-2017.1-vm-amd64-2017-11-28-11-27-04](../images/Kali-Linux-2017.1-vm-amd64-2017-11-28-11-27-04.png)
 
-                > [Kali-Linux-2017.1-vm-amd64-2017-11-28-11-27-17.png](../images/Kali-Linux-2017.1-vm-amd64-2017-11-28-11-27-17.png)
+                > ![Kali-Linux-2017.1-vm-amd64-2017-11-28-11-27-17.png](../images/Kali-Linux-2017.1-vm-amd64-2017-11-28-11-27-17.png)
 
             - Khi truy cập một số trang website, ta gặp phải lỗi tương tự như sau:
 

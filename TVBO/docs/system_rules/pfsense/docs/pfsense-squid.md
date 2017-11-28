@@ -246,7 +246,9 @@ ____
 
             - Hãy nhập thông tin tương tự như hình dưới đây:
 
+                [Screenshot-2017-11-28 pfSense localdomain - System Certificate Manager CAs Edit.png](../images/Screenshot-2017-11-28 pfSense localdomain - System Certificate Manager CAs Edit.png)
 
+                chọn Save để lưu lại.
             - Quy trở lại phần cấu hình `General` của `Squid Proxy Server`. Tìm đến mục `HTTPS/SSL Interception`, tích vào ô vuông bên cạnh để cho phép filter https request:
 
                 [ser-squid-https-en.png](../images/ser-squid-https-en.png)

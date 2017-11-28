@@ -194,7 +194,7 @@ ____
 
         ta nhận được kết quả như sau:
 
-            ![rs-ad-bl.png](../images/rs-ad-bl.png)
+        ![rs-ad-bl.png](../images/rs-ad-bl.png)
 
         hãy thử truy cập tới một vài trang website khác để có thể tự kiểm chứng kết quả.
         

@@ -23,6 +23,7 @@
 		- [3.5.1.Cài đặt và cấu hình Neutron trên node Controller](#3.5.1)
 		- [3.5.2.Cài đặt và cấu hình Neutron trên node Compute](#3.5.2)
   - [3.6.Dashboard](#3.6)
+- [4.Chú ý](#4)
 - [Tài liệu tham khảo](#tailieuthamkhao)
 
 
@@ -1625,16 +1626,28 @@ apt install openstack-dashboard
   Thay `TIME_ZONE` với time zone của bạn. Trong trường hợp này là `Asia/Ho_Chi_Minh`.  
 
 \- **Kết thúc cài đặt**  
+- Thay đổi quyền sở hữu thư mục `/var/lib/openstack-dashboard`:  
+```
+chown -R www-data:www-data /var/lib/openstack-dashboard
+```
+
 - Reload lại cấu hình web server:  
 ```
 service apache2 reload
 ```
 
-
+<a name="4"></a>
+# 4.Chú ý
+\- Hướng dẫn cài đặt theo docs từ trang chủ OpenStack https://docs.openstack.org/ocata/install-guide-ubuntu/ . Nhưng có 1 số chỗ cần bổ sung với docs:   
+- Khi cài project Horizon, ta phải thay đổi quyền sở hữu thư mục `/var/lib/openstack-dashboard`:  
+```
+chown -R www-data:www-data /var/lib/openstack-dashboard
+```
 
 <a name="tailieuthamkhao"></a>
 
 # Tài liệu tham khảo
+\- https://docs.openstack.org/ocata/install-guide-ubuntu/  
 \- https://docs.openstack.org/ocata/networking-guide/deploy-lb.html  
 
 

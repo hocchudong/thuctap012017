@@ -44,7 +44,7 @@ nova_config () {
 	ops_add $novafile keystone_authtoken \
 		username nova
 	ops_add $novafile keystone_authtoken \
-		password Welcome123
+		password $NOVA_PASS
 
 	ops_add $novafile DEFAULT \
 		my_ip $COM_MGNT_IP

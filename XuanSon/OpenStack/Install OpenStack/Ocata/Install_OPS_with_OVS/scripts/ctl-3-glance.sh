@@ -32,11 +32,11 @@ glance_create_service () {
 	openstack service create --name glance \
 	  --description "OpenStack Image" image
 	openstack endpoint create --region RegionOne \
-	  image public http://controller:9292
+	  image public http://$HOST_CTL:9292
 	openstack endpoint create --region RegionOne \
-	  image internal http://controller:9292
+	  image internal http://$HOST_CTL:9292
 	openstack endpoint create --region RegionOne \
-	  image admin http://controller:9292
+	  image admin http://$HOST_CTL:9292
 }
 
 # Function install components of Glance
@@ -55,16 +55,16 @@ glance_config_api () {
 	egrep -v "^#|^$"  $glanceapifilebak > $glanceapifile
 
 	ops_add $glanceapifile database \
-		connection mysql+pymysql://glance:$GLANCE_DBPASS@controller/glance
+		connection mysql+pymysql://glance:$GLANCE_DBPASS@$HOST_CTL/glance
 
 	ops_add $glanceapifile keystone_authtoken \
-		auth_uri http://controller:5000
+		auth_uri http://$HOST_CTL:5000
 	  
 	ops_add $glanceapifile keystone_authtoken \
-		auth_url http://controller:35357
+		auth_url http://$HOST_CTL:35357
 
 	ops_add $glanceapifile keystone_authtoken \
-		memcached_servers controller:11211
+		memcached_servers $HOST_CTL:11211
 	  
 	ops_add $glanceapifile keystone_authtoken \
 		auth_type password
@@ -105,16 +105,16 @@ glance_config_registry () {
 	egrep -v "^#|^$"  $glanceregistryfilebak > $glanceregistryfile
 
 	ops_add $glanceregistryfile database \
-	connection mysql+pymysql://glance:$GLANCE_DBPASS@controller/glance
+	connection mysql+pymysql://glance:$GLANCE_DBPASS@$HOST_CTL/glance
 
 	ops_add $glanceregistryfile keystone_authtoken \
-		auth_uri http://controller:5000
+		auth_uri http://$HOST_CTL:5000
 
 	ops_add $glanceregistryfile keystone_authtoken \
-		auth_url http://controller:35357
+		auth_url http://$HOST_CTL:35357
 		
 	ops_add $glanceregistryfile keystone_authtoken \
-		memcached_servers controller:11211
+		memcached_servers $HOST_CTL:11211
 		
 	ops_add $glanceregistryfile keystone_authtoken \
 		auth_type password	

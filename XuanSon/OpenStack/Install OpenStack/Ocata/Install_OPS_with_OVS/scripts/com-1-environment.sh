@@ -11,7 +11,7 @@ apt-get install -y crudini
 
 # Function update and upgrade for COMPUTE
 update_upgrade () {
-	echocolor "Update and Update COMPUTE"
+	echocolor "Update and Upgrade COMPUTE"
 	sleep 3
 	apt-get update -y && apt-get upgrade -y
 }
@@ -24,8 +24,8 @@ install_ntp () {
 	apt-get install chrony -y
 	ntpfile=/etc/chrony/chrony.conf
 
-	sed -i 's/pool 2.debian.pool.ntp.org offline iburst/ \
-	server controller iburst/g' $ntpfile
+	sed -i 's|'"pool 2.debian.pool.ntp.org offline iburst"'| \
+	'"server $HOST_CTL iburst"'|g' $ntpfile
 
 	service chrony restart
 }

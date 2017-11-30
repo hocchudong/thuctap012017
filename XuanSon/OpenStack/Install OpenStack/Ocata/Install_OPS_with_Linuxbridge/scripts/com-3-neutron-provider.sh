@@ -24,15 +24,15 @@ neutron_config_server_component () {
 
 	ops_del $neutronfile database connection
 	ops_add $neutronfile DEFAULT \
-		transport_url rabbit://openstack:$RABBIT_PASS@controller
+		transport_url rabbit://openstack:$RABBIT_PASS@$HOST_CTL
 
 	ops_add $neutronfile DEFAULT auth_strategy keystone
 	ops_add $neutronfile keystone_authtoken \
-		auth_uri http://controller:5000
+		auth_uri http://$HOST_CTL:5000
 	ops_add $neutronfile keystone_authtoken \
-		auth_url http://controller:35357
+		auth_url http://$HOST_CTL:35357
 	ops_add $neutronfile keystone_authtoken \
-		memcached_servers controller:11211
+		memcached_servers $HOST_CTL:11211
 	ops_add $neutronfile keystone_authtoken \
 		auth_type password
 	ops_add $neutronfile keystone_authtoken \
@@ -69,8 +69,8 @@ neutron_config_compute_use_network () {
 	sleep 3
 	novafile=/etc/nova/nova.conf
 
-	ops_add $novafile neutron url http://controller:9696
-	ops_add $novafile neutron auth_url http://controller:35357
+	ops_add $novafile neutron url http://$HOST_CTL:9696
+	ops_add $novafile neutron auth_url http://$HOST_CTL:35357
 	ops_add $novafile neutron auth_type password
 	ops_add $novafile neutron project_domain_name default
 	ops_add $novafile neutron user_domain_name default

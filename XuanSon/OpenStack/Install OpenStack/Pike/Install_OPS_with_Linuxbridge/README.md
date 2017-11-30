@@ -51,8 +51,7 @@ svn export https://github.com/doxuanson/thuctap012017/trunk/XuanSon/OpenStack/In
 
 - Set quyền 755 cho các files đó.  
 ```
-cd scripts
-chmod 755 *
+chmod -R 755 scripts
 ```
 
 - Thực hiện script setup địa chỉ IP cho **Provider Network** theo mô hình theo cú pháp:  
@@ -127,9 +126,7 @@ source ctl-4-nova_discoveryhost.sh
   - Set quyền 755 cho các files đó. 
 
   ```
-  cd OPS-setup  
-  chmod 755 CTL/*  
-  chmod 755 COM/*  
+  chmod -R 755 OPS-setup
   ```
 
   - Cấu hình mạng, mô hình cài đặt (`provider` hoặc `selfservice`), password các node Controller và Compute theo mô hình của bạn trong file `OPS-setup/config.sh`.  

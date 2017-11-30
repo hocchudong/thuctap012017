@@ -22,7 +22,7 @@ nova_config () {
 	egrep -v "^$|^#" $novafilebak > $novafile
 
 	ops_add $novafile DEFAULT \
-		transport_url rabbit://openstack:$NOVA_DBPASS@controller
+		transport_url rabbit://openstack:$RABBIT_PASS@controller
 
 	ops_add $novafile api \
 		auth_strategy keystone

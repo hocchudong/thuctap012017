@@ -74,7 +74,7 @@ neutron_config_server_component () {
 		allow_overlapping_ips true
 
 	ops_add $neutronfile DEFAULT \
-		transport_url rabbit://openstack:$NEUTRON_PASS@$HOST_CTL
+		transport_url rabbit://openstack:$RABBIT_PASS@$HOST_CTL
 
 	ops_add $neutronfile DEFAULT \
 		auth_strategy keystone

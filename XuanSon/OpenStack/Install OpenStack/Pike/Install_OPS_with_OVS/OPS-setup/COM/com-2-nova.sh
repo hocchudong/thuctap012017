@@ -21,7 +21,7 @@ nova_config () {
 	egrep -v "^$|^#" $novafilebak > $novafile
 
 	ops_add $novafile DEFAULT \
-		transport_url rabbit://openstack:$NOVA_DBPASS@$HOST_CTL
+		transport_url rabbit://openstack:$RABBIT_PASS@$HOST_CTL
 
 	ops_add $novafile api \
 		auth_strategy keystone

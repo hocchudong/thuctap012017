@@ -4,16 +4,18 @@
 source function.sh
 source config.sh
 
-# Install crudini
-echocolor "Install crudini"
-sleep 3
-apt-get install -y crudini
-
 # Function update and upgrade for CONTROLLER
 update_upgrade () {
 	echocolor "Update and Update controller"
 	sleep 3
 	apt-get update -y&& apt-get upgrade -y
+}
+
+# Function install crudini
+install_crudini () {
+	echocolor "Install crudini"
+	sleep 3
+	apt-get install -y crudini
 }
 
 # Function install and config NTP
@@ -95,6 +97,9 @@ install_memcached () {
 
 # Update and upgrade for controller
 update_upgrade
+
+# Install crudini
+install_crudini
 
 # Install and config NTP
 install_ntp

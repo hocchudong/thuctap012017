@@ -12,10 +12,10 @@ ____
     - [1.2.1 Khái niệm về NAT](#about-NAT)
     - [1.2.2 Khái niệm về filtering](#about-filtering)
     - [1.2.3 Khái niệm về mangle](#about-mangle)
-    - [1.2.3 Khái niệm về chain](#about-chain)
-    - [1.2.4 Khái niệm về rule](#about-rule)
-    - [1.2.5 Khái niệm về port](#about-port)
-    - [1.2.6 Khái niệm về target](#about-target)
+    - [1.2.4 Khái niệm về chain](#about-chain)
+    - [1.2.5 Khái niệm về rule](#about-rule)
+    - [1.2.6 Khái niệm về port](#about-port)
+    - [1.2.7 Khái niệm về target](#about-target)
 - [1.3 Các bảng và chức năng sử dụng trong iptables](#tables)
     - [1.3.1 NAT Table](#table-nat)
     - [1.3.2 FILTER Table](#table-filter)
@@ -56,13 +56,25 @@ ____
 
         - Đối với CentOS, để sử dụng `iptables`, ta cần phải cài đặt nó và dừng hoạt động `firewalld` với các câu lệnh sau:
 
-                yum install -y iptables
+                yum install -y iptables iptables-services
 
                 systemctl stop firewalld
                 systemctl disable firewalld
 
                 systemctl start iptables
                 systemctl enable iptables
+
+        - Tiếp theo ta cần cấu hình cho `iptables` để có thể lưu lại các rule đã tạo ra khi ta restart lại iptables bằng cách thực hiện như sau:
+
+                vi /etc/sysconfig/iptables-config
+
+            tìm đến 2 dòng có nội dung:
+
+                IPTABLES_SAVE_ON_STOP="no"
+                IPTABLES_SAVE_ON_RESTART="no"
+
+            ta đổi các giá trị `no` thành `yes` sau đó lưu lại để hoàn tất.
+
 
 - ### <a name="concepts">1.2 Các khái niệm cần biết trước khi tìm hiểu về iptables</a>
     - #### <a name="about-NAT">1.2.1 Khái niệm về NAT</a>
@@ -84,7 +96,7 @@ ____
         - Là quá trình bóc tách gói tin và chịu trách nhiệm thay đổi bits của QoS (Quality of Services) trong IP Header bởi vì `mangle` làm việc với các gói tin IP.
 
 
-    - #### <a name="about-chain">1.2.3 Khái niệm về chain</a>
+    - #### <a name="about-chain">1.2.4 Khái niệm về chain</a>
 
         - `chain` là một quy tắc xử lý các gói tin bao gồm nhiều rules có liên quan tới nhau.
 
@@ -105,11 +117,11 @@ ____
                 > ![table-flow](../images/table-flow.png)
 
 
-    - #### <a name="about-rule">1.2.4 Khái niệm về rule</a>
+    - #### <a name="about-rule">1.2.5 Khái niệm về rule</a>
 
         - `rule` là là một luật, hành động cụ thể xử lý gói tin ứng với mỗi trường hợp, tiêu chí mà ta đề ra.
 
-    - #### <a name="about-port">1.2.5 Khái niệm về port</a>
+    - #### <a name="about-port">1.2.6 Khái niệm về port</a>
 
         - `port` là một vị trí nào đó mà gói tin TCP/UDP vào và ra trong thiết bị. Một địa chỉ IP có rất nhiều `port`.
         - Tất cả các `port` đều được định danh bởi các con số - `port number`
@@ -126,7 +138,7 @@ ____
             | POP3     |      110    |
             | SMTP     |      25     |
 
-    - #### <a name="about-target">1.2.6 Khái niệm về target</a>
+    - #### <a name="about-target">1.2.7 Khái niệm về target</a>
 
         - Mỗi một `chain` là một danh sách các luật có thể được thiết lập cho các gói tin. Mỗi một luật sẽ cần phải khai báo những gì cần phải làm với gói tin được gọi là `target`.
 

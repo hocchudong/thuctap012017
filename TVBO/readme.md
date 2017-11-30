@@ -13,6 +13,10 @@ ____
 - [Tổng quan về hệ điều hành Linux](docs/Overview_Linux/readme.md)
 
 - [Tìm hiểu về KVM](docs/Virtualization/README.md)
+
+- [Tìm hiểu về Firewalls](docs/system_rules/readme.md)
+
+- [Tìm hiểu về TeleConsole](docs/SharingSessionSSH/README.md)
 ____
 
 # <a name="content-others">Các nội dung khác</a>

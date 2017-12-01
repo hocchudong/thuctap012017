@@ -47,7 +47,7 @@ ___
 			
 			Với câu lệnh trên, chúng ta đã tạo ra được một interfaces mới có tên là br0. Kết quả là:
 
-			> ![brctl_addbr.png](../Pictures/LinuxBridge/brctl_addbr.png)
+			> ![brctl_addbr.png](../images/LinuxBridge/brctl_addbr.png)
 
 		+ Bước 2: Gán bridge interfaces đã tạo với một interfaces đã tồn tại có kết nối internet.
 			> `brctl addif br0 eth0` # chỉ gán 1 interfaces cho br0
@@ -58,7 +58,7 @@ ___
 
 			Thực hiện gán bridge interfaces br0 vừa tạo với interfaces đã tồn tại trên máy vật lý là eth0. Kết quả được như sau:
 
-			> ![brctl_addif.png](../Pictures/LinuxBridge/brctl_addif.png)
+			> ![brctl_addif.png](../images/LinuxBridge/brctl_addif.png)
 			
 			trong trường hợp bạn gắn 2 hay nhiều port vào br0 thì cần phải thiết lập thứ tự ưu tiên cho các port để br0 dễ dàng nhận địa chỉ IP của. Ta sử dụng câu lệnh sau để thiết lập câu lệnh. Lưu ý: port nào có chỉ số cao hơn thì được ưu tiên trước. Ví dụ:
 
@@ -81,7 +81,7 @@ ___
 				bridge_ports eth0 
 			
 			tương tự như hình sau:
-			> ![brctl_etc.png](../Pictures/LinuxBridge/brctl_etc.png)
+			> ![brctl_etc.png](../images/LinuxBridge/brctl_etc.png)
 			
 			nếu như bạn đã gắn nhiều hơn 1 interfaces cho br0 thì cần chỉnh nội dung dòng `bridge_ports ports`. Ví dụ:
 				
@@ -112,7 +112,7 @@ ___
 				bridge_stp yes # Khởi động chế độ chống loop gói tin (Spanning Tree Protocol)
 			
 			tương tự như hình sau:
-			> ![brctl_etc_s.png](../Pictures/LinuxBridge/brctl_etc_s.png)
+			> ![brctl_etc_s.png](../images/LinuxBridge/brctl_etc_s.png)
 			
 			ngoài ra trong bridge còn có các chế độ sau:
 
@@ -128,7 +128,7 @@ ___
 
 			Kết quả nhận được là:
 
-			![brctl_etc_nomanual.png](../Pictures/LinuxBridge/brctl_etc_nomanual.png)
+			![brctl_etc_nomanual.png](../images/LinuxBridge/brctl_etc_nomanual.png)
 
 			Bạn hãy nhìn vào các vùng mà mình đã đóng khung màu đỏ. Bạn sẽ thấy 2 interfaces này có cùng một địa chỉ IP. Vì vậy mà ở bước trên chúng ta cần phải thiết lập cho interfaces eth0 là `iface eth0 inet manual` là vì điều này.
 
@@ -137,7 +137,7 @@ ___
 
 			Kết quả của hành động thực hiện câu lệnh `ifdown -a && ifup -a`, tôi nhận được:
 
-			![brctl_etc_manual.png](../Pictures/LinuxBridge/brctl_etc_manual.png)
+			![brctl_etc_manual.png](../images/LinuxBridge/brctl_etc_manual.png)
 
 ___
 

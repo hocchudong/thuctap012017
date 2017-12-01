@@ -3,10 +3,10 @@
 Lưu ý:
 
 - `teleport` mặc định được chạy trên 3 loại dịch vụ đó là `nodes`, `proxies` và `auth server` với việc cung cấp của 3 công cụ cho phép thực hiện các chức năng theo mô tả sau:
-	> ![Add-on](../../Pictures/Teleport/Quickstart/add-on.png)
+	> ![Add-on](../images/Teleport/Quickstart/add-on.png)
 
 - Các dịch vụ của `teleport` sử dụng mặc định các cổng sau để hoạt động:
-	> ![Port-listening](../../Pictures/Teleport/Quickstart/port.png)
+	> ![Port-listening](../images/Teleport/Quickstart/port.png)
 
 - Các câu lện cài đặt sẽ được thực hiện với quyền root
 
@@ -25,7 +25,7 @@ Tiến hành cài đặt:
 	> `teleport start`
 
 	Kết quả nhận được giống như sau:
-	> ![teleport start](../../Pictures/Teleport/Quickstart/teleport-start.png)
+	> ![teleport start](../images/Teleport/Quickstart/teleport-start.png)
 
 ___
 

@@ -8,13 +8,13 @@ ____
 
 - [Tìm hiểu về LVM](docs/LVM/readme.md)
 
-- [Tổng quan về Web Server](docs/Web_Server/readme.md)
+- [Các tìm hiểu cơ bản](docs/Network_Protocol/readme.md)
 
 - [Tổng quan về hệ điều hành Linux](docs/Overview_Linux/readme.md)
 
 - [Tìm hiểu về KVM](docs/Virtualization/README.md)
 
-- [Tìm hiểu về Firewalls](docs/system_rules/readme.md)
+- [Tìm hiểu về Firewalls](docs/Firewalls/readme.md)
 
 - [Tìm hiểu về TeleConsole](docs/SharingSessionSSH/README.md)
 ____

@@ -49,12 +49,12 @@
     > `tailf /var/log/apache2/access.log`
 	
 	Nội dung file log sẽ được nhìn thấy tương tự như sau:
-	![Log Apache](../Pictures/Apache&HTTP/logApache.png)
+	![Log Apache](../images/Apache&HTTP/logApache.png)
 ## 2. HTTP
 ### 2.1 HTTP là gì?
 <a name="http"></a>
 - HTTP là chữ viết tắt của HyperText Transfer Protocol (giao thức truyền tải siêu văn bản). Đây là một giao thức ứng dụng trong bộ các giao thức TCP/IP (gồm một nhóm các giao thức nền tảng cho internet).
-	> ![HTTP](../Pictures/Apache&HTTP/http.jpg)
+	> ![HTTP](../images/Apache&HTTP/http.jpg)
 - HTTP hoạt động dựa trên mô hình Client – Server. Trong mô hình này, các máy tính của người dùng sẽ đóng vai trò làm máy khách (Client). Sau một thao tác nào đó của người dùng, các máy khách sẽ gửi yêu cầu đến máy chủ (Server) và chờ đợi câu trả lời từ những máy chủ này. Để có thể nói chuyện được với nhau, các máy chủ và máy khách phải thực hiện việc trao đổi thông qua các giao thức. Một trong những giao thức được sử dụng thường xuyên nhất chính là HTTP.
 
 ### 2.2 Tóm lược các HTTP Status Messages
@@ -104,13 +104,13 @@
 	> Giờ hãy cùng mình xem bên trong các gói tin http có những gì nhé!
 
 - Trong gói tin trên có chứa 14 gói tin http:
-	> ![http](../Pictures/Apache&HTTP/capture.png)
+	> ![http](../images/Apache&HTTP/capture.png)
 - Ta hãy cùng nhau phân tích gói tin thứ 3 nhé:
-	> ![http](../Pictures/Apache&HTTP/header.png)
+	> ![http](../images/Apache&HTTP/header.png)
 	
 	+ Nhận thấy rằng gói tin http này cũng tương tự như các gói tin cơ bản khác, ngoài 2 trường `Hypertext Transfer Protocol`. Đây chính là trường lưu trữ mã trạng thái của gói tin `200 OK` và các thông tin khác như `Link`, `Content-Type`. Đây có thể được xem như là nội dung của một gói tin header response.
 
-	> ![http](../Pictures/Apache&HTTP/body.png)
+	> ![http](../images/Apache&HTTP/body.png)
 
 	+ Đây là trường chưa nội dung của toàn bộ trang web mà server gửi về cho trình duyệt xử lý và hiển thị nó.
 
@@ -119,6 +119,6 @@
 - Netstat là câu lệnh cho phép hiển thị các trạng thái mạng của các interface mạng hay các cổng đang giao tiếp mạng
 - HTTP thường được sử dụng cổng mặc định là 80. Vì vậy, ta sử dụng câu lệnh `netstat -ant | grep 80` để in ra trạng thái của http tại công 80
 - Kết quả của mình như sau:
-	> ![netstat](../Pictures/Apache&HTTP/netstat.png)
+	> ![netstat](../images/Apache&HTTP/netstat.png)
 	
 Vậy là xong rồi nha =))

@@ -88,15 +88,15 @@ ____
 
                 trong đó:
                 
-                    - `Maximum concurrent connections`: chỉ số lượng người dùng có thể kết nối đồng thời. Ở đây là 100 người.
-                    - `Hard timeout (Minutes)`: chỉ thời gian người dùng sẽ tự động bị ngắt kết nối. Ở đây là 240 phút, nếu không muốn dùng tính năng này thì để trống không nhập giá trị nào cả.
-                    - `Logout popup window`: Cho phép một cửa sổ hiện lên để người dùng có thể tự ngắt kết nối.
-                    - `Concurrent user logins`: Quy định tài khoản người dùng chỉ có thể đăng nhập trên một thiết bị vào cùng một thời điểm. Nếu trong một thời điểm mà có nhiều hơn một tài khoản cùng `Username` được đăng nhập thì thiết bị trước đó sẽ được tự động ngắt kết nối.
-                    - `Per-user bandwidth restriction`: Giới hạn băng thông người dùng. Ở đây, ta giới hạn tốc độ `Download` là `2048 Kb/s` và `Upload` là `1024 Kb/s` cho người dùng.
-                    - `Authentication Method`: Quy định cách thức xác thực người dùng sử dụng Internet. Ở đây ta chọn `Local User Manager / Vouchers` quy định người dùng phải có tài khoản tương tự như `Bước 2` ta đã tạo thì mới có thể sử dụng Internet. Chọn `No Authentication` nếu như không cần thiết quá trình xác thực người dùng phải xảy ra.
-                    - Tại mục `Authentication`, ta có thấy dòng nội dung "Allow only users/groups with "Captive portal login" privilege set". Hãy bỏ tích ở ô vuông nếu như bạn muốn tất cả mọi người sử dụng đều có thể sử dụng tính năng `Captive Portal` để có thể truy cập internet. Ngược lại, khi nội dung này được tích, ta cần phải cấp quyền cho người dùng.
+                - `Maximum concurrent connections`: chỉ số lượng người dùng có thể kết nối đồng thời. Ở đây là 100 người.
+                - `Hard timeout (Minutes)`: chỉ thời gian người dùng sẽ tự động bị ngắt kết nối. Ở đây là 240 phút, nếu không muốn dùng tính năng này thì để trống không nhập giá trị nào cả.
+                - `Logout popup window`: Cho phép một cửa sổ hiện lên để người dùng có thể tự ngắt kết nối.
+                - `Concurrent user logins`: Quy định tài khoản người dùng chỉ có thể đăng nhập trên một thiết bị vào cùng một thời điểm. Nếu trong một thời điểm mà có nhiều hơn một tài khoản cùng `Username` được đăng nhập thì thiết bị trước đó sẽ được tự động ngắt kết nối.
+                - `Per-user bandwidth restriction`: Giới hạn băng thông người dùng. Ở đây, ta giới hạn tốc độ `Download` là `2048 Kb/s` và `Upload` là `1024 Kb/s` cho người dùng.
+                - `Authentication Method`: Quy định cách thức xác thực người dùng sử dụng Internet. Ở đây ta chọn `Local User Manager / Vouchers` quy định người dùng phải có tài khoản tương tự như `Bước 2` ta đã tạo thì mới có thể sử dụng Internet. Chọn `No Authentication` nếu như không cần thiết quá trình xác thực người dùng phải xảy ra.
+                - Tại mục `Authentication`, ta có thấy dòng nội dung "Allow only users/groups with "Captive portal login" privilege set". Hãy bỏ tích ở ô vuông nếu như bạn muốn tất cả mọi người sử dụng đều có thể sử dụng tính năng `Captive Portal` để có thể truy cập internet. Ngược lại, khi nội dung này được tích, ta cần phải cấp quyền cho người dùng.
 
-                        > ![Screenshot-2017-12-2 pfSense localdomain - Services Captive Portal cpLan Configuration.png](../images/cp-val.png)
+                    > ![Screenshot-2017-12-2 pfSense localdomain - Services Captive Portal cpLan Configuration.png](../images/cp-val.png)
 
             + Chọn `Save` để lưu lại cấu hình. Kết quả ta thu được:
 

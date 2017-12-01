@@ -224,9 +224,20 @@ ____
 
             ta thấy được các chuỗi voucher được quy định bắt đầu từ dòng thứ 8 cho đến hết. Mỗi voucher tương ứng với 1 dòng. Chúng sẽ được ta sử dụng để cung cấp cho người có nhu cầu sử dụng internet trong LAN.
 
-        + Tiếp theo, cấu hình trang xác thực cho `Captive Portal`. Ta chuyển sang tab `Configuration` của zone để tiến hành cấu hình custom cho trang xác thực. Vì mặc định, trang xác thực chỉ cho phép người dùng xác thực bằng tài khoản.
+        + Tiếp theo, cấu hình trang xác thực cho `Captive Portal`. Ta chuyển sang tab `Configuration` của zone để tiến hành cấu hình custom cho trang xác thực. Vì mặc định, trang xác thực chỉ cho phép người dùng xác thực bằng tài khoản. Cách thực hiện như sau:
 
-        Sẽ cập nhật sau.
+            + Bước 1. Tiến hành download trang custom [tại đây](../files/sign-up-login-form/index.html).
+
+            + Bước 2. Tại mục `Portal page contents`, ta chọn `Browser` sau đó thực hiện tìm chọn file `index.html` mà ta vừa download.
+
+            + Bước 3. Chọn `Save` để lưu lại cấu hình.
+
+        + Từ máy client có trỏ DNS tới địa chỉ của pfSense trong LAN, ta thực hiện truy cập tới 1 trang web nào đó sẽ yêu cầu phải xác thực. Ta chuyển sang tab `Voucher` sau đó nhập vào một voucher trong file export voucher đã download sau đó chọn `Log In` để kiểm tra kết quả:
+
+            > ![Kali-Linux-2017.1-vm-amd64-2017-12-01-02-55-27.png](../images/Kali-Linux-2017.1-vm-amd64-2017-12-01-02-55-27.png)
+
+
+        Như vậy, ta đã hoàn hành quá trình cấu hình.
 ____
 
 # <a name="content-others">Các nội dung khác</a>

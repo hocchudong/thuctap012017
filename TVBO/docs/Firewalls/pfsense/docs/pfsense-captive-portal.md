@@ -9,6 +9,7 @@ ____
 - [2.2 Tính năng, ứng dụng của Captive Portal](#useful)
 - [2.3 Cách thực hiện cấu hình](#config)
 - [2.4 Kiểm tra kết quả](#checking)
+- [2.5 Cấu hình Captive Portal xác thực người dùng sử dụng Voucher](#voucher)
 - [Các nội dung khác](#content-others)
 
 ____
@@ -166,7 +167,66 @@ ____
 
         > ![cp-mon.png](../images/cp-mon.png)
         
-    Sẽ cập nhật thêm các nội dung có liên quan.
+
+- ### <a name="voucher">2.5 Cấu hình Captive Portal xác thực người dùng sử dụng Voucher</a>
+
+    - Xác thực người dùng trong Captive Portal sử dụng Voucher là quá trình cho phép người dùng trong LAN truy cập internet khi sở hữu một khóa - tương ứng với một ticket trong voucher mà không cần đến phải có tài khoản người dùng.
+
+    - Để thực hiện cấu hình sử dụng voucher, ta bắt buộc phải làm các công việc cấu hình `Captive Portal` như bên trên (ngoại trừ việc tạo mới người dùng) trước tiên. Sau đó thực hiện cấu hình xác thực tài khoản người dùng như sau:
+
+        + Bước 1. Tại giao diện `Captive Portal`, thực hiện nhấp double chuột vào `Captive Portal Zones` muốn sử dụng để cấu hình cho tính năng Voucher. Ví dụ ở đây là zone `cpLan`:
+
+            > ![cp-done.png](../images/cp-done.png)
+
+        + Bước 2. Ta chuyển sang tab `Vouchers`. Tích chọn vào `Enable the creation, generation and activation of rolls with vouchers` để sử dụng tính năng cho zone. Ta thấy được như sau:
+
+            > ![cpv-over.png](../images/cpv-over.png)
+
+        + Tại mục `Character set`, ta thay đổi các giá trị sẵn có bởi giá trị sau:
+
+                0123456789abcdefhijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ!@#$%^&()._~
+
+            đây là dãy các ký tự sẽ được sử dụng để sinh ra key - voucher.
+
+        + Lần lượt thay các giá trị tương ứng giống với hình sau đây hoặc giữ nguyên hoặc thay đổi các giá trị sao cho tổng của 3 giá trị nhỏ hơn 64 một cách tùy ý:
+
+            > ![cpv-bits.png](../images/cpv-bits.png)
+
+            chọn `Save` để lưu lại.
+
+        + Tiếp theo, ta cần phải tạo ra một `roll` chứa các ticket - là một chuỗi ký tự sẽ cung cấp cho người sử dụng để có thể truy cập internet thay vì ta cung cấp tài khoản. Tại phần `Voucher Rolls`, ta chọn `Add`:
+
+            > ![cpv-add.png](../images/cpv-add.png)
+
+        + Nhập các giá trị tương ứng giống như hình sau:
+
+            > ![cpv-set-roll.png](../images/cpv-set-roll.png)
+
+            trong đó:
+
+            - `Roll`: Định danh cho roll.
+            - `Minutes per ticket`: Quy định thời gian có hiệu lực của mỗi voucher đó kể từ khi nó được sử dụng. Ở đây là 240 phút.
+            - `Count`: Quy định số voucher sẽ được tạo ra. Ở đây là 1000 voucher. Nếu như `of Ticket bits` ta đã cấu hình có giá trị là 16 thì số voucher có thể được sinh ra lên đến 65536 voucher.
+
+            chọn `Save` để lưu lại, kết quả ta thu được tương tự như sau:
+
+            > ![cpv-set-roll-done.png](../images/cpv-set-roll-done.png)
+
+        + Export roll để có thể biết được thông tin về các voucher được tạo ra bằng việc thực hiện chọn `Export vouchers for this roll to a .csv file` tương ứng của mỗi roll:
+
+            > ![cpv-set-roll-done-ex.png](../images/cpv-set-roll-done-ex.png)
+
+            ta sẽ cần phải về một file *.csv có tên theo dạng "vouchers_zoneName_rollid.csv". Trong đó zoneName và rollid lần lượt là tên của Captive Portal Zone và định danh của roll.
+
+        + Mở file đã download bằng `Microsoft Excel` hoặc các phần mềm soạn thảo khác như Notepad(Wordpad) đối với Windows hay Vim đối với Linux để có thể thu được giá trị của các voucher. Ta thu được kết quả tương tự như sau:
+
+            > ![cpv-voucher.png](../images/cpv-voucher.png)
+
+            ta thấy được các chuỗi voucher được quy định bắt đầu từ dòng thứ 8 cho đến hết. Mỗi voucher tương ứng với 1 dòng. Chúng sẽ được ta sử dụng để cung cấp cho người có nhu cầu sử dụng internet trong LAN.
+
+        + Tiếp theo, cấu hình trang xác thực cho `Captive Portal`. Ta chuyển sang tab `Configuration` của zone để tiến hành cấu hình custom cho trang xác thực. Vì mặc định, trang xác thực chỉ cho phép người dùng xác thực bằng tài khoản.
+
+        Sẽ cập nhật sau.
 ____
 
 # <a name="content-others">Các nội dung khác</a>

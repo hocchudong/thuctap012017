@@ -58,7 +58,7 @@ neutron_config_server_component () {
 
 	ops_del $neutronfile database connection 
 	ops_add $neutronfile database \
-		connection mysql+pymysql://neutron:$NEUTRON_PASS@$HOST_CTL/neutron
+		connection mysql+pymysql://neutron:$NEUTRON_DBPASS@$HOST_CTL/neutron
 
 	ops_del $neutronfile DEFAULT core_plugin
 	ops_add $neutronfile DEFAULT \
@@ -67,7 +67,7 @@ neutron_config_server_component () {
 		service_plugins
 
 	ops_add $neutronfile DEFAULT \
-		transport_url rabbit://openstack:$NEUTRON_PASS@$HOST_CTL
+		transport_url rabbit://openstack:$RABBIT_PASS@$HOST_CTL
 
 	ops_add $neutronfile DEFAULT \
 		auth_strategy keystone

@@ -4,16 +4,18 @@
 source function.sh
 source config.sh
 
-# Install crudini
-echocolor "Install crudini"
-sleep 3
-apt-get install -y crudini
-
 # Function update and upgrade for COMPUTE
 update_upgrade () {
 	echocolor "Update and Upgrade COMPUTE"
 	sleep 3
 	apt-get update -y && apt-get upgrade -y
+}
+
+# Function install crudini
+install_crudini () {
+	echocolor "Install crudini"
+	sleep 3
+	apt-get install -y crudini
 }
 
 # Function install and config NTP
@@ -47,6 +49,9 @@ install_ops_packages () {
 
 # Update and upgrade for COMPUTE
 update_upgrade
+
+# Install crudini
+install_crudini
 
 # Install and config NTP
 install_ntp

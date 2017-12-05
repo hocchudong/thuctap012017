@@ -14,19 +14,19 @@ CREATE DATABASE nova_api;
 CREATE DATABASE nova;
 CREATE DATABASE nova_cell0;
 GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'localhost' \
-  IDENTIFIED BY 'Welcome123';
+  IDENTIFIED BY '$NOVA_DBPASS';
 GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'%' \
-  IDENTIFIED BY 'Welcome123';
+  IDENTIFIED BY '$NOVA_DBPASS';
 
 GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' \
-  IDENTIFIED BY 'Welcome123';
+  IDENTIFIED BY '$NOVA_DBPASS';
 GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' \
-  IDENTIFIED BY 'Welcome123';
+  IDENTIFIED BY '$NOVA_DBPASS';
 
 GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'localhost' \
-  IDENTIFIED BY 'Welcome123';
+  IDENTIFIED BY '$NOVA_DBPASS';
 GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'%' \
-  IDENTIFIED BY 'Welcome123';
+  IDENTIFIED BY '$NOVA_DBPASS';
 EOF
 }
 
@@ -41,7 +41,7 @@ nova_create_info () {
 	echocolor "Create info for nova user"
 	sleep 3
 
-	openstack user create --domain default --password $NOVA_DBPASS nova
+	openstack user create --domain default --password $NOVA_PASS nova
 	openstack role add --project service --user nova admin
 	openstack service create --name nova \
 	  --description "OpenStack Compute" compute
@@ -109,7 +109,7 @@ nova_config () {
 	ops_add $novafile keystone_authtoken \
 		username nova
 	ops_add $novafile keystone_authtoken \
-		password $NOVA_DBPASS
+		password $NOVA_PASS
 
 	ops_add $novafile DEFAULT \
 		my_ip $CTL_MGNT_IP

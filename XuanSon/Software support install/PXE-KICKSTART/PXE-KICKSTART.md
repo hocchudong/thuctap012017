@@ -584,7 +584,7 @@ sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd
 ##Config repo
 sed -i 's|172.16.69.101/ubuntu-16.04|vn.archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list
 
-apt-get update -y && apt-get upgrade –y
+apt-get update -y && apt-get upgrade -y
 cd /root
 mkdir test
 %end

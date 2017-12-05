@@ -45,6 +45,7 @@ Sử dụng scripts có 2 cách:
 \- Trên cả 2 node Controller và Compute:  
 - Download các file shell scripts trên cả 2 node. Thực hiện các câu lệnh sau:  
 ```
+apt-get update -y && apt-get upgrade -y
 apt-get install subversion -y
 svn export https://github.com/doxuanson/thuctap012017/trunk/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/scripts
 ```
@@ -100,6 +101,7 @@ source ctl-4-nova_discoveryhost.sh
 \- **Trên node Controller và node Compute**  
   - Download file shell script. Thực hiện các câu lệnh sau:  
   ```
+  apt-get update -y && apt-get upgrade -y
   wget https://raw.githubusercontent.com/doxuanson/thuctap012017/master/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/OPS-setup/ip_setup.sh
   ```
 
@@ -118,6 +120,7 @@ source ctl-4-nova_discoveryhost.sh
 \- **Trên node OPS-setup**  
   - Download các file shell scripts. Thực hiện các câu lệnh sau:  
   ```
+  apt-get update -y && apt-get upgrade -y
   apt-get install subversion -y
   svn export https://github.com/doxuanson/thuctap012017/trunk/XuanSon/OpenStack/Install%20OpenStack/Ocata/Install_OPS_with_Linuxbridge/OPS-setup
   ```

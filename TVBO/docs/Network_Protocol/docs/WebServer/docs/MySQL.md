@@ -81,7 +81,7 @@
 	- > Trên dòng thứ 47 với nội dung `bind-address	= 127.0.0.1`. Bạn hãy thay vào đó là địa chỉ ip của mình và bỏ comment đi nếu có.
 	- > `bind-address = 192.168.10.126`
 	- Tiếp theo là bỏ comment tại 2 dòng 88 và 89 để có thể xem log của mysql:
-		> ![log](../Pictures/MySQL/log.png)
+		> ![log](../images/MySQL/log.png)
 	- Giờ bạn cần phải cấp quyền cho phép user remote từ xa. Giả sử: bạn muốn cho root kết nối tới tất cả các database từ xa. Thì cần làm như sau:
 		> `mysql -u root -p`
 

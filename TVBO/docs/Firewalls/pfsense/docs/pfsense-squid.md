@@ -283,6 +283,7 @@ ____
 
                 ta hãy chọn `Advanced` đối với trình duyệt `FireFox`, chọn `Add Exception`hay `Continue Processing` đối với `Google Chrome` để có thể tiếp tục duyệt website bình thường.
 
+    Sẽ cập nhật thêm các phần tiếp theo
 ____
 
 # <a name="content-others">Các nội dung khác</a>

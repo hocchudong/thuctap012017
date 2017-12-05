@@ -46,7 +46,7 @@
 - Để sử dụng SSH keys, một người dùng phải có một cặp khóa SSH trên máy tính của họ. Trên thiết bị remote server, nội dung khóa public phải tồn tại trong thư mục home của người dùng đó trong file `~/.ssh/authorized_keys`.
 - Khi một client kết nối tới remote server muốn sử dụng SSH key để chứng thực, client sẽ gửi tới server ý định đó kèm khóa public để sử dụng. Server sẽ kiểm tra nội dung khóa public với nội dung file `authorized_keys`. Nếu khớp nhau, một chuổi bất kỳ sẽ được sinh ra và mã hóa bởi public key và chỉ được giải mã khi có private key. Server sẽ gửi nó tới client để kiểm tra xem liệu client có private key.
 - Sau khi nhận được chuỗi mã hóa trên, client sẽ giải mã nó bằng việc sử dụng private key và kết hợp với một chuỗi bất kỳ liên quan đển session ID và sinh ra một MD5 hash gửi ngược trở lại server.
-    > ![Hình ảnh authorized_keys](../Pictures/SSH/ssh-key-auth-flow.png)
+    > ![Hình ảnh authorized_keys](../images/SSH/ssh-key-auth-flow.png)
 
 ### 1.4 Tạo và sử dụng khóa cho chứng thực
 <a name="taokhoa"></a>
@@ -70,7 +70,7 @@
 
     Dấu nhắc tiếp theo cho phép bạn nhập cụm từ mật khẩu có độ dài tùy ý để bảo vệ khóa cá nhân của bạn. Có thể bỏ qua bằng việc nhấn `Enter` nhưng hãy lưu ý rằng điều này sẽ cho phép bất cứ ai kiểm soát được khoá cá nhân của bạn để đăng nhập vào server.
     Kết quả là:
-    ![Hình ảnh ssh-keygen](../Pictures/SSH/ssh-keygen.png)
+    ![Hình ảnh ssh-keygen](../images/SSH/ssh-keygen.png)
 
     Các khóa được tạo ra sẽ lưu trong `~/.ssh/` với:
     - `~/.ssh/id_rsa`: Đây là khóa bí mật! KHÔNG ĐƯỢC CHIA SẺ FILE NÀY!
@@ -83,7 +83,7 @@
 - Việc copy khóa public lên server cho phép bạn chứng thực người dùng không cần mật khẩu, tại client bạn sử dụng lệnh sau:
     > `ssh-copy-id username@ip_remote_host -p port`
 
-    > ![Hình ảnh ssh-copy-id](../Pictures/SSH/ssh-copy-id.png)
+    > ![Hình ảnh ssh-copy-id](../images/SSH/ssh-copy-id.png)
 
 - Ngay bây giờ, bạn có thể log vào server không cần dùng mật khẩu với:
     > `ssh username@ip_remote_host -p port`
@@ -123,7 +123,7 @@ Các cấu hình về ssh đều được ghi lại trong file `/etc/ssh/sshd_co
 
     Tại dòng thứ 5 với nội dung `Port 22`, bạn hãy thay đổi `22` thành port mà bạn muốn. Chẳng hạn:
 
-    > ![Change port](../Pictures/SSH/change-port.png)
+    > ![Change port](../images/SSH/change-port.png)
 
 2. Bỏ quyền ssh với tài khoản root
     > `~# vi /etc/ssh/sshd_config`
@@ -151,7 +151,7 @@ Các cấu hình về ssh đều được ghi lại trong file `/etc/ssh/sshd_co
     
     Nội dung bạn sẽ thấy như sau:
 
-    > ![Hình ảnh log](../Pictures/SSH/log.png)
+    > ![Hình ảnh log](../images/SSH/log.png)
 
 
 Chúc các bạn thành công!

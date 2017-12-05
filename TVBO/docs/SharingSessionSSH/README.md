@@ -35,7 +35,7 @@ ___
 	+ Teleport cho phép ghi lại mọi hoạt động đã thực hiện trên phiên ssh đó để dễ dàng có thể xem lại qua web hoặc console của máy server quản lý các phiên đăng nhập với tài khoản root. Cho phép nhanh chóng thực hiện remote tới server hoặc client trong cluster thông qua web hoặc console sử dụng token. Mỗi token này có thời gian tồn tại tối đa 30 phút kể từ khi được tạo ra cho đến khi bạn thực hiện đăng nhập sử dụng nó.
 
 	+ Ngoài ra, teleport còn có nhiều chức năng khác mà sẽ được đề cập đến trong các nội dung sau. Phía dưới chính là một chức năng nhỏ của teleport mà bạn có thể dàng nhận ra khi mới đầu làm quen và sử dụng nó.
-		> [![Teleport Features](../Pictures/Teleport/Quickstart/ScreenShot.png)](https://www.youtube.com/watch?v=bprRpX-4R_0)
+		> [![Teleport Features](images/Teleport/Quickstart/ScreenShot.png)](https://www.youtube.com/watch?v=bprRpX-4R_0)
 	
 	+ Tóm lại, Teleport có chức năng tương tự như TeamView của Windows với Teleconsole
 ___

@@ -1,5 +1,12 @@
 ## Cài đặt manila với Glusterfs
 
+## Mô hình cài đặt
+- Mô hình
+
+	![](../images/manila_glusterfs.png)
+	
+- Tất cả đều được cài đặt trên ubuntu 16.04 64-bit
+
 
 ## 1. Cài đặt trên 2 node glusterfs. 
 ### Thực hiện trên Glusterfs - 1.

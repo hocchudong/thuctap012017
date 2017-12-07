@@ -35,6 +35,7 @@ Iptables thuộc loại firewall này. Hơn thế nữa Iptables còn hỗ t
 Về bản chất, ufw is a frontend for iptables. Tức có nghĩa là thay vì gõ lệnh iptables, thì các bạn gõ lệnh ufw. Sau đó, ufw sẽ chuyển các lệnh của ufw sang tập lệnh của iptables. Tất nhiên, iptables sẽ xử lý các quy tắc, chính sách đó. 
 Lệnh ufw là dễ dàng hơn cho những người mới bắt đầu tìm hiểu về firewall.  
 \- **So sánh iptables trên ubuntu và centos**  
+
 |Đặc điểm|CentOS|Ubuntu|
 |---|---|---|
 |Thư mục cấu hình|/etc/sysconfig/iptables-config|/etc/iptables/|

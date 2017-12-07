@@ -13,7 +13,7 @@
 \- Netfilter thể hiện một bộ hooks trong Linux kernel, cho phép các modules cụ thể đăng kí các chức năng với networking stack của kernel. Các chức năng này được áp dụng cho lưu lượng truy cập dưới dạng rules lọc và sửa đổi.  
 \- Netfilter components  
 
-<img src="images/1.png" />
+<img src="../images/1.png" />
 
 <a name="2"></a>
 # 2.Iptables

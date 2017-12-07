@@ -16,12 +16,12 @@ Chains chứa nhiều rules. Rules được định nghĩa cho các gói tin.
 \- Cấu trúc:  
 iptables -> Tables -> Chains -> Rules.  
 
-<img src="images/2.png" />
+<img src="../images/2.png" />
 
 <a name="1"></a>
 # 1.Tables
 \- Iptables có 4 tables được xây dựng sẵn.  
-<img src="images/3.png" />
+<img src="../images/3.png" />
 
 <a name="1.1"></a>
 ## 1.1.Filter tables

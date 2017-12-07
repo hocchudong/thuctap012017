@@ -21,7 +21,7 @@ ____
 
     - Với tính năng đồng bộ và sao lưu cấu hình cần thiết như các rule, pfSense Cluster là một giải pháp toàn vẹn nhất tính đến thời điểm hiện tại.
 
-    - Việc đồng bộ sử dụng giao thức CARP
+    - Việc đồng bộ sử dụng giao thức CARP, dữ liệu đồng bộ được gửi qua http(s).
 
 - ### <a name="models">4.2 Mô hình</a>
 
@@ -40,6 +40,9 @@ ____
 - ### <a name="config">4.3 Thực hiện cấu hình</a>
 
     - Bước 1. Cấu hình thêm card mạng cho máy ảo pfSense bằng cách chọn menu `Interfaces`, rồi chọn `Assignments` chọn `Add` để thêm một interface mới. Kết quả như sau:
+
+    
+
 - ### <a name="checking">4.4 Kiểm tra kết quả</a>
 
 

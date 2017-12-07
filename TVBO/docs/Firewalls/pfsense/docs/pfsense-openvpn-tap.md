@@ -27,11 +27,11 @@ ____
 
     Yêu cầu:
 
-        - Khi máy client kết nối VPN qua pfSense thì có thể ping đến cac máy trong mạng LAN sau pfSense.
+    - Khi máy client kết nối VPN qua pfSense thì có thể ping đến cac máy trong mạng LAN sau pfSense.
 
-        - Việc cấu hình được thực hiện qua giao diện Web Interface của pfSense.
+    - Việc cấu hình được thực hiện qua giao diện Web Interface của pfSense.
 
-        - Client kết nối đến VPN server sẽ được cấp phát địa chỉ IP trong dải LAN sử dụng DHCP
+    - Client kết nối đến VPN server sẽ được cấp phát địa chỉ IP trong dải LAN sử dụng DHCP
 
 - ### <a name="config">6.3 Thực hiện cấu hình</a>
 
@@ -97,27 +97,27 @@ ____
 
         chọn `Next` ta được:
 
-            > ![sys-vpn-s6.png](../images/sys-vpn-s6.png)
+        > ![sys-vpn-s6.png](../images/sys-vpn-s6.png)
 
         tiếp tục chọn `Next` ta thu được:
 
-            > ![sys-vpn-s7.png](../images/sys-vpn-s7.png)
+        > ![sys-vpn-s7.png](../images/sys-vpn-s7.png)
         
         chọn `Add new Certificate` để tạo ra một CA cho server openVPN sử dụng trong quá trình xác thực. Hãy nhập thông tin tương tự như hình sau:
 
-            > ![sys-vpn-s8.png](../images/sys-vpn-s8.png)
+        > ![sys-vpn-s8.png](../images/sys-vpn-s8.png)
 
         tiếp tục chọn `Create new Certificate` ta sẽ được chuyển sang phần cấu hình chính cho server openVPN. Hãy thực hiện lựa chọn và điền các giá trị tương tự như hình sau:
 
-            > ![sys-vpn-s9.png](../images/sys-vpn-s9.png)
+        > ![sys-vpn-s9.png](../images/sys-vpn-s9.png)
 
         chọn `Next`, sau đó tích chọn vào `Firewall Rule` và `openVPN rule` để tự động tạo ra rule firewall cho phép thiết lập các kết nối:
         
-            > ![sys-vpn-s10.png](../images/sys-vpn-s10.png)
+        > ![sys-vpn-s10.png](../images/sys-vpn-s10.png)
 
         Cuối cùng, ta chọn `Next` sau đó là `Finish` để kết thúc quá trình `Wizards` này. Kết quả ta nhận được một server openVPN với mode là tun.
 
-            > ![sys-vpn-tun-done.png](../images/sys-vpn-tun-done.png)
+        > ![sys-vpn-tun-done.png](../images/sys-vpn-tun-done.png)
 
     - Bước 4. Thực hiện chuyển đổi từ openVPN mode tun thành openVPN mode tap.
 

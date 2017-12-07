@@ -2,7 +2,10 @@
 
 
 # MỤC LỤC
-
+- [1.Netfilter](#1)
+- [2.Iptables](#2)
+- [3.Stateless và Statefil Packet Filtering](#3)
+- [4.Sự khác biệt trên các distro khác nhau.](#4)
 
 <a name="1"></a>
 # 1.Netfilter
@@ -37,7 +40,7 @@ Lệnh ufw là dễ dàng hơn cho những người mới bắt đầu tìm hi�
 \- **So sánh iptables trên ubuntu và centos**  
 
 |Đặc điểm|CentOS|Ubuntu|
-|---|---|---|
+|:---:|:---:|:---:|
 |Thư mục cấu hình|/etc/sysconfig/iptables-config|/etc/iptables/|
 |default policy|DENY|ACCEPT|
 

@@ -7,7 +7,7 @@ ____
 
 - [1.1 Giới thiệu về pfsense](#about)
 - [1.2 Một số lợi ích của pfsense](#useful)
-- [1.3 Cài đặt pfsense trên VMWare](#)
+- [1.3 Cài đặt pfsense trên VMWare](#setting)
 - [1.4 Cấu hình cho pfSense](#config)
 - [Các nội dung khác](#content-others)
 
@@ -46,7 +46,7 @@ ____
         5. Cung cấp chức năng tạo VLAN, DNS, ...
 
 
-- ### <a name="">1.3 Cài đặt pfsense trên VMWare</a>
+- ### <a name="setting">1.3 Cài đặt pfsense trên VMWare</a>
 
     - #### Chuẩn bị cài đặt pfSense:
 

@@ -136,7 +136,6 @@ ____
 
     - Thực hiện ping đến một máy trong LAN sau pfSense, ta thu được như sau:
 
-        > ![sys-vpn-done-tap.png](../images/sys-vpn-done-tap.png)
         > ![sys-vpn-done-tap.png](../images/sys-vpn-done-tun.png)
 
     - Như vậy, ta đã đạt được yêu cầu của cấu hình là ping được đến các host trong LAN khi đang kết nối openVPN server.

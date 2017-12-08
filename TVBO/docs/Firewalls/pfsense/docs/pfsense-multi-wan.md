@@ -5,17 +5,17 @@ ____
 # Mục lục
 
 
-- [2.1 Vai trò, chức năng của multiple wan trong pfsense](#about)
-- [2.2 Mô hình thực hiện](#models)
-- [2.3 Thực hiện cấu hình](#config)
-- [2.4 Kiểm tra kết quả](#checking)
+- [3.1 Vai trò, chức năng của multiple wan trong pfsense](#about)
+- [3.2 Mô hình thực hiện](#models)
+- [3.3 Thực hiện cấu hình](#config)
+- [3.4 Kiểm tra kết quả](#checking)
 - [Các nội dung khác](#content-others)
 
 ____
 
 # <a name="content">Nội dung</a>
 
-- ### <a name="about">2.1 Vai trò, chức năng của multiple wan trong pfsense</a>
+- ### <a name="about">3.1 Vai trò, chức năng của multiple wan trong pfsense</a>
 
     - Trong pfSense, với việc thực hiện cấu hình multiple WAN có vai trò như sau:
 
@@ -23,7 +23,7 @@ ____
         + Kết hợp tính năng, đảm bảo vai trò của pfSense như một Load Balancer, cho phép client truy cập vào các dịch vụ cung cấp phía bên trong mạng LAN.
         + Khắc phục sự cố khi có lỗi phát sinh xảy ra.
 
-- ### <a name="models">2.2 Mô hình thực hiện</a>
+- ### <a name="models">3.2 Mô hình thực hiện</a>
 
     > ![multi-wan-models.png](../images/multi-wan-models.png)
 
@@ -36,7 +36,7 @@ ____
     - Việc cấu hình pfSense thông qua Web Interface của pfSense. Nội dung cấu hình là phần tiếp theo của [Cài đặt pfSense](pfsense-about.md)
 
 
-- ### <a name="config">2.3 Thực hiện cấu hình</a>
+- ### <a name="config">3.3 Thực hiện cấu hình</a>
 
     - Các bước thực hiện cấu hình Multiple WAN cho pfSense như sau:
 
@@ -158,7 +158,7 @@ ____
 
     - Như vậy, về cơ bản ta đã thực hiện hoàn tất cho cấu hình.
 
-- ### <a name="checking">2.4 Kiểm tra kết quả</a>
+- ### <a name="checking">3.4 Kiểm tra kết quả</a>
 
     - Để thực hiện kiểm tra kết quả. Ta chọn menu `Status`, rồi chọn `Gateways`. Kết quả thu được tương tự như sau:
 

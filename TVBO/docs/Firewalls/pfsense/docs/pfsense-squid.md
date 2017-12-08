@@ -1,15 +1,15 @@
-# 1. Cấu hình pfSense với tính năng như một Proxy Server
+# 7. Cấu hình pfSense với tính năng như một Proxy Server
 
 ____
 
 # Mục lục
 
 
-- [1.1 Mục đích thực hiện?](#issue)
-- [1.2 Mô hình](#models)
-- [1.3 Các bước thực hiện cấu hình cơ bản](#step-config)
-- [1.4 Các bước thực hiện cấu hình cản lọc request](#filter)
-- [1.5 Các bước thực hiện cấu hình chặn truy cập một số trang website](#block-website)
+- [7.1 Mục đích thực hiện?](#issue)
+- [7.2 Mô hình](#models)
+- [7.3 Các bước thực hiện cấu hình cơ bản](#step-config)
+- [7.4 Các bước thực hiện cấu hình cản lọc request](#filter)
+- [7.5 Các bước thực hiện cấu hình chặn truy cập một số trang website](#block-website)
 - [Các nội dung khác](#content-others)
 
 ____

@@ -135,7 +135,15 @@ ____
 
 - ### <a name="checking">6.4 Kiểm tra kết quả</a>
 
-        Sẽ cập nhật sau
+    - Từ máy client đã cài đặt openVPN GUI, ta thực hiện kết nối đến server với tài khoản người dùng là `guest` để kiểm tra kết quả. Chọn menu `Status`, rồi chọn `openVPN`, ta thấy được:
+
+        > ![sys-vpn-don-tap-status.png](../images/sys-vpn-don-tap-status.png)
+
+    - Thực hiện ping đến một máy trong LAN sau pfSense, ta thu được như sau:
+
+        > ![sys-vpn-done-tap.png](../images/sys-vpn-done-tap.png)
+
+    - Như vậy, ta đã đạt được yêu cầu của cấu hình là ping được đến các host trong LAN khi đang kết nối openVPN server.
 ____
 
 # <a name="content-others">Các nội dung khác</a>

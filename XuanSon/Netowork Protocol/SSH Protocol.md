@@ -14,11 +14,11 @@
     - [3.2.2. Authenticating the User's Access to the Server](#3.2.2)
   - [3.3.Chú ý](#3.3)
 - [4.Install SSH Client and SSH Server on the Ubuntu  14.04](#4)
-- [5.File config in SSH client and SSH server](#5)
-  - [5.1.File in Openssh-client](#5.1)
+- [5.Configuration Files](#5)
+  - [5.1.User-specific configuration files](#5.1)
     - [5.1.1.~/.ssh/know_hosts file](#5.1.1)
     - [5.1.2. ~/.ssh/config](#5.1.2)
-  - [5.2.File in openssh-server ](#5.2)
+  - [5.2.System-wide configuration files](#5.2)
     - [5.2.1.File /etc/ssh/sshd_config](#5.2.1)
 - [6.Command](#6)
   - [6.1.SSH client command](#6.1)
@@ -142,8 +142,9 @@ $sudo apt-get install ssh
 ```
 
 <a name="5"></a>
-# 5.File config in SSH client and SSH server
+# 5.Configuration Files
 There are two different sets of configuration files: those for client programs (that is, ssh, scp, and sftp), and those for the server (the sshd daemon).
+System-wide SSH configuration information is stored in the `/etc/ssh/` directory as described in "System-wide configuration files". User-specific SSH configuration information is stored in `~/.ssh/` within the user's home directory as described in "User-specific configuration files".
 
 <a name="5.1"></a>
 ## 5.1.User-specific configuration files

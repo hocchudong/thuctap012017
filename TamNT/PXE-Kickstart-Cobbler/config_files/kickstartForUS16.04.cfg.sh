@@ -5,6 +5,9 @@ langsupport en_US
 # set keyboard layout for the system
 keyboard us
 
+# install the system
+install
+
 # reboot the system after installation
 reboot
 # config repo source.list
@@ -57,3 +60,4 @@ openssh-server
 sed -i 's/172.16.100.10/vn.archive.ubuntu.com/g' /etc/apt/sources.list
 sed -i 's/US/ubuntu/g' /etc/apt/sources.list
 mkdir /root/test
+%end

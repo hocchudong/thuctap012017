@@ -7,7 +7,7 @@
 	
 - Có bao giờ, bạn lại thắc mắc rằng, các chương trình trong Ubuntu khi thì được lưu ở `/usr/bin`, khi thì ở `/opt` không? Đấy đều là các phần mềm do bản thân ta tiến hành cài đặt nó mà! Tại sao lại có sự phân chia như vậy? Bạn hãy cùng mình tìm hiểu đôi nét về nó nhé!
 
-	> ![Hình ảnh các thư mục chính trong Ubuntu](../Pictures/TreeDirectory/td.png)
+	> ![Hình ảnh các thư mục chính trong Ubuntu](../images/TreeDirectory/td.png)
 
 	Phía trên là hình ảnh bao gồm các thư mục chính phía trong thư mục gốc `/` bao gồm các thư mục:
 
@@ -104,7 +104,7 @@
 > Chứa các tập tin của những ứng dụng chính được cài đặt cho mọi người dùng.
 > Chứa các thư viện, file thực thi, tài liệu hướng dẫn và mã nguồn cho chương trình chạy ở level 2 (write) ở hệ thống.
 > Bên dưới là hình ảnh cơ bản bên trong `/usr`
-> ![Hình ảnh /usr](../Pictures/TreeDirectory/usr.png)
+> ![Hình ảnh /usr](../images/TreeDirectory/usr.png)
 
 #### 2.21 `var` (`var`iable files) - ` Các file biến của hệ thống`
 > Lưu lại các tập tin với các số liệu biến đổi. Chẳng hạn như các tập tin về dữ liệu, các bản ghi.
@@ -122,4 +122,4 @@ Trong Linux vẫn còn rất nhiều thư mục đang chờ bạn khám phá! B�
 > Cuối cùng, xin chúc bạn có một công việc tốt. Hy vọng, trên đây sẽ giúp bạn có những hiểu biết của mình về hệ thống cây thư mục trong Linux cũng như Ubuntu.
 
 
-Tham khảo tại: ![Hình ảnh các thư mục chính trong Ubuntu](../Pictures/TreeDirectory/filesystem-2.png)
+Tham khảo tại: ![Hình ảnh các thư mục chính trong Ubuntu](../images/TreeDirectory/filesystem-2.png)

@@ -124,88 +124,92 @@ ____
             <td>Khai báo địa chỉ IP nguồn của packet. address có thể là một địa chỉ IP, một hostname, một địa chỉ mạng hay một dải địa chỉ IP</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>[!] -destination, [!] --dst</td>
+            <td>[!] -d</td>
+            <td>address[/mask][,...]</td>
+            <td>Khai báo địa chỉ IP đích của packet. address có thể là một địa chỉ IP, một hostname, một địa chỉ mạng hay một dải địa chỉ IP</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>--jump</td>
+            <td>-j</td>
+            <td>target</td>
+            <td>Khai báo target của rule sẽ được tạo ra, những gì cần phải làm nếu packet khớp với rule. Có thể được kết hợp để sử dụng với tham số -g hay --goto</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>--goto</td>
+            <td>-g</td>
+            <td>chain</td>
+            <td>Khi sử dụng khai báo này, việc xử lý của rule sẽ được xử lý tại chain gọi tới.</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>[!] --in-interface</td>
+            <td>[!] -i</td>
+            <td>name</td>
+            <td>Khai báo tên của interface nơi mà gói tin được nhận (chỉ có trong INPUT, FORWARD, PREROUTING chain). Tên của interface có thể khai báo theo dạng name[+]. Nghĩa là nếu có dấu + thì bất cứ interface nào bắt đầu với name sẽ khớp với rule. Nếu không có dấu + thì chỉ có tên interface giống y hệt mới khớp với rule. Ví dụ name+ sẽ khớp với nameinterface, namea, nameb.</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>[!] --out-interface</td>
+            <td>[!] -o</td>
+            <td>name</td>
+            <td>Khai báo tên của interface nơi mà gói tin đi ra khỏi hệ thống (chỉ có trong OUTPUT, FORWARD, POSTROUTING chain). Tên của interface có thể khai báo theo dạng name[+]. Nghĩa là nếu có dấu + thì bất cứ interface nào bắt đầu với name sẽ khớp với rule. Nếu không có dấu + thì chỉ có tên interface giống y hệt mới khớp với rule. Ví dụ name+ sẽ khớp với nameinterface, namea, nameb.</td>
         </tr>
         <tr>
+            <td>[!] --fragment</td>
+            <td>[!] -f</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Rule sẽ chỉ nhắm đến các gói tin bị phân mảnh. Các gói tin mà không có đích đến hay nguồn đi.</td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>--set-counters</td>
+            <td>-c</td>
+            <td>packets bytes</td>
+            <td>Cho phép ta khởi tạo các bộ đếm gói tin và byte của một rule</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th>Tùy chọn đầy đủ</th>
+            <th>Tùy chọn viết tắt</th>
+            <th>Giá trị theo sau tùy chọn</th>
+            <th>Ý nghĩa sử dụng tùy chọn</th>
         </tr>
         <tr>
+            <td>--verbose</td>
+            <td>-v</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Tùy chọn có tác dụng liệt kê ra kết quả của câu lệnh được thực hiện. Các bộ đếm gói tin và byte cũng được liệt kê theo hậu tố K, M, G với cấp nhân 1000, 1 000 000, 1 000 000 000. </td>
         </tr>
         <tr>
+            <td>--numeric</td>
+            <td>--numeric</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Tùy chọn có tác dụng khiến kết quả trả về của câu lệnh sẽ cố gắng in ra địa chỉ IP với dạng số thay vì in ra theo hostname.</td>
         </tr>
         <tr>
+            <td>--exact</td>
+            <td>-x</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Hiển thị chính xác giá trị của bộ đếm gói tin và byte thay vì chỉ hiển thị số được làm tròn.</td>
         </tr>
         <tr>
+            <td>--line-numbers</td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td>Khi liệt kê rule sẽ có số thứ tự kèm theo mỗi rule.</td>
         </tr>
         <tr>
+            <td>--modprobe=</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>command</td>
+            <td>Khi thêm mới hoặc chèn một rule vào chain. Ta sẽ sử dụng command để thêm một module cần thiết cho rule.</td>
         </tr>
+    </table>
+    <table>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <th>Tùy chọn đầy đủ</th>
+            <th>Tùy chọn viết tắt</th>
+            <th>Giá trị theo sau tùy chọn</th>
+            <th>Ý nghĩa sử dụng tùy chọn</th>
         </tr>
         <tr>
             <td></td>

@@ -121,6 +121,7 @@ Chúng sẽ nhảy từ chain **INPUT** đến chain **tcp_packets** và bắt �
 \- **REJECT** target làm việc như **DROP** target, nhưng nó gửi lại 1 thông điệp lỗi đến host gửi packets bị blocked.
 \- **REJECT** target chỉ có hiệu lực trong chain INPUT, FORWARD và OUTPUT hoặc subchain của chúng.  
 \- **Option**  
+
 |Option|--reject-with|
 |---|---|
 |VD|iptables -A FORWARD -p TCP --dport 22 -j REJECT --reject-with tcp-reset|

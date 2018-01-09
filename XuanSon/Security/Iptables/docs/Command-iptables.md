@@ -2,7 +2,14 @@
 
 
 # MỤC LỤC
-
+- [1.Cú pháp](#1)
+- [2.Command](#2)
+- [3.Matches](#3)
+	- [3.1.Generic matches](#3.1)
+	- [3.2.Implicit matches](#3.2)
+		- [3.2.1.TCP matches](#3.2.1)
+		- [3.2.2.UDP matches](#3.2.2)
+		- [3.2.3.ICMP matches](#3.2.3)
 
 <a name="1"></a>
 # 1.Cú pháp
@@ -23,6 +30,7 @@ VD: địa chỉ IP, port, giao thức hoặc bất cứ điều gì.
 # 2.Command
 \- command nói cho iptables biết phải làm gì với phần còn lại của rule. Thông thường chúng ta muốn thêm hoặc xóa 1 cái gì đó trong bảng. Các command sau có sẵn trong iptables.  
 \- **command**  
+
 |Command|Ví dụ|Ý nghĩa|
 |---|---|---|
 |-A, --append|iptables -A INPUT|thêm rule vào cuối của chains.|
@@ -38,6 +46,7 @@ VD: địa chỉ IP, port, giao thức hoặc bất cứ điều gì.
 |-E, --rename-chain|iptables -E allowed disallowed|Câu lệnh nói với iptables rằng cần thay đổi tên của chain. VD trên, tên chain được thay đổi từ **allowed** đến **disallowed**. Chú ý: Điều này sẽ không ảnh hướng đến phương thức thực tế của tables sẽ làm việc.|
 
 \- **Option**  
+
 |Option|các command được sử dụng với|Ý nghĩa|
 |---|---|---|
 |-v, --verbose|--list, --append, --insert, --delete, --replace|- Lệnh thường được sử dụng với tùy chọn **--list**. Nếu được sử dụng với tùy chọn **--list**, output sẽ là các địa chỉ interface, tùy chọn của rule và TOS masks. Lệnh **--list** cũng bao gồm bộ đếm bytes và gói tin cho mỗi rule, nếu tùy chọn **--verbose** được thiết lập. Bộ đếm sử dụng hệ số nhân K (x1000), M(x1000.000) và G (x1000.000.000). Để nhận kết quả chính xác bạn có thể sử dụng tùy chọn **-x**.|
@@ -84,6 +93,7 @@ VD: địa chỉ IP, port, giao thức hoặc bất cứ điều gì.
 ### 3.2.3.ICMP matches
 \- Xem ICMP types tại:  http://www.faqs.org/docs/iptables/icmptypes.html  
 \-  
+
 |Math|Ví dụ|Ý nghĩa|
 |---|---|---|
 |--icmp-type|iptables -A INPUT -p icmp --icmp-type 8|Math này được sử dụng để chỉ ICMP type phù hợp. ICMP type có thể được xác định bằng giá trị số hoặc tên của chúng. Giá trị số được chỉ định trong RFC 792. Để xem danh sách các gái trị tên ICMP, thực hiện lệnh **iptables --protocol icmp --help**. Match này có thể được đảo ngược với dấu **!**, **--icmp-type ! 8**. Lưu ý: 1 số ICMP type đã lỗi thời.|

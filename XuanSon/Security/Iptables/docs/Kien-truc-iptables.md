@@ -8,6 +8,13 @@
 	- [1.4.Raw table](#1.4)
 - [2.Chain](#2)
 - [3.Rules](#3)
+- [4.Target/Jumps](#4)
+	- [4.1.ACCEPT target](#4.1)
+	- [4.2.DROP target](#4.2)
+	- [4.3.REJECT target](#4.3)
+	- [4.4.DNAT target](#4.4)
+	- [4.5.SNAT target](#4.5)
+	- [4.6.Tham khảo thêm](#4.6)
 
 
 \- Iptables chứa nhiều tables.  
@@ -135,6 +142,7 @@ Khi host đang chạy web server trong 1 mạng LAN, nhưng không có IP public
 \- Lưu ý:  
 **DNAT target chỉ có sẵn trong chain PREROUTING và chain OUTPUT trong table nat.**  
 \- Option của DNAT  
+
 |Option|--to-destination|
 |---|---|
 |VD|iptables -t nat -A PREROUTING -p tcp -d 15.45.23.67 --dport 80 -j DNAT --to-destination 192.168.1.1-192.168.1.10|
@@ -146,6 +154,7 @@ Khi host đang chạy web server trong 1 mạng LAN, nhưng không có IP public
 \- VD: Khi muốn 1 NAT 1 IP private trong mạng LAN -> 1 IP public để kết nối Internet.  
 \- **SNAT** target chỉ có hiệu lực với table nat, trong chain **POSTROUTING**.  
 \- **Option**  
+
 |Option|--to-source|
 |---|---|
 |VD|iptables -t nat -A POSTROUTING -p tcp -o eth0 -j SNAT --to-source 194.236.50.155-194.236.50.160:1024-32000|

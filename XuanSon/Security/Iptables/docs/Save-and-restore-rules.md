@@ -21,9 +21,9 @@ iptables-save [-c] [-t tables]
 - `-t`: chỉ định lưu lại tables nào. Nếu không chỉ định, mặc định iptables-save sẽ lưu lại tất cả các tables.
 
 \- VD:  
-<img src="../images/save-and-restore-1.png>
+<img src="../images/save-and-restore-1.png" />
 
-<img src="../images/save-and-restore-2.png>
+<img src="../images/save-and-restore-2.png" />
 
 \- Nhìn ví dụ ta thấy:  
 - Mỗi tables chứa 1 vài comments với dấu #. Mỗi tables bắt đầu với dấu *.

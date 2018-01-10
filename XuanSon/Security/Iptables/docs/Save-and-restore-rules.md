@@ -1,13 +1,16 @@
 # Save và restore bộ rules
 
 # MỤC LỤC
-
+- [1.iptables-save](#1)
+- [2.iptables-restore](#2)
+- [3.iptables-persistent tool](#3)
 
 
 \- iptables có 2 công cụ để lưu trữ và khôi phục bộ các rules, đó là **iptables-save** và **iptables-restore**.  
 \- Các rules của iptables được lưu trong memory nên khi khởi động lợi máy, các rules sẽ bị xóa hoàn toàn. Vì vậy ta cần dùng đến 2 công cụ đó là **iptables-save** và **iptables-restore**. Chúng lưu trữ các rules trong định dạng file text.  
 \- **iptables-save** sẽ lấy toàn bộ rules từ kernel và lưu nó vào 1 file. **iptables-restore** sẽ tải lên 1 bộ rules để phòng khi cần khôi phục bộ rules đó.  
 
+<a name="1"></a>
 # 1.iptables-save
 \- Cú pháp  
 ```
@@ -32,6 +35,7 @@ iptables-save [-c] [-t tables]
 iptables-save -c > /etc/iptables-save
 ```
 
+<a name="2"></a>
 # 2.iptables-restore
 \- **iptables-restore** được sử dụng để khôi phục bộ rule iptables được lưu bởi **iptables-save**.  
 \- Cú pháp:  
@@ -49,6 +53,7 @@ cat /etc/iptables-save | iptables-restore -c
 iptables-restore -c < /etc/iptables-save
 ```
 
+<a name="3"></a>
 # 3.iptables-persistent tool
 \- Ở một vài hệ điều hành khác, bạn có thể sử dụng systemd hoặc một vài tool khác để add rules vào boot. Ở ubuntu, nó có tên là `iptables-persistent`.  
 ```

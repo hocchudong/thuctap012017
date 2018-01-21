@@ -67,13 +67,13 @@ ____
     => help
     ```
 
-    - Sau khi sử dụng các câu lệnh trên, vậy là bạn đang chạy U-Boot trên x86_64 và có thể thử nghiệm các tính năng như phân vùng lại `[thiết bị lưu trữ mô phỏng](https://github.com/chaiken/LCA2018-Demo-Code)`, thao tác khóa bí mật dựa trên TPM và hotplug của thiết bị USB.
+    - Sau khi sử dụng các câu lệnh trên, vậy là bạn đang chạy U-Boot trên x86_64 và có thể thử nghiệm các tính năng như phân vùng lại [thiết bị lưu trữ mô phỏng](https://github.com/chaiken/LCA2018-Demo-Code), thao tác khóa bí mật dựa trên TPM và hotplug của thiết bị USB.
 
 
 - ### <a name="4">2.4 Khởi động kernel</a>
 
     - #### Cung cấp kernel để khởi động
-        Sau khi hoàn thành nhiệm vụ của nó, bootloaders sẽ thực hiện nhảy tới kernel code mà nó đã nạp vào bộ nhớ chính và bắt đầu thực thi thông qua bất kỳ tùy chọn dòng lệnh nào mà người dùng đã chỉ định. Vậy loại chương trình nào thì được xem là kernel? File `/boot/vmlinuz` chỉ ra rằng nó là một `bzimage` (big zip image - một tệp nén lớn). Root filesystem Linux có chứa một công cụ [extract-vmlinux]https://github.com/torvalds/linux/blob/master/scripts/extract-vmlinux) có thể được sử dụng để giải nén tệp trên:
+        Sau khi hoàn thành nhiệm vụ của nó, bootloaders sẽ thực hiện nhảy tới kernel code mà nó đã nạp vào bộ nhớ chính và bắt đầu thực thi thông qua bất kỳ tùy chọn dòng lệnh nào mà người dùng đã chỉ định. Vậy loại chương trình nào thì được xem là kernel? File `/boot/vmlinuz` chỉ ra rằng nó là một `bzimage` (big zip image - một tệp nén lớn). Root filesystem Linux có chứa một công cụ [extract-vmlinux](https://github.com/torvalds/linux/blob/master/scripts/extract-vmlinux) có thể được sử dụng để giải nén tệp trên:
 
         ```sh
         $# scripts/extract-vmlinux /boot/vmlinuz-$(uname -r) > vmlinux
@@ -107,7 +107,7 @@ ____
 
         hoặc biên dịch và cài kernel riêng của bạn từ source. Ví dụ thực hiện theo cách làm được hướng dẫn tiêu biểu trong [`Debian Kernel Handbook`](http://kernel-handbook.alioth.debian.org/)
 
-    - `gdb vmlinux` tiếp theo là `info files` cho thấy phần ELF `init.text`. Danh sách bắt đầu thực hiện chương trình trong `init.text` với `l*(address)` trong đó `address` có thể là phần địa chỉ dạng hexadecimal bắt đầu `init.text`. GDB sẽ chỉ ra rằng kernel x86_64 khởi động trong tệp tin của kernel [`arch/x86/kernel/head_64.S`]https://github.com/torvalds/linux/blob/master/arch/x86/boot/compressed/head_64.S) - nơi mà có thể tìm thấy hàm nhúng (assembly function) `start_cpu0()` và code tạo ra một một `stack` và giải nén zImage  trước khi gọi tới hàm x86_64 `start_kernel()`. Kernel ARM 32bit cũng tương tự có [`arch/arm/kernel/head.S`](https://github.com/torvalds/linux/blob/master/arch/arm/boot/compressed/head.S). `start_kernel()` không phải là kiến trúc đặc trưng, vì vậy các hàm chứa trong [init/main.c](https://github.com/torvalds/linux/blob/master/init/main.c) của kernel. `start_kernel()` được xem là một hàm `main()` thực sự của Linux.
+    - `gdb vmlinux` tiếp theo là `info files` cho thấy phần ELF `init.text`. Danh sách bắt đầu thực hiện chương trình trong `init.text` với `l*(address)` trong đó `address` có thể là phần địa chỉ dạng hexadecimal bắt đầu `init.text`. GDB sẽ chỉ ra rằng kernel x86_64 khởi động trong tệp tin của kernel [`arch/x86/kernel/head_64.S`](https://github.com/torvalds/linux/blob/master/arch/x86/boot/compressed/head_64.S) - nơi mà có thể tìm thấy hàm nhúng (assembly function) `start_cpu0()` và code tạo ra một một `stack` và giải nén zImage  trước khi gọi tới hàm x86_64 `start_kernel()`. Kernel ARM 32bit cũng tương tự có [`arch/arm/kernel/head.S`](https://github.com/torvalds/linux/blob/master/arch/arm/boot/compressed/head.S). `start_kernel()` không phải là kiến trúc đặc trưng, vì vậy các hàm chứa trong [init/main.c](https://github.com/torvalds/linux/blob/master/init/main.c) của kernel. `start_kernel()` được xem là một hàm `main()` thực sự của Linux.
 
 - ### <a name="5">2.5 Từ start_kernel () đến PID 1</a>
 
@@ -121,7 +121,7 @@ ____
 
     - Họ thiết bị x86 và nhiều thiết bị ARM-64 được cấp cho doanh nghiệp sử dụng cơ chế cấu hình và giao diện cấp cao ( [Advanced Configuration and Power Interface - ACPI](http://events.linuxfoundation.org/sites/events/files/slides/x86-platform.pdf) ) thay thế. Trái ngược với cây thiết bị, thông tin ACPI được lưu trữ trong `/sys/firmware/acpi/tables`. Hệ thống tập tin ảo (virtual filesystem) được tạo ra bởi kernel khi khởi động bằng cách truy cập vào ROM trên máy. Cách dễ dàng để đọc bảng ACPI là với lệnh `acpidump` từ gói `acpica-tools`. Đây là một ví dụ:
 
-    [https://opensource.com/sites/default/files/u128651/linuxboot_2.png](https://opensource.com/sites/default/files/u128651/linuxboot_2.png)
+    ![https://opensource.com/sites/default/files/u128651/linuxboot_2.png](https://opensource.com/sites/default/files/u128651/linuxboot_2.png)
 
     > Các bảng ACPI trên máy tính xách tay Lenovo đều được thiết lập cho Windows 2001.
 
@@ -129,7 +129,7 @@ ____
 
             acpi_listen
 
-        từ gói `apcid` sau đó mở và đóng nắp máy tính xách tay sẽ cho thấy rằng hàm của ACPI đang chạy tất cả thời gian. Trong khi việc tạm thời và tự động `[overwriting the ACPI tables](https://www.mjmwired.net/kernel/Documentation/acpi/method-customizing.txt)` là có thể xảy ra. Việc thay đổi vĩnh viễn chúng liên quan đến tương tác với trình đơn BIOS lúc khởi động hoặc reflashing ROM. Nếu bạn đang gặp rắc rối đó, có lẽ bạn nên cài đặt [coreboot](https://www.coreboot.org/Supported_Motherboards) - phần mềm nguồn mở thay thế.
+        từ gói `apcid` sau đó mở và đóng nắp máy tính xách tay sẽ cho thấy rằng hàm của ACPI đang chạy tất cả thời gian. Trong khi việc tạm thời và tự động [overwriting the ACPI tables](https://www.mjmwired.net/kernel/Documentation/acpi/method-customizing.txt) là có thể xảy ra. Việc thay đổi vĩnh viễn chúng liên quan đến tương tác với trình đơn BIOS lúc khởi động hoặc reflashing ROM. Nếu bạn đang gặp rắc rối đó, có lẽ bạn nên cài đặt [coreboot](https://www.coreboot.org/Supported_Motherboards) - phần mềm nguồn mở thay thế.
 
 
     - #### Từ start_kernel () đến không gian người dùng (userspace)
@@ -138,7 +138,7 @@ ____
 
     - Cho đến khi hàm `timekeeping_init()` chạy, tất cả `timestamps` là `0`. Phần khởi tạo này của kernel được đồng bộ, có nghĩa là việc thực hiện xảy ra ở chính xác một luồng và không có chức năng nào được thực hiện cho đến khi kết thúc và trả về kết quả cuối cùng. Kết quả là `dmesg` trả về sẽ được hoàn toàn tái tạo được ngay cả giữa hai hệ thống, miễn là họ có cùng một thiết bị cây hoặc bảng ACPI. Linux đang hoạt động giống như một trong những hệ điều hành RTOS (real-time operating systems) chạy trên các MCU, ví dụ như QNX hoặc VxWorks. Tình huống vẫn tồn tại trong hàm `rest_init()`, được gọi bằng cách thực hiện câu lệnh `start_kernel()`.
 
-    [https://opensource.com/sites/default/files/u128651/linuxboot_3.png](https://opensource.com/sites/default/files/u128651/linuxboot_3.png)
+    ![https://opensource.com/sites/default/files/u128651/linuxboot_3.png](https://opensource.com/sites/default/files/u128651/linuxboot_3.png)
 
     > Tóm tắt quá trình khởi động hạt nhân.
 
@@ -183,7 +183,7 @@ ____
 
     - Ví dụ, việc biên dịch kernel bằng các modul có thể làm cho nó quá lớn để phù hợp với dung lượng có sẵn, hoặc việc biên dịch tĩnh có thể vi phạm các điều khoản của một giấy phép phần mềm. Không ngạc nhiên khi các trình điều khiển thiết bị đầu vào (HID) lưu trữ, network và con người (HID) cũng có thể có mặt trong `initrd`. Về cơ bản bất kỳ code nào không phải là một phần của kernel thích hợp mà là cần thiết để gắn kết các root filesystem. `initrd` cũng là nơi người dùng có thể lưu trữ mã bảng [ACPI tuỳ chỉnh](https://www.mjmwired.net/kernel/Documentation/acpi/initrd_table_override.txt) của riêng họ.
 
-    > [https://opensource.com/sites/default/files/u128651/linuxboot_4.png](https://opensource.com/sites/default/files/u128651/linuxboot_4.png)
+    > ![https://opensource.com/sites/default/files/u128651/linuxboot_4.png](https://opensource.com/sites/default/files/u128651/linuxboot_4.png)
 
     - Cuối cùng, khi `init` chạy, hệ thống sẽ khởi động! Kể từ khi các bộ vi xử lý thứ cấp đang chạy, hệ thống đã trở thành vật không đồng bộ, không thể dự đoán trước được, hiệu năng cao mà chúng ta biết và yêu thích. Thật vậy, `ps -o pid`, hay `psr`, `comm -p 1` là những câu lệnh có thể chứng minh rằng `init` là quá trình của userspace không còn chạy trên bộ xử lý khởi động.
 

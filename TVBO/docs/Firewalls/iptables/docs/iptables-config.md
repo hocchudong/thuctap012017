@@ -7,8 +7,7 @@ ____
 
 - [2.1 Ý nghĩa một vài tham số tùy chọn trong câu lệnh iptables](#concept-options)
 - [2.2 Xem rules và ý nghĩa các cột trong iptables](#watch-rules)
-- [2.3 Các thao tác với chain trong iptables](#execute-chain)
-- [2.4 Các thao tác với rule trong iptables](#execute-rule)
+- [2.3 Các câu lệnh hay được sử dụng trong iptables](#some-commands)
 - [Các nội dung khác](#content-others)
 
 ____
@@ -235,10 +234,9 @@ ____
 
         trong đó giá trị của `tables_name` có thể là tên của 1 trong 5 bảng của iptables.
 
-- ### <a name="execute-chain">2.3 Các thao tác với chain trong iptables</a>
-- ### <a name="execute-rule">2.4 Các thao tác với rule trong iptables</a>
+- ### <a name="some-commands">2.3 Các câu lệnh hay được sử dụng trong iptables</a>
 
-    Sẽ cập nhật sau
+    
 
 ____
 

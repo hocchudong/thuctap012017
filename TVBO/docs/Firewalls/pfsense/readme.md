@@ -45,3 +45,12 @@ Nội dung bao gồm
     - [7.3 Các bước thực hiện cấu hình cơ bản](docs/pfsense-squid.md#step-config)
     - [7.4 Các bước thực hiện cấu hình cản lọc request](docs/pfsense-squid.md#filter)
     - [7.5 Các bước thực hiện cấu hình chặn truy cập một số trang website](docs/pfsense-squid.md#block-website)
+
+- [8. Cách tạo ra rule để filter packet trong pfSense](docs/pfsense-rules.md)
+    - [8.1 Các khái niệm cần biết](docs/pfsense-rules.md#concepts)
+    - [8.2 Cách tạo ra một Aliases](docs/pfsense-rules.md#Aliases)
+    - [8.3 Cách tạo ra một rule NAT](docs/pfsense-rules.md#NAT)
+    - [8.4 Cách tạo ra một Virtual IP](docs/pfsense-rules.md#VIP-Address)
+    - [8.5 Cách tạo ra rule để filter packets](docs/pfsense-rules.md#rules)
+    - [8.6 Sử dụng tính năng Traffic Shaper khi tạo rule](docs/pfsense-rules.md#traffic)
+    - [8.7 Tạo rule firewall hoạt động theo lịch biểu](docs/pfsense-rules.md#schedule)

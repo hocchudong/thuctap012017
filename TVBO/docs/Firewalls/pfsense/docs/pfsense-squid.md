@@ -10,6 +10,8 @@ ____
 - [7.3 Các bước thực hiện cấu hình cơ bản](#step-config)
 - [7.4 Các bước thực hiện cấu hình cản lọc request](#filter)
 - [7.5 Các bước thực hiện cấu hình chặn truy cập một số trang website](#block-website)
+- [7.6 Các bước thực hiện cấu hình chặn truy cập trong một khoảng thời gian nào đó](#block-time)
+- [7.8 Các bước thực hiện cấu hình xác thực người dùng khi kết nối proxy](#proxy-au)
 - [Các nội dung khác](#content-others)
 
 ____
@@ -283,7 +285,113 @@ ____
 
                 ta hãy chọn `Advanced` đối với trình duyệt `FireFox`, chọn `Add Exception`hay `Continue Processing` đối với `Google Chrome` để có thể tiếp tục duyệt website bình thường.
 
-    Sẽ cập nhật thêm các phần tiếp theo
+- ### <a name="block-time">7.6 Các bước thực hiện cấu hình chặn truy cập trong một khoảng thời gian nào đó</a>
+
+    - Đây là tính năng cho phép chúng ta thực hiện cấu hình việc chặn truy cập có hiệu lực trong một khoảng thời gian nào đó. Các bước thực hiện như sau:
+
+        + Bước 1. Chọn menu `Services`, sau đó chọn `SquidGuard Proxy Filter`, tiếp tục chuyển sang tab `Times`. Đây là tab cho phép ta cấu hình chặn lọc có sự can thiệp của thời gian. Chọn `Add` để thêm mới một khoảng thời gian. Kết quả:
+
+            > ![squid-times.png](../images/squid-times.png)
+
+            tại đây ta thấy các phần có nội dung tương ứng như sau:
+
+            - `Name: tên của khoảng thời gian ta quy định
+            - `Values`: Ta có thể thấy 4 lựa chọn đó là:
+                - `Time type`: cho phép lựa chọn kiểu của khoảng thời gian. Bao gồm ngày trong tháng và thứ trong tuần.
+                - `Days`: cho phép lựa chọn thời gian là thứ trong tuần hoặc tất cả các thứ trong tuần.
+                - `Date or Date range`: cho phép ta nhập vào giá trị là một ngày trong tháng của năm hoặc một khoảng ngày. Ví dụ có thể nhập như sau:
+                    - Một ngày trong tháng của năm: `2017.12.31` hoặc `*.12.31`. Dấu * có thể hiểu là tất cả. Dữ liệu nhập vào theo định dạng YYYY/MM/DD.
+                    - Một khoảng ngày của năm: `2017.11.31-2017.12.31` hoặc `*.11.31-*.12.31`.
+                - `Time range`: cho phép ta nhập vào một khoảng thời gian. Ví dụ là `08:00-18:00`.
+            - `Add` thêm mới một khoảng thời gian. Phù hợp khi ta thực hiện chặn cần nhiều khoảng thời gian không liên tiếp.
+            - `Description`: Cho phép nhập mô tả về khoảng thời gian. Mục đích là để ta có thể hiểu được khoảng thời gian ta quy định có chức năng như thế nào.
+
+        + Bước 2. Giả sử, ta sẽ thực hiện chặn các trang website đã quy định ở nội dung trên với những yêu cầu đề ra như sau:
+
+            - Thực hiện chặn truy cập vào các ngày làm việc từ thứ 2 cho đến thứ 6.
+            - Thời gian từ 8:00 đến 12:00 và 13:30 đến 17:30.
+            - Trong giờ làm việc, ta chỉ được phép truy cập các trang website ngoại trừ Youtube, Facebook.
+            - Các thời gian khác, truy cập bình thường
+
+        + Bước 3. Ta thực hiện thêm các khoảng thời gian tương tự như hình sau:
+
+            > ![squid-time-new.png](../images/squid-time-new.png)
+
+            chọn `Add` để thêm một mốc thời gian khác. Chọn `Save` để lưu lại cấu hình.
+
+        + Bước 4. Chuyển sang tab `Target categories`. Ta sẽ thực hiện tạo ra một `categories` chưa danh sách các website bị chặn. Thực hiện lựa chọn các giá trị và điền thông tin tương tự như sau:
+
+            > ![squid-cate-new.png](../images/squid-cate-new.png)
+            
+            Khai báo website sẽ bị chặn theo `re-exp`:
+
+            > ![squid-cate-new-reg.png](../images/squid-cate-new-reg.png)
+
+            Lựa chọn tùy chọn chuyển hướng khi truy cập website bị chặn:
+
+            > ![squid-cate-new-redir.png](../images/squid-cate-new-redir.png)
+
+            chọn `Save` để lưu lại.
+
+        + Bước 5. Tiếp tục chuyển sang tab `Groups ACL`. Chọn `Add` để thêm mới một ACL (Access Control List). Thực hiện lựa chọn và điền các thông tin như sau:
+
+            - Tên của group ACL:
+
+                > ![squid-gacl-new.png](../images/squid-gacl-new.png)
+
+            - Nhập dải địa chỉ IP hoặc địa chỉ mạng hay địa chỉ IP mà ta sẽ thực hiện can thiệp vào chặn:
+
+                > ![squid-gacl-new-ip.png](../images/squid-gacl-new-ip.png)
+
+            - Thực hiện chọn mốc thời gian đã tạo ra:
+
+                > ![squid-gacl-new-time.png](../images/squid-gacl-new-time.png)
+
+            - Thực hiện lựa chọn `Target Rules` như sau:
+
+                > ![squid-gacl-new-target.png](../images/squid-gacl-new-target.png)
+
+                Chọn `Save` để lưu lại.
+
+        + Bước 6. Chuyển sang tab `Common ACL`. Ta sẽ thực hiện cấu hình mặc định chặn tất cả các website từ gói blacklists đã download, và `Target categories` đã tạo như sau:
+
+            > ![squid-comacl.png](../images/squid-comacl.png)
+
+            chọn `Save` để lưu lại cấu hình.
+
+        + Bước 7. Thực hiện chuyển sang tab `General settings`. Ta chọn `Apply` để chấp nhận thay đổi cấu hình:
+
+            > ![squid-apply.png](../images/squid-apply.png)
+
+
+        + Bước 8. Kiểm tra kết quả của cấu hình.
+
+
+- ### <a name="proxy-au">7.8 Các bước thực hiện cấu hình xác thực người dùng khi kết nối proxy</a>
+
+    - Chức năng này cho phép khi một client kết nối internet sử dụng proxy cung cấp bởi pfSense phải có tài khoản để xác thực thì mới được kết nối internet. Các bước thực hiện như sau:
+
+        + Bước 1. Tạo tài khoản người dùng bằng cách thực hiện chọn menu `System`, tiếp tục chọn `User Manager` rồi chọn `Add` để thêm mới một người dùng. Nhập thông tin tương tự như hình sau:
+
+            > ![squid-user-ca.png](../images/squid-user-ca.png)
+
+            trong đó `Password` là `guest`. Chọn `Save` để lưu lại thông tin.
+
+        + Bước 2. Thực hiện cấu hình xác thực quá trình proxy. Ta tiến hành chọn menu `Services` rồi chọn `Squid Proxy Server`, thực hiện chuyển sang tab `Authentication`. Sau đó thực hiện chọn như hình sau:
+
+            > ![squid-user-ca-local.png](../images/squid-user-ca-local.png)
+
+            chọn `Save` để lưu lại.
+
+        + Bước 3. Kiểm tra kết quả:
+
+            - Trên máy client có trỏ DNS và thực hiện proxy đến địa chỉ IP trong LAN của pfSense. Ta thực hiện truy cập một địa chỉ website. Kết quả ta nhận được như sau:
+
+                > ![squid-au-done.png](../images/squid-au-done.png)
+
+                thực hiện nhập thông tin của người dùng guest. Ta nhận thấy client có thể truy cập internet một cách bình thường.
+
+
 ____
 
 # <a name="content-others">Các nội dung khác</a>

@@ -10,6 +10,13 @@
 		- [3.2.1.TCP matches](#3.2.1)
 		- [3.2.2.UDP matches](#3.2.2)
 		- [3.2.3.ICMP matches](#3.2.3)
+	- [3.2.Implicit matches](#3.2)
+		- [3.3.4.Multiport match](#3.2.4)
+		- [3.3.5.Owner match](#3.2.5)
+		- [3.3.6.State match](#3.2.6)
+		- [3.3.7.TOS match](#3.2.7)
+		- [3.3.8.TTL match](#3.2.8)
+	- [3.4.Unclean match](#3.4)
 
 <a name="1"></a>
 # 1.Cú pháp
@@ -97,6 +104,88 @@ VD: địa chỉ IP, port, giao thức hoặc bất cứ điều gì.
 |Math|Ví dụ|Ý nghĩa|
 |---|---|---|
 |--icmp-type|iptables -A INPUT -p icmp --icmp-type 8|Math này được sử dụng để chỉ ICMP type phù hợp. ICMP type có thể được xác định bằng giá trị số hoặc tên của chúng. Giá trị số được chỉ định trong RFC 792. Để xem danh sách các gái trị tên ICMP, thực hiện lệnh **iptables --protocol icmp --help**. Match này có thể được đảo ngược với dấu **!**, **--icmp-type ! 8**. Lưu ý: 1 số ICMP type đã lỗi thời.|
+
+<a name="3.3"></a>
+## 3.3.Explicit matches
+\- Explicit matches là những kết hợp đặc biệt với option `-m` hoặc `--match`. State matches, ví dụ, yêu cầu chỉ thị `-m state`. Một số liên kết với giao thức cụ thể, 1 số không liên kết với bất kỳ giao thức nào - ví dụ trạng thái kết nối. Có thể là **NEW** (packet đầu tiên của 1 kết nối chưa được thiết lập), **ESTABLISHED** (1 kết nối đã được đăng ký trong kernel), **RELATED** (1 kết nối mới được tạo bởi 1 kết nối cũ, 1 established).  
+
+<a name="3.3.1"></a>
+### 3.3.1.Limit match
+\- Phương pháp này dựa trên token bucket filter. Có thể mô tả như sau:  
+Có 1 thúng chứa X token, thì mỗi request đến và được response làm thùng giảm đi 1 token, tức là còn (X-1) token. Sau khi hết token, các request sẽ không được trả lời.  
+\- Ví dụ thiết lập: `--limit 3/minute --limit-burst 5` , có nghĩa là thùng chứa tối đa 5 token và sau mỗi (60s/3=20s), thùng sẽ nạp thêm 1 token.  
+- **Option**  
+
+|Math|--limit|
+|---|---|
+|Ví dụ|iptables -A INPUT -m limit --limit 3/hour|
+|Giải thích|Câu lệnh có nghĩa là mỗi 20 phút, thùng chứa sẽ nạp thêm 1 token. Bạn có thể chỉ định 1 số với option đơn vị thời gian. Các đơn vị thời gian cho phép: **/second /minute /hour /day**. Giá trị mặc định là 3 mỗi giờ (**3/hour**).|
+|Match|--limit-burst|
+|Ví dụ|iptables -A INPUT -m limit --limit-burst 5|
+|Giải thích|Câu lệnh có nghĩa thùng chứa có tối đa 5 token.|
+
+\- VD:  
+```
+iptables -A INPUT -p icmp -s 10.10.10.0/24 -d 10.10.10.11 -m limit --limit 3/m --limit-burst 5 -j ACCEPT
+```
+
+### 3.3.2.MAC match
+\- MAC match có thể được sư dụng để khớp với packets dựa trên địa chỉ MAC nguồn.  
+\- Để sử dụng module này, bắt buộc phải đì kèm option `-m match`.  
+\- MAC match chỉ được sử trong các chain **PREROUTING**, **FORWARD** và **INPUT** và không nơi nào khác.  
+\- **Option**  
+|Match|--mac-source|
+|---|---|
+|VD|iptables -A INPUT -m mac --mac-source 00:00:00:00:00:01|
+|Giải thích|Match này có thể sử dụng với dấu ! để chỉ sự đảo ngược, ví dụ như **--mac-source ! 00:00:00:00:00:01**|
+
+<a name="3.3.3"></a>
+### 3.3.3.March match
+Tham khảo:  http://www.faqs.org/docs/iptables/matches.html#EXPLICITMATCHES  
+
+<a name="3.3.4"></a>
+### 3.3.4.Multiport match
+\- **Multiport** match được sử dụng để chỉ định nhiều ports hoặc dải ports.  
+\- Chú ý:  
+Bạn không thể sử dụng kết hợp port match và multiport match tại cùng 1 lúc, ví dụ:  
+`--sport 1024:63353 -m multiport --dport 21,23,80`. Điều nảy sẽ không làm việc, đơn giản, nếu bạn làm vậy, iptables sẽ chỉ xét đến các thẻ đầu tiên trong rule, và bỏ qua multiport.  
+\- **Option**  
+|Match|Ví dụ|Ý nghĩa|
+|---|---|---|
+|--source-port|iptables -A INPUT -p tcp -m multiport --source-port 22,53,80,110|Match này được sử dụng cho multiple source ports. Có thể chỉ định tối đa 15 ports. Các ports phải phân cách nhau bởi dấu phẩy. Match này chỉ sử dụng với **-p tcp** hoặc **-p udp**.|
+|--destination-port|iptables -A INPUT -p tcp -m multiport --destination-port 22,53,80,110|Match này được sử dụng cho multiple source ports. Có thể chỉ định tối đa 15 ports. Các ports phải phân cách nhau bởi dấu phẩy. Match này chỉ sử dụng với **-p tcp** hoặc **-p udp**.|
+|--port|iptables -A INPUT -p tcp -m multiport --port 22,53,80,110|Match được sử dụng để khớp các packets dựa trên destination port và source port. Có thể chỉ định tối đa 15 ports. Match này chỉ sử dụng với **-p tcp** hoặc **-p udp**. Chú ý: match **--port** chỉ phù hợp với các packet có source port và destination port như nhau. VD: source port 80 và destiantion port 80.|
+
+<a name="3.3.5"></a>
+### 3.3.5.Owner match
+Tham khảo:  http://www.faqs.org/docs/iptables/matches.html#EXPLICITMATCHES  
+
+<a name="3.3.6"></a>
+### 3.3.6.State match
+\- Phần mở rộng match state được sử dụng để kết hợp với connection tracking code trong kernel. State match truy cập trạng thái theo dõi kết nối của packet từ conntracking machine. Trong mọi trường hợp, sẽ có timeout mặc định cho kết nối và sau đó sẽ bị hủy từ connection tracking database.  
+\- State machine  
+|Match|--state|
+|---|---|
+|VD|iptables -A INPUT -m state --state RELATED,ESTABLISHED|
+|Giải thích|Có 4 trạng thái có thể được sử dụng INVALID, ESTABLISHED, NEW và RELATED.|
+
+<a name="3.3.7"></a>
+### 3.3.7.TOS match
+Tham khảo:  http://www.faqs.org/docs/iptables/matches.html#EXPLICITMATCHES  
+
+<a name="3.3.8"></a>
+### 3.3.8.TTL match
+Tham khảo:  http://www.faqs.org/docs/iptables/matches.html#EXPLICITMATCHES 
+
+
+<a name="3.4"></a>
+## 3.4.Unclean match
+Tham khảo:  http://www.faqs.org/docs/iptables/matches.html#UNCLEANMATCH  
+
+
+
+
+
 
 
 

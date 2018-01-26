@@ -1,15 +1,46 @@
 # LAB
 
+# MỤC LỤC
+- [1.LAB1](#1)
+	- [1.1.Mô hình](#1.1)
+	- [1.2.Mục đích](#1.2)
+	- [1.3.Cấu hình](#1.3)
+- [2.LAB 2](#2)
+	- [2.1.Mô hình](#2.1)
+	- [2.2.Mục đích](#2.2)
+	- [2.3.Cấu hình](#2.3)
+		- [a.Trên Client](#2.3.a)
+		- [b.Trên Server](#2.3.b)
+- [3.LAB 3](#3)
+	- [3.1.Mô hình](#3.1)
+	- [3.2.Mục đích](#3.2)
+	- [3.3.Cấu hình](#3.3)
+		- [a.Trên Client](#3.3.a)
+		- [b.Trên Backend1](#3.3.b)
+		- [c.Trên Backend2](#3.3.c)
+		- [d.Trên Server](#3.3.d)
+	- [3.4.Demo](#3.4)
+- [4.LAB 4](#4)
+	- [4.1.Mô hình](#4.1)
+	- [4.2.Mục đích](#4.2)
+	- [4.3.Cấu hình](#4.3)
+		- [a.Trên Client](#4.3.a)
+		- [b.Trên Backend1](#4.3.b)
+		- [c.Trên Backend2](#4.3.c)
+		- [d.Trên Server](#4.3.d)
+	- [4.4.Demo](#4.4)
 
-
-
+<a name="1"></a>
 # 1.LAB1
+
+<a name="1.1"></a>
 ## 1.1.Mô hình
 <img src="../images/lab1.png" />
 
 \- Client, Server cài hệ điều hành Ubuntu Server 16.04.  
 \- Cấu hình iptables tại Server.  
 
+<a name="1.2"></a>
 ## 1.2.Mục đích
 \- Mặc định, DROP INPUT.  
 \- Mặc định, ACCEPT OUTPUT.  
@@ -19,6 +50,7 @@
 \- ACCEPT kết nối Ping với 5 lần mỗi phút từ mạng LAN.  
 \- ACCEPT kết nối SSH từ trong mạng LAN.  s
 
+<a name="1.3"></a>
 ## 1.3.Cấu hình
 \- DROP INPUT, ACCEPT OUTPUT và DROP FORWARD:  
 ```
@@ -54,12 +86,17 @@ iptables -A INPUT -p tcp -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -p udp -m state --state ESTABLISHED,RELATED -j ACCEPT
 ```
 
+<a name="2"></a>
 # 2.LAB 2
+
+<a name="2.1"></a>
 ## 2.1.Mô hình
 <img src="../images/lab2.png" />
 
 \- Client, Server cài hệ điều hành Ubuntu Server 16.04.  
 \- Cấu hình iptables tại Server.  
+
+<a name="2.2"></a>
 ## 2.2.Mục đích
 \- Mặc định, DROP INPUT.  
 \- Mặc định, ACCEPT OUTPUT.  
@@ -70,9 +107,14 @@ iptables -A INPUT -p udp -m state --state ESTABLISHED,RELATED -j ACCEPT
 \- ACCEPT kết nối SSH từ trong mạng LAN.  
 \-  ACCEPT Outgoing gói tin thông qua Server từ mạng LAN (10.10.10.0/24) và nat địa chỉ nguồn của gói tin.  
 
+<a name="2.3"></a>
 ## 2.3.Cấu hình
+
+<a name="2.3.a"></a>
 ### a.Trên Client
 - Cấu hình IP như mô hình, gateway là 10.10.10.11.
+
+<a name="2.3.b"></a>
 ### b.Trên Server
 - Kích hoạt iptables fordward packet sang máy khác, ta cần sửa file `/etc/sysctl.conf`:  
 ```
@@ -126,7 +168,10 @@ iptables -A FORWARD -i ens38 -o ens33 -j ACCEPT
 iptables -t nat -A POSTROUTING -o ens33 -s 10.10.10.0/24 -j MASQUERADE
 ```
 
+<a name="3"></a>
 # 3.LAB 3
+
+<a name="3.1"></a>
 ## 3.1.Mô hình
 <img src="../images/lab3.png" />
 
@@ -135,6 +180,7 @@ iptables -t nat -A POSTROUTING -o ens33 -s 10.10.10.0/24 -j MASQUERADE
 \- Trên Backend1, cài Web server (apache2) lắng nghê trên port 80.  
 \- Trên Backend2, cài Web server (apache2) lắng nghê trên port 443.  
 
+<a name="3.2"></a>
 ## 3.2.Mục đích
 \- Mặc định, DROP INPUT.  
 \- Mặc định, ACCEPT OUTPUT.  
@@ -149,10 +195,14 @@ Nhưng DROP gói tin từ 172.16.69.2.
 Nhưng DROP gói tin từ 10.10.10.101.  
 \-  ACCEPT Outgoing Packets thông qua Server từ mạng LAN (10.10.10.0/24) và nat địa chỉ nguồn của packet.  
 
+<a name="3.3"></a>
 ## 3.3.Cấu hình
+
+<a name="3.3.a"></a>
 ### a.Trên Client
 \- Cấu hình IP như mô hình, gateway là 10.10.10.11.  
 
+<a name="3.3.b"></a>
 ### b.Trên Backend1
 \- Cấu hình IP như mô hình, gateway là 10.10.10.11.  
 \- Cài đặt apache2:  
@@ -165,6 +215,7 @@ Nhưng DROP gói tin từ 10.10.10.101.
 <h1>This is Backend1</h1>
 ```
 
+<a name="3.3.c"></a>
 ### c.Trên Backend2
 \- Cấu hình IP như mô hình, gateway là 10.10.10.11.  
 \- Cài đặt apache2:  
@@ -184,6 +235,7 @@ a2ensite default-ssl.conf
 systemctl restart apache2
 ```
 
+<a name="3.3.d"></a>
 ### d.Trên Server 
 - Kích hoạt iptables fordward packet sang máy khác, ta cần sửa file `/etc/sysctl.conf`:  
 ```
@@ -249,6 +301,7 @@ iptables -A FORWARD -i ens38 -o ens33 -j ACCEPT
 iptables -t nat -A POSTROUTING -o ens33 -s 10.10.10.0/24 -j SNAT --to-source 10.10.10.11
 ```
 
+<a name="3.4"></a>
 ## 3.4.Demo
 \- Truy cập vào IP 172.16.69.11, port 80 của Server  
 <img src="../images/lab4.png" />
@@ -256,7 +309,10 @@ iptables -t nat -A POSTROUTING -o ens33 -s 10.10.10.0/24 -j SNAT --to-source 10.
 \- Truy cập vào IP 172.16.69.11, port 443 của Server  
 <img src="../images/lab5.png" />
 
+<a name="4"></a>
 # 4.LAB 4
+
+<a name="4.1"></a>
 ## 4.1.Mô hình
 <img src="../images/lab6.png" />
 
@@ -266,6 +322,7 @@ iptables -t nat -A POSTROUTING -o ens33 -s 10.10.10.0/24 -j SNAT --to-source 10.
 \- Trên Backend1, cài SSH lắng nghê trên port 22.  
 \- Trên Backend2, cài Web server (apache2) lắng nghê trên port 80.  
 
+<a name="4.2"></a>
 ## 4.2.Mục đích
 \- Mặc định, DROP INPUT.  
 \- Mặc định, ACCEPT OUTPUT.  
@@ -278,10 +335,14 @@ FORWARD gói tin đến port 443 trên ens33 đến port tương tự trên Back
 \- ACCEPT kết nối SSH từ trong mạng LAN.  
 \-  ACCEPT Outgoing Packets thông qua Server từ mạng LAN (10.10.10.0/24) và nat địa chỉ nguồn của packet.  
 
+<a name="4.3"></a>
 ## 4.3.Cấu hình
+
+<a name="4.3.a"></a>
 ### a.Trên Client
 \- Cấu hình IP như mô hình, gateway là 10.10.10.11.  
 
+<a name="4.3.b"></a>
 ### b.Trên Backend1
 \- Cấu hình IP như mô hình, gateway là 10.10.10.11.  
 \- Cài đặt SSH daemon:  
@@ -289,6 +350,7 @@ FORWARD gói tin đến port 443 trên ens33 đến port tương tự trên Back
 # apt install ssh
 ```
 
+<a name="4.3.c"></a>
 ### c.Trên Backend2
 \- Cấu hình IP như mô hình, gateway là 10.10.10.11.  
 \- Cài đặt apache2:  
@@ -301,6 +363,7 @@ FORWARD gói tin đến port 443 trên ens33 đến port tương tự trên Back
 <h1>This is Backend2</h1>
 ```
 
+<a name="4.3.d"></a>
 ### d.Trên Server 
 \- Kích hoạt iptables fordward packet sang máy khác, ta cần sửa file `/etc/sysctl.conf`:  
 ```
@@ -366,7 +429,8 @@ iptables -A FORWARD -i ens38 -o ens33 -j ACCEPT
 iptables -t nat -A POSTROUTING -o ens33 -s 10.10.10.0/24 -j SNAT --to-source 10.10.10.11
 ```
 
-## 3.4.Demo
+<a name="4.4"></a>
+## 4.4.Demo
 \- Truy cập vào IP 172.16.69.11, port 80 của Server  
 <img src="../images/lab7.png" />
 

@@ -15,4 +15,7 @@
 - [State machine](docs/State-machine.md)
 
 # THỰC HÀNH
-- [LAB](docs/LAB.md)
+- [LAB1](docs/LAB.md#1)
+- [LAB2](docs/LAB.md#2)
+- [LAB3](docs/LAB.md#3)
+- [LAB4](docs/LAB.md#4)

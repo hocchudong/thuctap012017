@@ -10,12 +10,15 @@
 		- [3.2.1.TCP matches](#3.2.1)
 		- [3.2.2.UDP matches](#3.2.2)
 		- [3.2.3.ICMP matches](#3.2.3)
-	- [3.2.Implicit matches](#3.2)
-		- [3.3.4.Multiport match](#3.2.4)
-		- [3.3.5.Owner match](#3.2.5)
-		- [3.3.6.State match](#3.2.6)
-		- [3.3.7.TOS match](#3.2.7)
-		- [3.3.8.TTL match](#3.2.8)
+	- [3.3.Explicit matches](#3.3)
+		- [3.3.1.Limit match](#3.3.1)
+		- [3.3.2.MAC match](#3.3.2)
+		- [3.3.3.March match](#3.3.3)
+		- [3.3.4.Multiport match](#3.3.4)
+		- [3.3.5.Owner match](#3.3.5)
+		- [3.3.6.State match](#3.3.6)
+		- [3.3.7.TOS match](#3.3.7)
+		- [3.3.8.TTL match](#3.3.8)
 	- [3.4.Unclean match](#3.4)
 
 <a name="1"></a>
@@ -134,6 +137,7 @@ iptables -A INPUT -p icmp -s 10.10.10.0/24 -d 10.10.10.11 -m limit --limit 3/m -
 \- Để sử dụng module này, bắt buộc phải đì kèm option `-m match`.  
 \- MAC match chỉ được sử trong các chain **PREROUTING**, **FORWARD** và **INPUT** và không nơi nào khác.  
 \- **Option**  
+
 |Match|--mac-source|
 |---|---|
 |VD|iptables -A INPUT -m mac --mac-source 00:00:00:00:00:01|
@@ -150,6 +154,7 @@ Tham khảo:  http://www.faqs.org/docs/iptables/matches.html#EXPLICITMATCHES
 Bạn không thể sử dụng kết hợp port match và multiport match tại cùng 1 lúc, ví dụ:  
 `--sport 1024:63353 -m multiport --dport 21,23,80`. Điều nảy sẽ không làm việc, đơn giản, nếu bạn làm vậy, iptables sẽ chỉ xét đến các thẻ đầu tiên trong rule, và bỏ qua multiport.  
 \- **Option**  
+
 |Match|Ví dụ|Ý nghĩa|
 |---|---|---|
 |--source-port|iptables -A INPUT -p tcp -m multiport --source-port 22,53,80,110|Match này được sử dụng cho multiple source ports. Có thể chỉ định tối đa 15 ports. Các ports phải phân cách nhau bởi dấu phẩy. Match này chỉ sử dụng với **-p tcp** hoặc **-p udp**.|
@@ -164,6 +169,7 @@ Tham khảo:  http://www.faqs.org/docs/iptables/matches.html#EXPLICITMATCHES
 ### 3.3.6.State match
 \- Phần mở rộng match state được sử dụng để kết hợp với connection tracking code trong kernel. State match truy cập trạng thái theo dõi kết nối của packet từ conntracking machine. Trong mọi trường hợp, sẽ có timeout mặc định cho kết nối và sau đó sẽ bị hủy từ connection tracking database.  
 \- State machine  
+
 |Match|--state|
 |---|---|
 |VD|iptables -A INPUT -m state --state RELATED,ESTABLISHED|

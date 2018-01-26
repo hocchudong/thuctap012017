@@ -29,6 +29,12 @@
 		- [c.Trên Backend2](#4.3.c)
 		- [d.Trên Server](#4.3.d)
 	- [4.4.Demo](#4.4)
+- [5.LAB5: DMZ](#4)
+	- [5.1.Mô hình](#5.1)
+	- [5.2.Mục đích](#5.2)
+	- [5.3.Cấu hình](#5.3)
+
+
 
 <a name="1"></a>
 # 1.LAB1
@@ -436,6 +442,77 @@ iptables -t nat -A POSTROUTING -o ens33 -s 10.10.10.0/24 -j SNAT --to-source 10.
 
 \- SSH vào IP 172.16.69.11, port 22 của Server  
 <img src="../images/lab8.png" />
+
+
+<a name="5"></a>
+# 5.LAB5: DMZ
+
+<a name="5.1"></a>
+## 5.1.Mô hình
+<img src="../images/lab9.png" />
+
+\- Client1, Client2, WebServer và Firewall cài hệ điều hành Ubuntu Server 16.04.  
+\- Cấu hình iptables tại Firewall.  
+\- Trên WebServer, cài Web server (apache2) lắng nghê trên port 80.  
+
+<a name="5.2"></a>
+## 5.2.Mục đích
+\- Mặc định, DROP INPUT.  
+\- Mặc định, ACCEPT OUTPUT.  
+\- Mặc định, DROP FORWARD.  
+\- ACCEPT Established Connection.  
+\- FORWARD gói tin đến port 80 trên ens33 sang port ens38 và đến port 80 trên Webserver.  
+\- Cho phép 1 máy (Client1) trong dải `10.10.20.0/24` quản trị Webserver.  
+\- Cho phép các máy trong dải `10.10.20.0/24` kết nối ra Internet.  
+
+<a name="5.3"></a>
+## 5.3.Cấu hình
+\- Mặc định, DROP INPUT.  
+Mặc định, ACCEPT OUTPUT.  
+Mặc định, DROP FORWARD.  
+```
+iptables -P INPUT DROP
+iptables -P OUTPUT ACCEPT
+iptables -P FORWARD DROP
+```
+
+\- ACCEPT Established Connection.  
+```
+iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+```
+
+\- FORWARD gói tin đến port 80 trên ens33 sang port ens38 và đến port 80 trên Webserver.  
+```
+iptables -A FORWARD -i ens33 -o ens38 -p tcp -d 10.10.10.51 --dport 80 -j ACCEPT
+iptables -t nat -A PREROUTING -i ens33 -p tcp -d 172.16.69.11 --dport 80 \
+	-j DNAT --to-destination 10.10.10.51
+iptables -t nat -A POSTROUTING -o ens38 -p tcp -d 10.10.10.51 --dport 80 \
+	-j SNAT --to-source 10.10.10.11
+```
+
+\- Cho phép 1 máy (Client1) trong dải `10.10.20.0/24` quản trị Webserver.  
+```
+iptables -A FORWARD -m state --state NEW -i ens39 -o ens38 -p tcp -s 10.10.20.101 -d 10.10.10.51 \
+	--dport 22 -j ACCEPT
+```
+
+\- Cho phép các máy trong dải `10.10.20.0/24` kết nối ra Internet.  
+```
+iptables -A FORWARD -m state --state NEW -i ens39 -o ens33 -j ACCEPT
+iptables -t nat -A POSTROUTING -o ens33 -s 10.10.20.0/24 \
+	-j SNAT --to-source 172.16.69.11
+```
+
+
+
+
+
+
+
+
+
+
 
 
 

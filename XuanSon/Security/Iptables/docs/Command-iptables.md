@@ -132,6 +132,7 @@ Có 1 thúng chứa X token, thì mỗi request đến và được response là
 iptables -A INPUT -p icmp -s 10.10.10.0/24 -d 10.10.10.11 -m limit --limit 3/m --limit-burst 5 -j ACCEPT
 ```
 
+<a name="3.3.2"></a>
 ### 3.3.2.MAC match
 \- MAC match có thể được sư dụng để khớp với packets dựa trên địa chỉ MAC nguồn.  
 \- Để sử dụng module này, bắt buộc phải đì kèm option `-m match`.  

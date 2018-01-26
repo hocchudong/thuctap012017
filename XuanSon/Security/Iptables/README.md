@@ -19,3 +19,4 @@
 - [LAB2](docs/LAB.md#2)
 - [LAB3](docs/LAB.md#3)
 - [LAB4](docs/LAB.md#4)
+- [LAB5](docs/LAB.md#5)

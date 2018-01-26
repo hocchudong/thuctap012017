@@ -1,7 +1,14 @@
 # State machine
 
 # MỤC LỤC
-
+- [1.Giới thiệu](#1)
+- [2.Conntrack entries](#2)
+- [3.User-land states](#3)
+- [4.TCP connections](#4)
+- [5.UDP connections](#5)
+- [6.ICMP connections](#6)
+- [7.Default connections](#7)
+- [8.Complex protocols và connection tracking](#8)
 
 
 <a name="1"></a>
@@ -16,7 +23,7 @@ VD: UDP streams thường được xác định duy nhất bởi địa chỉ IP
 - Nếu packet không phải do chính server tạo ra, state **NEW** sẽ được thiết lập bởi chain **PREROUTING**.
 
 <a name="2"></a>
-## 2.Conntrack entries
+# 2.Conntrack entries
 \- Chúng ta có thể đọc conntrack entry trong file `/proc/net/ip_conntrack`, file này chứa danh sách tất cả các mục hiện tại trong cơ sở dữ liệu conntrack của bạn. Nếu bạn có module ip_conntrack được cài đặt, bạn có thể thấy file có `/proc/net/ip_conntrack` nội dung như sau:  
 ```
 tcp      6 117 SYN_SENT src=192.168.1.6 dst=192.168.1.9 sport=32775 \

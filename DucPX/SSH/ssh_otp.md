@@ -32,8 +32,11 @@ Do you want authentication tokens to be time-based (y/n) y
 https://www.google.com/chart?chs=200x200&chld=M|0&cht=qr&chl=otpauth://totp/root@ubuntu%3Fsecret%3DDT3E3KRF4ITYZLN4
 ```
 
+- Ta thu được mã vạch sau:
+
 	![](../images/ssh_otp.png)
 	
+
 ```sh
 Your new secret key is: DT3E3KRF4ITYZLN4
 Your verification code is 286002

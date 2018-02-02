@@ -91,7 +91,7 @@ Các ví dụ về giao diện cho các ứng dụng TCP/IP là Window Sockets v
 
 Lớp Application có trách nhiệm tương đương như lớp Session, Presentation và lớp Application trong mô hình OSI.
 
-## TCP/IP cỏe Protocols
+## TCP/IP core Protocols
 
 Các giao thức thành phần TCP/IP được cài đặt trên hệ điều hành mạng là một chuỗi các giao thức kết nối được gọi là giao thức lõi của TCP/IP. Tất cả các ứng dụng và giao thức khác trong bộ giao thức TCP/IP đều dựa trên các dịch vụ cơ bản được cung cấp bởi các giao thức: IP, ARP, ICMP, IGMP, TCP và UDP.
 
@@ -189,4 +189,124 @@ Bản tin IGMP có 3 form:
 
 - **Host Membership Report**: Khi một host tham gia vào nhóm, nó sẽ gửi một bản tin IGMP Host Membership Report tới tất cả các host trong địa chỉ IP multicast (224.0.0.1) hoặc tới một địa chỉ IP multicast cụ thể để thông báo nó sẽ là thành viên của nhóm đang tham chiếu tới địa chỉ IP multicast đó. Một host có thể xác định các nguồn cụ thể từ lưu lượng multicast là cần thiết. 
 
+- **Host Membership Query**: Khi một router thăm dò một mạng để đảm bảo rằng có các thành viên của một nhóm host cụ thể, nó gửi một bản tin IGMP Host Membership Query tới tất cả các host có địa chỉ IP multicast. Nếu không có phản hồi nào cho việc thăm dò sau vài lần, router sẽ giả định rằng không có thành viên của nhóm trong mạng đó và ngừng quảng bá thông tin nhóm multicast đó cho các router khác. 
 
+- **Group Leave**: Khi một host không còn quan tâm đến việc nhận lưu lượng multicast được gửi đến từ một IP multicast cụ thể và nó đã gửi đi bản tin IGMP Host Membership Report trong phản hồi một IGMP Host Membership Query, nó gửi một bản tin IGMP Group Leave tới địa chỉ IP multicast cụ thể. Local router xác nhận rằng host gửi IGMP Group Leave là thành viên cuối cùng của nhóm cho địa chỉ IP multicast trên subnet đó. Nếu không cso phản hồi thăm dò sau khi thăm dò vài lần, router giả định rằng không còn thành viên nào trong nhóm trên subnet đó và ngừng quảng bá thông tin multicast tới các router khác.
+
+Với IP multicast qua các router trong một mạng, các giao thức định tuyến multtcast được sử dụng để truyền thông tin các nhóm host để mỗi router hỗ trợ chuyển tiếp multicast biết được mạng nào đang có thành viên của nhóm nào. IGMP được định nghĩa trong RFCs 1112 và 2236.
+
+### TCP 
+
+TCP là dịch vụ truyền tin cậy và hướng kết nối. Dữ liệu được truyền trong các segment. Hướng kết nối có nghĩa là một kết nối phải được thiết lập trước khi các host trao đổi dữ liệu. Tin cậy đạt được bằng cách đánh số thứ tự trên mỗi segment được truyền đi, một Acknowledgment được sử đụng dể xác nhận rằng dữ liệu đã được nhận. Với mỗi segment được gửi, host nhận được phải gửi về một ACK xác nhận trong một khoảng thời gian xác định cho việc byte đã nhận được. Nếu không nhận được ACK, dữ liệu sẽ được gửi lại. TCP được định nghĩa trogn RFC 793.
+
+TCP sử dụng kết nối byte-stream, trong đó, dữ liệu trong TCP segment được xử lý như một dãy các byte không có ranh giới dữ liệu. Bảng sau mô tả các trường chính trong TCP header:
+
+| Trường | Chức năng |
+|--------|-----------|
+|Source Port | Cổng TCP của host gửi. |
+| Destination Port | Cổng TCP của host đích. |
+| Sequence Number | Số thứ tự của byte đầu tiên của dữ liệu trong TCP segment. |
+| Acknowledgment Number | Số thử tự của byte mà người gửi mong muốn được nhận tiếp từ phía bên kia của kết nối. |
+| Window | Kích thước hiện tại của bộ đệm TCP trên host gửi TCP segment này để lưu các segment đang đến. |
+| TCP checksum | Xác nhận sự toàn vẹn bit dữ liệu của TCP header và TCP data. |
+
+#### **TCP port**
+
+TCP port cung cấp vị trí cụ thể để truyền các TCP segment. Số hiệu port dưới 1024 là các port đã được biết và đã được đăng kí bởi IANA (Internet Assigned Numbers Authority). bảng sau liệu kê một số TCP port đã sử dụng:
+
+| TCP Port Number | Mô tả |
+|-----------------|-------|
+|20 | FTP (kênh truyền data)|
+|21 | FTP (kênh điều khiển) |
+| 23 | Telnet |
+| 80 | HTTP được sử dụng cho WWW |
+| 139 | dịch vụ của NetBIOS |
+
+#### TCP three-way handshake (bắt tay 3 bước)
+
+Một kết nối TCP được thiết lập thông qua quá trình bắt tay 3 bước. Mục đích của bắt tay 3 bước là đồng bộ số sequence number và ACK number giữa cả 2 bên kết nối và trao đổi kích thước cửa sổ (window) hoặc sử dụng kích thước cửa sổ lớn hơn hoặc TCP timestamps. Các bước xử lý như sau:
+
+1. Bắt đầu thiết lập kết nối TCP, thường là một client, gửi một TCP segment tới server với một Sequence Number cho kết nối và một kích thước cửa sổ ban đầu ứng với kích thước bộ đệm của client để lưu các segment đến từ server. 
+
+2. Phản hồi của kết nối TCP, thường là một server, gửi trả lại một TCP segment chứa số Sequence Number lựa chọn ban đầu, một ACK ứng với Sequence Number của client, và kích thước cửa sổ ban đầu được sinh ra ứng với kích thước bộ đệm mà server lưu các segment đang đến từ client. 
+
+3. Phía đầu tiên gửi một TCP segment tới server chứa một ACK của Sequence Number của server. 
+
+
+TCP sử dụng quá trình tương tự để xử lý đóng kết thúc kết nối. Việc này đảm bảo cho các host các bên đã hoàn thành truyền kết nối và tất cả data đều đã được nhận. 
+
+### UDP
+
+UDP cung cấp dịch vụ datagram không hướng kết nối mà cho phép sự không tin cậy nhưng truyền tổng lực (best-effort) các bản tin dữ liệu cần truyền đi. Điều này nghĩa là không có datagram cùng như không có cơ chế đánh thứ tự gói tin để việc truyền tin được đảm bảo. UDP không phục hồi lại dữ liệu đã mất bằng cách truyền lại. UDP được định nghĩa trong RFC 768.
+
+UDP được sử dụng bưởi các ứng dụng mà không yêu cầu ACK cho những dữ liệu đã nhận được và thường truyền số lượng nhỏ dữ liệu trong cùng một thời điểm. NetBISO name service, NetBIOS datagram service, và SNMP là các dịch vụ và ứng dụng điển hình sử dụng UDP. Bảng sau mô tả các trường chính trong UDP header:
+
+| Tên trường | Chức năng |
+|------------|-----------|
+| Source Port | UDP port của host gửi |
+| Destination Port | UDP port của host đích |
+|UDP checksum | Xác nhận độ toàn vẹn dữ liệu mức bit của UDP header và UDP  data |
+
+**UDP port**
+
+Để sử dụng UDP, một ứng dụng phải cung cấp địa chỉ IP và UDP port của ứng dụng đích cần gửi đến. Một port cung cấp vị trí cho việc gửi bản tin. Các chức năng của một port như là một hàng đợi bản tin đa kênh, nghĩa là nó có thể nhận nhiều bản tin trong cùng một thời điểm. Mọi port được định nghĩa bởi một số hiệu duy nhất. Quan trọng là các UDP port khác biệt và phân tách so với TCP port mặc dù một vài trong số chúng sử dụng port giống nhau. Bảng sau liệt kê một số UDP port đã biết:
+
+| UDP port Number | Mô tả |
+| 53 | Dành cho dịch vụ truy vấn DNS |
+| 69 | Giao thức truyền file TFTP |
+| 137 | dịch vụ NetBIOS name |
+| 138 | NetBIOS datagram service |
+| 161 | SNMP |
+
+
+## TCP/IP Application Interfaces
+
+Với các ứng dụng truy để cập các dịch vụ được cấp bởi các giao thức TCP/IP core theo cách tiêu chuẩn, hệ điều hành mạng như Windows Server 2003 thực hiện các giao diện lập trình ứng dụng (API) tiêu chuẩn có sẵn. Các API là các bộ chức năng và các lệnh lập trình được gọi bưởi code ứng dụng để thực hiện chức năng mạng. Ví dụ, một ứng dụng trình duyệt Web kết nối tới Web site cần truy cập vào dịch vụ thiết lập kết nối của TCP.
+
+Hình sau cho thầy 2 thành phần chung của TCP/IP API, Windows Socket và NetBIOS, và quan hệ của chúng :
+
+### Các API cho TCP/IP 
+
+![img](./images/3.2.png)
+
+#### **Windows Sockets Interface**
+
+Windows Socket API là một chuẩn API dưới quyền hệ điều hành Windows Server 2003 cho các ứng dụng sử dụng TCP và UDP. Các ứng dụng được viết cho Windows Sockets API chạy trên nhiều phiên bản của TCP/IP, các tiện ích TCP/IP và dịch vụ SNMP là các ví dụ về các ứng dụng được viết cho Windows Socket interface.
+
+Windows Socket cung cấp các dịch vụ cho phép các ứng dụng tìm được port cụ thể và địa chỉ IP trên một host, khởi tạo và chấp nhận một kết nối, gửi và nhận dữ liệu, và đóng một kết nối. Có 2 kiểu socket: 
+
+- Stream socket cung cấp 2 chiều, tin cậy, tuần tự và ngăn sao chép luồng dữ liệu sử dụng TCP. 
+
+- Datagram socket cung cấp luồng 1 chiều và 2 chiều dữ liệu sử dụng UDP.
+
+Một socket được định nghĩa bằng một giao thức và một địa chỉ trên host. Định dạng địa chỉ được xác định tùy theo từng giao thức. Trong TCP/IP, địa chỉ là sự kết hợp giữa địa chỉ IP và port. 2 socket, một bên mỗi phía của kết nối, tạo ra một đường truyền hai hướng. 
+
+Để truyền thông, một ứng dụng xác định giao thức, địa chỉ IP của host đích, và cổng của ứng dụng đích cần gửi đến. Sau khi ứng dụng được kết nối, thông tin có thể được gửi và nhận.
+
+#### **NetBIOS interface**
+
+NetBIOS cho phép các ứng dụng truyền thông trong một mạng. NetBIOS định nghĩa 2 thực thể, giao diện mức session và quản lý session và một giao thức truyền dữ liệu. 
+
+NetBIOS interface là một API chuẩn cho các ứng dụng người dùng để chấp nhận các luồng I/O trong mạng và chỉ thị điều khiển cho giao thức phần mềm dưới lớp mạng. Một chương trình sứng dụng mà sử dụng NetBIOS interface API cho truyền thông qua mạng có thể chạy trên bất kì phần mềm giao thức nào mà hỗ trợ NetBIOS interface. 
+
+NetBIOS cũng đĩnh nghĩa một giao thức mà các chức năng ở mức session/transport. Điều này được thực hiện bằng các phần mềm giao thức bên dưới (như NetBIOS Frames Protocol NBFP - một phần của NetBEUI hoặc NetBIOS qua TCP/IP (NetBT), thực hiện yêu cầu vào ra (I/O) của mạng đẻ đáp ứng lệnh NetBIOS interface). NetBIOS qua TCP/IP được định nghĩa trong RFC 1001 và 1002. NetBT mặc định được kích hoặc, tuy nhiên, Windows Server 2003 cho phép bạn vô hiệu NetBT trong một môi trường mà không chứa client hoặc ứng dụng dựa trên NetBIOS. 
+
+NetBIOS cung cấp các lệnh và hỗ trợ cho NetBIOS Name Management, NetBIOS Datagrams, và NetBIOS Sessions.
+
+#### **NetBIOS name management**
+
+NetBIOS name management là dịch vụ cung cấp các chức năng sau: 
+
+- **Name registration and release**: Khi một TCP/IP host khởi tạo, nó đăng kí với NetBIOS của chính nó bằng cách quảng bá hoặc chuyển hướng các yêu cầu đăng kí tới một NetBIOS Name Server như một WINS server. Nếu đã có host nào đó đã đăng kí cùng tên NetBIOS name, hoặc host hoặc NetBIOS Name Server phản hồi với một phản hồi đăng kí tên tiêu cực. Kết quả, host khởi tạo nhận được một lỗi khởi tạo. Khi dịch vụ máy trạm trên một host ngwngfm host không tiếp tục quảng bá phản hồi đăng kí tên tiêu cức khi một máy khác cố sử dụng tên và gửi release name tới một NetBIOS Name Server. NetBIOS name đã được sử dụng cho host khác. 
+
+- **Name Resolution** : Khi một ứng dụng NetBIOS muốn liên kết với một ứng dụng NetBIOS khác, địa chỉ IP của ứng dụng NetBIOS phải được phân giải. NetBT đảm nhận chức năng này bằng cách quản bá truy vấn tên NetBIOS trên mạng cục bộ hoặc gửi một truy vấn tên NetBIOS tới một NetBIOS Name Server. 
+
+Dịch vụ NetBIOS name sử dụng UDP cổng 137.
+
+#### **NetBIOS datagram**
+
+Dịch vụ NetBIOS datagram cung cấp việc chuyển các datagram không hwogns kết nối, không tuần tự và không tin cậy, Datagram có thể được chuyển hướng tới một NetBIOS name hoặc quảng bá tới một nhóm tên. Việc chuyển này là không tin cậy mà chỉ các user đăng nhập vào mạng nhận được bản tin. Datagram service cả quản bá và chuyển hướng bản tin. NetBIOS datagram seervice sử dụng UDP port 138.
+
+#### **NetBIOS sessions***
+
+Dịch vụ NetBIOS session cung cấp việc chuyển các bản tin NetBIOS có hướng liên kết, tuần tự và đáng tin cậy. NetBIOS session sử dụng kết nối TCP và cung cấp thiết lập kết nối, keepalive và giải phóng. Dịch vụ NetBIOS cho phép truyền dữ liệu đồng thời theo cả 2 hướng sử dụng TCP port 139. 

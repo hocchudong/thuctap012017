@@ -1,8 +1,8 @@
 # Kiến trúc và workflow của Heat 
 
 # MỤC LỤC
-
-
+- [1.Kiến trúc của Heat](#1)
+- [2.Workflow của Heat](#2)
 
 <a name="1"></a>
 # 1.Kiến trúc của Heat

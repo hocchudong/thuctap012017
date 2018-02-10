@@ -15,7 +15,21 @@ net.ipv4.ip_forward = 1
 
 Chạy lệnh `sysctl -p /etc/sysctl.conf` để kiểm tra cài đặt.
 
+\- Sau đó:  
+- Trên Debian/Ubuntu:  
+```
+/etc/init.d/procps.sh restart
+```
 
+VD trên Ubuntu Server 16.04:  
+```
+/etc/init.d/procps restart
+```
+
+- Trên RetHat:  
+```
+service network restart
+```
 
 
 

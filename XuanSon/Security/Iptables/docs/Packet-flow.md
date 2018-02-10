@@ -1,6 +1,9 @@
 # Packet flow
+- [1.Packet flow bản đơn giản](#1)
+- [2.Packet flow bản chi tiết](#2)
 
-
+<a name="1"></a>
+# 1.Packet flow bản đơn giản
 <img src="../images/4.png" />
 
 **1) Nếu gói tin đi từ ngoài đến**  
@@ -13,8 +16,9 @@
 \- Sau đó là quá trình xử lý gói tin sẽ đi đến table **Mangle** tiếp đến là table **NAT** với chain **OUTPUT** và table **FILTER** với chain **OUTPUT** được áp dụng một số rule.  
 \- Sau đó đi lần lượt qua các table **Mangle** với chain **POSTROUTING** cuối cùng đi đến table **NAT** với chain **POSTROUTING** để thay đổi địa chỉ nguồn nếu cần thiết.  
 
-
-
+<a name="2"></a>
+# 2.Packet flow bản chi tiết
+<img src="../images/5.png" />
 
 
 

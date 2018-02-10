@@ -24,7 +24,7 @@
 ## 2. Nội dung
 
 - ### 2.1 Cấu trúc của gói tin sử dụng ARP
-	![Cấu trúc ARP](../images/ARP/cautruc.png)
+	![Cấu trúc ARP](images/ARP/cautruc.png)
 
     Ý nghĩa của các gói tin trong header gói tin ARP là:
     - Hardware Type
@@ -54,7 +54,7 @@
 
 - ### 2.2 Cơ chế hoạt động của ARP
 
-	![Cơ chế hoạt động](../images/ARP/lookup.png)
+	![Cơ chế hoạt động](images/ARP/lookup.png)
 
 	Hình ảnh phía trên, chính là hình ảnh mô phỏng cách hoạt động của ARP.
 	Nhìn vào hình ảnh ta thấy được rằng:
@@ -89,20 +89,20 @@ Dưới đây là hình ảnh của các gói tin ARP mà mình sử dụng bắ
 
 
 > Đây là hình ảnh của các gói tin broadcast được gửi từ một máy host lên server trong quá trình thực hiện lệnh ping từ host tới Server.
-	![Các gói tin broadcast](../images/ARP/arp_broadcast.png)
+	![Các gói tin broadcast](images/ARP/arp_broadcast.png)
 
 > Gói tin ARP Request bắt được khi gửi request tới các địa chỉ không phải là địa chỉ đích sẽ không có thông tin địa chỉ MAC ở phần `Dst`:
-	![Các gói tin broadcast](../images/ARP/arp_broadcast1.png)
+	![Các gói tin broadcast](images/ARP/arp_broadcast1.png)
 
 Để ý vào gói tin thứ 377 (Đây chính là gói tin request khi gửi tới đúng địa chỉ với nội dung: "10.145.25.202 is at 00:0c:29:4c:66:58"). Phân tích gói tin này, ta thấy được nội dung của nó như sau:
-	![Hình ảnh gói tin request](../images/ARP/arp_request.png)
+	![Hình ảnh gói tin request](images/ARP/arp_request.png)
 
 Nhận thấy ở phần `Dst` đã chứa giá trị địa chỉ MAC của Server. Bao gồm IP nguồn và IP đích.
-	![Hình ảnh gói tin request](../images/ARP/arp_request1.png)
+	![Hình ảnh gói tin request](images/ARP/arp_request1.png)
 
 Tiếp theo, ta tiến hành phần tích gói tin reply từ server về host:
-	![Hình ảnh gói tin reply](../images/ARP/arp_reply.png)
+	![Hình ảnh gói tin reply](images/ARP/arp_reply.png)
 Vì đây là gói tin reply lên giá trị khung `Sender MAC Address` và `Target MAC Address` đã được đổi ngược lại với giá trị của gói tin request.
-	![Hình ảnh gói tin reply](../images/ARP/arp_reply1.png)
+	![Hình ảnh gói tin reply](images/ARP/arp_reply1.png)
 
 Giá trị phần Sender IP và Target IP cũng được chuyển đổi.

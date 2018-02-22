@@ -15,7 +15,8 @@
 	- [4.4.DNAT target](#4.4)
 	- [4.5.SNAT target](#4.5)
 	- [4.6.MASQUERADE target](#4.6)
-	- [4.7.Tham khảo thêm](#4.7)
+	- [4.7.RETURN target](#4.7)
+	- [4.8.Tham khảo thêm](#4.8)
 
 
 \- Iptables chứa nhiều tables.  
@@ -174,7 +175,16 @@ Khi host đang chạy web server trong 1 mạng LAN, nhưng không có IP public
 |Giải thích|Option **--to-ports** được sử dụng để thiết lập source port hoặc ports sử dụng cho outgoing packet. Bạn có thể chỉ định 1 port như **--to-ports 1025** hoặc bạn có thể chỉ định 1 dải ports như **--to-ports 1024-3000**.|
 
 <a name="4.7"></a>
-## 4.7.Tham khảo thêm
+## 4.7.RETURN target
+\- RETURN target sẽ làm cho packet hiện tại ngừng đi qua chain:
+- Nếu chain đó là subchain của chain khác, thì packet sẽ tiếp tục đi qua chain khác đó.
+- Nếu chain đó là chain chính, vd như chain INPUT, packet sẽ thực hiện default policy của chain đó. Default policy thường là ACCEPT, DROP hoặc tương tự.
+
+\- VD1: Packet đi qua chain INPUT và phù hợp với rule nói rằng --jump EXAMPLE_CHAIN. Packet đó sẽ bắt đầu đi qua chain EXAMPLE_CHAIN, và nó trong chain EXAMPLE_CHAIN chứa rule --jump RETURN. Nó sẽ jump lại chain INPUT.  
+\- VD2: Packet đi qua chain INPUT và phù hợp với rule -j RETURN, nó sẽ bỏ các rule ở dưới và thực hiện default policy của chain INPUT.  
+
+<a name="4.8"></a>
+## 4.8.Tham khảo thêm
 http://www.faqs.org/docs/iptables/targets.html
 
 

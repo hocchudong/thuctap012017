@@ -1,4 +1,4 @@
-# How TCP/IP Works
+11# How TCP/IP Works
 
 ### ***Mục lục***
 
@@ -894,3 +894,6 @@ Nếu không có ứng dụng tồn tại cho số port UDP, ICMP gửi lại b�
 # Related Information (thông tin liên quan)
 
 Để biết thêm thông tin về các RFC, xem trong cơ sở dữ liệu RFC của IETF.
+
+
+***Link bài gốc***: https://technet.microsoft.com/en-us/library/cc786128(v=ws.10).aspx#w2k3tr_tcpip_how_mfmq

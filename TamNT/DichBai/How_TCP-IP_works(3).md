@@ -310,3 +310,587 @@ Dịch vụ NetBIOS datagram cung cấp việc chuyển các datagram không hwo
 #### **NetBIOS sessions***
 
 Dịch vụ NetBIOS session cung cấp việc chuyển các bản tin NetBIOS có hướng liên kết, tuần tự và đáng tin cậy. NetBIOS session sử dụng kết nối TCP và cung cấp thiết lập kết nối, keepalive và giải phóng. Dịch vụ NetBIOS cho phép truyền dữ liệu đồng thời theo cả 2 hướng sử dụng TCP port 139. 
+
+<a name = '2'></a>
+# IPv4 Addressing
+
+Với IPv4, mỗi máy chủ TCP/IP được địa nghĩa bởi một địa chỉ logic là IP. Địa chỉ IP là địa chỉ lớp mạng va không phụ thuộc vòa địa chỉ lớp Data-Link (như là địa chỉ MAC). Một địa chỉ IP duy nhất được yêu cầu cho mọi host và các thành phần mạng mà truyền thông sử dụng TCP/IP và có thể được gán thủ công hoặc bởi giao thức cấp phát động DHCP.
+
+Địa chỉ IP định danh một vị trí của hệ thống trên mạng giống như là địa chỉ đường xác định vị trí ngôi nhà trong một thành phố. Giống như địa chỉ đường phố phải định danh một vị trí duy nhất, địa chỉ Ip phải là duy nhất toàn cục trên mạng và phải định dạng giống nhau.
+
+Mỗi địa chỉ IP bao gồm phần ID mạng và ID host.
+
+- ID mạng (hay cũng gọi là địa chỉ mạng) định danh các hệ thống mà nawmgf trên cùng một cùng mạng vật lý ngăn bởi các router. Tất cả các hệ thống trong cùng mạng vật lý phải có cùng ID mạng. ID mạng phải là duy nhất trên toàn mạng.
+
+- ID host (cũng gọi là địa chỉ host) định danh máy trạm, server, router, hoặc bất kì máy TCP/IP nào trong một mạng. Địa chỉ host là phải là duy nhất trong cùng ID mạng.
+
+## IPv4 Address syntax
+
+Địa chỉ IP gồm 32 bit. Thay vì diễn tả 32 bit địa chỉ mạng theo nhị phân, chúng được chuẩn hóa chia 32 bit đó thành các trường 8bit gọi là *octets*. Mỗi octet được chuyển thành số nhị phân từ 0 - 255 và phân tách bởi dấu chấm. Định dạng này gọi là *dotted decimal notation*. Bảng sau cung cấp ví dụ về địa chỉ IP ở dạng nhị phân và dạng phân cách thập phân
+
+| Định dạng nhị phân | Định dạng thập phân |
+|--------------------|---------------------|
+|11000000 10101000 00000011 00011000 | 192.168.3.24|
+
+Ví dụ, địa chỉ IPv4 của  11000000101010000000001100011000 là:
+
+- Tách thành các khối 8 bit: 11000000 10101000 00000011 00011000.
+
+- Mỗi khố được chuyển sang số thập phân: 192 168 3 24
+
+- Các octet kết tiếp nhau được phân tách: 192.168.3.24.
+
+Kí hiệu w.x.y.z được sử dụng khi tham chiếu tới địa chỉ IP như sau:
+
+![img](./images/3.3.png)
+
+Các loại địa chỉ IPv4:
+
+- *Unicast*: Gán với một interface trên một subnet trên mạng và được sử dụng để truyền thông một - một.
+
+- *Multicast*: Gán với một hoặc nhiều interface trên nhiều subnet trong mạng và được sử dụng để truyền thông một - nhiều.
+
+- *Broadcast*: Gán với tất cả các interface trong một subnet mạng và được sử dụng để truyền thông từ một tới tất cả các host trong mạng.
+
+Phần sau mô tả chi tiết các loại địa chỉ IPv4:
+
+### IPv4 Unicast Address
+
+Địa chỉ IPv4 Unicast định danh một interface trong mạng giống như đánh địa chỉ một ngôi nhà trong thành phố. Địa chỉ là duy nhất trong mạng và được định dạng cùng kiểu.
+
+Mỗi địa chỉ unicast IPv4 bao gồm phần network ID và host ID
+
+- Network ID (địa chỉ mạng) là kết hợp của phần địa chỉ IPv4 unicast được đặt trên các interface trong cùng mạng vật lý hoặc một segment mạng logic giới hạn bởi các router. Một segment mạng trong mạng TCP/IP cũng được coi là một mạng con (subnet). Tất cả các hệ thống trong cùng mạng vật lý hoặc mạng con logic phải sử dụng chung network ID và network ID phải là duy nhất trong toàn mạng TCP/IP.
+
+- Host ID (Địa chỉ host) là phần địa chỉ IPv4 unicast mà được sử dụng để định danh interface của node mạng trên một mạng con. Host ID phải là duy nhất trong cùng một network ID. 
+
+Nếu network ID là duy nhất trong mạng TCP/IP và host ID là duy nhất trong một network ID, thì toàn bộ địa chỉ IPv4 là duy nhất trong toàn mạng TCP/IP.
+
+### IPv4 Multicast Address
+
+IPv4 multicast address được sử dụng cho việc chuyển một gói tin từ một máy tới nhiều máy. Trên một mạng intranet kích hoạt multicast, một gói tin IPv4 được đánh địa chỉ multicast sẽ được chuyển tới các router ở các subnet mà có host lắng nghe lưu lượng gửi tới địa chỉ multicast. Địa chỉ IPv4 multicast cung cấp một dịch vụ truyền một - nhiều hiệu quả cho nhiều kiểu truyền thông.
+
+Ipv4 multicast được định nghĩa trong mạng lớp D: 224.0.0.0/4. Địa chỉ IPv4 multicast giới hạn từ 224.0.0.0 tới 239.255.255.255. Các địa chỉ trong dải 224.0.0.0/24 (từ 224.0.0.0 đến 224.0.0.255) được dành riêng cho lưu lượng multicast cục bộ.
+
+### IPv4 Broadcast Address
+
+IPv4 sử đụng địa chỉ quảng bá (broadcast) để cung cấp cơ chế truyền từ một tới tất cả các máy trong cùng subnet. Các gói tin được gửi tới địa chỉ IPv4 broadcast được sử lý bởi tất cả các interface trong mạng con đó. Sau đây là các loại địa chỉ IPv4 broadcast:
+
+- **Netword broadcast**: được hình thành bằng cách đặt tất cả các bit phần host thành 1. Ví dụ: địa chỉ network broadcast cho lớp mạng đấy đủ 131.107.0.0/16 là 131.107.255.255. Network broadcast được sử dụng để gới các gói tin tới tất cả các interface trong cùng một mạng đầy đủ. Các router IPv4 không chuyển tiếp các gói tin quảng bá loại này.
+
+- **Subnet broadcast**: Hình thành bằng cách thiết lập tất cả các bit phần host thành 1 trong một lớp mạng không đầy đủ (classless). Ví dụ: địa chỉ quảng bá của lớp mạng con 131.107.26.0/24 là 131.107.26.255. Subnet broadcast được sử dụng để gởi các gói tin tới tất cả các host trong một mạng con. Các router IPv4 không chuyển tiếp các gói tin này. Với một lớp mạng con không đầy đủ (classless), không có địa chỉ network broadcast, chỉ có địa chỉ subnet broadcast.
+
+- **All-subnets-directed broadcast**: Hình thành bằng cách thiết lập tất cả các bit phần host của lớp mạng đầy đủ thành 1. Một gói tin được đánh địa chỉ này được định nghĩa là tìm tới tất cả các host trong tất cả các subnet con của mạng này. Ví dụ: địa chỉ all-subnets-directed broadcast của địa chỉ cho mạng con 131.107.26.0/24 là 131.107.255.255. Địa chỉ all-subnets-directed broadcast là địa chỉ mạng quảng bá của lớp mạng đầy đủ network ID. IPv4 router có thể chuyển tiếp các bản tin loại này, tuy nhiên sử dụng địa chỉ này đã bị phản đối trong RFC 1812.
+
+- **Limited broadcast**: Thiết lập bằng cách đặt tất cả 32 bit thành 1. Nó được sử dụng cho truyền một tới tất cả trên một mạng con nội bộ khi network ID nội bộ chưa rõ. Các node IPv4 thông thường chỉ sử dụng địa chỉ limited broadcast trong các quá trình xử lý cấu hình tự động như BOOTP hay DHCP. Ví dụ, với DHCP, một DHCP client phải sử dụng địa chỉ Limited broadcast cho tất cả các lưu lượng cho tới khi DHCP biết được và cho phép cấu hình địa chỉ IPv4. Các router không forward loại gói tin này.
+
+## Internet Address Classes
+
+Truyền thông trong Internet thường ddianhj nghĩa các lớp mạng để kết hợp nhiều loại địa chỉ và mạng với nhiều kích thước khác nhau. Lớp mạng định nghĩa bit nào được sử dụng cho network ID và bit nào sử dụng cho host ID. Nó cũng định nghĩa số lượng mạng và số lượng host có thể trong mạng. 5 lớp mạng: A, B, C được dùng cho IPv4 unicast; mạng lớp D được sử dụng cho IPv4 multicast và lớp E được sử dụng cho mục đích nghiên cứu.
+
+### Class A
+
+Mạng lớp A có phần network ID được gán với các mạng có số lượng host lớn. Bit đầu tiên trong mạng lớp A luôn được đặt là 0, là phần tiền tố mạng lớp A và các mạng 0.0.0.0/1 (hoặc 0.0.0.0, 128.0.0.0). Bảy bit tiếp (hoàn toàn trong octet đầu tiên) được sử dụng để liệt kê cho ID mạng lớp A. Do đó, phần ID mạng lớp A có độ dài 8 bit (/8 hoặc 255.0.0.0). 24 bit còn lại (3 octet cuối) được sử dụng cho phần host ID. Địa chỉ 0.0.0.0/0 ( hoặc 0.0.0.0) được sử dụng làm mạng dự trữ và 127.0.0.0/8 (hoặc 127.0.0.0, 255.0.0.0) được sử dụng cho địa chỉ loopback. Trong tổng số 128 lớp mạng A, có 126 mạng và 16777214 host trong mỗi mạng.
+
+> Lưu ý:
+
+- Địa chỉ 0.0.0.0 được dự trữ.
+
+- Khi liệt kê các host ID trong một network ID được đưa ra: 2 host ID mà phần host thiết lập là 0 hoặc là 1 hết thì được dành riêng và không thẻ gán với bất kì interface nào trong mạng. Do vậy, việc tính toán trên trong 24 bit host mạng lớp A, tổng số host có thể là 16777216 (224). Khi trừ đi 2 host ID dành riêng, thì tổng số host ID có thể sử dụng là 16777214.
+
+Hình sau mô tả cấu trúc địa chỉ mạng lớp A:
+
+![img](./images/3.4.png)
+
+### Class B
+
+Netword ID lớp B được gán với các mạng có kích thước trung bình tới lớn. 2 bit đầu tiên trong mạng lớp B luôn được đặt là 10, nó sẽ làm cho phần tiền tố cho tất cả các mạng lớp B và địa chỉ 128.0.0.0/2 (hoặc 128.0.0.0, 192.0.0.0). 14 bit tiếp theo (hoàn toàn trong 2 octet đầu tiên) được sử dụng để đánh địa chỉ network ID lớp B. Do đó, phần tiền tố địa chỉ cho mạng lớp B có độ dài 16 bit (/16 hoặc 255.255.0.0). 16 bit còn lại (2 octet cuối) được sử dụng cho phần host ID. Với 14 bit mô tả phần network ID và 16 bit cho phần host ID, điều này cho phép lớp B có 16384 mạng và 65534 host trong mỗi mạng.
+
+Hình sau mô tả cấu trúc mạng lớp B:
+
+![img](./images/3.5.png)
+
+
+### Class C
+
+Địa chỉ lớp C được gán với các mạng nhỏ. 3 bit đầu tiên luôn được thiết lập là 110, nên vùng địa chỉ mạng lớp C là 192.0.0.0/3 (hoặc 192.0.0.0, 224.0.0.0). 21 bit tiếp theo (hoàn toàn trong 3 octet đầu) được sử dụng để đánh network ID. Do đó, phần tiền tố mạng lớp có độ dài 24 bit (/24 hoặc 255.255.255.0). 8 bit còn lại (octet cuối) được sử dụng cho phần host ID. Với 21 bit cho phần network ID và 8 bit phần host ID, có tất cả 2097152 mạng và 254 host trong mỗi mạng lớp C.
+
+Hình sau mô tả cấu trúc địa chỉ mạng lớp C:
+
+![img](./images/3.6.png)
+
+### Class D
+
+Mạng lớp D được dành riêng cho địa chỉ multicast. 4 bit đầu trong địa chỉ mạng lớp D luôn được thiết lập là 1110, phần mạng lớp D là 224.0.0.0/4 (hoặc 224.0.0.0, 240.0.0.0)
+
+### Class E
+
+Địa chỉ lớp  E được dành riêng cho mục đích thí nghiệm. Các bit đầu tiên trong địa chỉ mạng lớp E được thiết lập là 1111, phần tiền tố địa chỉ mạng lớp E là 240.0.0.0/4 (hoặc 240.0.0.0)
+
+Bảng sau tóm tắt thông tin địa chỉ mạng lớp A, B, C có thể sử dụng cho địa chỉ IPv4 unicast.
+
+![img](./images/3.7.png)
+
+## Modern Internet Addresses
+
+Đánh địa chỉ theo các lớp mạng là một phương pháp phân bổ địa chỉ đã trở nên lỗi thời mà chứng minh là một cách không hiệu quả khi chỉ định network ID và địa chỉ cho các tổ chức kết nối Internet. Ví dụ, một tổ chức lớn với địa chỉ mạng lớp A có thể có lên tới 16777214 host. Tuy nhiên, nếu tổ chức chỉ sử dụng 70000 host, thì khả năng sử dụng 16777214 địa chỉ thì quả là lãng phí.
+
+Internet hiện nay, phần tiền tố được quyết định dựa trên nhu cầu mà tổ chức cần và sử dụng phương pháp CIDR (Classless Inter-Domain Routing). Ví dụ, tổ chức quyết định cần 2000 địa chỉ IPv4 unicast có thể truy cập Internet. Tổ chức ICANN hoặc nhà cung cấp (ISP)cấp phát một dải địa chỉ với 21 bit được cố định sẵn và cho phép 11 bit phần host ID thay đổi. Từ 11 bit phần host ID, tổ chức có thể tạo được 2032 địa chỉ IPv4 unicast dùng được, 
+
+CIDR-based cấp phát địa chỉ thường bắt đầu với 8 bit. Bảng sau liệt kê số bit host yêu cầu để và độ dài prefix yêu cầu để cấp phát dựa trên CIDR:
+
+![img](./images/3.8.png)
+
+### Public and Private Address
+
+Nếu bạn muốn chuyển hướng (định tuyến) kết nối ra Internet, thì bạn phải có địa chỉ public. Nếu bạn muốn kết nối gián tiếp (thông qua proxy hoặc dịch) ra Internet, bạn có thể sử dụng địa chỉ private hoặc public. Nếu internet không kết nối ra Internet theo bất kì cách nào, bạn có thể sử dụng địa chỉ IPv4 unicast mà bạn muốn. Tuy nhiên, nên sử dụng địa chỉ private để tránh phải sắp xếp lại khi mạng Intranet cuối cùng lại kết nối được ra Internet.
+
+#### Public Address
+
+Địa chỉ public được gán bởi ICANN phân bổ dựa trên class-based, CIDR-based được sử dụng để đảm bảo đủ duy nhất toàn cầu trên Internet. Đối với các địa chỉ CIDR-based, giá trị *w* (octet đầu tiên) trong dải từ 1 tới 126 và 128 tới 223, và trừ ra phần địa chỉ dải private. 
+
+Khi được gán địa chỉ public, định tuyến được thêm vào các router trên Internet để lưu lượng được gửi tới một địa chỉ public phù hợp với phần prefix có thể tìm ra tổ chức được gán địa chỉ đó. Ví dụ, khi một tổ chức được gán một địa chỉ prefix trong phần network ID và độ dài prefix, địa chỉ prefix cũng tồn tại như mốt định tuyến trong các router trên Internet. Các gói in IPv4 được dẫn tới địa chỉ trong địa chỉ prefix được gán để chuyển tới đích cuối cùng. 
+
+#### Private Address
+
+Mỗi interface Ipv4 yêu cầu một địa chỉ duy nhất trong mạng IPv4. Trong trường hợp mạng Internet, mỗi interface IP4 trong một mạng con kết nối ra Internet yêu cầu một địa chỉ IP duy nhất trên Internet. Khi Internet mở rộng, các tổ chức kết nối ra Internet yêu cầu một địa chỉ public cho mỗi interface trong mạng Intranet của họ. Việc này làm tăng nhu cầu lớn về số lượng IP public sẵn có.
+
+Khi phân tích địa chỉ cần cho các tổ chức, các nhà thiết kế của Internet lưu lý rằng rất nhiều tổ chức, hầu hết các host trong cùng một mạng Intranet của tổ chức không yêu cấu được kết nối trực tiếp ra Internet. Những host này yêu cầu một dịch vụ Internet cụ thể, như truy cập Web và e-mail, thường truy cập dịch vụ Internet thông qua các cổng lớp ứng dụng như proxy server và e-mail server. Kết quả là hầu hết các tổ chức chỉ yêu cầu một số lượng nhỏ địa chỉ public cho các node đó (như các proxy, server, router, firewall, và translator) mà được kết nối trực tiếp ra Internet.
+
+Với các host trong tổ chức không  yêu cầu truy cập Internet trực tiếp, địa chỉ IPv4 yêu cầu không trùng lặp với địa chỉ public đã gán. Để giải quyết vấn đề đánh địa chỉ, các nhà thiết kế Internet dành riêng một phần không gian địa chỉ IPv4 và đặt tên cho vùng địa chỉ này là địa chỉ private. Một địa chỉ IPv4 trong không gian địa chỉ private không bao giờ được gán như một địa chỉ public. Các địa chỉ trong vùng private được biết đến như địa chỉ private. Bởi vì địa chỉ public và private không chồng lấp nhau, địa chỉ private không bao giờ bị trùng với địa chỉ public. 
+
+Không gian địa chỉ private được định nghĩa trong RFC 1918 và định nghĩa các prefix sau:
+
+- 10.0.0.0/8 (10.0.0.0, 255.0.0.0): Cho ơheps dải sau: từ 10.0.0.1 tới 10.255.255.254. Địa chỉ prefix 10.0.0.0/8 có 24 bit phần host mà có thể được sử dụng cho bất cứ tổ chức private nào.
+
+- 172.16.0.0/12 (172.16.0.0, 255.240.0.0): Cho phép dải từ 172.16.0.1 tới 172.131.255.254. Địa chỉ prefix 172.16.0.0/12 có 20 bit phần host mà có thể được sử đụng dể đánh địa chỉ private cho bất kì tổ chức nào.
+
+- 192.168.0.0/16 (192.168.0.0, 255.255.0.0): cho phép dải địa chỉ từ 192.168.0.1 tới 192.168.255.254. Địa chỉ prefix 192.168.0.0/16 có 16 bit phần host mà có thể được dùng để đánh địa chỉ private cho bất cứ tổ chức nào. 
+
+Bởi vì địa chỉ IPv4 trong không gian private sẽ không bao giờ được gán bởi ICANN cho một tổ chức kết nối ra Internet, nên sẽ không có định tuyến cho các địa chỉ prefix private trong các router Internet. Bạn không thể kết nối địa chỉ private ra Internet. Do đó, một host có địa chỉ private phải gửi lưu lượng ra Internet thông qua cổng ứng dụng (như proxy) để có một địa chỉ public hợp lệ hoặc thông qua NAT để dịch địa chỉ public sang địa chỉ public hợp lệ.
+
+#### Illegal addresses
+
+Các mạng Intranet trong các tổ chức private không cần kết nối Internet có thể chọn bất kì địa chỉ nào mà họ muốn, thậm chí sử dụng cả địa chỉ public được gán bởi ICANN. Nếu tổ chức sau đó quyết định kết nối ra Internet, địa chỉ hiện tại có thể không bao gồm các địa chỉ đã được ICANN gán cho các tổ chức khác. Việc xung đột địa chỉ với địa chỉ public đã được gán bởi ICANN và được gọi là địa chỉ không hợp lệ. Kết nối từ địa chỉ không hợp lệ tới Internet là không thể bởi các router trên Internet gửi lưu lượng tới các địa chỉ được cấp phát bởi ICANN gán cho các tổ chức, không tổ chức nào sử dụng địa chỉ không hợp lệ.
+
+Ví dụ, một tổ chức private chọn sử dụng địa chỉ prefix 206.73.118.0/24 cho mạng Intranet của nó. Địa chỉ prefix public 206.73.118.0/24 đã được gán bởi ICANN cho Microsoft Corpration và các định tuyến đã tồn tại trong các router Internet để gửi tất cả các gói tin trong tới mạng 206.73.118.0/24 tới cho các router của Microsoft. Miễn là tổ chức private đó không kết nối ra Internet, không có vấn đề gì xảy ra bơi 2 địa chỉ prefix trong mạng IPv4 tách biệt, do vậy chúng là duy nhất và tách biệt nhau. Nếu tổ chức private sau đó kết nối trực tiếp ra Internet và tiếp tục sử dụng địa chỉ 206.73.118.0/24, bất kì phản hồi lưu lượng mà địa chỉ hợp với 206.73.118.0/24 sẽ được gửi đến cho router của Microsoft, không phải là router trong tổ chức private kia.
+
+#### Automatic Private IP Addressing
+
+Một Interface trên một máy tính chạy Window Server 2203 và Windows XP được cấu hình địa chỉ IPv4 một cách tự động mà không liên lạc thành công với DHCP server sử dụng cấu hình thay thế của nó, được chỉ động trong tab Alternate Configuration.
+
+Nếu tùy chọn đánh địa chỉ Private được chọn trong tab Alternate Configuration và DHCP server không được tìm thấy, Windows TCP/IP sử dụng Automatic Private IP Addressing (APIPA). Windows chọn ngẫu nhiên một địa chỉ IPv4 trong dải 169.254.0.0/16 và gán với subnet mask 255.255.0.0. Địa chỉ này được dành riêng bởi ICANN bởi nó không thể tìm thấy trên Internet. APIPA cho phép một mạng SOHO nhỏ sử dụng TCP/IP mà không cần cấu hình tĩnh hoặc quản trị một DHCP server. APIPA không cấu hình một default gateway. Do đó, chỉ lưu lượng nội bộ trong mạng con được phép.
+
+#### Special IPv4 Address
+
+Một số địa chỉ IPv4 đặc biệt: 
+
+- 0.0.0.: được biết là địa chỉ không xác định, nó được sử dụng để chỉ ra sự vắng mặt của một địa chỉ. Địa chỉ này được sử dụng chi như địa chỉ nguồn khi node không được cấu hình với địa chỉ IP4 và đang cố lấy một địa chỉ thông qua giao thức DHCP.
+
+- 127.0.0.1: là địa chỉ loopback, nó được gán tới loopback interface nội bộ, có khả năng gửi gói tin cho chính nó.
+
+#### Unicast IPv4 Addressing Guidelines
+
+Khi gán network ID cho các subnet của một tổ chức, sử dụng các hướng dẫn sau:
+
+- Network ID phải là duy nhất trên mạng: Neus network ID cho một subnet mà các host có thể truy cập trực tiếp ra Internet, bạn phải sử dụng dải địa chỉ được cung cấp bởi ICANN hoặc nhà cung cấp. Nếu network ID cho một subnet không cần truy cập trực tiếp ra Internet, có thể sử dụng địa chỉ public không hợp lệ hoặc địa chỉ private mà là duy nhất trong mạng Intranet của bạn.
+
+- Network ID không thể bắt đầu bởi 0 và 127: Cả 2 giá trị trên của octet đầu tiên đã được dành riêng và không thể sử dụng cho địa chỉ IPv4 unicast.
+
+Khi gán host ID cho các interface của node trong một subnet, sử dụng theo các chỉ dẫn sau:
+
+- Host ID phải là duy nhất trên subnet.
+
+- Bạn không thể sử dụng toàn bit 0 hoặc toàn bit 1 cho phần host ID.
+
+Khi xác định dải địa chỉ unicast hợp lệ cho một prefix được đưa ra, sử dụng các chuẩn sau:
+
+- Với địa chỉ IPv4 đầu tiền trong dải, thiết lập tất cả các bit phần host thành 0, trừ bit thấp nhất cuối cùng thiết lập thành 1.
+
+- Với địa chỉ cuối cùng, thiết lập tất cả các bit phần host thành 1 trừ bit thấp nhất cuối cùng thành 0.
+
+Ví dụ, để mô tả dải địa chỉ của prefix 192.168.16.0/20:
+
+- Địa chỉ unicast đầu tiền của dải là: 11000000 10101000 0001**000000000001** (bit phần host được in đậm), hoặc là 192.168.16.1.
+
+- Địa chỉ cuối cùng trong dải là 1000000 10101000 0001**111111111110** (bit phần host được in đậm), hay 192.168.31.254.
+
+
+<a name = '2'></a>
+# Name Resolution
+
+Khi IP được thiết kế để làm việc với 32 bit địa chỉ IP của host nguồn và host đích, người dùng máy tính tốt hơn là dùng và nhớ tên hơn là nhớ địa chỉ ip.
+
+Khi một tên được sử dụng như ánh xạ cho một địa chỉ IP, một cơ chế phải tồn tại để gán tên đó tới node IP thích hợp - để đảm bảo tính duy nhất và sự phân giải tới địa chỉ IP của nó.
+
+Trong phần này, các cơ chế được sử dụng để gán và phân giải tên host (được sử dụng bởi ứng dụng Socket của Windows), và NetBIOS name (được sử dụng bởi các ứng dụng NetBIOS) được thảo luận.
+
+## Host Name Resolution 
+
+Một tên máy chủ là một ánh xạ gán với địa chỉ IP để định danh nó như một TCP/IP host. Tên máy chủ có thể lên tới 255 kí tự và có thể chứa chữ cái, số và kí tự "-", "." . Nhiều tên máy chủ có thể được gán cho cùng một host. Với các máy tính Windows Server 2003-based, tên máy chủ không phải hợp với tên máy Windows Server 2003.
+
+Các ứng dụng socket Windows, như Mircrosot Internet Explorer, có thể sử dụng một trong 2 giá trị để kết nối tới đích: địa chỉ IP hoặc tên máy chủ. Khi địa chỉ IP được xác định, phân giải tên là không cần thiết. Khi một tên máy chủ được xác định, tên máy chủ phải được phân giải thành địa chỉ IP trước khi kết nối dựa trên IP với tải nguyên mong muốn có thể bắt đầu.
+
+Tên máy chủ hầu hết có định dạng của một tên miền với cấu trúc theo các quy ước của Internet. Phân giải tên, và tên miền làm việc như nhau mặc dù chúng được sử dụng cho địa chỉ IPv4 và IPv6.
+
+### Domain names
+
+Để đáp ứng được nhu cầu khả năng đặt tên có thể mở rộng và tùy biến khác nhau cho nhiều tổ chức, InterNIC đã tạo và duy trì không gian tên phân cấp gọi là Hệ thống tên miền (Domain Name System - DNS). Sơ đồ đặt tên DNS giống như cấu trúc thư mục cho các tệp trên đĩa. Thường thì bạn theo đường dẫn tệp từ thư mục ốc tới các thư mục con tới vị trí cuối cùng và tên file của nó. Tuy nhiên, một tên máy chủ theo vị trí cuối cùng của nó trở ngược lại miền cha của nó tới gốc. Tên duy nhất của host, đại diện cho vị trí của nó trong hệ thống phân cấp, là tên miền đủ điều kiện (Fully Qualified Domain Name - FQDN). Không gian tên mức cao nhất với mức thứ 2 và các miền con được chỉ ra trong hình sau:
+
+![img](./images/3.9.png)
+
+Không gian miền bao gồm các thể loại sau:
+
+- Miền gốc, được chỉ ra bởi "" (null), đại diện cho gốc của không gian tên.
+
+- Các domain mức cao, trực tiếp sau miền gốc, đại diện cho các kiểu tổ chức. InterNIC có trahcs nhiệm duy trì tên miền mức top-level trên Internet. Bảng sau chứa danh sách các tên miền top-level trên Internet:
+
+	![img](./images/3.10.png)
+
+- Các domain mức 2, ngay sau domain top-level, đại diện cho các tổ chức cụ thể trong miền domain top-level. InterNIC có trách nhiệm duy trì và đảm bảo tính duy nhất của tên miền mức 2 trên Internet.
+
+- Các tên miền con (subdomain) theo ngay sau tên miền méc 2. Các tổ chức cá nhân có trách nhiệm tạo và duy trì các miền con này.
+
+Ví dụ, với FQDN **websrv.wcoast.rekit.com**:
+
+- Dấu kết thúc (.) chỉ ra rằng đầy là một tên miền đầy đủ có tên liên quan tới gốc của không gian tên miền. Phần này thường không bắt buộc với các tên đầy đủ và nếu có thiếu thì nó vẫn được cho là có mặt.
+
+- **com** là miền mức top-level, chỉ ra một tổ chức thương mại (commercial)
+
+- **reskit** là miền mức 2, chỉ ra là Resource Kit Corpotation.
+
+- **wcoast** là miền con của reskit.com chỉ ra phân khúc West Coast của Resource Kit Corporation.
+
+- **websrv**: tên của Web server trong phân khúc West Coast.
+
+Các tên miền không phân biệt chữ hoa và chữ thường.
+
+Các tổ chức không kết nối Internet có thể thực hiện bất cứ tên miền mức top và mức 2 nào mà họ muốn. Tuy nhiên, việc triể khai thông thường theo yêu cầu của InterNic để cuối cùng khi kết nối Internet sẽ không bị yêu cầu đổi lại tên.
+
+### Host name Resolution Using a Hosts File
+
+Cách thông thường để phân giải một tên miền ra địa chỉ IP là sử dụng file dữ liệu được lưu trữ nội bộ mà chứa ánh xạ giữa IP và tên miền. Trên hầu hết các hệ thống UNIX, file `/etc/hosts`. Trên các hệ thống WIndows Server 2003, là file `Hosts` trong thư mục **%systemroot%\System32\Drivers\Etc**.
+
+Ví dụ nội dung một file Hosts:
+
+```
+#
+Table of IP addresses and host names
+#
+127.0.0.1    localhost
+131.107.34.1    router
+172.30.45.121    server1.central.reskit.com s1
+```
+
+Trong file Hosts: 
+
+- Nhiều tên máy chủ được gán với cùng một địa chỉ IP. Lưu ý rằng máy chủ tại IP 172.30.45.121 có thể tham chiếu tới tên miền đầy đủ server1.central.reskit.com hoặc nickname (s1). Điều này cho phép người dùng máy tính tham chiếu tới server này sử dụng nickname **s1** thay vì gõ toàn bộ tên miền đầy đủ.
+
+- Các mục có thể phân biệt chữ hoa thường tùy thuộc nền tảng. Các mục trong file Hosts cho máy UNIX là không phân biệt chữ hoa thường. Các mục trong file Hosts cho Windows Server 2003, Windows XP, và Windows 2000 - based thì không phân biệt chữ hoa và chữ thường.
+
+Với các máy tính chạy nền tảng Window Server 2003, Windows XP, và Windows 2000, các mục trong file Hosts được tải vào bộ cache phân giải tên miền của DNS client. Khi phân giải các tên máy, bộ cache phân giải tên miền thì luôn được kiểm tra.
+
+Lợi ích của việc sử dụng file Hosts là có thể tùy chỉnh theo người dùng. Người dùng có thể tạo bất kì mục nào mà họ muốn, bao gồm các tên dễ nhớ cho các tài nguyên thường xuyên truy cập. Tuy nhiên, việc duy trì riêng file Hosts không thể mở rộng tốt để lưu trữ lượng lớn các ánh xạ FQDN.
+
+### Host Name Resolution Using a DNS Serve
+
+Để mở rộng khả năng phân giải tên miền và quản lý tập trung, địa chỉ IP ánh xạ cho tên miền đầy đủ FQDn được lưu trong các máy chủ DNS. Để kích hoạt truy vấn một DNS server bởi một máy tính, mọt thành phần được gọi là bộ phân giải DNS được kích hoạt và cấu hình với địa chỉ IP của DNS server. Bộ phân giải DNS được xây dựng trong các ngăn xếp giao thức TCP/IP được cung cấp với hầu hết các hệ điều hành mạng, bao gồm Windows Server 2003.
+
+Khi một ứng dụng Windows Socket được đưa ra tên miền đầy đủ như vị trí cho địa chỉ đích, ứng dụng với tới hàm Windows Sockets để phân giải tên ra một địa chỉ IP. Yêu cầu được đưa tới cho bộ phân giải DNS trong giao thức TCP/IP. Bộ phân giải DNS đóng gói yêu cầu FQDN dưới dạng mọt truy vấn tên DNS và gứi nó tới DNS server.
+
+DNS là một hệ thống phân bổ tên. Thay ví lưu tất cả các bản gi về toàn bộ không gian tên trên mọi DNS server, mỗi DNS server chỉ lưu một vài phần cụ thể của không gian tên. DNS server là đọc quyền cho các phần không gian tên tương ứng với các bản ghi được lưu trữ trên server đó. Trong trường hợp của Internet, hàng trăm DNS server lưu trữ các phần khác nhau của không gian tên Internet. Để tạo thuận lượi cho việc phân giải bất kì tên miền hợp lệ nào bởi DNS server, các DNS server cũng được cấu hình với các bản ghi trỏ tới các DNS server khác.
+
+Quy trình sau đây phác thảo những gì xảy ra khi thành phần phân giải DNS trên máy gửi đi một truy vấn DNS tới DNS server. Tieens trình này được chỉ ra trong hình dưới và được đơn giản hóa để bạn có thể có được một sự hiểu biết cơ bản về quá trình phân giải DNS:
+
+1) Thành phần phân giải DNS của DNS client định dạng một bản tin yêu cầu truy vấn tên DNS chứa tên đầy đủ FQDN và gửi nó tới DNS server mà đã được cấu hình.
+
+2) DNS server kiểm tra FQND trong bản tin đó lại lần nữa trong các bản ghi được lưu trữ cục bộ trong máy. Nếu bản ghi được tìm thấy, địa chỉ IP tương ứng với FQDN yeu cầu được gửi lại về cho client.
+
+3) Nếu FQDN được tìm thấy, DNS server chuyển tiếp yêu cầu đó tới DNS server mà có thông tin cho FQDN.
+
+4) DNS server độc quyền gửi lại phản hồi, chứa địa chỉ IP được phân giải tương ứng, ngược lại cho DNS server đầu tiên.
+
+5) DNS server đầu tiên gửi lại thông tin ánh xạ địa chỉ IP đó cho client.
+
+![img](../images/3.11.png)
+
+Để có được địa chỉ IP của một server có thẩm quyền cho FQDN, các DNS server trên Internet đi qua một quá trình lặp đi lặp lại truy vấn tới nhiều máy chủ DNS cho tới khi máy chủ có thẩm quyền được tìm thấy. Để biết thêm nhiều thông tin hơn về tiến trình phân giải tên miền DNS, tham khảo [tại đây (DNS Technical Reference).](https://technet.microsoft.com/en-us/library/cc779926(v=ws.10).aspx)
+
+### Combining a Local Database File with DNS
+
+Triển khai TCP/IP, bao gồm cả trên Windows Server 2003, cho phép sử dụng cả các tên cơ sở dữ lieuj cụ bộ và một DNS server để phân giải tên máy chủ. Khi người dùng xác định tên máy chủ trong ứng dụng TCP/IP windows sockets-based:
+
+- TCP/IP kiểm tra bộ cache phân giải của DNS client (tải lại các mục từ file Hosts và các tên máy chủ đã được phân giải trước đó) để tìm tên phù hợp. Nếu không có tên nào phù hợp trong file cơ sở dữ liệu cục bộ, tên máy chủ dược đóng gói như một bản tin yêu cầu truy vấn tên DNS và gửi tới DNS server đã được cấu hình.
+
+Các phương thức kết hợp cho phép người dùng có file cơ sở dữ liệu cục bộ phân giải các nickname cá nhân và sử dụng cơ sở dữ liệu phân bổ DNS toàn cục để phân giải FQDN
+
+## NetBIOS Name Resolution
+
+Phân giải tên NetBIOS là tiến trình ánh xạ thành công tên NetBIOS ra một địa chỉ IP. Một tên NetBIOS gồm 16 byte địa chỉ được sử dụng để định danh một tài nguyên NetBIOS trên mạng. Một tên netBIOS hoặc là một tên duy nhất (độc quyền) hoặc nhóm (không độc quyền). Khi một tiến trình NetBIOS liên lạc với một tiến trình cụ thể trên một máy tính cụ thể, tên duy nhất được sử dụng. Khi một tiến trình NetBIOS liên lạc với nhiều tiến trình trên nhiều máy tính, một nhóm tên được sử dụng.
+
+Tên NetBIOS hoạt động như định danh cho ứng dụng lớp Session. Ví dụ, dịch vụ phiên NetBIOS hoạt động thông qua TCP cổng 139. Tất các các yêu cầu phiên NetBT được gửi tới cổng đích là TCP 139. Khi xác định một ứng dụng NetBIOS để thiết lập phiên NetBIOS, tên NetBIOS được sử dụng.
+
+Một ví dụ về tiến trình sử dụng tên netBIOS  là chia sẻ File và Máy tin trong các thành phần mạng Microsoft (dịch vụ máy chủ) trên máy tính Windows Server 2003-based. Khi bạn khởi động máy tính, dịch vụ máy chủ đăng kí một tên netBIOS duy nhất dựa vào tên máy của bạn. ên chính xác được sử dụng bởi dịch vụ máy chủ là tên máy tính 15 kí tự cộng với kí tự thứ 16 của 0x20. Nếu tên máy không dài đủ 15 kí tự, nó sẽ được chèn khoảng trắng cho tới khi dài đủ 15 kí tự. Các dịch vụ mạng khác, như là dịch vụ máy trạm hoặc gửi tin, cũng sử dụng tên máy để xây dựng nên tên NetBIOS của chúng. Kí tự thứ 16 được sử dụng theo cách định danh duy nhất tùy theo mỗi dịch vụ.
+
+> Note
+
+- Dịch vụ gửi tin được đề cập ở đây không phải là Windows Mesenger. Windows Messenger là một ứng dụng của Microsoftbao gồm trong Windows Server 2003 cho phép gửi tin nhắn thời gian thực và hội nghị.
+
+Dịch vụ máy chủ trên file server phải xác định tương ứng một tên NetBIOS cụ thể. Ví dụ, khi bạn cố gắng kết nối với một máy tính có tên CORPSERVER, tên NetBIOS tương ứng với dịch vụ máy chủ là "CORPSERVER <20>" (lưu ý là phần đệm vào chỗ trống sử dụng khoảng trắng). Trước khi một kết nối chia sẻ file và máy in được thiết lập, một kết nối TCP phải được tạo. Để kết nối TCP được thiết lập, tên NetBIOS "CORPSERVER <20>" phải được phân giải ra một địa chỉ IP.
+
+Để xem các tên NetBIOS được đăng kí bởi các tiến trình NetBIOS trên máy WIndows Server 2003, gõ **nbtstat -n** vào command prompt của Windows Server 2003.
+
+### NetBIOS Node Types
+
+Cơ chế chính xác mà tên NetBIOS được phân giải thành địa chỉ IP phụ thuộc vào kiểu node NetBIOS được cấu hình. RFC 1001 định nghĩa các kiểu Node NetBIOS được liệt kê trong bảng sau:
+
+![img](../images/3.12.png)
+
+Khi NetBT được kích hoạt, máy Windows server 2003 - based là B-node theo mặc định và trở thành H-node khi được cấu hình cho một server WINS. Windows Server 2003 cũng sử dụng một file cơ sở dữ liệu gọi là Lmhosts để phân giải các tên NetBIOS ở xa.
+
+<a name = '3'></a>
+# IPv4 Routing
+
+Sau khi tên máy chủ hoặc tên NetBIOS được phân giải thành địa chỉ IP, gói tin IP phải được gửi tới máy mà có địa chỉ IP được phân giải. Định tuyến là quá trình chuyển tiếp gói tin dựa trên địa chỉ IP đích. Định tuyến liên quan cả tới máy chủ TCP/IP và router IP. Một router là thiết bị mà chuyển tiếp các gói tin từ một mạng tới mạng khác. Các router cũng thường hoạt động như một gateway. Cả máy gửi và router cần xác định rõ gói tin được chuyển tiếp như thế nào.
+
+Để tạo được những quyết định, kết quả là lớp IP có một bảng định tuyến được lưu trong bộ nhớ. Các mục trong bản định tuyến được tạo mặc định khi TCP/IP khởi tạo và các mục thêm vào thủ công bởi người quản trị hệ thống hoặc tự động thông qua liên lạc với các router khác.
+
+## Direct and Indirect Delivery (Chuyển trực tiếp và Gián tiếp)
+
+Các gói tin IP sử dụng ít nhất một trong hai kiểu chuyển dựa trên địa chỉ đích cuối cùng nằm trên một mạng được gán trực tiếp. Hia loại vận chuyển được biết đến là chuyển trực tiếp và chuyển gián tiếp
+
+- Chuyển trực tiếp xảy ra khi node IP (hoặc là node gửi hoặc là một router) chuyển tiếp một gói tin tới địa chỉ đích cuối cùng trên một mạng được gán trực tiếp. IP node đóng gói gói tin IP trong một khung định dạng cho lớp Network Interface (như là Ethernet hoặc Token ring) chuyển tới địa chỉ MAC đích.
+
+- Chuyển gián tiếp xảy ra khi IP node (bên gửi hoặc router) chuyển tiếp gói tin tới một node trung gian (một router khác) bởi vì đích cuối cùng không được gán trực tiếp vào mạng. IP node đóng gói gói tin IP vào định dạng khung cho lớp Network Interface (Ethernet hoặc Token Ring) để gửi tới địa chỉ MAC của router.
+
+Định tuyến IP là sự kết hợp giữa chuyển trực tiếp và gián tiếp.
+
+Trong hình sau, khi gửi gói tin tới node B, node A thực hiện chuyển trực tiếp. Khi gửi gới tin tới Node C, node A thực hiện chuyển gián tiếp tới router 1, router 1 thực hiện chuyển gián tiếp tới router 2, và rồi router 2 thực hiện chuyển trực tiếp tới node C.
+
+![img](../images/3.13.png)
+
+## IP Routing Table (Bảng định tuyến IP)
+
+Một bảng định tuyến đại diện cho tất cả các node IP. Bảng định tuyến lưu thông tin về mạng IP và cahcs mà chúng có thể được tìm thấy (hoặc trực tiếp hoặc gián tiếp). Vì tất cả các node IP thực hiện một số dạng định tuyến IP, các bảng định tuyến không chỉ dành cho các router. Bất kì node nào tải giao thức TCP/IP có một bảng định tuyến. Một chuỗi các mục mặc định theo cấu hình của node và các mục thêm có thể được nhập vào thủ công thông qua các công cụ TCP/IP hoặc tự động thông qua tương tác với các router. 
+
+Khi một gói tin IP được chuyển tiếp, bảng định tuyến được sử dụng để quyết định:
+
+- **Địa chỉ IP tiếp theo**: với kiểu chuyển trực tiếp, địa chỉ IP tiếp theo là địa chỉ đích trong gói tin IP. Với kiểu chuyển gián tiếp, địa chỉ IP tiếp theo là địa chỉ của một router.
+
+- **Interface tiếp theo**: Interface tiếp theo định danh một interface vật lý hoặc logic, như là một bộ chuyển đổi mạng, mà được sử dụng để chuyển tiếp gói tin tới hoặc là đích là hoặc là router tiếp theo.
+
+## IP Routing Table Entry Types (Các loại entry trong bảng định tuyến)
+
+Các mục trong bảng định tuyến IP chứa các thông tin sau:
+
+- **Network ID**: Network ID hoặc địa chỉ đích tương ứng với định tuyến. Network ID có thể định danh một subnet cụ thể, có thể là tóm tắt một tuyến, hoặc là một địa chỉ IP cho một máy chủ định tuyến. Trong bảng định tuyến Windows Server 2003, nó là cột Network Destination. 
+
+- **Network mask**: mặt nạ mạng được sử dụng để so địa chỉ IP đích với network ID. Trong bảng định tuyến của Windows Server 2003, nó là cột Netmask.
+
+- **Next hop**: Địa chỉ IP của hop tiếp theo. Trong bảng định tuyến của Windows Server 2003, đó là cột Gateway.
+
+- **Interface**: một ứng cử cho network interface được sử dụng để chuyển tiếp gói tin IP.
+
+- **Metric**: Một số được sử dụng để chỉ ra giá của tuyến được nên tuyến đường tốt nhất giữa các tuyến đường cùng dẫn tới đích sẽ được chọn. Thường sử dụng metric để chỉ ra số chặng (hop - số router) tới network ID.
+
+Các mục trong bảng định tuyến có thể được lưu các kiểu định tuyến sau:
+
+- **Network ID được gán trực tiếp**: Một tuyến đường cho các network ID mà được kết nối trực tiếp. Với các mạng kết nối trực tiếp, trường Next Hop có thể để trống hoặc chứa địa chỉ IP của interface trên mạng đó.
+
+- **Network ID ở xa**: Một tuyến đường cho các network ID mà không được gán trực tiếp nhưng có thể tới được thông qua các router khác. Với các định tuyến máy chủ, network ID là địa chỉ IP của một host cụ thể và mặt nạ mạng là 255.255.255.255
+
+- **Default route** (định tuyến mặc định): Định tuyến mặc định được thiết kế để sử dụng khi có nhiều hơn network ID cụ thể hoặc định tuyến máy chủ không tìm thấy. Định tuyến mặc định có network ID là 0.0.0.0 với mặt nạ mạng là 0.0.0.0
+
+## Route Determination Process (Tiến trình xác định định tuyến)
+
+Để xác định xem entry nào trong bảng định tuyến được sử dụng để tìm ra địa chỉ next-hop và interface , IP sử dụng các tiến trình sau:
+
+- Với mọi entry trong bảng định tuyến, IP thực hiện phép toàn AND các bit của địa chỉ đích với mặt nạ mạng. Nó so sánh kết quả với network ID để tìm kết quả trùng.
+
+- Một list các định tuyến trùng được tổng hợp. Định tuyến mà trùng nhiều nhất ( định tuyến mà số bit trùng nhiều nhất với địa chỉ IP đích) được chọn. Định tuyến trùng dài nhất là tuyến được trực tiếp tới địa chỉ IP đích. Nếu nhiều entry phù hợp được tìm thấy (ví dụ: các định tuyến tới cùng một network ID), router sử dụng metric thấp nhất để chọn ra tuyến đường tốt nhất. Nếu nhiều tuyến đường trùng với cùng mức metric thấp nhất, router sẽ chỉ định một trong số chúng. Với Windows Server 2003 TCP/IP, tuyến đường được chọn tương ứng với tuyến đường kết nối với interface đầu tiên tìm thấy.
+
+Kết quả cuối cùng của quá trình xác định định tuyến là một định tuyến trong bảng định tuyến mang lại địa chỉ IP và interface tiếp theo. Nếu quá trình định tuyến thất bại khi tìm đường, IP chỉ ra rằng định tuyến bị lỗi. Với máy gửi, một bản tin lỗi định tuyến được gửi lên giao thức lớp cao hơn, như TCP hoặc UDP. Với router, một bản tin ICMP Destination Unreachable - Host Unreachable được gửi lại cho máy gửi gói tin.
+
+## Routing Table for Windows Server 2003
+
+Bảng sau cho thấy bảng định tuyến mặc định của các máy chủ chạy Windows Server 2003 - based (không phải router). Máy host với một bộ chuyển đổi mạng (network adapter) và có địa chỉ IP 157.60.27.90, subnet mask 255.255.240.0, và default gateway là 157.60.16.1
+
+![img](../images/3.14.png)
+
+### Default router 
+
+Entry có tương ứng với cấu hình cho default gateway là địa chỉ mạng đích 0.0.0.0 với mặt nạ mạng 0.0.0.0. Bất kì địa chỉ IP đích nào mà AND với 0.0.0.0 kết quả đều là 0.0.0.0. Do đó, bất kì địa chỉ IP nào thì đường định tuyến mặc định luôn trùng. Nếu định tuyến mặc định được chọn bởi không có đường nào tốt hơn được tìm thấy, gói tin IP được chuyển tiếp tới địa chỉ IP trong cột Gateway
+
+### Loopback Network (mạng loopback)
+
+Mạng loopback được thieets ké để lấy bất kì địa chỉ IP định dạng 127.x.y.z và chuyển tiếp tới địa chỉ loopback đặc biệt 127.0.0.1
+
+### Directly Attached Network (Mạng gán trực tiếp)
+
+Entry mạng cục bộ tương ứng với mạng được gán trực tiếp. Các gói tin IP đích đến tới mạng gán trực tiếp không được chuyển tiếp tới router mà được gửi thẳng tới đích. Lưu ý là các cột Gateway và Interface trùng với địa chỉ IP của node. Điều này chỉ ra rằng gói tin được gửi từ một bộ chuyển đổi mạng tương ứng với địa chỉ IP của node.
+
+### Local Host
+
+Entry local host là một định tuyến máy chủ (mặt nạ mạng là 255.255.255.255) tương ứng với địa chỉ IP của host. Tất cả các gói tin gửi tới địa chỉ IP của host được chuyển tới địa chỉ loopback.
+
+### Network Broadcast (Mạng quảng bá)
+
+Network broadcast entry là một định tuyến máy chủ (mặt nạ mạng 255.255.255.255) tương ứng với tất cả các mạng con gán trực tiếp địa chỉ broadcast (tất cả các mạng con của lớp B network ID 157.60.0.0). Các gói tin địa chỉ tới tất cả các mạng con gán trực tiếp broadcast được gửi từ network adapter tương ứng với địa chỉ IP của node.
+
+### Multicast
+
+Định tuyến cho các địa chỉ multicast được sử dụng để gửi bất kì gói tin IP multicast nao từ network adapter tới địa chỉ ip của node.
+
+### Limited Broadcast
+
+Địa chỉ quảng bá hạn chế là định tuyến máy chủ (mặt nạ mạng 255.255.255.255). CÁc gói tin địa chỉ tới địa chỉ quảng bá hạn chếtđược gửi từ một network adapter tương ứng tới IP của node.
+
+### Viewing the IP Routing Table (Xem bảng định tuyến)
+
+Để xem bảng định tuyến trên máy tính Windows Server 2003-based, gõ **route print** trong command prompt.
+
+Khi xác định đại chỉ IP tiếp theo và interace từ định tuyến tỏng bảng định tuyến:
+
+- Nếu địa chỉ gateway giống với địa chỉ của interface, địa chỉ IP tiếp teo được thiết lập là địa chỉ đích của gói tin IP.
+
+- Nếu địa chỉ gateway không giống địa chỉ interface, địa chỉ IP tiếp theo được thiết lập là địa chỉ gateway.
+
+Ví dụ, khi lưu lượng được gửi tới 157.60.16.48, định tuyến phù hợp nhất tới mạng gán trực tiếp (157.60.16.0/20. Địa chỉ IP tiếp theo được thiết lập tới địa chỉ IP đích (157.60.16.48) vf interface là network adapter mà được gán với địa chỉ 157.60.27.90
+
+Khi gửi lưu lượng tới 192.168.0.79, định tuyến phù hợp nhất là default route (0.0.0.0/0). Địa chỉ IP tiếp thwo được thiết lập là địa chỉ của gateway (157.60.16.1) và interface là adapter network mà được gán địa chỉ 57.60.27.90
+
+## Maintenance of routing Table Entries (Duy trì bảng định tuyến)
+
+Dể định tuyến IP hiệu quả giữa các router trong mạng, các router phải được cấu hình với các network ID ở xa hoặc một default route. Trong một mạng IP lớn, một trong các thách thức mà các nhà quản trị mạng phải đối mặt là làm thế nào để duy trì các bảng định tuyến trên các router để luồng lưu lượng đi theo các đường tốt nhất và có khả năng chịu lỗi.
+
+Có 2 phương pháp để duy trì bảng định tuyến trên các router:
+
+### Manual (thủ công)
+
+Các router tĩnh có bảng định tuyến không thay đổi trừ khi có sự tác động thủ công của người quản trị mạng.
+
+Định tuyến tĩnh dựa trên việc quản lý thủ công bảng định tuyến. Network ID từ xa không được phát hiện bởi các router tĩnh và phải được cấu hình thủ công. Các router tĩnh không phải bị lỗi. Nếu một router tĩnh bị tắt, các router lân cận không cảm nhận được lỗi và báo cho các router khác.
+
+### Automatic (Tự động)
+
+Một router động có bảng định tuyến mà được thay đổi tự động dựa vào sự thay đổi thông tin định tuyến từ các router khác.
+
+Định tuyến động triển khai sử dụng các giao thức định tuến, như RIP và OSPF, để cập nhật tự động thông bảng định tuyến thông qua sự thay đổi thông tin định tuyến giữa các router. Các network ID tư xa được phát hiện bởi các router động và tự động chèn vào bảng định tuyến. Các router động không chịu lỗi. Nếu một router động bị tắt, lỗi sẽ được phát hiện bởi các router lân cận, chúng sẽ gửi thông tin định tuyến đã thay đổi tới các router khác trong mạng.
+
+<a name = '4'></a>
+# Physical Address Resolution (phân giải địa chỉ vật lý)
+
+Dựa trên địa chỉ ip đích và quá trình định tuyến, IP quyết định địa chỉ IP tiếp theo và interface gửi gói tin. IP gửi gói tin IP, địa chỉ IP tiếp theo, và interface để thực hiện ARP. 
+
+Nếu địa chỉ IP tiếp theo giống địa chỉ đích, ARP thực hiện chuyển trực tiếp. Trong chuyển trực tiếp, địa chỉ MAC tương ứng với IP đích phải được quyết định.
+
+Nếu địa chỉ IP tiếp theo khác địa chỉ IP đích, ARP thực hiện chuyển gián tiếp. ĐỊa chỉ IP tiếp theo là dịa chỉ của router giữa node hiện tại và địa chỉ đích cuối cùng. Trong chuyển gián tiếp, địa chỉ MAC tương ứng với địa chỉ IP địc của router phải được quyết định.
+
+Để quyết định một địa chỉ IP tiếp theo với địa chỉ MAC của nó, ARp sử dụng lưu lượng quản bá trên media chia sẻ truy cập (như Ethernet hoặc Token Ring) để gửi đi khung yêu cầu ARP quảng bá. Một bản tin ARP reply, chứa địa chỉ MAC tương ứng với địa chỉ IP yêu cầu, được gửi lại tới máy gửi ARP request.
+
+## ARP cache
+
+Để giữ các khung ARP request ở mức ít nhất, rất nhiều giao thức TCP/IP kết hợp một bộ nhớ cache ARP, là một bảng địa chỉ IP được quyết định gần đây và một địa chỉ MAC tương ứng. TCP/IP kiểm tra ARP cache trước khi gửi đi một khung ARP request.  Mọi interface đều có ARP cache của chính nó. 
+
+Phụ thuộc vào việc triển khai của nhà cung cấp, ARP cache có thể có các loại sau:
+
+- Các entry ARP cache có thể là động (dựa trên ARP reply) hoặc tĩnh. Các entry ARP tĩnh là vĩnh viễn và được thêm thủ công bằng cách sử dụng các tiện ích tCP/IP như ARP tool cung cấp cùng với Windows Server 2003. Các entry ARP tĩnh được sử dụng để ngăn chặn các request ARP thông thường sử dụng trong mạng IP cục bộ, như là router và server. Vấn để với ARP tĩnh là chúng phải được cập nhật thủ công khi các thiết bị interface thay đổi.
+
+- Các entry ARP động được gán với một giá trị time-out để chúng tự động bị loại bỏ sau một thời gian nhất định. ARP động cho Windows Server 2003 được đưa cho lượng thời gian tối đa là 10'  trước khi bị xóa khỏi cache.
+
+Để xem ARP cache trên má Windows Server 2003 - based, gõ **arp -a** trong command prompt.
+
+## ARP Process (Tiến trình ARP)
+
+IP gửi ARP gói tin IP, địa chỉ IP tiếp theo, và interface tiếp theo. Cho dù thực hiện chuyển gói tin trực tiếp hay gián tiếp, ARP thực hiện quy trình như hình sau:
+
+![img](../images/3.15.png)
+
+1) Dựa trên địa chỉ và interface tiếp theo, ARP so trong ARP cache để tìm được địa chỉ phù hợp với IP tiếp theo. Nếu tìm thấy, nó sẽ nhảy tới bước 6.
+
+2) Nếu không tìm thấ, ARP tạo một khu ARP request chứa địa chỉ MAC của interface gửi gói tin, địa chỉ IP của interface gửi gói tin, và địa chỉ IP tiếp theo. ARP sẽ gửi quảng bá bản tin ARP request sử dụng interface thích hợp.
+
+3)  Tất cả host nhận được khung quảng bá và xử lý. Nếu IP của host nhận được trùng với IP yêu cầu, ARP cache của nó cập nhật địa chỉ ánh xạ trong ARP request của máy gửi,
+
+4) Nếu host nhận có IP không trùng IP yêu cầu cần tìm, khung ARP sẽ bị bỏ qua.
+
+5) Host nhận định dạn một bản tin ARP reply chứa địa chỉ MAC yêu cầu và gửi nó trực tiếp lại cho máy gửi ARP request.
+
+6) Khi ARp reply được nhận bởi máy gửi ARP request, nó cập nhật vào ARP cache ánh xạ địa chỉ,
+
+7) Máy gửi ARP request và máy đáp ARP reply đã có địa chỉ  MAC ánh xạ với IP của nhau.
+
+8) Arp gửi gói tin IP tới địa chỉ tiếp theo bằng cách gửi nó tới địa chỉ MAC vừa có.
+
+<a name = '5'></a>
+# End-to-End Delivery 
+
+Các quá trình xử lý định tuyến IP cho tất cả các node có liên quan trong quá trình chuyển gói tin gồm host gửi, router trung gian và host nhận.
+
+## IP on the Sending Host
+
+Khi một host gửi gói tin, gói tin được gửi từ các giao thức lớp trên (TCP, UDP, hoặc ICMP) tới IP, và IP trên host gửi thực hiện như sau:
+
+1) Thiết lập giá trị Time-to-Live (TTL) một giá trị mặc định hoặc giá trị mà ứng dụng chỉ định.
+
+2) Kiểm tra bảng định tuyến để tìm đường đi tốt nhất tới địa chỉ đích.
+
+Nếu không tìm thấy, IP gửi bản tin định tuyến lỗi lên các giao thức lớp trên (TCP, UDP, hoặc ICMP).
+
+3) Quyết định địa chỉ IP tiếp theo và interface, dựa trên định tuyến phù hợp.
+
+4) Gửi gói tin, tới địa chỉ IP tiếp theo, interface tiếp theo tới ARP, ARP thực hiện để ánh xạ địa chỉ IP ra địa chỉ MAC và chuyển tiếp gói tin.
+
+## IP on Router
+
+Khi một gói tin được nhận bởi route, gói tin đưa tới IP, và IP trên router thực hiện như sau:
+
+1) Xác nhận IP header checksum.
+
+Neus IP header checksum lỗi, gói tin sẽ bị hủy mà không được thông báo tới người dùng. Gọi là silent discard (hủy trong im lặng)
+
+
+2) Xác nhận địa chỉ IP đích trong gói IP tương ứng với địa chỉ IP được gán cho một giao diện trên router.
+Nếu có, router sẽ xử lý gói tin IP như là host đích (xem bước 3 phần trên)
+
+3) Nếu địa chỉ đích không nằm trên outer, IP giảm TTL.
+
+Nếu TTL là 0, router sẽ hủy gói tin và gửi ề một bản tin ICMP Time Expired (hết TTL) lại cho máy gửi.
+
+4) Nếu TTL là 1 hoặc lớn hơn, IP cập nhật trường TTL và tính toán lại IP header checksum mới.
+
+5) IP kiểm tra bảng định tuyến của nó tìm ra đường tốt nhất cho địa chỉ IP đích tong gói tin IP.
+
+Nếu không tìm được, router hủy gói tin và gửi về một bản tin ICMP Destination Unreachable - không tìm thấy host đích tới cho máy gửi.
+
+6) Dựa trên định tuyến tốt nhất tìm thấy, IP quyết định địa chỉ IP và interface tiếp theo.
+
+7) IP gửi gói tin, địa chỉ IP tiếp theo và interface tới ARP, và ARP chuyển tiếp gói tin tới địa chỉ MAC thích hợp.
+
+Toàn bộ quá trình được lặp lại trên các router trên đường đi của gói tin giữa host gửi và host nhận.
+
+## IP on the Destination Host 
+
+Khi gói tin được nhận ở host đích, nó sẽ qua lớp IP và IP trên host đích thực hiện như sau:
+
+1) Xác nhận lại IP header checksum.
+
+Nếu xác nhận sai, gói tin sẽ hủy trong im lặng.
+
+2) Xác nhận địa chỉ đích trên gói tin IP có tương ứng với IP được gán cho host hay không.
+
+Nếu không, gói tin hủy trong im lặng.
+
+3) Truyền gói tin IP không có phần IP header tới giao thức lớp cao phù hợp, dựa vào trường IP protocol.
+
+Nếu giao thức không tồn tại, ICMP gửi bản tin Destination Unreachable-Protocol Unreachable lại cho bên gửi.
+
+4) Với các gói tin TCP và UDP, IP kiểm tra cổng đích và xử lý các TCP segment hoặc UDP header.
+
+Nếu không có ứng dụng tồn tại cho số port UDP, ICMP gửi lại bản tin Destination Unreachable-Port Unreachable lại cho bên gửi. Nếu không có ứng dụng tồn tại cho port TCP, TCP gửi khung thiết lập lại kết nối tới bên gửi.
+
+
+<a name = '6'></a>
+# Related Information (thông tin liên quan)
+
+Để biết thêm thông tin về các RFC, xem trong cơ sở dữ liệu RFC của IETF.

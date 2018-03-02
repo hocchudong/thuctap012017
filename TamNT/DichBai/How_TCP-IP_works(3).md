@@ -804,7 +804,7 @@ Phụ thuộc vào việc triển khai của nhà cung cấp, ARP cache có th�
 
 IP gửi ARP gói tin IP, địa chỉ IP tiếp theo, và interface tiếp theo. Cho dù thực hiện chuyển gói tin trực tiếp hay gián tiếp, ARP thực hiện quy trình như hình sau:
 
-![img](../images/3.15.png)
+![img](./images/3.15.png)
 
 1) Dựa trên địa chỉ và interface tiếp theo, ARP so trong ARP cache để tìm được địa chỉ phù hợp với IP tiếp theo. Nếu tìm thấy, nó sẽ nhảy tới bước 6.
 

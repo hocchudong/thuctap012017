@@ -14,7 +14,8 @@
 	- [4.3.REJECT target](#4.3)
 	- [4.4.DNAT target](#4.4)
 	- [4.5.SNAT target](#4.5)
-	- [4.6.Tham khảo thêm](#4.6)
+	- [4.6.MASQUERADE target](#4.6)
+	- [4.7.Tham khảo thêm](#4.7)
 
 
 \- Iptables chứa nhiều tables.  
@@ -161,7 +162,19 @@ Khi host đang chạy web server trong 1 mạng LAN, nhưng không có IP public
 |Ý nghĩa|Option **--to-source** được sử dụng để chỉ định source của packet. Nếu bạn muốn sử dụng 1 dải địa chỉ IP : 194.236.50.155-194.236.50.160. Source IP cho mỗi luồng sẽ được phân bổ ngẫu nhiên 1 địa IP, và 1 luồng duy nhất sẽ luôn sử dụng cùng 1 địa chỉ IP cho tất cả các packet thuộc luồng đó. Chúng ta cũng có thể chỉ định 1 dải port được sử dụng bởi SNAT. Tất cả source port sẽ được giới hạn trong dải ports chỉ định, như trong ví dụ trên: 1024-32000. Điều này chỉ có hiệu lực nếu -p tcp hoặc -p udp được chỉ định ở đâu đó trong match của rule. iptables luôn luôn cố gắng tránh làm bất kỳ sự thay đổi port nào nếu có thể thể, nhưng nếu 2 hosts đều sử dụng cùng 1 ports, iptables sẽ map 1 trong 2 đến port khác. Nếu dải port không được chỉ định, tất cả source port dưới 512 sẽ được mapped đến ports khác dưới 512. Các source ports giữa 512 và 1023 sẽ được mapped đến ports khác dưới 1024. Tất cả các ports khác sẽ được mapped đến 1024 và >1024.|
 
 <a name="4.6"></a>
-## 4.6.Tham khảo thêm
+## 4.6.MASQUERADE target
+\- MASQUERADE target được sử dụng gần tương tự như SNAT target, nhưng không yêu cầu tùy chọn --to-source. MASQUERADE được sử dụng với dynamic IP, bạn không thể biết được địa chỉ IP thực sự tại tất cả các thời điểm. Nếu bạn có kết nối static IP, bạn nên sử dụng SNAT target.  
+\- Bạn vẫn có thể sử dụng MASQUERADE target thay vì SNAT target mặc dù bạn có 1 static tĩnh, tuy nhiên, bạn không lên làm vậy vì nó sẽ làm cho CPU phải xử lý nhiều hơn.  
+\- Chú ý: MASQUERADE target chỉ sử dụng trong chain PREROUTING trong table nat., như SNAT target.  
+\- **Option**  
+
+|Option|--to-ports|
+|---|---|
+|VD|iptables -t nat -A POSTROUTING -p TCP -j MASQUERADE --to-ports 1024-31000|
+|Giải thích|Option **--to-ports** được sử dụng để thiết lập source port hoặc ports sử dụng cho outgoing packet. Bạn có thể chỉ định 1 port như **--to-ports 1025** hoặc bạn có thể chỉ định 1 dải ports như **--to-ports 1024-3000**.|
+
+<a name="4.7"></a>
+## 4.7.Tham khảo thêm
 http://www.faqs.org/docs/iptables/targets.html
 
 

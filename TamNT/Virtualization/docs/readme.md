@@ -49,6 +49,8 @@
 
 - [Một số ghi chép về OpenvSwitch](./Virtual_Switch/2.Tim_hieu_Open_Vswitch.md#3)
 
+    - [Cấu trúc OpenVswitch](./Virtual_Switch/8.Cau_truc_OVS.md)
+
 ### LAB với Openvswitch
 
 - [ Thực hành lab Vlan với Openvswitch](./Virtual_Switch/3.LAB-VLAN-OVS-KVM.md)

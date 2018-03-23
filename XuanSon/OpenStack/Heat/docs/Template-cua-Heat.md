@@ -1,6 +1,19 @@
 # Template của HEAT
 
 # MỤC LỤC
+- [1.Giới thiệu](#1)
+- [2.Cấu trúc của template HOT](#2)
+  - [2.1.heat_template_version](#2.1)
+  - [2.2.description](#2.2)
+  - [2.3.prameters_group](#2.3)
+  - [2.4.parameters section](#2.4)
+  - [2.5.resource section](#2.5)
+  - [2.6.output section](#2.6)
+- [3.Intrinsic functions sử dụng trong template](#3)
+  - [3.1.get_attr](#3.1)
+  - [3.2.get_file](#3.2)
+  - [3.3.get_param](#3.3)
+  - [3.4.get_resource](#3.4)
 
 
 <a name="1"></a>

@@ -1,6 +1,18 @@
 # Template cơ bản
 
 # MỤC LỤC
+- [1.Quản lý network](#1)
+  - [1.1. Tạo network và subnet](#1.1)
+  - [1.2.Tạo router và kết nối subnet đến router](#1.2)
+  - [1.3.Tạo router, tạo port trên subnet và kết nối port đến router](#1.3)
+  - [1.4.Tạo network hoàn chỉnh](#1.4)
+- [2.Quản lý instance](#2)
+  - [2.1.Tạo instance và kết nối instance đến network](#2.1)
+  - [2.2.Tạo instance, tạo port, kết nối instance đến port](#2.2)
+  - [2.3.Tạo và kết nối floating IP đến instance](#2.3)
+  - [2.4.Tạo keypair và tạo instance sử dụng keypair đó](#2.4)
+  - [2.5.Tạo network, router, instance](#2.5)
+
 
 
 <a name="1"></a>

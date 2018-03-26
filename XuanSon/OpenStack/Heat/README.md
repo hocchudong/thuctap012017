@@ -8,6 +8,7 @@
 - [Template của HEAT](docs/Template-cua-Heat.md)
 - [Template cơ bản](docs/Template-co-ban.md)
 - [OpenStack Resource Types](docs/OpenStack-Resource-Type.md)
+- [Heat command line](docs/Heat-command-line.md)
 
 ## Thực hành
 - [Template 1 số ứng dụng](docs/Template-mot-so-ung-dung.md)

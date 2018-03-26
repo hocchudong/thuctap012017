@@ -12,14 +12,14 @@ https://docs.openstack.org/python-heatclient/latest/cli/index.html
 ## 1.1.Stack
 \- Tạo stack  
 ```
-stack create  -t <template> <stack-name>
+openstack stack create  -t <template> <stack-name>
 ```
 
 <img src="../images/heat-command-1.png" />
 
 \- Xóa stack  
 ```
-stack delete [--wait] <stack> [<stack> ...]
+openstack stack delete [--wait] <stack> [<stack> ...]
 ```
 
 - --wait : Chờ cho quá trình xóa stack hoàn thành
@@ -27,14 +27,14 @@ stack delete [--wait] <stack> [<stack> ...]
 
 \- Liệt kê danh sách stack  
 ```
-stack list
+openstack stack list
 ```
 
 <img src="../images/heat-command-2.png" />
 
 \- Show chi tiết về stack  
 ```
-stack show <stack>
+openstack stack show <stack>
 ```
 
 VD:  
@@ -140,7 +140,7 @@ root@controller:~/stack# openstack stack show VM1
 
 \- Liệt kê ouput của stack  
 ```
-stack output list [-f {csv,json,table,value,yaml}] <stack>
+openstack stack output list [-f {csv,json,table,value,yaml}] <stack>
 ```
 
 <img src="../images/heat-command-3.png" />
@@ -156,19 +156,19 @@ Chú ý: Phải sử dụng 1 trong 2 option --all hoặc <output>.
 
 \- Liệt kê resource của stack  
 ```
-stack resource list <stack>
+openstack stack resource list <stack>
 ```
 
 <img src="../images/heat-command-5.png" />
 
 \- Hiển thị resource của stack  
 ```
-stack resource show <stack> <resource>
+openstack stack resource show <stack> <resource>
 ```
 
 \- Show template của stack  
 ```
-stack template show <stack>
+openstack stack template show <stack>
 ```
 
 <a name="2"></a>

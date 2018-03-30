@@ -304,7 +304,7 @@ iptables -A INPUT -p tcp -s 10.10.10.0/24 -d 10.10.10.11 --dport 22 -m state --s
 \-  ACCEPT Outgoing Packets thông qua Server từ mạng LAN (10.10.10.0/24) và nat địa chỉ nguồn của packet.  
 ```
 iptables -A FORWARD -i ens38 -o ens33 -j ACCEPT
-iptables -t nat -A POSTROUTING -o ens33 -s 10.10.10.0/24 -j SNAT --to-source 10.10.10.11
+iptables -t nat -A POSTROUTING -o ens33 -s 10.10.10.0/24 -j SNAT --to-source 172.16.69.11
 ```
 
 <a name="3.4"></a>

@@ -1,0 +1,51 @@
+heat_template_version: 2017-09-01
+
+description: Tempalte create a new private network with subnet 
+
+parameters:
+  public_network:
+    type: string
+    label: Public network name or ID
+    description: Public network with floating IP addresses.
+    default: "provider"
+  cidr:
+    type: string
+    label: Network CIDR
+    description: The CIDR of the private network.
+    default: "10.1.0.0/24"
+  dns:
+    type: comma_delimited_list
+    label: DNS nameservers
+    description: Comma separated list of DNS nameservers for the private network.
+    default: "8.8.8.8,8.8.4.4"
+  
+resources:
+  private_network:
+    type: OS::Neutron::Net 
+  private_subnet:
+    type: OS::Neutron::Subnet 
+    properties:
+      network: {get_resource: private_network}
+      cidr: {get_param: cidr}
+      dns_nameservers: {get_param: dns}
+      ip_version: 4
+  router:   
+    type: OS::Neutron::Router
+    properties:
+      external_gateway_info: {"network": {get_param: public_network}}
+  router_interface:
+    type: OS::Neutron::RouterInterface
+    properties:
+      router: {get_resource: router}
+      subnet: {get_resource: private_subnet}
+
+outputs:
+  private_network_name:
+    description: Name network
+    value: {get_attr: [private_network , name]}
+  private_subnet_name:
+    description: Name subnet
+    value: {get_attr: [private_subnet , name]}
+  router_name:
+    description: Name router
+    value: {get_attr: [router , name]}

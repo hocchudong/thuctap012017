@@ -7,13 +7,20 @@
 <a name="1"></a>
 # 1.OpenStack command line
 \- Tham khảo:  
-https://docs.openstack.org/python-heatclient/latest/cli/index.html
+https://docs.openstack.org/python-heatclient/latest/cli/index.html  
 
 ## 1.1.Stack
 \- Tạo stack  
 ```
-openstack stack create  -t <template> <stack-name>
+openstack stack create [--timeout <timeout>] [--enable-rollback] [--wait] [-e <environment>] -t <template> <stack-name>
 ```
+
+- --timeout <timeout> :  Stack đang tạo timeout trong vài phút.
+- --enable-rollback :  Enable rollback trên create/update lỗi.
+- --wait : Chờ cho đến khi stack chuyển sang trạng thái CREATE_COMPLETE hoặc CREATE_FAILED
+
+
+
 
 <img src="../images/heat-command-1.png" />
 
@@ -171,16 +178,26 @@ openstack stack resource show <stack> <resource>
 openstack stack template show <stack>
 ```
 
+\- Update stack:  
+```
+openstack stack update [-t <template>] [-e <environment>] [--parameter <key=value>] <stack>
+```
+
 <a name="2"></a>
 # 2.Heat command client
+- Tham khảo: https://docs.openstack.org/ocata/cli-reference/heat.html  
 ## 2.1.Stack
 \- Tạo stack  
 ```
-heat stack-create [-f <FILE>] [-u <URL>] <STACK_NAME>
+heat stack-create [-t <TIMEOUT>] [-r] [-e <FILE or URL>] [-f <FILE>] [-u <URL>] <STACK_NAME>
 ```
 
 - -f <FILE>, --template-file <FILE> : đường dẫn cảu template
-- -u <URL>, --template-url <URL> : URL của template.
+- -u <URL>, --template-url <URL> : URL của template
+- -e <FILE or URL>, --environment-file <FILE or URL> : Đường dẫn đến file environment
+- -t <TIMEOUT>, --timeout <TIMEOUT> : Stack đang tạo timeout trong vài phút
+- -r, --enable-rollback : Enable rollback trên create/update lỗi
+
 
 \- Xóa stack
 ```
@@ -226,6 +243,20 @@ heat resource-show <NAME or ID> <RESOURCE>
 heat template-show <NAME or ID>
 ```
 
+\- Update stack:  
+```
+heat stack-update [-f <FILE>] [-e <FILE or URL>] [-u <URL>] [-P <KEY1=VALUE1;KEY2=VALUE2...>] <NAME or ID>
+```
 
+- -f <FILE>, --template-file <FILE> : đường dẫn cảu template
+- -u <URL>, --template-url <URL> : URL của template
+- -e <FILE or URL>, --environment-file <FILE or URL> : Đường dẫn đến file environment
+
+<a name="3"></a>
+# 3.Heat api
+- Tham khảo: https://developer.openstack.org/api-ref/orchestration/v1/index.html
+
+<a name="4"></a>
+4.Sử dụng dashboard
 
 

@@ -1,4 +1,5 @@
 # GHI CHÉP VỀ HEAT PROJECT
+Tài liệu về OpenStack Heat được viết tại phiên bản OpenStack Pike.  
 
 ## Lý thuyết
 - [Giới thiệu Heat](docs/Gioi-thieu-Heat.md)
@@ -9,8 +10,13 @@
 - [Template cơ bản](docs/Template-co-ban.md)
 - [OpenStack Resource Types](docs/OpenStack-Resource-Type.md)
 - [Heat command line](docs/Heat-command-line.md)
+- [Cấu hình phần mềm thông qua Heat](docs/Cau-hinh-phan-mem-thong-qua-heat.md)
+- [Environment](docs/Environment.md)
+- [File template sử dụng như 1 resource type](docs/File-template-su-dung-nhu-resource-type.md)
+- [Heat stack update](docs/Heat-stack-update.md)
 
 ## Thực hành
+- [Thư viện environment và tempalte ](docs/Thu-vien-environment-va-template.md)
 - [Template 1 số ứng dụng](docs/Template-mot-so-ung-dung.md)
 
 ## Tài liệu tham khảo

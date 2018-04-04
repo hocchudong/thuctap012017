@@ -3,6 +3,8 @@
 # MỤC LỤC
 - [1.OpenStack command line](#1)
 - [2.Heat command client](#2)
+- [3.Heat api](#3)
+- [4.Sử dụng dashboard](#4)
 
 <a name="1"></a>
 # 1.OpenStack command line
@@ -257,6 +259,6 @@ heat stack-update [-f <FILE>] [-e <FILE or URL>] [-u <URL>] [-P <KEY1=VALUE1;KEY
 - Tham khảo: https://developer.openstack.org/api-ref/orchestration/v1/index.html
 
 <a name="4"></a>
-4.Sử dụng dashboard
+# 4.Sử dụng dashboard
 
 

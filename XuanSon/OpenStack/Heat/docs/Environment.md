@@ -17,6 +17,7 @@
 # 1.Giới thiệu 
 \- Environment ảnh hưởng đến hành vi của template. Nó cung cấp cách để ghi đè (override) các sự bổ sung tài nguyên và cơ chế đặt parameter mà dịch vụ cần. 1 file environment là các loại được chỉ định của template mà nó cung cung cấp các tùy chỉnh cho templates.  
 \-  
+
 |||
 |---|---|
 |Template|Bản thiết kế kiến trúc tĩnh ứng dụng của bạn |

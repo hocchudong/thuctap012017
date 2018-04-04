@@ -13,7 +13,7 @@
 - User-data boot scripts và cloud-init
 - Tài nguyên triển khai phần mềm
 
-<a name+"1"></a>
+<a name="1"></a>
 # 1.Image building
 \- 1 số lý do mà bạn muốn xây dựng image tùy chỉnh:
 - **Boot speed**: vì phần mềm đã có trên image không cần phải tải về và không cần cài đặt đặt lúc boot.
@@ -95,7 +95,7 @@ resources:
 ```
 
 <a name="2.1"></a>
-2.1.Chọn user_data_format
+## 2.1.Chọn user_data_format
 \- Properties `user_data_format` cho phép chỉ định định dạng `user_data` cho server. Mặc định giá trị là H`EAT_CFNTOOLS`, ngoài ra còn các giá trị là `RAW` hoặc `SOFTWARE_CONFIG`.  
 \- VD:  
 ```
@@ -122,7 +122,7 @@ resources:
 ```
 
 <a name="2.2"></a>
-2.2.Software config resources
+## 2.2.Software config resources
 \- Cấu kịch bản cấu hình boot cũng có thể quản lý như các resource của họ, điều này cho phép cấu hình định nghĩa 1 lần và chạy trên nhiều server resources. Software-config resource được lưu trữ và lấy ra thông qua lời goinj Orchestration API. Không thể sửa đổi nội dung của software-config resource, do đó, stack-update thay đổi bất kì software-config resource đã tồn tại sẽ dẫn đến các lời gọi API để tạo ra cấu hình mới và xóa cấu hình cũ.  
 \- Resource `OS::Heat::SoftwareConfig` được sử dụng để lưu trữ cấu hình, vd:  
 ```

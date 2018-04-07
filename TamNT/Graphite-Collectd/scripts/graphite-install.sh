@@ -39,7 +39,7 @@ DATABASES = {
    'NAME': '$graphite_db_name',
    'ENGINE': 'django.db.backends.postgresql_psycopg2',
    'USER': '$graphite_user_name',
-   'PASSWORD': '$PASS_TEST', 
+   'PASSWORD': '$PASS_GRAPHITE_DB', 
    'HOST': 'localhost',
    'PORT': ''
    }

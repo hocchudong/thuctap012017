@@ -87,6 +87,22 @@ ovs-vsctl del-br <switch_name>
 ovs-vsctl list-ports <switch_name>
 ```
 
+\- List thông tin về các port numbers trên vswitch:  
+```
+ovs-ofctl dump-ports <switch_name>
+```
+
+VD:  
+<img src="images/20.png" />
+
+\- List thông tin về port name và port number trên vswitch:  
+```
+ovs-ofctl show <switch_name>
+```
+
+VD:  
+<img src="images/21.png" />
+
 \- Add , delete port :  
 ```
 ovs-vsctl add-port <brname> <ifname>

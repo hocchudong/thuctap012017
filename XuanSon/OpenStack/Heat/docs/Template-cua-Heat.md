@@ -14,6 +14,7 @@
   - [3.2.get_file](#3.2)
   - [3.3.get_param](#3.3)
   - [3.4.get_resource](#3.4)
+  - [3.5.str_replace](#3.5)
 
 
 <a name="1"></a>
@@ -380,8 +381,65 @@ resources:
         port: { get_resource: instance_port }
 ```
 
+<a name="3.5"></a>
+## 3.5.str_replace
+\- Hàm str_replace có tác dụng thay thế string bằng cách cung cấp template string với danh sách các giá trụ mapping được gán.  
+\- Cú pháp của hàm `str_replace`:  
+```
+str_replace:
+  template: <template string>
+  params: <parameter mappings>
+```
 
+**template**  
+- Định nghĩa template string chứa string bị thay thế tại runtime.  
 
+**params**  
+- Cung cấp parameter mapping theo dạng tử điển. Mỗi key đề cập đến một placehoder được sử dụng trong thuộc tính của **template**.
+- Từ HOT version 2015-10-15, bạn có thể tùy ý chuyển các non-string parameter values (vd: json/map/list parameter hoặc attributes).
+
+\- VD1:  
+```
+resources:
+  my_instance:
+    type: OS::Nova::Server
+    # general metadata and properties ...
+
+outputs:
+  Login_URL:
+    description: The URL to log into the deployed application
+    value:
+      str_replace:
+        template: http://host/MyApplication
+        params:
+          host: { get_attr: [ my_instance, first_address ] }
+```
+
+\- VD2:  
+```
+parameters:
+  DBRootPassword:
+    type: string
+    label: Database Password
+    description: Root password for MySQL
+    hidden: true
+
+resources:
+  my_instance:
+    type: OS::Nova::Server
+    properties:
+      # general properties ...
+      user_data:
+        str_replace:
+          template: |
+            #!/bin/bash
+            echo "Hello world"
+            echo "Setting MySQL root password"
+            mysqladmin -u root password $db_rootpassword
+            # do more things ...
+          params:
+            $db_rootpassword: { get_param: DBRootPassword }
+```
 
 
 

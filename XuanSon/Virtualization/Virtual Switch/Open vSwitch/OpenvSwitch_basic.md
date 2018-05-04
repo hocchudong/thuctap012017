@@ -93,6 +93,23 @@ ovs-vsctl add-port <brname> <ifname>
 ovs-vsctl del-port <brname> <ifname>
 ```
 
+\- Add port và chỉ định port number trên switch:  
+Cho versions của Open vSwitch <=1.9:  
+```
+ovs-vsctl add-port <brname> <ifname> -- set Interface <ifname> ofport=n
+```
+
+Cho versions của Open vSwitch >1.9:  
+```
+add-port <brname> <ifname> -- set Interface <ifname> ofport_request=n
+```
+
+Chú ý: Bạn cũng có thể add port trước rồi chỉ định port number sau:  
+```
+ovs-vsctl add-port <brname> <ifname>
+ovs-vsctl set Interface <ifname> ofport_request=n
+```
+
 \- Set kiểu cho port:  
 ```
 ovs-vsctl set interface <interface_name> type=<type_name>

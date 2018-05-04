@@ -1,0 +1,71 @@
+heat_template_version: 2017-09-01
+
+description: Create a instance
+
+parameters:
+  public_network:
+    type: string
+    label: Public network name or ID
+    description: Public network with floating IP addresses.
+    default: "provider"
+  cidr:
+    type: string
+    label: Network CIDR
+    description: The CIDR of the private network.
+    default: "10.1.0.0/24"
+  dns:
+    type: comma_delimited_list
+    label: DNS nameservers
+    description: Comma separated list of DNS nameservers for the private network.
+    default: "8.8.8.8,8.8.4.4"
+  image:
+    type: string
+    label: Image name or ID
+    description: Image to be used for compute instance
+    default: "cirros"
+  flavor:
+    type: string
+    label: Flavor
+    description: Type of instance (flavor) to be used
+    default: "small"
+
+
+resources:
+  instance:
+    type: OS::Nova::Server
+    properties:
+      flavor: {get_param: flavor}
+      image: {get_param: image}
+      networks: 
+        - "network": {get_attr: [private_network, private_network_name]}
+      key_name: {get_attr: [my_key, keypair_name]}
+
+  private_network:
+    type: Lib::Son::PrivateNetwork
+    properties:
+      public_network: {get_param: public_network}
+      cidr: {get_param: cidr}
+      dns: {get_param: dns}
+
+  floating_ip:
+    type: Lib::Son::FloatingIP
+    properties:
+      public_network: {get_param: public_network}
+      port: {get_attr: [instance, addresses, {get_attr: [private_network, private_network_name]}, 0, port]}
+
+  my_key:
+    type: Lib::Son::KeyPair
+    properties:
+      keypair_name: "my_key"
+
+
+outputs:
+  instance_ip_floating:
+    description: Floating Ip of instance
+    value: {get_attr: [floating_ip , ip_floating]}
+  instance_ip_private:
+    description: Ip private of instance
+    value: {get_attr: [instance , networks, {get_attr: [private_network, private_network_name]}, 0]}
+  private_key:
+    description: Private key
+    value: {get_attr: [my_key, private_key]}

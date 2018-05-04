@@ -5,21 +5,20 @@
 echocolor(){
 	printf "\n \n"
 	echo -e "\e[1;31m =>  $1 \e[0m"
-
 }
+
 echocolorbg(){
 	printf "\n \n"
 	echo -e "\e[1;47m\e[1;31m ##### $1 ##### \e[0m"
-
 }
 
 # Ham chinh sua cac file cau hinh
-
 ## Ham add de them cac thong so trong cac section cua file cau hinh
 
 function ops_add {
 	crudini --set $1 $2 $3 $4
 }
+
 ### Cach dung
 ### Cu phap
 ### ops_add FILE_NAME SECTION PARAMETER VAULE
@@ -32,4 +31,3 @@ function ops_del {
 
 ### Cu phap
 ### ops_del FILE_NAME SECTION PARAMETER
-

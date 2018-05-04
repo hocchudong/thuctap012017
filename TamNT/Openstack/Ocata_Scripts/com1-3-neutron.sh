@@ -4,9 +4,11 @@ source config.sh
 source functions.sh
 echocolor "Cai dat Neutron"
 sleep 3
+
 apt install neutron-linuxbridge-agent -y
 echocolor "Cau hinh Neutron"
 sleep 3
+
 neutronconf=/etc/neutron/neutron.conf
 cp $neutronconf $neutronconf.orig 
 ops_del $neutronconf database connection
@@ -43,7 +45,7 @@ ops_add $novaconf neutron username neutron
 ops_add $novaconf neutron password $NEUTRON_PASS
 echocolor "restart nova-compute"
 sleep 3
+
 service nova-compute restart
 service neutron-linuxbridge-agent restart
-
 echocolorbg "Hoan thanh setup project Neutron node compute"

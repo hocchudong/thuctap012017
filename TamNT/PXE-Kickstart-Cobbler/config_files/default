@@ -1,0 +1,16 @@
+# D-I config version 2.0
+# search path for the c32 support libraries (libcom32, libutil etc.)
+path ubuntu-installer/amd64/boot-screens/
+include ubuntu-installer/amd64/boot-screens/menu.cfg
+default ubuntu-installer/amd64/boot-screens/vesamenu.c32
+DISPLAY boot.txt
+
+LABEL Ubuntu_server_16.04_Install
+        kernel ubuntu-installer/amd64/linux
+        append ks=http://172.16.100.220/kickstartForUS16.04.cfg ksdevice=ens33 vga=normal initrd=ubuntu-installer/amd64/initrd.gz --
+
+LABEL Centos_7_x64_Install
+kernel centos7/vmlinuz
+append initrd=centos7/initrd.img inst.ks=http://172.16.100.10/anaconda-ks.cfg inst.vnc inst.vncpassword=password
+prompt 0
+timeout 0

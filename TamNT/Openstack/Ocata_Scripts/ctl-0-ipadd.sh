@@ -21,15 +21,11 @@ $CINDER_MGNT_IP    $HOST_CINDER
 
 EOF
 
-sleep 5
-
 echocolor "Cau hinh IP: "
 sleep 3
 
 cp /etc/network/interfaces /etc/network/interfaces.orig
-
 cat << EOF > /etc/network/interfaces
-
 #Dat IP cho controller node
 
 # LOOPBACK NET
@@ -41,7 +37,6 @@ auto $CTL_MGNT_IF
 iface $CTL_MGNT_IF inet static
 address $CTL_MGNT_IP
 netmask $NETMASK_ADD_MGNT
-
 
 # NAT NETWORK
 auto $CTL_EXT_IF
@@ -56,11 +51,8 @@ auto $CTL_DATA_IF
 iface $CTL_DATA_IF inet static
 address $CTL_DATA_IP
 netmask $NETMASK_ADD_DATA
-
 EOF
-
 
 echocolorbg "Rebooting controller"
 sleep 5
-
 init 6

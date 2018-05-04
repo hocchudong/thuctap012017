@@ -19,5 +19,5 @@ Xem tại thư mục [Template-1-so-ung-dung](../Template-1-so-ung-dung/wordpres
 Xem tại thư mục [Template-1-so-ung-dung](../Template-1-so-ung-dung/wordpress).  
 
 /- **Cách 2: Template sử dụng environment**  
-File `wordpress.yaml` trong thư mục [Thu-vien-environment-va-template](../Thu-vien-environment-va-template.
+File `wordpress.yaml` trong thư mục [Thu-vien-environment-va-template](../Thu-vien-environment-va-template).
 

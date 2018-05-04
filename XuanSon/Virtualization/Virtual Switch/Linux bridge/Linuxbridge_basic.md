@@ -103,6 +103,8 @@ brctl showmacs <brname>
 
 <img src="http://i.imgur.com/0nnFmsM.png" />
 
+Port 2 show ra 2 địa chỉ MAC (`00:0c:29:df:89:f2` và `00:50:56:c0:00:01`) được gắn với nó. Cột "is local" cho biết MAC đó có phải local hay ko, "yes" là thuộc local và "no" là ko. Trong trường hợp này `00:0c:29:df:89:f2` là tap interface (port trên linux bridge) thuộc local, và `00:50:56:c0:00:01` là MAC của VM gắn vào linux bridge đó.
+
 \- Set RTT :  
 ```
 brctl setageing <brname> <time>
@@ -114,6 +116,11 @@ brctl setageing <brname> <time>
 ```
 brctl showstp <bridge>
 ```
+
+VD:  
+<img src="images/1.png" />
+
+Ta có thể dùng lệnh này để xem port name tương ứng với port number trên linux bridge. Như VD trên thì vnet0 là port số 2 trên linux bridge.
 
 \- Turn { on | off } spanning tree protocol :  
 ```

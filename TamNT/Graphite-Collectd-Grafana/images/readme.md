@@ -1,0 +1,1 @@
+# Các hình ảnh minh họa trong ghi chép.

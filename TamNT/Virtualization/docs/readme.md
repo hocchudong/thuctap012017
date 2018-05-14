@@ -4,6 +4,8 @@
 
 - [ Tìm hiểu một số công cụ quản lý KVM: Virt-manager, WebVirtMgr, `virt - virsh` tool command.](./KVM/2.Cong_cu_quan_ly_KVM.md)
 
+- [ Attach interface vào VM đang chạy.](./KVM/9.Attack_interface_to_running_VM.md)
+
 # 2. Tìm hiểu các chế độ mạng ảo trong Libvirt
 
 [Tìm hiểu một số chế động mạng được tạo và quản lý bởi Libvirt](./Virtual_network_in_Libvirtmd#1)
@@ -48,6 +50,8 @@
     - [Định nghĩa các thành phần của Openvswitch trong file /etc/network/interfaces](./Virtual_Switch/2.Tim_hieu_Open_Vswitch.md#2.2)
 
 - [Một số ghi chép về OpenvSwitch](./Virtual_Switch/2.Tim_hieu_Open_Vswitch.md#3)
+
+    - [Cấu trúc OpenVswitch](./Virtual_Switch/8.Cau_truc_OVS.md)
 
 ### LAB với Openvswitch
 

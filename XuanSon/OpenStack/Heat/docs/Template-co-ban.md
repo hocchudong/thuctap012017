@@ -12,7 +12,10 @@
   - [2.3.Tạo và kết nối floating IP đến instance](#2.3)
   - [2.4.Tạo keypair và tạo instance sử dụng keypair đó](#2.4)
   - [2.5.Tạo network, router, instance](#2.5)
-
+- [3.Quản lý volume](#3)
+  - [3.1.Tạo volume](#3.1)
+  - [3.2.Gắn volume đến instance](#3.2)
+  - [3.3.Boot instance từ volume](#3.3)
 
 
 <a name="1"></a>
@@ -644,6 +647,248 @@ outputs:
     value: {get_attr: [my_key, private_key]}
 ```
 
+<a name="3"></a>
+# 3.Quản lý volume 
+
+<a name="3.1"></a>
+## 3.1.Tạo volume
+\- Tạo volume:  
+```
+heat_template_version: 2017-09-01
+
+description: >
+  Create a volume
+
+parameters:
+  size:
+    type: number
+    label: Size of volume
+    description: The size of volume
+    default: 2
+
+resources:
+  my_new_volume:
+    type: OS::Cinder::Volume
+    properties:
+      size: {get_param: size}
+      description: "Volume"
+
+
+outputs:
+  volume_name:
+    description: Name of volume
+    value: {get_attr: [my_new_volume, display_name]}
+```
+
+\- Tạo bootable volume sử dụng image  
+```
+heat_template_version: 2017-09-01
+
+description: >
+  Create a volume
+
+parameters:
+  size:
+    type: number
+    label: Size of volume
+    description: The size of volume
+    default: 5
+
+resources:
+  my_new_volume:
+    type: OS::Cinder::Volume
+    properties:
+      size: {get_param: size}
+      description: "Volume"
+      image: ubuntu16.04
+
+outputs:
+  volume_name:
+    description: Name of volume
+    value: {get_attr: [my_new_volume, display_name]}
+```
+
+\- Tạo volume từ volume sẵn có, chú ý là size của volume mới phải >= volume sẵn có  
+```
+heat_template_version: 2017-09-01
+
+description: >
+  Create a volume
+
+parameters:
+  size:
+    type: number
+    label: Size of volume
+    description: The size of volume
+    default: 5
+
+resources:
+  my_new_volume:
+    type: OS::Cinder::Volume
+    properties:
+      size: {get_param: size}
+      description: "Volume"
+      source_volid: 33471582-142a-43ee-aee0-dfd8f70594b2
+
+
+outputs:
+  volume_name:
+    description: Name of volume
+    value: {get_attr: [my_new_volume, display_name]}
+```
+
+\- Tạo volume từ bản snapshot volume  
+```
+heat_template_version: 2017-09-01
+
+description: >
+  Create a volume
+
+parameters:
+  size:
+    type: number
+    label: Size of volume
+    description: The size of volume
+    default: 5
+
+resources:
+  my_new_volume:
+    type: OS::Cinder::Volume
+    properties:
+      size: {get_param: size}
+      description: "Volume"
+      snapshot_id: 4794d5b9-1bfb-4dba-915b-454f9ededbb3
+
+
+outputs:
+  volume_name:
+    description: Name of volume
+    value: {get_attr: [my_new_volume, display_name]}
+```
+
+<a name="3.2"></a>
+## 3.2.Gắn volume đến instance
+```
+heat_template_version: 2017-09-01
+
+description: Create a instance
+
+parameters:
+  image:
+    type: string
+    label: Image name or ID
+    description: Image to be used for compute instance
+    default: "ubuntu16.04"
+  flavor:
+    type: string
+    label: Flavor
+    description: Type of instance (flavor) to be used
+    default: "medium"
+  private_network:
+    type: string
+    label: Private network name or ID
+    description: Network to attach instance to.
+    default: "private"
+  size:
+    type: number
+    label: Size of volume
+    description: The size of volume
+    default: 2
+
+
+resources:
+  instance:
+    type: OS::Nova::Server
+    properties:
+      flavor: {get_param: flavor}
+      image: {get_param: image}
+      networks: 
+        - "network": {get_param: private_network}
+  volume:
+    type: OS::Cinder::Volume
+    properties:
+      size: {get_param: size}
+      description: "Volume"
+
+  volume_attachment:
+    type: OS::Cinder::VolumeAttachment
+    properties:
+      volume_id: { get_resource: volume }
+      instance_uuid: {get_resource: instance}
+
+
+outputs:
+  instance_ip:
+    description: Ip of instance
+    value: {get_attr: [instance , networks, {get_param: private_network}, 0]}
+  volume_name:
+    description: Name of volume
+    value: {get_attr: [volume, display_name]}
+```
+
+<a name="3.3"></a>
+## 3.3.Boot instance từ volume
+```
+heat_template_version: 2017-09-01
+
+description: Create a instance
+
+parameters:
+  image:
+    type: string
+    label: Image name or ID
+    description: Image to be used for compute instance
+    default: "cirros"
+  flavor:
+    type: string
+    label: Flavor
+    description: Type of instance (flavor) to be used
+    default: "small"
+  private_network:
+    type: string
+    label: Private network name or ID
+    description: Network to attach instance to.
+    default: "private"
+  size:
+    type: number
+    label: Size of volume
+    description: The size of volume
+    default: 2
+  device_name:
+    type: string
+    label: Name device
+    description: Name of device
+    default: "vda" 
+
+
+resources:
+resources:
+  bootable_volume:
+    type: OS::Cinder::Volume
+    properties:
+      size: {get_param: size}
+      image: {get_param: image}
+
+  instance:
+    type: OS::Nova::Server
+    properties:
+      flavor: {get_param: flavor}
+      networks:
+        - network: {get_param: private_network}
+      block_device_mapping:
+        - device_name: vda
+          volume_id: {get_resource: bootable_volume}
+          delete_on_termination: true
+
+
+outputs:
+  instance_ip:
+    description: Ip of instance
+    value: {get_attr: [instance , networks, {get_param: private_network}, 0]}
+  volume_name:
+    description: Name of volume
+    value: {get_attr: [bootable_volume, display_name]}
+```
 
 
 

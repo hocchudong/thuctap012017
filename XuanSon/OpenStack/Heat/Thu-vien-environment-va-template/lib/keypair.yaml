@@ -1,0 +1,28 @@
+heat_template_version: 2017-09-01
+
+description: Create a keypair
+
+
+parameters:
+  keypair_name:
+    type: string
+    label: Keypair name
+    description: Keypair name
+    default: "my_key"
+
+    
+resources:
+  my_key:
+    type: OS::Nova::KeyPair
+    properties:
+      save_private_key: true
+      name: {get_param: keypair_name}
+
+
+outputs:
+  keypair_name:
+    description: Name of keypair
+    value: {get_param: keypair_name}
+  private_key:
+    description: Private key
+    value: {get_attr: [my_key, private_key]}

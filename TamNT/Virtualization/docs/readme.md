@@ -63,6 +63,8 @@
 
 - [Lab Linux network namespace với Openvswitch](./7.Linux_network_namespace.md#2)
 
+- [Cấu hình mirror port với Openvswitch](./Virtual_Switch/Cau_hinh_mirror_port.md)
+
 # 4. Tìm hiểu một số virtual network
 
 ## 4.1. VXLAN
